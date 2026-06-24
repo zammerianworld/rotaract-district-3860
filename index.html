@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Rotaract Clubs of Rotary International District 3860</title>
+<meta name="description" content="Official website of the Rotaract Clubs of Rotary International District 3860 — Visayas and Mindanao."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+img{display:block;max-width:100%;}
+a{text-decoration:none;color:inherit;}
+:root{
+  --pink:       #D41367;
+  --pink-dark:  #A50E50;
+  --pink-deep:  #7a0a38;
+  --pink-light: #fce7f3;
+  --pink-pale:  #fdf2f8;
+  --white:      #ffffff;
+  --gray-50:    #F9FAFB;
+  --gray-100:   #F3F4F6;
+  --gray-200:   #E5E7EB;
+  --gray-400:   #9CA3AF;
+  --gray-500:   #6B7280;
+  --gray-700:   #374151;
+  --gray-900:   #111827;
+  --font-display:'Playfair Display',Georgia,serif;
+  --font-body:'Inter',system-ui,sans-serif;
+  --nav-h:68px;
+  --r-sm:6px;--r-md:12px;--r-lg:20px;--r-xl:28px;
+}
+body{font-family:var(--font-body);font-size:16px;line-height:1.7;color:var(--gray-900);background:var(--white);overflow-x:hidden;}
+.container{max-width:1080px;margin:0 auto;padding:0 28px;}
+
+/* ── NAV ── */
+#nav{position:sticky;top:0;z-index:100;height:var(--nav-h);background:var(--pink);}
+.nav-inner{height:100%;max-width:1080px;margin:0 auto;padding:0 28px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.nav-logo img{height:40px;width:auto;display:block;}
+.nav-links{display:flex;align-items:center;gap:2px;}
+.nav-links a{font-size:13px;font-weight:600;color:rgba(255,255,255,.85);padding:7px 14px;border-radius:40px;transition:all .2s;}
+.nav-links a:hover{color:#fff;background:rgba(255,255,255,.15);}
+.nav-links .nav-cta{background:#fff;color:var(--pink);margin-left:6px;font-weight:700;}
+.nav-links .nav-cta:hover{background:rgba(255,255,255,.92);color:var(--pink-dark);}
+.nav-ham{display:none;background:none;border:none;cursor:pointer;color:#fff;font-size:24px;padding:4px;line-height:1;}
+#mobile-menu{display:none;flex-direction:column;background:var(--pink-dark);padding:12px 28px 24px;}
+#mobile-menu.open{display:flex;}
+#mobile-menu a{font-size:15px;font-weight:600;color:rgba(255,255,255,.85);padding:11px 0;border-bottom:1px solid rgba(255,255,255,.1);}
+#mobile-menu a:last-child{border:none;color:#fff;}
+
+/* ── HERO ── */
+#hero{position:relative;overflow:hidden;min-height:calc(100vh - var(--nav-h));display:flex;align-items:stretch;}
+.hero-left{background:var(--pink);flex:0 0 42%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:64px 48px;position:relative;overflow:hidden;}
+.hero-left::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.12) 1px,transparent 1px);background-size:22px 22px;}
+.hero-left-logo{position:relative;z-index:1;width:100%;max-width:300px;}
+.hero-left-logo img{width:100%;height:auto;filter:brightness(0) invert(1);}
+.hero-left-tagline{position:relative;z-index:1;margin-top:28px;font-size:13px;font-weight:600;color:rgba(255,255,255,.7);letter-spacing:1.2px;text-transform:uppercase;text-align:center;}
+.hero-right{flex:1;display:flex;flex-direction:column;justify-content:center;padding:72px 64px 72px 56px;background:var(--white);position:relative;}
+.hero-right::before{content:'';position:absolute;top:0;bottom:0;left:-2px;width:60px;background:var(--pink);clip-path:polygon(0 0,100% 0,0 100%);pointer-events:none;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--pink-light);color:var(--pink-dark);font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:6px 16px;border-radius:40px;margin-bottom:24px;}
+.hero-eyebrow-dot{width:6px;height:6px;border-radius:50%;background:var(--pink);flex-shrink:0;}
+#hero h1{font-family:var(--font-display);font-size:clamp(30px,4.5vw,54px);font-weight:900;color:var(--gray-900);line-height:1.08;margin-bottom:22px;letter-spacing:-.5px;}
+#hero h1 em{color:var(--pink);font-style:normal;display:block;}
+.hero-sub{font-size:17px;color:var(--gray-500);line-height:1.75;margin-bottom:36px;max-width:420px;}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-body);font-size:14px;font-weight:700;padding:13px 28px;border-radius:40px;cursor:pointer;border:none;transition:all .2s;letter-spacing:.2px;}
+.btn-pink{background:var(--pink);color:#fff;box-shadow:0 4px 20px rgba(212,19,103,.35);}
+.btn-pink:hover{background:var(--pink-dark);transform:translateY(-2px);box-shadow:0 8px 28px rgba(212,19,103,.4);}
+.btn-outline{background:transparent;color:var(--pink);border:2px solid var(--pink);}
+.btn-outline:hover{background:var(--pink-light);transform:translateY(-2px);}
+.hero-scroll{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--gray-400);font-size:12px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;}
+.hero-scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,var(--gray-300),transparent);animation:scrollpulse 2s ease-in-out infinite;}
+@keyframes scrollpulse{0%,100%{opacity:.4;transform:scaleY(.8);}50%{opacity:1;transform:scaleY(1);}}
+
+/* ── IMPACT STRIP ── */
+#impact{background:var(--gray-900);padding:0 28px;}
+.impact-grid{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);}
+.impact-item{padding:40px 24px;text-align:center;border-right:1px solid rgba(255,255,255,.06);position:relative;}
+.impact-item:last-child{border-right:none;}
+.impact-item::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:40px;height:3px;background:var(--pink);}
+.impact-num{font-family:var(--font-display);font-size:44px;font-weight:900;color:#fff;line-height:1;margin-bottom:6px;}
+.impact-lbl{font-size:12px;font-weight:600;color:var(--gray-400);letter-spacing:.8px;text-transform:uppercase;}
+
+/* ── ABOUT ── */
+#about{padding:96px 0;position:relative;}
+#about::after{content:'';position:absolute;bottom:0;left:0;right:0;height:120px;background:var(--gray-50);clip-path:polygon(0 100%,100% 100%,100% 0);pointer-events:none;}
+.section-kicker{display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--pink);margin-bottom:14px;}
+.section-kicker::before{content:'';width:28px;height:2px;background:var(--pink);border-radius:2px;}
+.section-heading{font-family:var(--font-display);font-size:clamp(26px,4vw,42px);font-weight:900;color:var(--gray-900);line-height:1.1;margin-bottom:16px;letter-spacing:-.3px;}
+.section-sub{font-size:16px;color:var(--gray-500);max-width:520px;line-height:1.75;margin-bottom:52px;}
+.about-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:24px;position:relative;z-index:1;}
+.about-card{background:#fff;border-radius:var(--r-lg);padding:32px 28px;border:1px solid var(--gray-100);transition:all .25s;position:relative;overflow:hidden;}
+.about-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--pink);transform:scaleX(0);transform-origin:left;transition:transform .3s ease;}
+.about-card:hover{transform:translateY(-6px);box-shadow:0 20px 48px rgba(212,19,103,.12);border-color:var(--pink-light);}
+.about-card:hover::before{transform:scaleX(1);}
+.about-icon{width:52px;height:52px;border-radius:16px;background:var(--pink-light);display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:20px;}
+.about-card h3{font-size:16px;font-weight:700;color:var(--gray-900);margin-bottom:10px;}
+.about-card p{font-size:14px;color:var(--gray-500);line-height:1.7;}
+
+/* ── OFFICERS ── */
+#officers{background:var(--gray-50);padding:96px 0;}
+.officers-intro{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end;margin-bottom:52px;}
+.officers-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;}
+.officer-card{background:#fff;border-radius:var(--r-lg);padding:32px 24px;text-align:center;border:1px solid var(--gray-100);transition:all .25s;position:relative;overflow:hidden;}
+.officer-card::after{content:'';position:absolute;inset:0;border-radius:var(--r-lg);border:2px solid var(--pink);opacity:0;transition:opacity .25s;}
+.officer-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(212,19,103,.1);}
+.officer-card:hover::after{opacity:1;}
+.officer-avatar{width:72px;height:72px;border-radius:50%;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;font-family:var(--font-display);background:var(--pink-light);color:var(--pink);position:relative;}
+.officer-avatar::before{content:'';position:absolute;inset:-3px;border-radius:50%;border:2px dashed var(--pink-light);}
+.officer-name{font-size:15px;font-weight:700;color:var(--gray-900);margin-bottom:4px;}
+.officer-role{font-size:11px;font-weight:700;letter-spacing:.8px;color:var(--pink);text-transform:uppercase;margin-bottom:6px;}
+.officer-club{font-size:13px;color:var(--gray-400);}
+
+/* ── EVENTS ── */
+#events{padding:96px 0;background:#fff;}
+.events-intro{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end;margin-bottom:52px;}
+.events-stack{display:flex;flex-direction:column;gap:20px;}
+.event-card{background:#fff;border-radius:var(--r-lg);padding:28px 28px 28px 32px;display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:start;border:1px solid var(--gray-100);transition:all .25s;position:relative;overflow:hidden;}
+.event-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--pink);border-radius:4px 0 0 4px;}
+.event-card:hover{transform:translateX(4px);box-shadow:0 12px 36px rgba(212,19,103,.1);border-color:var(--pink-light);}
+.event-date-box{background:var(--pink);border-radius:var(--r-md);padding:14px 18px;text-align:center;min-width:64px;flex-shrink:0;}
+.event-date-box .day{font-family:var(--font-display);font-size:30px;font-weight:900;line-height:1;color:#fff;}
+.event-date-box .mo{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.7);margin-top:3px;}
+.event-body h3{font-size:17px;font-weight:700;color:var(--gray-900);margin-bottom:6px;}
+.event-body p{font-size:14px;color:var(--gray-500);line-height:1.65;margin-bottom:12px;}
+.event-meta{display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
+.tag{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:4px 12px;border-radius:40px;}
+.tag-pink{background:var(--pink-light);color:var(--pink-dark);}
+.tag-dark{background:var(--gray-900);color:#fff;}
+.event-loc{font-size:13px;color:var(--gray-400);display:flex;align-items:center;gap:4px;}
+.event-loc::before{content:'📍';font-size:11px;}
+
+/* ── CLUBS ── */
+#clubs{background:var(--gray-900);padding:96px 0;position:relative;overflow:hidden;}
+#clubs::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(212,19,103,.15) 1px,transparent 1px);background-size:28px 28px;}
+.clubs-inner{position:relative;z-index:1;}
+.clubs-placeholder-box{margin-top:48px;background:rgba(255,255,255,.04);border:1.5px dashed rgba(212,19,103,.4);border-radius:var(--r-xl);padding:64px 48px;text-align:center;}
+.clubs-placeholder-icon{font-size:48px;margin-bottom:20px;}
+.clubs-placeholder-box p{font-size:17px;color:rgba(255,255,255,.6);margin-bottom:8px;}
+.clubs-placeholder-box span{font-size:14px;color:rgba(255,255,255,.25);}
+
+/* ── CONTACT ── */
+#contact{padding:96px 0;background:var(--gray-50);}
+.contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:52px;}
+.contact-card{background:#fff;border-radius:var(--r-lg);padding:36px;border:1px solid var(--gray-100);}
+.contact-card-title{font-size:18px;font-weight:700;color:var(--gray-900);margin-bottom:6px;padding-bottom:20px;border-bottom:2px solid var(--pink);display:inline-block;}
+.contact-rows{margin-top:24px;}
+.contact-row{display:flex;align-items:flex-start;gap:14px;margin-bottom:18px;}
+.contact-row-icon{width:38px;height:38px;border-radius:10px;background:var(--pink-light);display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;}
+.contact-row-text strong{display:block;font-size:11px;font-weight:700;color:var(--gray-400);text-transform:uppercase;letter-spacing:.7px;margin-bottom:2px;}
+.contact-row-text span{font-size:14px;color:var(--gray-700);}
+.socials{display:flex;gap:10px;margin-top:24px;padding-top:24px;border-top:1px solid var(--gray-100);}
+.soc-btn{height:40px;padding:0 16px;border-radius:40px;background:var(--gray-900);color:#fff;display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;letter-spacing:.5px;cursor:pointer;transition:all .2s;}
+.soc-btn:hover{background:var(--pink);transform:translateY(-2px);}
+.quick-links-list{list-style:none;margin-top:24px;}
+.quick-links-list li{border-bottom:1px solid var(--gray-100);}
+.quick-links-list li:last-child{border-bottom:none;}
+.quick-links-list a{display:flex;align-items:center;justify-content:space-between;padding:13px 0;font-size:14px;font-weight:500;color:var(--gray-700);transition:color .15s;}
+.quick-links-list a:hover{color:var(--pink);}
+.quick-links-list a::after{content:'→';color:var(--gray-200);transition:color .15s;}
+.quick-links-list a:hover::after{color:var(--pink);}
+
+/* ── FOOTER ── */
+#footer{background:var(--pink-deep);padding:52px 28px 32px;}
+.footer-top{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:48px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.08);}
+.footer-brand img{height:36px;width:auto;margin-bottom:16px;}
+.footer-brand-name{font-size:13px;font-weight:600;color:#fff;margin-bottom:6px;line-height:1.5;}
+.footer-brand-sub{font-size:12px;color:rgba(255,255,255,.35);}
+.footer-col-title{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:16px;}
+.footer-col a{display:block;font-size:13px;color:rgba(255,255,255,.5);margin-bottom:10px;transition:color .15s;}
+.footer-col a:hover{color:#fff;}
+.footer-bottom{max-width:1080px;margin:28px auto 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+.footer-copy{font-size:12px;color:rgba(255,255,255,.2);}
+
+/* ── BACK TO TOP ── */
+#btt{position:fixed;bottom:28px;right:28px;width:44px;height:44px;border-radius:50%;background:var(--pink);color:#fff;font-size:18px;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;pointer-events:none;transition:all .25s;border:none;box-shadow:0 4px 20px rgba(212,19,103,.4);z-index:50;}
+#btt.show{opacity:1;pointer-events:auto;}
+#btt:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(212,19,103,.5);}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  #hero{flex-direction:column;min-height:auto;}
+  .hero-left{flex:none;padding:48px 28px;min-height:280px;}
+  .hero-right{padding:48px 28px 64px;}.hero-right::before{display:none;}
+  .officers-intro,.events-intro{grid-template-columns:1fr;}
+  .footer-top{grid-template-columns:1fr 1fr;}.footer-brand{grid-column:1/-1;}
+  .impact-grid{grid-template-columns:1fr 1fr;}
+  .impact-item{border-right:none;border-bottom:1px solid rgba(255,255,255,.06);}
+  .impact-item:nth-child(odd){border-right:1px solid rgba(255,255,255,.06);}
+  .impact-item:last-child,.impact-item:nth-last-child(2):nth-child(odd){border-bottom:none;}
+}
+@media(max-width:640px){
+  .nav-links{display:none;}.nav-ham{display:block;}
+  .contact-wrap{grid-template-columns:1fr;}
+  .event-card{grid-template-columns:1fr;}
+  .event-date-box{width:fit-content;}
+  .footer-top{grid-template-columns:1fr;}
+  .footer-brand{grid-column:auto;}
+  .impact-grid{grid-template-columns:1fr 1fr;}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important;}}
+</style>
+</head>
+<body>
+
+<script>
+/* ============================================================
+   C O N F I G — Edit here to update the entire website
+============================================================ */
+const CONFIG = {
+
+  siteName:   "Rotaract Clubs of Rotary International District 3860",
+  region:     "Visayas & Mindanao",
+  rotaryYear: "2026 – 2027",
+
+  logo: {
+    color: "logo.png",
+    white: "logo-white.png",
+  },
+
+  hero: {
+    eyebrow:  "Rotary Year 2026 – 2027",
+    headline: ["Rotaract Clubs of", "Rotary International", "District 3860"],
+    subtext:  "A community of young leaders across Visayas and Mindanao committed to fellowship, professional growth, and service above self.",
+    btn1: { label: "Find a Club", href: "#clubs"  },
+    btn2: { label: "Learn More",  href: "#about"  },
+  },
+
+  stats: [
+    { num: "—", label: "Rotaract Clubs"    },
+    { num: "—", label: "Areas"             },
+    { num: "—", label: "Members"           },
+    { num: "—", label: "Projects This RY"  },
+  ],
+
+  about: {
+    eyebrow: "Who We Are",
+    title:   "About Rotaract",
+    desc:    "Rotaract is a Rotary International program that brings together young men and women ages 18 and older to develop leadership skills, connect with professionals, and take action to make a lasting difference.",
+    cards: [
+      { icon: "🤝", title: "Community Service",        body: "We tackle local needs through hands-on projects in education, health, environment, and livelihood." },
+      { icon: "🌐", title: "Fellowship",               body: "Build lasting friendships and networks with like-minded young leaders across the district." },
+      { icon: "📈", title: "Professional Development", body: "Grow leadership, public speaking, and project management skills through real-world experience." },
+      { icon: "✈️", title: "International Connection", body: "Join a global network of 170,000+ Rotaractors in over 170 countries united by service." },
+    ],
+  },
+
+  officers: {
+    eyebrow: "District Officers",
+    title:   "Club Leadership",
+    desc:    "Meet the officers guiding the Rotaract clubs of District 3860 for Rotary Year 2026–2027.",
+    list: [
+      { initials: "DRR", name: "[DRR Name]",            role: "District Rotaract Representative",  club: "[Sponsoring Rotary Club]" },
+      { initials: "DC",  name: "[District Chair Name]", role: "District Rotaract Chair",            club: "[Club Name]" },
+      { initials: "IP",  name: "[Immediate Past Name]", role: "Immediate Past District Rep.",       club: "[Club Name]" },
+      { initials: "S",   name: "[Secretary Name]",      role: "District Secretary",                 club: "[Club Name]" },
+      { initials: "T",   name: "[Treasurer Name]",      role: "District Treasurer",                 club: "[Club Name]" },
+      { initials: "PRO", name: "[PRO Name]",            role: "Public Relations Officer",           club: "[Club Name]" },
+    ],
+  },
+
+  events: {
+    eyebrow: "What's Coming",
+    title:   "Upcoming Events",
+    desc:    "Stay updated on district-wide gatherings, trainings, and community activities.",
+    list: [
+      { day: "—", month: "—", title: "District Assembly",   desc: "Orientation and training for all incoming Rotaract club officers for RY 2026–2027.", location: "[Venue, City]", tag: { label: "Training",    type: "tag-pink" } },
+      { day: "—", month: "—", title: "District RYLA",       desc: "Rotaract Youth Leadership Awards — developing tomorrow's leaders through immersive workshops.",    location: "[Venue, City]", tag: { label: "Leadership",  type: "tag-dark" } },
+      { day: "—", month: "—", title: "District Conference", desc: "Annual gathering of all Rotaract clubs for fellowship, project showcases, and awards night.",      location: "[Venue, City]", tag: { label: "Conference",  type: "tag-pink" } },
+    ],
+  },
+
+  clubs: {
+    eyebrow:     "Our Clubs",
+    title:       "Rotaract Clubs Directory",
+    placeholder: "The full club directory will be listed here. More details coming soon.",
+    hint:        "Contact the district secretariat to have your club listed.",
+  },
+
+  contact: {
+    eyebrow: "Get in Touch",
+    title:   "Contact Us",
+    desc:    "Reach out to the District Rotaract Secretariat for inquiries, reports, or membership information.",
+    details: [
+      { icon: "✉️", label: "Email",        value: "[district.email@rotaract3860.org]"              },
+      { icon: "📱", label: "Mobile",       value: "[+63 9XX XXX XXXX]"                             },
+      { icon: "📍", label: "Address",      value: "[District Office Address, City, Philippines]"   },
+      { icon: "🕐", label: "Office Hours", value: "Monday – Friday, 9:00 AM – 5:00 PM"            },
+    ],
+    socials: [
+      { label: "Facebook",  href: "#" },
+      { label: "Instagram", href: "#" },
+      { label: "YouTube",   href: "#" },
+    ],
+    quickLinks: [
+      { label: "Find a Rotaract Club",    href: "#clubs" },
+      { label: "Submit Monthly Report",   href: "#"      },
+      { label: "Club E-Bulletin",         href: "#"      },
+      { label: "Documents & Guidelines",  href: "#"      },
+      { label: "Rotary International",    href: "https://www.rotary.org"              },
+      { label: "District 3860 Main Site", href: "https://www.rotarydistrict3860.org" },
+    ],
+  },
+
+  footer: {
+    cols: [
+      { title: "District", links: [ { label: "About Rotaract", href: "#about" }, { label: "Leadership", href: "#officers" }, { label: "Clubs Directory", href: "#clubs" } ] },
+      { title: "Resources", links: [ { label: "Upcoming Events", href: "#events" }, { label: "Monthly Reports", href: "#" }, { label: "Contact Us", href: "#contact" } ] },
+    ],
+    copy: `© ${new Date().getFullYear()} Rotaract Clubs of Rotary International District 3860. All rights reserved.`,
+  },
+};
+/* ============================================================ END CONFIG */
+</script>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="#" aria-label="Home">
+      <img src="logo-white.png" alt="Rotaract Clubs of Rotary International District 3860"/>
+    </a>
+    <div class="nav-links" id="nav-links">
+      <a href="#about">About</a>
+      <a href="#officers">Leadership</a>
+      <a href="#events">Events</a>
+      <a href="#clubs">Clubs</a>
+      <a href="#contact" class="nav-cta">Contact Us</a>
+    </div>
+    <button class="nav-ham" id="ham" aria-label="Menu" aria-expanded="false">&#9776;</button>
+  </div>
+  <div id="mobile-menu">
+    <a href="#about">About Rotaract</a>
+    <a href="#officers">Leadership</a>
+    <a href="#events">Events</a>
+    <a href="#clubs">Clubs</a>
+    <a href="#contact">Contact Us</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header id="hero">
+  <div class="hero-left">
+    <div class="hero-left-logo">
+      <img id="hero-logo" src="logo-white.png" alt="Rotaract District 3860"/>
+    </div>
+    <div class="hero-left-tagline" id="hero-tagline"></div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-eyebrow"><span class="hero-eyebrow-dot"></span><span id="hero-eyebrow-el"></span></div>
+    <h1 id="hero-h1"></h1>
+    <p class="hero-sub" id="hero-sub"></p>
+    <div class="hero-btns">
+      <a class="btn btn-pink"    id="hero-btn1" href="#">—</a>
+      <a class="btn btn-outline" id="hero-btn2" href="#">—</a>
+    </div>
+  </div>
+  <div class="hero-scroll" aria-hidden="true"><div class="hero-scroll-line"></div></div>
+</header>
+
+<!-- IMPACT STRIP -->
+<section id="impact" aria-label="Key statistics">
+  <div class="impact-grid" id="impact-grid"></div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="container" style="padding-top:96px;padding-bottom:96px;">
+  <div class="section-kicker" id="about-eyebrow"></div>
+  <h2 class="section-heading" id="about-title"></h2>
+  <p class="section-sub"      id="about-desc"></p>
+  <div class="about-grid"     id="about-grid"></div>
+</section>
+
+<!-- OFFICERS -->
+<section id="officers">
+  <div class="container">
+    <div class="officers-intro">
+      <div>
+        <div class="section-kicker" id="officers-eyebrow"></div>
+        <h2 class="section-heading" id="officers-title"></h2>
+      </div>
+      <p style="font-size:15px;color:var(--gray-500);line-height:1.75;align-self:end;" id="officers-desc"></p>
+    </div>
+    <div class="officers-grid" id="officers-grid"></div>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section id="events">
+  <div class="container">
+    <div class="events-intro">
+      <div>
+        <div class="section-kicker" id="events-eyebrow"></div>
+        <h2 class="section-heading" id="events-title"></h2>
+      </div>
+      <p style="font-size:15px;color:var(--gray-500);line-height:1.75;align-self:end;" id="events-desc"></p>
+    </div>
+    <div class="events-stack" id="events-list"></div>
+  </div>
+</section>
+
+<!-- CLUBS -->
+<section id="clubs">
+  <div class="container clubs-inner">
+    <div class="section-kicker" id="clubs-eyebrow" style="color:rgba(255,255,255,.5);"></div>
+    <h2 class="section-heading" id="clubs-title" style="color:#fff;"></h2>
+    <div id="clubs-placeholder"></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="section-kicker" id="contact-eyebrow"></div>
+    <h2 class="section-heading" id="contact-title"></h2>
+    <p class="section-sub"      id="contact-desc"></p>
+    <div class="contact-wrap">
+      <div class="contact-card">
+        <div class="contact-card-title">District Secretariat</div>
+        <div class="contact-rows" id="contact-details"></div>
+        <div class="socials" id="contact-socials"></div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-card-title">Quick Links</div>
+        <ul class="quick-links-list" id="quick-links" style="margin-top:24px;"></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <img src="logo-white.png" alt="Rotaract District 3860"/>
+      <div class="footer-brand-name" id="footer-name"></div>
+      <div class="footer-brand-sub">Service Above Self · <span id="footer-region"></span></div>
+    </div>
+    <div id="footer-cols"></div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy" id="footer-copy"></div>
+  </div>
+</footer>
+
+<button id="btt" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+(function(){
+  const C = CONFIG;
+  const $ = id => document.getElementById(id);
+  const setText = (id,v) => { const e=$(id); if(e) e.textContent=v; };
+  const setHTML = (id,v) => { const e=$(id); if(e) e.innerHTML=v;   };
+
+  document.title = C.siteName;
+
+  /* Hero */
+  setText('hero-tagline',   'Rotary Year ' + C.rotaryYear);
+  setText('hero-eyebrow-el', C.hero.eyebrow);
+  const h1 = $('hero-h1');
+  h1.innerHTML = C.hero.headline.map((line,i) =>
+    i === C.hero.headline.length - 1
+      ? `<em>${line}</em>`
+      : line + '<br/>'
+  ).join('');
+  setText('hero-sub', C.hero.subtext);
+  const b1=$('hero-btn1'); b1.textContent=C.hero.btn1.label; b1.href=C.hero.btn1.href;
+  const b2=$('hero-btn2'); b2.textContent=C.hero.btn2.label; b2.href=C.hero.btn2.href;
+
+  /* Impact */
+  const ig=$('impact-grid');
+  C.stats.forEach(s=>{
+    ig.innerHTML+=`<div class="impact-item"><div class="impact-num">${s.num}</div><div class="impact-lbl">${s.label}</div></div>`;
+  });
+
+  /* About */
+  setText('about-eyebrow', C.about.eyebrow);
+  setText('about-title',   C.about.title);
+  setText('about-desc',    C.about.desc);
+  const ag=$('about-grid');
+  C.about.cards.forEach(c=>{
+    ag.innerHTML+=`<div class="about-card"><div class="about-icon">${c.icon}</div><h3>${c.title}</h3><p>${c.body}</p></div>`;
+  });
+
+  /* Officers */
+  setText('officers-eyebrow', C.officers.eyebrow);
+  setText('officers-title',   C.officers.title);
+  setText('officers-desc',    C.officers.desc);
+  const og=$('officers-grid');
+  C.officers.list.forEach(o=>{
+    og.innerHTML+=`<div class="officer-card"><div class="officer-avatar">${o.initials}</div><div class="officer-name">${o.name}</div><div class="officer-role">${o.role}</div><div class="officer-club">${o.club}</div></div>`;
+  });
+
+  /* Events */
+  setText('events-eyebrow', C.events.eyebrow);
+  setText('events-title',   C.events.title);
+  setText('events-desc',    C.events.desc);
+  const el=$('events-list');
+  C.events.list.forEach(e=>{
+    el.innerHTML+=`<div class="event-card"><div class="event-date-box"><div class="day">${e.day}</div><div class="mo">${e.month}</div></div><div class="event-body"><h3>${e.title}</h3><p>${e.desc}</p><div class="event-meta"><span class="tag ${e.tag.type}">${e.tag.label}</span><span class="event-loc">${e.location}</span></div></div></div>`;
+  });
+
+  /* Clubs */
+  setText('clubs-eyebrow', C.clubs.eyebrow);
+  setText('clubs-title',   C.clubs.title);
+  setHTML('clubs-placeholder',`<div class="clubs-placeholder-box"><div class="clubs-placeholder-icon">🗺️</div><p>${C.clubs.placeholder}</p><span>${C.clubs.hint}</span></div>`);
+
+  /* Contact */
+  setText('contact-eyebrow', C.contact.eyebrow);
+  setText('contact-title',   C.contact.title);
+  setText('contact-desc',    C.contact.desc);
+  const cd=$('contact-details');
+  C.contact.details.forEach(d=>{
+    cd.innerHTML+=`<div class="contact-row"><div class="contact-row-icon">${d.icon}</div><div class="contact-row-text"><strong>${d.label}</strong><span>${d.value}</span></div></div>`;
+  });
+  const cs=$('contact-socials');
+  C.contact.socials.forEach(s=>{
+    cs.innerHTML+=`<a class="soc-btn" href="${s.href}" target="_blank" rel="noopener">${s.label}</a>`;
+  });
+  const ql=$('quick-links');
+  C.contact.quickLinks.forEach(l=>{
+    ql.innerHTML+=`<li><a href="${l.href}" ${l.href.startsWith('http')?'target="_blank" rel="noopener"':''}>${l.label}</a></li>`;
+  });
+
+  /* Footer */
+  setText('footer-name',   C.siteName);
+  setText('footer-region', C.region);
+  setText('footer-copy',   C.footer.copy);
+  const fc=$('footer-cols');
+  C.footer.cols.forEach(col=>{
+    let links=col.links.map(l=>`<a href="${l.href}">${l.label}</a>`).join('');
+    fc.innerHTML+=`<div class="footer-col"><div class="footer-col-title">${col.title}</div>${links}</div>`;
+  });
+
+  /* Mobile menu */
+  const ham=$('ham'), menu=$('mobile-menu');
+  ham.addEventListener('click',()=>{
+    const open=menu.classList.toggle('open');
+    ham.setAttribute('aria-expanded',open);
+    ham.innerHTML=open?'&#10005;':'&#9776;';
+  });
+  menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+    menu.classList.remove('open');
+    ham.setAttribute('aria-expanded',false);
+    ham.innerHTML='&#9776;';
+  }));
+
+  /* Back to top */
+  const btt=$('btt');
+  window.addEventListener('scroll',()=>btt.classList.toggle('show',scrollY>500),{passive:true});
+
+  /* Section kicker color fix for dark sections */
+  $('clubs-eyebrow').style.color='rgba(212,19,103,.7)';
+})();
+</script>
+</body>
+</html>
