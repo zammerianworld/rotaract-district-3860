@@ -132,6 +132,19 @@ body{font-family:var(--font-body);font-size:16px;line-height:1.7;color:var(--gra
 .event-loc{font-size:13px;color:var(--gray-400);display:flex;align-items:center;gap:4px;}
 .event-loc::before{content:'📍';font-size:11px;}
 
+/* ── RESOURCES ── */
+#resources{padding:96px 0;background:var(--gray-50);}
+.resources-header{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:end;margin-bottom:48px;}
+.resources-btn{display:inline-flex;align-items:center;gap:10px;background:var(--pink);color:#fff;font-size:14px;font-weight:700;padding:13px 28px;border-radius:40px;white-space:nowrap;transition:all .2s;align-self:end;}
+.resources-btn:hover{background:var(--pink-dark);transform:translateY(-2px);box-shadow:0 8px 24px rgba(212,19,103,.3);}
+.resources-btn::after{content:'↗';font-size:16px;}
+.resources-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;}
+.resource-card{background:#fff;border-radius:var(--r-lg);padding:28px;border:1px solid var(--gray-100);display:flex;gap:18px;align-items:flex-start;transition:all .25s;}
+.resource-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(212,19,103,.09);border-color:var(--pink-light);}
+.resource-icon{width:48px;height:48px;border-radius:14px;background:var(--pink-light);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;}
+.resource-text h3{font-size:15px;font-weight:700;color:var(--gray-900);margin-bottom:6px;}
+.resource-text p{font-size:13px;color:var(--gray-500);line-height:1.65;}
+
 /* ── CLUBS ── */
 #clubs{background:var(--gray-900);padding:96px 0;position:relative;overflow:hidden;}
 #clubs::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(212,19,103,.15) 1px,transparent 1px);background-size:28px 28px;}
@@ -279,6 +292,27 @@ const CONFIG = {
     hint:        "Contact the district secretariat to have your club listed.",
   },
 
+  /* --- Resources ---
+     All documents live in ONE Google Drive folder.
+     To update: just replace files inside the folder — the link never changes.
+     To get the folder link: Right-click folder in Google Drive → Share → Copy link
+  ---------------------------------------- */
+  resources: {
+    eyebrow:     "For Club Presidents",
+    title:       "Resources & Documents",
+    desc:        "All official documents, guides, and templates for Rotaract club presidents and officers are stored in one place. Access the folder below — no login required.",
+    driveLink:   "[PASTE YOUR GOOGLE DRIVE FOLDER LINK HERE]",
+    driveBtnLabel: "Open Resources Folder",
+    items: [
+      { icon: "📘", title: "President's Guide",       desc: "Step-by-step manual for managing your Rotaract club effectively." },
+      { icon: "📋", title: "Club Report Templates",   desc: "Monthly and annual report forms required by the district." },
+      { icon: "📝", title: "Membership Forms",        desc: "New member application and registration forms." },
+      { icon: "📅", title: "Event Planning Guide",    desc: "Templates and checklists for organizing club projects and events." },
+      { icon: "💰", title: "Financial Guidelines",    desc: "Budget templates and financial reporting standards for clubs." },
+      { icon: "📣", title: "Branding & Comms Kit",    desc: "Official logos, poster templates, and social media guidelines." },
+    ],
+  },
+
   contact: {
     eyebrow: "Get in Touch",
     title:   "Contact Us",
@@ -307,7 +341,7 @@ const CONFIG = {
   footer: {
     cols: [
       { title: "District", links: [ { label: "About Rotaract", href: "#about" }, { label: "Leadership", href: "#officers" }, { label: "Clubs Directory", href: "#clubs" } ] },
-      { title: "Resources", links: [ { label: "Upcoming Events", href: "#events" }, { label: "Monthly Reports", href: "#" }, { label: "Contact Us", href: "#contact" } ] },
+      { title: "Resources", links: [ { label: "Upcoming Events", href: "#events" }, { label: "Resources & Docs", href: "#resources" }, { label: "Contact Us", href: "#contact" } ] },
     ],
     copy: `© ${new Date().getFullYear()} Rotaract Clubs of Rotary International District 3860. All rights reserved.`,
   },
@@ -326,6 +360,7 @@ const CONFIG = {
       <a href="#officers">Leadership</a>
       <a href="#events">Events</a>
       <a href="#clubs">Clubs</a>
+      <a href="#resources">Resources</a>
       <a href="#contact" class="nav-cta">Contact Us</a>
     </div>
     <button class="nav-ham" id="ham" aria-label="Menu" aria-expanded="false">&#9776;</button>
@@ -335,6 +370,7 @@ const CONFIG = {
     <a href="#officers">Leadership</a>
     <a href="#events">Events</a>
     <a href="#clubs">Clubs</a>
+    <a href="#resources">Resources</a>
     <a href="#contact">Contact Us</a>
   </div>
 </nav>
@@ -397,6 +433,21 @@ const CONFIG = {
       <p style="font-size:15px;color:var(--gray-500);line-height:1.75;align-self:end;" id="events-desc"></p>
     </div>
     <div class="events-stack" id="events-list"></div>
+  </div>
+</section>
+
+<!-- RESOURCES -->
+<section id="resources">
+  <div class="container">
+    <div class="resources-header">
+      <div>
+        <div class="section-kicker" id="resources-eyebrow"></div>
+        <h2 class="section-heading" id="resources-title"></h2>
+        <p class="section-sub" id="resources-desc" style="margin-bottom:0;"></p>
+      </div>
+      <a class="resources-btn" id="resources-btn" href="#" target="_blank" rel="noopener">Open Resources Folder</a>
+    </div>
+    <div class="resources-grid" id="resources-grid"></div>
   </div>
 </section>
 
@@ -499,6 +550,18 @@ const CONFIG = {
   const el=$('events-list');
   C.events.list.forEach(e=>{
     el.innerHTML+=`<div class="event-card"><div class="event-date-box"><div class="day">${e.day}</div><div class="mo">${e.month}</div></div><div class="event-body"><h3>${e.title}</h3><p>${e.desc}</p><div class="event-meta"><span class="tag ${e.tag.type}">${e.tag.label}</span><span class="event-loc">${e.location}</span></div></div></div>`;
+  });
+
+  /* Resources */
+  setText('resources-eyebrow', C.resources.eyebrow);
+  setText('resources-title',   C.resources.title);
+  setText('resources-desc',    C.resources.desc);
+  const rb=$('resources-btn');
+  rb.textContent=C.resources.driveBtnLabel + ' ↗';
+  rb.href=C.resources.driveLink;
+  const rg=$('resources-grid');
+  C.resources.items.forEach(r=>{
+    rg.innerHTML+=`<div class="resource-card"><div class="resource-icon">${r.icon}</div><div class="resource-text"><h3>${r.title}</h3><p>${r.desc}</p></div></div>`;
   });
 
   /* Clubs */
