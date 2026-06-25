@@ -141,8 +141,8 @@ body{font-family:var(--font-body);font-size:16px;line-height:1.7;color:var(--gra
 .future-drrs{margin-top:52px;padding-top:48px;border-top:1px solid var(--gray-100);}
 .future-drrs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:24px;}
 .future-drr-card{background:var(--gray-50);border:1px solid var(--gray-100);border-radius:var(--r-lg);padding:20px 24px;display:flex;align-items:center;gap:16px;}
-.future-drr-photo{width:56px;height:56px;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid var(--pink-light);}
-.future-drr-photo-placeholder{width:56px;height:56px;border-radius:50%;background:var(--pink-light);border:2px dashed var(--pink);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.future-drr-photo{width:56px;height:56px;border-radius:50%;object-fit:cover;object-position:center top;flex-shrink:0;border:2px solid var(--pink);box-shadow:0 0 0 3px var(--pink-light);background:var(--pink-light);}
+.future-drr-photo-placeholder{width:56px;height:56px;border-radius:50%;background:var(--pink-light);border:2px dashed var(--pink);box-shadow:0 0 0 3px var(--pink-light);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
 .future-drr-year{background:var(--pink-light);color:var(--pink-dark);font-size:11px;font-weight:700;padding:4px 10px;border-radius:40px;white-space:nowrap;flex-shrink:0;}
 .future-drr-info{}
 .future-drr-name{font-size:14px;font-weight:700;color:var(--gray-900);}
@@ -187,8 +187,8 @@ body{font-family:var(--font-body);font-size:16px;line-height:1.7;color:var(--gra
 .officer-card::after{content:'';position:absolute;inset:0;border-radius:var(--r-lg);border:2px solid var(--pink);opacity:0;transition:opacity .25s;}
 .officer-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(212,19,103,.1);}
 .officer-card:hover::after{opacity:1;}
-.officer-photo{width:72px;height:72px;border-radius:50%;object-fit:cover;margin:0 auto 16px;border:2.5px solid var(--white);box-shadow:0 0 0 2px var(--pink);display:block;}
-.officer-avatar{width:72px;height:72px;border-radius:50%;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;font-family:var(--font-display);background:var(--pink-light);color:var(--pink);position:relative;}
+.officer-photo{width:80px;height:80px;border-radius:50%;object-fit:cover;object-position:center top;margin:0 auto 16px;border:2.5px solid #fff;box-shadow:0 0 0 2.5px var(--pink);display:block;background:var(--pink-light);}
+.officer-avatar{width:80px;height:80px;border-radius:50%;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;font-family:var(--font-display);background:var(--pink-light);color:var(--pink);position:relative;}
 .officer-avatar::before{content:'';position:absolute;inset:-3px;border-radius:50%;border:2px dashed var(--pink-light);}
 .officer-name{font-size:15px;font-weight:700;color:var(--gray-900);margin-bottom:4px;}
 .officer-role{font-size:11px;font-weight:700;letter-spacing:.8px;color:var(--pink);text-transform:uppercase;margin-bottom:6px;}
@@ -1066,7 +1066,7 @@ const CONFIG = {
       title:   "Future District Rotaract Representatives",
       list: [
         { year: "RY 2027–2028", name: "Jan Dale Carlo T. Catalonia", club: "RAC Metro Cebu",                    photo: null },
-        { year: "RY 2028–2029", name: "Christine Joy T. Balobalo",   club: "RAC Tagum North-Palm City Chapter", photo: null },
+        { year: "RY 2028–2029", name: "Christine Joy T. Balobalo",   club: "RAC Tagum North-Palm City Chapter", photo: "https://drive.google.com/thumbnail?id=1FTUgokKXVWH142-YonXR_c-xB9ksn75C&sz=w300" },
       ],
     },
   },
