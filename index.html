@@ -111,7 +111,7 @@ body.loaded{opacity:1;}
 .impact-item{padding:40px 24px;text-align:center;border-right:1px solid rgba(255,255,255,.06);position:relative;}
 .impact-item:last-child{border-right:none;}
 .impact-item::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:40px;height:3px;background:var(--pink);}
-.impact-num{font-family:var(--font-display);font-size:56px;font-weight:900;color:#fff;line-height:1;margin-bottom:6px;}
+.impact-num{font-family:var(--font-display);font-size:64px;font-weight:900;color:#fff;line-height:1;margin-bottom:6px;}
 .impact-lbl{font-size:13px;font-weight:700;color:var(--gray-400);letter-spacing:.8px;text-transform:uppercase;}
 
 /* ── ABOUT ── */
@@ -127,17 +127,17 @@ body.loaded{opacity:1;}
 .about-card:hover{transform:translateY(-6px);box-shadow:0 20px 48px rgba(212,19,103,.12);border-color:var(--pink-light);}
 .about-card:hover::before{transform:scaleX(1);}
 .about-icon{width:52px;height:52px;border-radius:16px;background:var(--pink-light);display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:20px;}
-.about-card h3{font-size:16px;font-weight:700;color:var(--heading-color);margin-bottom:10px;}
-.about-card p{font-size:14px;color:var(--gray-500);line-height:1.7;}
+.about-card h3{font-size:17px;font-weight:700;color:var(--heading-color);margin-bottom:10px;}
+.about-card p{font-size:15px;color:var(--gray-500);line-height:1.7;}
 
 /* ── GOVERNOR ── */
-.gov-banner{background:linear-gradient(135deg,var(--pink-deep) 0%,var(--pink-dark) 100%);border-radius:var(--r-lg);padding:32px 36px;display:flex;align-items:center;gap:28px;margin-bottom:52px;}
-.gov-avatar{width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,.15);border:2px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;color:#fff;flex-shrink:0;}
+.gov-banner{background:linear-gradient(135deg,var(--pink-deep) 0%,var(--pink-dark) 100%);border-radius:var(--r-lg);padding:44px 48px;display:flex;align-items:center;gap:32px;margin-bottom:52px;position:relative;overflow:hidden;}
+.gov-avatar{width:110px;height:110px;border-radius:50%;background:rgba(255,255,255,.15);border:3px solid rgba(255,255,255,.4);box-shadow:0 0 0 6px rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:700;color:#fff;flex-shrink:0;}
 .gov-avatar img{width:100%;height:100%;border-radius:50%;object-fit:cover;}
-.gov-label{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:4px;}
-.gov-name{font-family:var(--font-display);font-size:24px;font-weight:700;color:#fff;}
-.gov-sub{font-size:13px;color:rgba(255,255,255,.6);margin-top:2px;}
-.gov-badge{margin-left:auto;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:11px;font-weight:700;padding:6px 14px;border-radius:40px;white-space:nowrap;flex-shrink:0;}
+.gov-label{font-size:12px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:8px;}
+.gov-name{font-family:var(--font-display);font-size:32px;font-weight:700;color:#fff;line-height:1.15;}
+.gov-sub{font-size:15px;color:rgba(255,255,255,.65);margin-top:6px;}
+.gov-badge{margin-left:auto;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;font-size:13px;font-weight:700;padding:10px 20px;border-radius:40px;white-space:nowrap;flex-shrink:0;align-self:flex-start;}
 
 /* ── FUTURE DRRs ── */
 .future-drrs{margin-top:52px;padding-top:48px;border-top:1px solid var(--gray-100);}
@@ -147,8 +147,8 @@ body.loaded{opacity:1;}
 .future-drr-photo-placeholder{width:100px;height:100px;border-radius:50%;background:var(--pink-light);border:2px dashed var(--pink);box-shadow:0 0 0 3px var(--pink-light);display:flex;align-items:center;justify-content:center;font-size:32px;flex-shrink:0;}
 .future-drr-year{background:var(--pink-light);color:var(--pink-dark);font-size:12px;font-weight:700;padding:5px 14px;border-radius:40px;white-space:nowrap;flex-shrink:0;}
 .future-drr-info{}
-.future-drr-name{font-size:16px;font-weight:700;color:var(--heading-color);margin-top:4px;}
-.future-drr-club{font-size:13px;color:var(--gray-500);margin-top:4px;}
+.future-drr-name{font-size:18px;font-weight:700;color:var(--heading-color);margin-top:4px;}
+.future-drr-club{font-size:14px;color:var(--gray-500);margin-top:4px;}
 
 /* ── MEET THE DRR ── */
 #drr{padding:96px 0;background:var(--gray-50);}
@@ -192,9 +192,9 @@ body.loaded{opacity:1;}
 .officer-photo{width:96px;height:96px;border-radius:50%;object-fit:cover;object-position:center top;margin:0 auto 16px;border:3px solid #fff;box-shadow:0 0 0 3px var(--pink);display:block;background:var(--pink-light);}
 .officer-avatar{width:96px;height:96px;border-radius:50%;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;font-family:var(--font-display);background:var(--pink-light);color:var(--pink);position:relative;}
 .officer-avatar::before{content:'';position:absolute;inset:-3px;border-radius:50%;border:2px dashed var(--pink-light);}
-.officer-name{font-size:15px;font-weight:700;color:var(--heading-color);margin-bottom:6px;}
-.officer-role{font-size:11px;font-weight:700;letter-spacing:.6px;color:var(--pink);text-transform:uppercase;margin-bottom:8px;}
-.officer-club{font-size:13px;color:var(--gray-400);line-height:1.4;}
+.officer-name{font-size:16px;font-weight:700;color:var(--heading-color);margin-bottom:6px;}
+.officer-role{font-size:12px;font-weight:700;letter-spacing:.5px;color:var(--pink);text-transform:uppercase;margin-bottom:8px;}
+.officer-club{font-size:14px;color:var(--gray-400);line-height:1.4;}
 
 /* ── EVENTS ── */
 #events{padding:96px 0;background:#fff;}
@@ -206,8 +206,8 @@ body.loaded{opacity:1;}
 .event-date-box{background:var(--pink);border-radius:var(--r-md);padding:14px 18px;text-align:center;min-width:64px;flex-shrink:0;}
 .event-date-box .day{font-family:var(--font-display);font-size:30px;font-weight:900;line-height:1;color:#fff;}
 .event-date-box .mo{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.7);margin-top:3px;}
-.event-body h3{font-size:17px;font-weight:700;color:var(--heading-color);margin-bottom:6px;}
-.event-body p{font-size:14px;color:var(--gray-500);line-height:1.65;margin-bottom:12px;}
+.event-body h3{font-size:18px;font-weight:700;color:var(--heading-color);margin-bottom:6px;}
+.event-body p{font-size:15px;color:var(--gray-500);line-height:1.65;margin-bottom:12px;}
 .event-meta{display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
 .tag{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:4px 12px;border-radius:40px;}
 .tag-pink{background:var(--pink-light);color:var(--pink-dark);}
@@ -236,8 +236,8 @@ body.loaded{opacity:1;}
 .resource-link-arrow{position:absolute;top:14px;right:14px;font-size:14px;color:var(--pink);opacity:.6;}
 .resource-card-link:hover .resource-link-arrow{opacity:1;}
 .resource-icon{width:48px;height:48px;border-radius:14px;background:var(--pink-light);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;}
-.resource-text h3{font-size:15px;font-weight:700;color:var(--heading-color);margin-bottom:6px;}
-.resource-text p{font-size:13px;color:var(--gray-500);line-height:1.65;}
+.resource-text h3{font-size:16px;font-weight:700;color:var(--heading-color);margin-bottom:6px;}
+.resource-text p{font-size:14px;color:var(--gray-500);line-height:1.65;}
 
 /* ── CALENDAR ── */
 #calendar{padding:96px 0;background:var(--gray-50);}
@@ -314,7 +314,7 @@ body.loaded{opacity:1;}
 .club-card.active{border-color:var(--pink);background:#fff;box-shadow:0 4px 16px rgba(212,19,103,.12);}
 .club-card-dot{width:8px;height:8px;border-radius:50%;background:var(--pink);flex-shrink:0;transition:transform .2s;}
 .club-card.active .club-card-dot{transform:scale(1.4);}
-.club-card-name{font-size:13px;font-weight:600;color:var(--heading-color);line-height:1.4;flex:1;}
+.club-card-name{font-size:14px;font-weight:600;color:var(--heading-color);line-height:1.4;flex:1;}
 .club-card-icon{font-size:12px;color:var(--gray-300);flex-shrink:0;transition:color .2s;}
 .club-card:hover .club-card-icon,.club-card.active .club-card-icon{color:var(--pink);}
 /* Modal overlay */
@@ -367,7 +367,7 @@ body.dark-mode .qr-svg-wrap svg rect{fill:var(--dm-surface);}
 .contact-row{display:flex;align-items:flex-start;gap:14px;margin-bottom:18px;}
 .contact-row-icon{width:38px;height:38px;border-radius:10px;background:var(--pink-light);display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;}
 .contact-row-text strong{display:block;font-size:11px;font-weight:700;color:var(--gray-400);text-transform:uppercase;letter-spacing:.7px;margin-bottom:2px;}
-.contact-row-text span{font-size:14px;color:var(--gray-700);}
+.contact-row-text span{font-size:15px;color:var(--gray-700);}
 .socials{display:flex;gap:10px;margin-top:24px;padding-top:24px;border-top:1px solid var(--gray-100);}
 .soc-btn{height:40px;padding:0 16px;border-radius:40px;background:var(--gray-900);color:#fff;display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;letter-spacing:.5px;cursor:pointer;transition:all .2s;}
 .soc-btn:hover{background:var(--pink);transform:translateY(-2px);}
