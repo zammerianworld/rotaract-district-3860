@@ -800,6 +800,27 @@ body.dark-mode #dark-toggle{background:var(--pink);color:#fff;}
   .drr-photo-wrap{max-width:220px;margin:0 auto;}
   .drr-bio{font-size:14px;padding-left:14px;}
 
+  /* Online Tools */
+  const otEl = $('online-tools-section');
+  if(otEl && C.resources.onlineTools && C.resources.onlineTools.length){
+    const cards = C.resources.onlineTools.map(t=>`
+      <a class="secretariat-card" href="${t.href}" target="_blank" rel="noopener">
+        <div class="secretariat-icon">${t.icon}</div>
+        <div class="secretariat-text">
+          <div class="secretariat-label">${t.label}</div>
+          <div class="secretariat-desc">${t.desc}</div>
+        </div>
+        <div class="secretariat-arrow">↗</div>
+      </a>`).join('');
+    otEl.innerHTML = `
+      <div class="secretariat-section">
+        <div class="section-kicker">Online Tools</div>
+        <h3 style="font-family:var(--font-display);font-size:20px;font-weight:700;color:var(--gray-900);margin:8px 0 4px;">Quick Access Tools</h3>
+        <p style="font-size:14px;color:var(--gray-500);margin-bottom:20px;">Official online tools for Rotaract clubs and officers.</p>
+        <div class="secretariat-grid">${cards}</div>
+      </div>`;
+  }
+
   /* Events */
   .event-card{grid-template-columns:1fr;gap:12px;}
   .event-date-box{width:fit-content;}
@@ -1465,6 +1486,7 @@ const CONFIG = {
     </div>
     <div class="resources-grid" id="resources-grid"></div>
     <div class="secretariat-section" id="secretariat-section"></div>
+    <div id="online-tools-section"></div>
   </div>
 </section>
 
@@ -1867,28 +1889,7 @@ const CONFIG = {
     dach.innerHTML += `<div class="drr-achievement"><div class="drr-achievement-dot"></div><span>${a}</span></div>`;
   });
 
-  /* Online Tools */
-  if(C.resources.onlineTools && C.resources.onlineTools.length){
-    const existing = $('secretariat-section');
-    if(existing){
-      const toolsDiv = document.createElement('div');
-      toolsDiv.style.cssText='margin-top:32px;padding-top:32px;border-top:1px solid var(--gray-200);';
-      toolsDiv.innerHTML = `<div class="section-kicker" style="margin-bottom:8px;">Online Tools</div>
-        <h3 style="font-family:var(--font-display);font-size:20px;font-weight:700;color:var(--gray-900);margin-bottom:4px;">Quick Access Tools</h3>
-        <p style="font-size:14px;color:var(--gray-500);margin-bottom:20px;">Official online tools for Rotaract clubs and officers.</p>
-        <div class="secretariat-grid">${C.resources.onlineTools.map(t=>`
-          <a class="secretariat-card" href="${t.href}" target="_blank" rel="noopener">
-            <div class="secretariat-icon">${t.icon}</div>
-            <div class="secretariat-text">
-              <div class="secretariat-label">${t.label}</div>
-              <div class="secretariat-desc">${t.desc}</div>
-            </div>
-            <div class="secretariat-arrow">↗</div>
-          </a>`).join('')}</div>`;
-      existing.appendChild(toolsDiv);
-    }
-  }
-
+  /* Online Tools — rendered into dedicated slot after secretariat */
   /* Secretariat links */
   const sec = C.resources.secretariat;
   const secEl = $('secretariat-section');
@@ -1907,6 +1908,27 @@ const CONFIG = {
           <div class="secretariat-arrow">↗</div>
         </a>`).join('')}
     </div>`;
+
+  /* Online Tools */
+  const otEl = $('online-tools-section');
+  if(otEl && C.resources.onlineTools && C.resources.onlineTools.length){
+    const cards = C.resources.onlineTools.map(t=>`
+      <a class="secretariat-card" href="${t.href}" target="_blank" rel="noopener">
+        <div class="secretariat-icon">${t.icon}</div>
+        <div class="secretariat-text">
+          <div class="secretariat-label">${t.label}</div>
+          <div class="secretariat-desc">${t.desc}</div>
+        </div>
+        <div class="secretariat-arrow">↗</div>
+      </a>`).join('');
+    otEl.innerHTML = `
+      <div class="secretariat-section">
+        <div class="section-kicker">Online Tools</div>
+        <h3 style="font-family:var(--font-display);font-size:20px;font-weight:700;color:var(--gray-900);margin:8px 0 4px;">Quick Access Tools</h3>
+        <p style="font-size:14px;color:var(--gray-500);margin-bottom:20px;">Official online tools for Rotaract clubs and officers.</p>
+        <div class="secretariat-grid">${cards}</div>
+      </div>`;
+  }
 
   /* Events */
   setText('events-eyebrow', C.events.eyebrow);
