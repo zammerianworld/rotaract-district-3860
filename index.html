@@ -51,7 +51,7 @@ a{text-decoration:none;color:inherit;}
   --nav-h:68px;
   --r-sm:6px;--r-md:12px;--r-lg:20px;--r-xl:28px;
 }
-body{font-family:var(--font-body);font-size:16px;line-height:1.7;color:var(--gray-900);background:var(--white);overflow-x:hidden;}
+body{font-family:var(--font-body);font-size:16px;line-height:1.7;color:var(--heading-color);background:var(--white);overflow-x:hidden;}
 .container{max-width:1080px;margin:0 auto;padding:0 28px;}
 
 /* ── NAV ── */
@@ -80,7 +80,7 @@ body{font-family:var(--font-body);font-size:16px;line-height:1.7;color:var(--gra
 .hero-right::before{content:'';position:absolute;top:0;bottom:0;left:-2px;width:60px;background:var(--pink);clip-path:polygon(0 0,100% 0,0 100%);pointer-events:none;}
 .hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--pink-light);color:var(--pink-dark);font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:6px 16px;border-radius:40px;margin-bottom:24px;}
 .hero-eyebrow-dot{width:6px;height:6px;border-radius:50%;background:var(--pink);flex-shrink:0;}
-#hero h1{font-family:var(--font-display);font-size:clamp(30px,4.5vw,54px);font-weight:900;color:var(--gray-900);line-height:1.08;margin-bottom:22px;letter-spacing:-.5px;}
+#hero h1{font-family:var(--font-display);font-size:clamp(30px,4.5vw,54px);font-weight:900;color:var(--heading-color);line-height:1.08;margin-bottom:22px;letter-spacing:-.5px;}
 #hero h1 em{color:var(--pink);font-style:normal;display:block;}
 .hero-sub{font-size:17px;color:var(--gray-500);line-height:1.75;margin-bottom:36px;max-width:420px;}
 .hero-btns{display:flex;gap:14px;flex-wrap:wrap;}
@@ -117,7 +117,7 @@ body{font-family:var(--font-body);font-size:16px;line-height:1.7;color:var(--gra
 #about::after{content:'';position:absolute;bottom:0;left:0;right:0;height:120px;background:var(--gray-50);clip-path:polygon(0 100%,100% 100%,100% 0);pointer-events:none;}
 .section-kicker{display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--pink);margin-bottom:14px;}
 .section-kicker::before{content:'';width:28px;height:2px;background:var(--pink);border-radius:2px;}
-.section-heading{font-family:var(--font-display);font-size:clamp(26px,4vw,42px);font-weight:900;color:var(--gray-900);line-height:1.1;margin-bottom:16px;letter-spacing:-.3px;}
+.section-heading{font-family:var(--font-display);font-size:clamp(26px,4vw,42px);font-weight:900;color:var(--heading-color);line-height:1.1;margin-bottom:16px;letter-spacing:-.3px;}
 .section-sub{font-size:16px;color:var(--gray-500);max-width:520px;line-height:1.75;margin-bottom:52px;}
 .about-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:24px;position:relative;z-index:1;}
 .about-card{background:#fff;border-radius:var(--r-lg);padding:32px 28px;border:1px solid var(--gray-100);transition:all .25s;position:relative;overflow:hidden;}
@@ -125,7 +125,7 @@ body{font-family:var(--font-body);font-size:16px;line-height:1.7;color:var(--gra
 .about-card:hover{transform:translateY(-6px);box-shadow:0 20px 48px rgba(212,19,103,.12);border-color:var(--pink-light);}
 .about-card:hover::before{transform:scaleX(1);}
 .about-icon{width:52px;height:52px;border-radius:16px;background:var(--pink-light);display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:20px;}
-.about-card h3{font-size:16px;font-weight:700;color:var(--gray-900);margin-bottom:10px;}
+.about-card h3{font-size:16px;font-weight:700;color:var(--heading-color);margin-bottom:10px;}
 .about-card p{font-size:14px;color:var(--gray-500);line-height:1.7;}
 
 /* ── GOVERNOR ── */
@@ -145,7 +145,7 @@ body{font-family:var(--font-body);font-size:16px;line-height:1.7;color:var(--gra
 .future-drr-photo-placeholder{width:56px;height:56px;border-radius:50%;background:var(--pink-light);border:2px dashed var(--pink);box-shadow:0 0 0 3px var(--pink-light);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
 .future-drr-year{background:var(--pink-light);color:var(--pink-dark);font-size:11px;font-weight:700;padding:4px 10px;border-radius:40px;white-space:nowrap;flex-shrink:0;}
 .future-drr-info{}
-.future-drr-name{font-size:14px;font-weight:700;color:var(--gray-900);}
+.future-drr-name{font-size:14px;font-weight:700;color:var(--heading-color);}
 .future-drr-club{font-size:12px;color:var(--gray-500);margin-top:2px;}
 
 /* ── MEET THE DRR ── */
@@ -171,7 +171,7 @@ body{font-family:var(--font-body);font-size:16px;line-height:1.7;color:var(--gra
 .secretariat-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(212,19,103,.1);border-color:var(--pink);}
 .secretariat-icon{width:44px;height:44px;border-radius:12px;background:var(--pink-light);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
 .secretariat-text{}
-.secretariat-label{font-size:15px;font-weight:700;color:var(--gray-900);margin-bottom:4px;}
+.secretariat-label{font-size:15px;font-weight:700;color:var(--heading-color);margin-bottom:4px;}
 .secretariat-desc{font-size:13px;color:var(--gray-500);line-height:1.5;}
 .secretariat-arrow{margin-left:auto;font-size:18px;color:var(--pink);align-self:center;flex-shrink:0;}
 
@@ -190,7 +190,7 @@ body{font-family:var(--font-body);font-size:16px;line-height:1.7;color:var(--gra
 .officer-photo{width:80px;height:80px;border-radius:50%;object-fit:cover;object-position:center top;margin:0 auto 16px;border:2.5px solid #fff;box-shadow:0 0 0 2.5px var(--pink);display:block;background:var(--pink-light);}
 .officer-avatar{width:80px;height:80px;border-radius:50%;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;font-family:var(--font-display);background:var(--pink-light);color:var(--pink);position:relative;}
 .officer-avatar::before{content:'';position:absolute;inset:-3px;border-radius:50%;border:2px dashed var(--pink-light);}
-.officer-name{font-size:15px;font-weight:700;color:var(--gray-900);margin-bottom:4px;}
+.officer-name{font-size:15px;font-weight:700;color:var(--heading-color);margin-bottom:4px;}
 .officer-role{font-size:11px;font-weight:700;letter-spacing:.8px;color:var(--pink);text-transform:uppercase;margin-bottom:6px;}
 .officer-club{font-size:13px;color:var(--gray-400);}
 
@@ -204,7 +204,7 @@ body{font-family:var(--font-body);font-size:16px;line-height:1.7;color:var(--gra
 .event-date-box{background:var(--pink);border-radius:var(--r-md);padding:14px 18px;text-align:center;min-width:64px;flex-shrink:0;}
 .event-date-box .day{font-family:var(--font-display);font-size:30px;font-weight:900;line-height:1;color:#fff;}
 .event-date-box .mo{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.7);margin-top:3px;}
-.event-body h3{font-size:17px;font-weight:700;color:var(--gray-900);margin-bottom:6px;}
+.event-body h3{font-size:17px;font-weight:700;color:var(--heading-color);margin-bottom:6px;}
 .event-body p{font-size:14px;color:var(--gray-500);line-height:1.65;margin-bottom:12px;}
 .event-meta{display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
 .tag{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:4px 12px;border-radius:40px;}
@@ -231,7 +231,7 @@ body{font-family:var(--font-body);font-size:16px;line-height:1.7;color:var(--gra
 .resource-card{background:#fff;border-radius:var(--r-lg);padding:28px;border:1px solid var(--gray-100);display:flex;gap:18px;align-items:flex-start;transition:all .25s;}
 .resource-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(212,19,103,.09);border-color:var(--pink-light);}
 .resource-icon{width:48px;height:48px;border-radius:14px;background:var(--pink-light);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;}
-.resource-text h3{font-size:15px;font-weight:700;color:var(--gray-900);margin-bottom:6px;}
+.resource-text h3{font-size:15px;font-weight:700;color:var(--heading-color);margin-bottom:6px;}
 .resource-text p{font-size:13px;color:var(--gray-500);line-height:1.65;}
 
 /* ── CALENDAR ── */
@@ -248,7 +248,7 @@ body{font-family:var(--font-body);font-size:16px;line-height:1.7;color:var(--gra
 .cal-date{background:var(--pink-light);border-radius:var(--r-md);padding:10px 14px;text-align:center;min-width:58px;}
 .cal-date .day{font-family:var(--font-display);font-size:24px;font-weight:900;color:var(--pink);line-height:1;}
 .cal-date .mo{font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--pink-dark);margin-top:2px;}
-.cal-info h3{font-size:15px;font-weight:700;color:var(--gray-900);margin-bottom:4px;}
+.cal-info h3{font-size:15px;font-weight:700;color:var(--heading-color);margin-bottom:4px;}
 .cal-info p{font-size:13px;color:var(--gray-500);line-height:1.6;margin-bottom:6px;}
 .cal-loc{font-size:12px;color:var(--gray-400);}
 .cal-loc::before{content:'📍';font-size:11px;margin-right:3px;}
@@ -263,7 +263,7 @@ body{font-family:var(--font-body);font-size:16px;line-height:1.7;color:var(--gra
 .cal-month .day{font-family:var(--font-display);font-size:22px;font-weight:900;line-height:1;color:#fff;}
 .cal-month .mo{font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:rgba(255,255,255,.7);margin-top:2px;}
 .cal-info{flex:1;}
-.cal-title{font-size:14px;font-weight:700;color:var(--gray-900);margin-bottom:4px;}
+.cal-title{font-size:14px;font-weight:700;color:var(--heading-color);margin-bottom:4px;}
 .cal-loc{font-size:12px;color:var(--gray-500);}
 .cal-type{font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:2px 8px;border-radius:20px;background:var(--pink-light);color:var(--pink-dark);margin-bottom:4px;display:inline-block;}
 .cal-placeholder{background:rgba(255,255,255,.04);border:1.5px dashed rgba(212,19,103,.3);border-radius:var(--r-xl);padding:52px 24px;text-align:center;margin-top:48px;}
@@ -279,7 +279,7 @@ body{font-family:var(--font-body);font-size:16px;line-height:1.7;color:var(--gra
 .cal-date{text-align:center;}
 .cal-day{font-family:var(--font-display);font-size:28px;font-weight:900;color:var(--pink);line-height:1;}
 .cal-month{font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--gray-400);margin-top:2px;}
-.cal-title{font-size:15px;font-weight:700;color:var(--gray-900);margin-bottom:4px;}
+.cal-title{font-size:15px;font-weight:700;color:var(--heading-color);margin-bottom:4px;}
 .cal-loc{font-size:13px;color:var(--gray-500);}
 .cal-loc::before{content:'📍';font-size:11px;margin-right:4px;}
 .cal-tag{display:inline-block;background:var(--pink-light);color:var(--pink-dark);font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:4px 12px;border-radius:40px;white-space:nowrap;}
@@ -300,7 +300,7 @@ body{font-family:var(--font-body);font-size:16px;line-height:1.7;color:var(--gra
 .clubs-panel{display:none;}
 .clubs-panel.active{display:block;}
 .clubs-council-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;}
-.clubs-council-name{font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--gray-900);}
+.clubs-council-name{font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--heading-color);}
 .clubs-council-count{font-size:12px;font-weight:700;background:var(--pink-light);color:var(--pink-dark);padding:4px 12px;border-radius:40px;}
 .clubs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;}
 /* Club cards */
@@ -309,7 +309,7 @@ body{font-family:var(--font-body);font-size:16px;line-height:1.7;color:var(--gra
 .club-card.active{border-color:var(--pink);background:#fff;box-shadow:0 4px 16px rgba(212,19,103,.12);}
 .club-card-dot{width:8px;height:8px;border-radius:50%;background:var(--pink);flex-shrink:0;transition:transform .2s;}
 .club-card.active .club-card-dot{transform:scale(1.4);}
-.club-card-name{font-size:13px;font-weight:600;color:var(--gray-900);line-height:1.4;flex:1;}
+.club-card-name{font-size:13px;font-weight:600;color:var(--heading-color);line-height:1.4;flex:1;}
 .club-card-icon{font-size:12px;color:var(--gray-300);flex-shrink:0;transition:color .2s;}
 .club-card:hover .club-card-icon,.club-card.active .club-card-icon{color:var(--pink);}
 /* Modal overlay */
@@ -326,7 +326,7 @@ body{font-family:var(--font-body);font-size:16px;line-height:1.7;color:var(--gra
 .club-detail-item{display:flex;flex-direction:column;gap:4px;}
 .club-detail-item.full{grid-column:1/-1;}
 .club-detail-label{font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--gray-400);}
-.club-detail-value{font-size:14px;color:var(--gray-900);font-weight:500;line-height:1.5;}
+.club-detail-value{font-size:14px;color:var(--heading-color);font-weight:500;line-height:1.5;}
 .club-detail-value.placeholder{color:var(--gray-300);font-style:italic;font-weight:400;}
 .club-modal-footer{padding:16px 28px;border-top:1px solid var(--gray-100);display:flex;justify-content:flex-end;}
 .club-modal-dismiss{font-size:13px;font-weight:700;color:var(--pink);background:var(--pink-light);border:none;padding:9px 20px;border-radius:40px;cursor:pointer;transition:all .2s;}
@@ -346,7 +346,7 @@ body{font-family:var(--font-body);font-size:16px;line-height:1.7;color:var(--gra
 #contact{padding:96px 0;background:var(--gray-50);}
 .contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:52px;}
 .contact-card{background:#fff;border-radius:var(--r-lg);padding:36px;border:1px solid var(--gray-100);}
-.contact-card-title{font-size:18px;font-weight:700;color:var(--gray-900);margin-bottom:6px;padding-bottom:20px;border-bottom:2px solid var(--pink);display:inline-block;}
+.contact-card-title{font-size:18px;font-weight:700;color:var(--heading-color);margin-bottom:6px;padding-bottom:20px;border-bottom:2px solid var(--pink);display:inline-block;}
 .contact-rows{margin-top:24px;}
 .contact-row{display:flex;align-items:flex-start;gap:14px;margin-bottom:18px;}
 .contact-row-icon{width:38px;height:38px;border-radius:10px;background:var(--pink-light);display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;}
@@ -378,7 +378,7 @@ body{font-family:var(--font-body);font-size:16px;line-height:1.7;color:var(--gra
 .map-reset.show{display:flex;}
 .map-legend-row{display:flex;align-items:center;gap:0;margin-top:24px;}
 .map-tip{position:absolute;background:var(--gray-900);color:#fff;padding:7px 13px;border-radius:8px;font-size:12px;font-weight:700;pointer-events:none;white-space:nowrap;opacity:0;transition:opacity .15s;z-index:10;transform:translateX(-50%);}
-.map-tip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:var(--gray-900);}
+.map-tip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:var(--heading-color);}
 .map-panel{background:var(--gray-50);border-radius:var(--r-xl);border:1px solid var(--gray-200);padding:28px;min-height:360px;display:flex;flex-direction:column;}
 .map-panel-idle{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:10px;}
 .map-idle-icon{width:52px;height:52px;border-radius:50%;background:var(--pink-light);display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto;}
@@ -386,12 +386,12 @@ body{font-family:var(--font-body);font-size:16px;line-height:1.7;color:var(--gra
 .map-panel-area{display:none;flex-direction:column;gap:14px;}
 .map-panel-area.show{display:flex;}
 .map-area-pill{display:inline-block;background:var(--pink-light);color:var(--pink-dark);font-size:11px;font-weight:700;letter-spacing:.7px;text-transform:uppercase;padding:4px 14px;border-radius:40px;width:fit-content;}
-.map-area-name{font-family:var(--font-display);font-size:20px;font-weight:700;color:var(--gray-900);line-height:1.2;}
+.map-area-name{font-family:var(--font-display);font-size:20px;font-weight:700;color:var(--heading-color);line-height:1.2;}
 .map-area-sub{font-size:13px;color:var(--gray-500);}
 .map-divider{height:1px;background:var(--gray-200);}
 .mclubs-label{font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--gray-400);}
 .mclubs-list{display:flex;flex-direction:column;gap:7px;}
-.mclub-item{display:flex;align-items:center;gap:9px;padding:8px 12px;background:#fff;border-radius:10px;border:1px solid var(--gray-200);font-size:13px;font-weight:600;color:var(--gray-900);cursor:pointer;transition:all .2s;justify-content:space-between;}
+.mclub-item{display:flex;align-items:center;gap:9px;padding:8px 12px;background:#fff;border-radius:10px;border:1px solid var(--gray-200);font-size:13px;font-weight:600;color:var(--heading-color);cursor:pointer;transition:all .2s;justify-content:space-between;}
 .mclub-item:hover{border-color:var(--pink-light);background:var(--pink-pale);box-shadow:0 2px 8px rgba(212,19,103,.08);}
 .mclub-item-arrow{font-size:11px;color:var(--gray-300);flex-shrink:0;transition:color .2s;}
 .mclub-item:hover .mclub-item-arrow{color:var(--pink);}
@@ -431,7 +431,7 @@ body{font-family:var(--font-body);font-size:16px;line-height:1.7;color:var(--gra
 
 /* ── SEARCH ── */
 .clubs-search-wrap{position:relative;margin-bottom:28px;}
-.clubs-search{width:100%;padding:12px 44px 12px 18px;border-radius:40px;border:1.5px solid var(--gray-200);font-size:14px;font-family:var(--font-body);color:var(--gray-900);background:#fff;outline:none;transition:border-color .2s,box-shadow .2s;}
+.clubs-search{width:100%;padding:12px 44px 12px 18px;border-radius:40px;border:1.5px solid var(--gray-200);font-size:14px;font-family:var(--font-body);color:var(--heading-color);background:#fff;outline:none;transition:border-color .2s,box-shadow .2s;}
 .clubs-search:focus{border-color:var(--pink);box-shadow:0 0 0 3px rgba(212,19,103,.1);}
 .clubs-search-icon{position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:16px;pointer-events:none;}
 .clubs-search-results{position:absolute;top:calc(100% + 8px);left:0;right:0;background:#fff;border:1px solid var(--gray-200);border-radius:var(--r-lg);box-shadow:0 8px 32px rgba(0,0,0,.12);z-index:50;max-height:320px;overflow-y:auto;}
@@ -439,7 +439,7 @@ body{font-family:var(--font-body);font-size:16px;line-height:1.7;color:var(--gra
 .clubs-search-item:last-child{border-bottom:none;}
 .clubs-search-item:hover{background:var(--pink-pale);}
 .clubs-search-dot{width:7px;height:7px;border-radius:50%;background:var(--pink);flex-shrink:0;}
-.clubs-search-name{font-size:13px;font-weight:600;color:var(--gray-900);flex:1;}
+.clubs-search-name{font-size:13px;font-weight:600;color:var(--heading-color);flex:1;}
 .clubs-search-council{font-size:11px;color:var(--gray-400);}
 .clubs-search-empty{padding:20px 16px;text-align:center;font-size:13px;color:var(--gray-400);}
 
@@ -461,11 +461,13 @@ body{font-family:var(--font-body);font-size:16px;line-height:1.7;color:var(--gra
 .achievement-card{background:#fff;border:1px solid var(--gray-100);border-radius:var(--r-lg);padding:28px;display:flex;gap:16px;align-items:flex-start;transition:all .25s;border-top:3px solid var(--pink);}
 .achievement-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(212,19,103,.1);}
 .achievement-icon{font-size:28px;flex-shrink:0;}
-.achievement-title{font-size:15px;font-weight:700;color:var(--gray-900);margin-bottom:6px;}
+.achievement-title{font-size:15px;font-weight:700;color:var(--heading-color);margin-bottom:6px;}
 .achievement-desc{font-size:13px;color:var(--gray-500);line-height:1.65;}
 
 /* ── DARK MODE ── */
 :root{
+  --heading-color: var(--gray-900);
+  --body-color:    var(--gray-500);
   --dm-bg:        #0f0a0d;
   --dm-surface:   #1a1018;
   --dm-surface2:  #241520;
@@ -702,6 +704,50 @@ body.dark-mode #credit-bar{background:#0a0608;}
 body.dark-mode #credit-bar p{color:rgba(255,255,255,.25);}
 body.dark-mode #credit-bar span{color:rgba(255,255,255,.4);}
 
+/* CSS variable overrides in dark mode */
+body.dark-mode{--heading-color: #f0e8ec; --body-color: #9b8a92;}
+
+/* Additional dark mode text fixes */
+body.dark-mode p{color:var(--dm-muted);}
+body.dark-mode li{color:var(--dm-muted);}
+body.dark-mode .impact-num{color:#fff;}
+body.dark-mode .impact-lbl{color:rgba(255,255,255,.5);}
+body.dark-mode .tag-pink{background:var(--dm-faint);color:var(--pink);}
+body.dark-mode .tag-dark{background:var(--dm-surface2);color:var(--dm-text);}
+body.dark-mode .event-meta .event-loc{color:var(--dm-muted);}
+body.dark-mode .resources-btn{background:var(--pink);color:#fff;}
+body.dark-mode .resource-icon{background:var(--dm-faint);}
+body.dark-mode .map-tip{background:var(--gray-900);color:#fff;}
+body.dark-mode .about-icon span{filter:none;}
+body.dark-mode .hero-left{background:var(--pink);}
+body.dark-mode .hero-right h1{color:var(--dm-text);}
+body.dark-mode .hero-btns .btn-outline{border-color:var(--pink);color:var(--pink);}
+body.dark-mode .hero-btns .btn-outline:hover{background:var(--pink);color:#fff;}
+body.dark-mode .officer-role{color:var(--pink);}
+body.dark-mode .contact-card-title{color:var(--dm-text);}
+body.dark-mode .footer-brand-name{color:#fff;}
+body.dark-mode .footer-brand-sub{color:rgba(255,255,255,.35);}
+body.dark-mode .footer-col-title{color:rgba(255,255,255,.4);}
+body.dark-mode .footer-col a{color:rgba(255,255,255,.45);}
+body.dark-mode .footer-copy{color:rgba(255,255,255,.2);}
+body.dark-mode .announce-text{color:rgba(255,255,255,.85);}
+body.dark-mode .section-heading,.dark-mode h2{color:var(--dm-text);}
+body.dark-mode .clubs-council-count{background:var(--dm-faint);color:var(--pink);}
+body.dark-mode .future-drr-year{background:var(--dm-faint);color:var(--pink);}
+body.dark-mode .map-area-pill{background:var(--dm-faint);color:var(--pink);}
+body.dark-mode .mclubs-label{color:var(--dm-muted);}
+body.dark-mode .gov-badge{background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);}
+body.dark-mode .drr-achievements-title{color:var(--dm-muted);}
+body.dark-mode #online-tools-section .secretariat-label{color:var(--dm-text);}
+body.dark-mode #online-tools-section .secretariat-desc{color:var(--dm-muted);}
+body.dark-mode #online-tools-section h3{color:var(--dm-text);}
+body.dark-mode #online-tools-section p{color:var(--dm-muted);}
+body.dark-mode .future-drrs h3{color:var(--dm-text);}
+body.dark-mode .officers-intro h2{color:var(--dm-text);}
+body.dark-mode .events-intro h2{color:var(--dm-text);}
+body.dark-mode .resources-header h2{color:var(--dm-text);}
+body.dark-mode .contact-wrap h2{color:var(--dm-text);}
+
 /* Dark mode toggle button */
 #dark-toggle{position:fixed;bottom:80px;right:28px;width:44px;height:44px;border-radius:50%;background:var(--gray-900);color:#fff;font-size:18px;display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;box-shadow:0 4px 16px rgba(0,0,0,.2);z-index:50;transition:all .25s;}
 #dark-toggle:hover{transform:translateY(-2px);}
@@ -815,7 +861,7 @@ body.dark-mode #dark-toggle{background:var(--pink);color:#fff;}
     otEl.innerHTML = `
       <div class="secretariat-section">
         <div class="section-kicker">Online Tools</div>
-        <h3 style="font-family:var(--font-display);font-size:20px;font-weight:700;color:var(--gray-900);margin:8px 0 4px;">Quick Access Tools</h3>
+        <h3 style="font-family:var(--font-display);font-size:20px;font-weight:700;color:var(--heading-color);margin:8px 0 4px;">Quick Access Tools</h3>
         <p style="font-size:14px;color:var(--gray-500);margin-bottom:20px;">Official online tools for Rotaract clubs and officers.</p>
         <div class="secretariat-grid">${cards}</div>
       </div>`;
@@ -1711,6 +1757,7 @@ const CONFIG = {
 </section>
 
 <!-- CONTACT -->
+<section id="contact">
   <div class="container">
     <div class="section-kicker" id="contact-eyebrow"></div>
     <h2 class="section-heading" id="contact-title"></h2>
@@ -1740,7 +1787,7 @@ const CONFIG = {
     <div class="footer-brand">
       <img src="logo-white.png" alt="Rotaract District 3860"/>
       <div class="footer-brand-name" id="footer-name"></div>
-      <div class="footer-brand-sub">Service Above Self · <span id="footer-region"></span></div>
+      <div class="footer-brand-sub">Service Above Self · Visayas &amp; Mindanao<br/><span style="color:rgba(255,255,255,.25);">Fellowship Through Service</span></div>
     </div>
     <div id="footer-cols"></div>
   </div>
@@ -1859,7 +1906,7 @@ const CONFIG = {
   const fdrr = C.officers.futureDRRs;
   fd.innerHTML = `
     <div class="section-kicker">${fdrr.eyebrow}</div>
-    <h3 style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--gray-900);margin-top:8px;">${fdrr.title}</h3>
+    <h3 style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--heading-color);margin-top:8px;">${fdrr.title}</h3>
     <div class="future-drrs-grid">
       ${fdrr.list.map(f=>`
         <div class="future-drr-card">
@@ -1895,7 +1942,7 @@ const CONFIG = {
   const secEl = $('secretariat-section');
   secEl.innerHTML = `
     <div class="section-kicker">${sec.eyebrow}</div>
-    <h3 style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--gray-900);margin:8px 0 4px;">${sec.title}</h3>
+    <h3 style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--heading-color);margin:8px 0 4px;">${sec.title}</h3>
     <p style="font-size:14px;color:var(--gray-500);margin-bottom:0;">Quick access links for club presidents and officers.</p>
     <div class="secretariat-grid">
       ${sec.links.map(l=>`
@@ -1924,7 +1971,7 @@ const CONFIG = {
     otEl.innerHTML = `
       <div class="secretariat-section">
         <div class="section-kicker">Online Tools</div>
-        <h3 style="font-family:var(--font-display);font-size:20px;font-weight:700;color:var(--gray-900);margin:8px 0 4px;">Quick Access Tools</h3>
+        <h3 style="font-family:var(--font-display);font-size:20px;font-weight:700;color:var(--heading-color);margin:8px 0 4px;">Quick Access Tools</h3>
         <p style="font-size:14px;color:var(--gray-500);margin-bottom:20px;">Official online tools for Rotaract clubs and officers.</p>
         <div class="secretariat-grid">${cards}</div>
       </div>`;
@@ -2145,7 +2192,7 @@ function openClubModal(name, council){
   document.getElementById('modal-name').textContent = name;
   document.getElementById('modal-body').innerHTML = `
     <div class="club-detail-item full">
-      <span class="club-detail-label">Current President</span>
+      <span class="club-detail-label">Impact-Building President</span>
       ${ph(det?.president)}
     </div>
     <div class="club-detail-item full">
