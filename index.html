@@ -426,6 +426,126 @@ body{font-family:var(--font-body);font-size:16px;line-height:1.7;color:var(--gra
 #btt.show{opacity:1;pointer-events:auto;}
 #btt:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(212,19,103,.5);}
 
+/* ── SEARCH ── */
+.clubs-search-wrap{position:relative;margin-bottom:28px;}
+.clubs-search{width:100%;padding:12px 44px 12px 18px;border-radius:40px;border:1.5px solid var(--gray-200);font-size:14px;font-family:var(--font-body);color:var(--gray-900);background:#fff;outline:none;transition:border-color .2s,box-shadow .2s;}
+.clubs-search:focus{border-color:var(--pink);box-shadow:0 0 0 3px rgba(212,19,103,.1);}
+.clubs-search-icon{position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:16px;pointer-events:none;}
+.clubs-search-results{position:absolute;top:calc(100% + 8px);left:0;right:0;background:#fff;border:1px solid var(--gray-200);border-radius:var(--r-lg);box-shadow:0 8px 32px rgba(0,0,0,.12);z-index:50;max-height:320px;overflow-y:auto;}
+.clubs-search-item{padding:11px 16px;display:flex;align-items:center;gap:10px;cursor:pointer;border-bottom:0.5px solid var(--gray-100);transition:background .15s;}
+.clubs-search-item:last-child{border-bottom:none;}
+.clubs-search-item:hover{background:var(--pink-pale);}
+.clubs-search-dot{width:7px;height:7px;border-radius:50%;background:var(--pink);flex-shrink:0;}
+.clubs-search-name{font-size:13px;font-weight:600;color:var(--gray-900);flex:1;}
+.clubs-search-council{font-size:11px;color:var(--gray-400);}
+.clubs-search-empty{padding:20px 16px;text-align:center;font-size:13px;color:var(--gray-400);}
+
+/* ── ANNOUNCEMENTS ── */
+#announcements{padding:0;}
+.announce-bar{background:var(--pink-deep);padding:10px 28px;}
+.announce-inner{max-width:1080px;margin:0 auto;display:flex;flex-direction:column;gap:6px;}
+.announce-item{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.announce-dot-info{width:7px;height:7px;border-radius:50%;background:#60A5FA;flex-shrink:0;}
+.announce-dot-warning{width:7px;height:7px;border-radius:50%;background:#FCD34D;flex-shrink:0;}
+.announce-dot-success{width:7px;height:7px;border-radius:50%;background:#34D399;flex-shrink:0;}
+.announce-text{font-size:13px;color:rgba(255,255,255,.85);flex:1;}
+.announce-link{font-size:12px;font-weight:700;color:#fff;background:rgba(255,255,255,.15);padding:3px 12px;border-radius:40px;white-space:nowrap;text-decoration:none;transition:background .2s;}
+.announce-link:hover{background:rgba(255,255,255,.28);}
+
+/* ── ACHIEVEMENTS ── */
+#district-achievements{padding:96px 0;background:var(--gray-50);}
+.achievements-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-top:48px;}
+.achievement-card{background:#fff;border:1px solid var(--gray-100);border-radius:var(--r-lg);padding:28px;display:flex;gap:16px;align-items:flex-start;transition:all .25s;border-top:3px solid var(--pink);}
+.achievement-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(212,19,103,.1);}
+.achievement-icon{font-size:28px;flex-shrink:0;}
+.achievement-title{font-size:15px;font-weight:700;color:var(--gray-900);margin-bottom:6px;}
+.achievement-desc{font-size:13px;color:var(--gray-500);line-height:1.65;}
+
+/* ── DARK MODE ── */
+:root{
+  --dm-bg:        #0f0a0d;
+  --dm-surface:   #1a1018;
+  --dm-surface2:  #241520;
+  --dm-border:    rgba(212,19,103,.2);
+  --dm-text:      #f0e8ec;
+  --dm-muted:     #9b8a92;
+  --dm-faint:     #3d2834;
+}
+body.dark-mode{background:var(--dm-bg);color:var(--dm-text);}
+body.dark-mode .section-heading{color:var(--dm-text);}
+body.dark-mode .section-sub{color:var(--dm-muted);}
+body.dark-mode .section-kicker{color:var(--pink);}
+body.dark-mode #about{background:var(--dm-bg);}
+body.dark-mode .about-card{background:var(--dm-surface);border-color:var(--dm-border);color:var(--dm-text);}
+body.dark-mode .about-card h3{color:var(--dm-text);}
+body.dark-mode .about-card p{color:var(--dm-muted);}
+body.dark-mode #officers{background:var(--dm-surface);}
+body.dark-mode .officers-intro p{color:var(--dm-muted);}
+body.dark-mode .officers-group-title{color:var(--pink);border-bottom-color:var(--dm-faint);}
+body.dark-mode .officer-card{background:var(--dm-surface2);border-color:var(--dm-border);}
+body.dark-mode .officer-name{color:var(--dm-text);}
+body.dark-mode .officer-club{color:var(--dm-muted);}
+body.dark-mode .future-drr-card{background:var(--dm-surface2);border-color:var(--dm-border);}
+body.dark-mode .future-drr-name{color:var(--dm-text);}
+body.dark-mode .future-drr-club{color:var(--dm-muted);}
+body.dark-mode #drr{background:var(--dm-bg);}
+body.dark-mode .drr-bio{color:var(--dm-muted);}
+body.dark-mode .drr-achievement{background:var(--dm-surface2);border-color:var(--dm-border);}
+body.dark-mode .drr-achievement span{color:var(--dm-text);}
+body.dark-mode .drr-achievements-title{color:var(--dm-muted);}
+body.dark-mode .drr-photo-placeholder{background:var(--dm-surface2);border-color:var(--dm-border);}
+body.dark-mode #events{background:var(--dm-surface);}
+body.dark-mode .events-intro p{color:var(--dm-muted);}
+body.dark-mode .event-card{background:var(--dm-surface2);border-color:var(--dm-border);}
+body.dark-mode .event-body h3{color:var(--dm-text);}
+body.dark-mode .event-body p{color:var(--dm-muted);}
+body.dark-mode #calendar{background:var(--dm-surface);}
+body.dark-mode .cal-item{background:var(--dm-surface2);border-color:var(--dm-border);}
+body.dark-mode .cal-title{color:var(--dm-text);}
+body.dark-mode .cal-loc{color:var(--dm-muted);}
+body.dark-mode #resources{background:var(--dm-bg);}
+body.dark-mode .resources-header p{color:var(--dm-muted);}
+body.dark-mode .resource-card{background:var(--dm-surface);border-color:var(--dm-border);}
+body.dark-mode .resource-text h3{color:var(--dm-text);}
+body.dark-mode .resource-text p{color:var(--dm-muted);}
+body.dark-mode .secretariat-card{background:var(--dm-surface);border-color:var(--dm-border);}
+body.dark-mode .secretariat-label{color:var(--dm-text);}
+body.dark-mode .secretariat-desc{color:var(--dm-muted);}
+body.dark-mode #clubs{background:var(--dm-surface);}
+body.dark-mode .clubs-council-name{color:var(--dm-text);}
+body.dark-mode .clubs-search{background:var(--dm-surface2);border-color:var(--dm-border);color:var(--dm-text);}
+body.dark-mode .clubs-search-results{background:var(--dm-surface2);border-color:var(--dm-border);}
+body.dark-mode .clubs-search-name{color:var(--dm-text);}
+body.dark-mode .clubs-tab{background:var(--dm-surface2);border-color:var(--dm-border);color:var(--dm-muted);}
+body.dark-mode .clubs-tab.active{background:var(--pink);border-color:var(--pink);color:#fff;}
+body.dark-mode .club-card{background:var(--dm-surface2);border-color:var(--dm-border);}
+body.dark-mode .club-card:hover{background:var(--dm-faint);}
+body.dark-mode .club-card-name{color:var(--dm-text);}
+body.dark-mode #map{background:var(--dm-surface);}
+body.dark-mode .map-panel{background:var(--dm-surface2);border-color:var(--dm-border);}
+body.dark-mode .map-idle-text{color:var(--dm-muted);}
+body.dark-mode .map-area-name{color:var(--dm-text);}
+body.dark-mode .map-area-sub{color:var(--dm-muted);}
+body.dark-mode .map-divider{background:var(--dm-border);}
+body.dark-mode .mclub-item{background:var(--dm-surface);border-color:var(--dm-border);}
+body.dark-mode .mclub-item span{color:var(--dm-text);}
+body.dark-mode #contact{background:var(--dm-surface);}
+body.dark-mode .contact-card{background:var(--dm-surface2);border-color:var(--dm-border);}
+body.dark-mode .contact-card h3{color:var(--dm-text);}
+body.dark-mode .contact-row-text span{color:var(--dm-muted);}
+body.dark-mode .contact-row-text strong{color:var(--dm-muted);}
+body.dark-mode .quick-links-list a{color:var(--dm-muted);}
+body.dark-mode .quick-links-list li{border-bottom-color:var(--dm-border);}
+body.dark-mode .club-modal{background:var(--dm-surface);}
+body.dark-mode .club-modal-body{background:var(--dm-surface);}
+body.dark-mode .club-detail-label{color:var(--dm-muted);}
+body.dark-mode .club-detail-value{color:var(--dm-text);}
+body.dark-mode .club-modal-footer{border-top-color:var(--dm-border);}
+/* Dark mode toggle button */
+#dark-toggle{position:fixed;bottom:80px;right:28px;width:44px;height:44px;border-radius:50%;background:var(--gray-900);color:#fff;font-size:18px;display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;box-shadow:0 4px 16px rgba(0,0,0,.2);z-index:50;transition:all .25s;}
+#dark-toggle:hover{transform:translateY(-2px);}
+body.dark-mode #dark-toggle{background:var(--pink);color:#fff;}
+
 /* ── SCROLL ANIMATIONS ── */
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease;}
 .reveal.visible{opacity:1;transform:translateY(0);}
@@ -583,6 +703,18 @@ const CONFIG = {
   logo: {
     color: "logo.png",
     white: "logo-white.png",
+  },
+
+  /* --- Announcements ---
+     Set show: true to display. Add items to the list.
+     type: "info" | "warning" | "success"
+  ---------------------------------------- */
+  announcements: {
+    show: false,
+    items: [
+      { type: "info",    text: "[Announcement #1 — e.g. District Assembly registration is now open!]", link: "#", linkLabel: "Learn more" },
+      { type: "warning", text: "[Announcement #2 — e.g. Monthly report deadline: July 31, 2026]",     link: "#", linkLabel: "Submit now" },
+    ],
   },
 
   /* --- Advocacy / Theme Banner ---
@@ -754,6 +886,22 @@ const CONFIG = {
         { year: "RY 2028–2029", name: "Christine Joy T. Balobalo",   club: "RAC Tagum North-Palm City Chapter" },
       ],
     },
+  },
+
+  /* --- District Achievements ---
+     Highlight district awards and recognitions for RY 2026–2027.
+     Set show: true when ready.
+  ---------------------------------------- */
+  achievements: {
+    show: false,
+    eyebrow: "District Pride",
+    title:   "Achievements & Recognition",
+    desc:    "Milestones, awards, and notable accomplishments of Rotaract District 3860 for Rotary Year 2026–2027.",
+    list: [
+      { icon: "🏆", title: "[Achievement Title]",    desc: "[Brief description of this achievement or award.]" },
+      { icon: "🌟", title: "[Recognition Title]",    desc: "[Brief description of this recognition.]"         },
+      { icon: "🎖️", title: "[Award Title]",          desc: "[Brief description of this award.]"               },
+    ],
   },
 
   /* --- Meet the DRR --- */
@@ -993,6 +1141,9 @@ const CONFIG = {
   </div>
 </nav>
 
+<!-- ANNOUNCEMENTS -->
+<div id="announcements" style="display:none;"></div>
+
 <!-- HERO -->
 <header id="hero">
   <div class="hero-left">
@@ -1076,13 +1227,13 @@ const CONFIG = {
   </div>
 </section>
 
-<!-- CALENDAR -->
-<section id="calendar" style="display:none;">
+<!-- DISTRICT ACHIEVEMENTS -->
+<section id="district-achievements" style="display:none;">
   <div class="container">
-    <div class="section-kicker" id="cal-eyebrow"></div>
-    <h2 class="section-heading" id="cal-title"></h2>
-    <p class="section-sub" id="cal-desc"></p>
-    <div id="cal-body"></div>
+    <div class="section-kicker" id="ach-eyebrow"></div>
+    <h2 class="section-heading" id="ach-title"></h2>
+    <p class="section-sub" id="ach-desc"></p>
+    <div class="achievements-grid" id="ach-grid"></div>
   </div>
 </section>
 
@@ -1093,6 +1244,36 @@ const CONFIG = {
     <h2 class="section-heading" id="cal-title"></h2>
     <p class="section-sub" id="cal-desc"></p>
     <div id="cal-body"></div>
+  </div>
+</section>
+
+<!-- DISTRICT ACHIEVEMENTS -->
+<section id="district-achievements" style="display:none;">
+  <div class="container">
+    <div class="section-kicker" id="ach-eyebrow"></div>
+    <h2 class="section-heading" id="ach-title"></h2>
+    <p class="section-sub" id="ach-desc"></p>
+    <div class="achievements-grid" id="ach-grid"></div>
+  </div>
+</section>
+
+<!-- CALENDAR -->
+<section id="calendar" style="display:none;">
+  <div class="container">
+    <div class="section-kicker" id="cal-eyebrow"></div>
+    <h2 class="section-heading" id="cal-title"></h2>
+    <p class="section-sub" id="cal-desc"></p>
+    <div id="cal-body"></div>
+  </div>
+</section>
+
+<!-- DISTRICT ACHIEVEMENTS -->
+<section id="district-achievements" style="display:none;">
+  <div class="container">
+    <div class="section-kicker" id="ach-eyebrow"></div>
+    <h2 class="section-heading" id="ach-title"></h2>
+    <p class="section-sub" id="ach-desc"></p>
+    <div class="achievements-grid" id="ach-grid"></div>
   </div>
 </section>
 
@@ -1128,6 +1309,11 @@ const CONFIG = {
     <div class="section-kicker" id="clubs-eyebrow"></div>
     <h2 class="section-heading" id="clubs-title"></h2>
     <p class="section-sub" style="margin-bottom:36px;" id="clubs-desc"></p>
+    <div class="clubs-search-wrap">
+      <input class="clubs-search" id="clubs-search" type="text" placeholder="Search clubs..." oninput="searchClubs(this.value)" autocomplete="off"/>
+      <span class="clubs-search-icon">🔍</span>
+      <div class="clubs-search-results" id="clubs-search-results" style="display:none;"></div>
+    </div>
     <div class="clubs-tabs" id="clubs-tabs"></div>
     <div id="clubs-panels"></div>
   </div>
@@ -1391,6 +1577,7 @@ const CONFIG = {
   </div>
 </div>
 
+<button id="dark-toggle" aria-label="Toggle dark mode" onclick="toggleDark()">🌙</button>
 <button id="btt" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
 <script>
@@ -1652,6 +1839,34 @@ const CONFIG = {
     ham.innerHTML='&#9776;';
   }));
 
+  /* Announcements */
+  const ann = C.announcements;
+  const annEl = $('announcements');
+  if(ann.show && annEl && ann.items.length){
+    annEl.style.display='block';
+    const items = ann.items.map(a=>`
+      <div class="announce-item">
+        <div class="announce-dot-${a.type}"></div>
+        <span class="announce-text">${a.text}</span>
+        ${a.link&&a.linkLabel?`<a class="announce-link" href="${a.link}">${a.linkLabel}</a>`:''}
+      </div>`).join('');
+    annEl.innerHTML=`<div class="announce-bar"><div class="announce-inner">${items}</div></div>`;
+  }
+
+  /* District Achievements */
+  const achC = C.achievements;
+  const achEl = $('district-achievements');
+  if(achC.show && achEl){
+    achEl.style.display='';
+    setText('ach-eyebrow', achC.eyebrow);
+    setText('ach-title',   achC.title);
+    setText('ach-desc',    achC.desc);
+    const ag=$('ach-grid');
+    achC.list.forEach(a=>{
+      ag.innerHTML+=`<div class="achievement-card"><div class="achievement-icon">${a.icon}</div><div><div class="achievement-title">${a.title}</div><div class="achievement-desc">${a.desc}</div></div></div>`;
+    });
+  }
+
   /* Back to top */
   const btt=$('btt');
   window.addEventListener('scroll',()=>btt.classList.toggle('show',scrollY>500),{passive:true});
@@ -1747,6 +1962,45 @@ function closeClubModal(e){
   document.body.style.overflow='';
 }
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeClubModal();});
+/* Search */
+function searchClubs(q){
+  const res = $('clubs-search-results');
+  const tabsEl = $('clubs-tabs');
+  const panelsEl = $('clubs-panels');
+  q = q.trim().toLowerCase();
+  if(!q){ res.style.display='none'; tabsEl.style.display=''; panelsEl.style.display=''; return; }
+  tabsEl.style.display='none'; panelsEl.style.display='none'; res.style.display='block';
+  const matches=[];
+  CONFIG.clubs.councils.forEach(c=>{
+    c.clubs.forEach(name=>{
+      if(name.toLowerCase().includes(q)) matches.push({name,council:c.label,id:c.id});
+    });
+  });
+  if(!matches.length){ res.innerHTML='<div class="clubs-search-empty">No clubs found for "'+q+'"</div>'; return; }
+  res.innerHTML = matches.map(m=>`
+    <div class="clubs-search-item" onclick="selectClubsTab('${m.id}');$('clubs-search').value='';searchClubs('');openClubModal('${m.name.replace(/'/g,"&#39;")}','${m.council}')">
+      <div class="clubs-search-dot"></div>
+      <span class="clubs-search-name">${m.name}</span>
+      <span class="clubs-search-council">${m.council}</span>
+    </div>`).join('');
+}
+/* Close search on outside click */
+document.addEventListener('click',e=>{
+  if(!e.target.closest('.clubs-search-wrap')){
+    const res=$('clubs-search-results');
+    if(res) res.style.display='none';
+  }
+});
+/* Dark mode */
+function toggleDark(){
+  const isDark = document.body.classList.toggle('dark-mode');
+  $('dark-toggle').textContent = isDark ? '☀️' : '🌙';
+  try{ localStorage.setItem('rotaract-dark', isDark?'1':'0'); }catch(e){}
+}
+(function initDark(){
+  try{ if(localStorage.getItem('rotaract-dark')==='1'){ document.body.classList.add('dark-mode'); const t=$('dark-toggle'); if(t) t.textContent='☀️'; }}catch(e){}
+})();
+
 function selectClubsTab(councilId){
   const tabs   = document.querySelectorAll('.clubs-tab');
   const panels = document.querySelectorAll('.clubs-panel');
