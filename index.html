@@ -76,7 +76,7 @@ body{font-family:var(--font-body);font-size:16px;line-height:1.7;color:var(--gra
 
 /* ── IMPACT STRIP ── */
 #impact{background:var(--gray-900);padding:0 28px;}
-.impact-grid{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);}
+.impact-grid{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);}
 .impact-item{padding:40px 24px;text-align:center;border-right:1px solid rgba(255,255,255,.06);position:relative;}
 .impact-item:last-child{border-right:none;}
 .impact-item::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:40px;height:3px;background:var(--pink);}
@@ -98,6 +98,51 @@ body{font-family:var(--font-body);font-size:16px;line-height:1.7;color:var(--gra
 .about-icon{width:52px;height:52px;border-radius:16px;background:var(--pink-light);display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:20px;}
 .about-card h3{font-size:16px;font-weight:700;color:var(--gray-900);margin-bottom:10px;}
 .about-card p{font-size:14px;color:var(--gray-500);line-height:1.7;}
+
+/* ── GOVERNOR ── */
+.gov-banner{background:linear-gradient(135deg,var(--pink-deep) 0%,var(--pink-dark) 100%);border-radius:var(--r-lg);padding:28px 32px;display:flex;align-items:center;gap:24px;margin-bottom:52px;}
+.gov-avatar{width:64px;height:64px;border-radius:50%;background:rgba(255,255,255,.15);border:2px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;color:#fff;flex-shrink:0;}
+.gov-avatar img{width:100%;height:100%;border-radius:50%;object-fit:cover;}
+.gov-label{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:4px;}
+.gov-name{font-family:var(--font-display);font-size:22px;font-weight:700;color:#fff;}
+.gov-sub{font-size:13px;color:rgba(255,255,255,.6);margin-top:2px;}
+.gov-badge{margin-left:auto;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:11px;font-weight:700;padding:6px 14px;border-radius:40px;white-space:nowrap;flex-shrink:0;}
+
+/* ── FUTURE DRRs ── */
+.future-drrs{margin-top:52px;padding-top:48px;border-top:1px solid var(--gray-100);}
+.future-drrs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:24px;}
+.future-drr-card{background:var(--gray-50);border:1px solid var(--gray-100);border-radius:var(--r-lg);padding:20px 24px;display:flex;align-items:center;gap:16px;}
+.future-drr-year{background:var(--pink-light);color:var(--pink-dark);font-size:11px;font-weight:700;padding:4px 10px;border-radius:40px;white-space:nowrap;flex-shrink:0;}
+.future-drr-info{}
+.future-drr-name{font-size:14px;font-weight:700;color:var(--gray-900);}
+.future-drr-club{font-size:12px;color:var(--gray-500);margin-top:2px;}
+
+/* ── MEET THE DRR ── */
+#drr{padding:96px 0;background:var(--gray-50);}
+.drr-layout{display:grid;grid-template-columns:300px 1fr;gap:52px;align-items:start;}
+.drr-photo-wrap{position:relative;}
+.drr-photo{width:100%;aspect-ratio:3/4;border-radius:var(--r-lg);object-fit:cover;background:var(--gray-100);display:flex;align-items:center;justify-content:center;}
+.drr-photo-placeholder{width:100%;aspect-ratio:3/4;border-radius:var(--r-lg);background:var(--pink-light);border:2px dashed var(--pink);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;}
+.drr-photo-placeholder span{font-size:48px;}
+.drr-photo-placeholder p{font-size:13px;color:var(--pink-dark);font-weight:600;text-align:center;padding:0 16px;}
+.drr-content{}
+.drr-bio{font-size:16px;color:var(--gray-600,#4B5563);line-height:1.85;margin-bottom:36px;font-style:italic;border-left:3px solid var(--pink);padding-left:20px;}
+.drr-achievements-title{font-size:13px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--gray-400);margin-bottom:16px;}
+.drr-achievements{display:flex;flex-direction:column;gap:10px;}
+.drr-achievement{display:flex;align-items:flex-start;gap:12px;padding:12px 16px;background:#fff;border-radius:var(--r-md);border:1px solid var(--gray-100);}
+.drr-achievement-dot{width:8px;height:8px;border-radius:50%;background:var(--pink);flex-shrink:0;margin-top:5px;}
+.drr-achievement span{font-size:14px;color:var(--gray-700);line-height:1.5;}
+
+/* ── SECRETARIAT LINKS ── */
+.secretariat-section{margin-top:52px;padding-top:48px;border-top:1px solid var(--gray-200);}
+.secretariat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:24px;}
+.secretariat-card{background:#fff;border:1px solid var(--gray-100);border-radius:var(--r-lg);padding:24px;display:flex;gap:16px;align-items:flex-start;transition:all .25s;text-decoration:none;border-left:4px solid var(--pink);}
+.secretariat-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(212,19,103,.1);border-color:var(--pink);}
+.secretariat-icon{width:44px;height:44px;border-radius:12px;background:var(--pink-light);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
+.secretariat-text{}
+.secretariat-label{font-size:15px;font-weight:700;color:var(--gray-900);margin-bottom:4px;}
+.secretariat-desc{font-size:13px;color:var(--gray-500);line-height:1.5;}
+.secretariat-arrow{margin-left:auto;font-size:18px;color:var(--pink);align-self:center;flex-shrink:0;}
 
 /* ── OFFICERS ── */
 #officers{background:var(--gray-50);padding:96px 0;}
@@ -291,7 +336,6 @@ const CONFIG = {
     { num: "—", label: "Rotaract Clubs"    },
     { num: "—", label: "Areas"             },
     { num: "—", label: "Members"           },
-    { num: "—", label: "Projects This RY"  },
   ],
 
   about: {
@@ -310,13 +354,51 @@ const CONFIG = {
     eyebrow: "District Officers",
     title:   "Club Leadership",
     desc:    "Meet the officers guiding the Rotaract clubs of District 3860 for Rotary Year 2026–2027.",
+
+    /* --- Rotary Governor --- */
+    governor: {
+      name:    "[Gov. Arlene's Full Name]",
+      title:   "Rotary Governor",
+      district: "Rotary International District 3860",
+      photo:   null,  /* set to "gov-photo.jpg" when available */
+    },
+
+    /* --- District Rotaract Officers --- */
     list: [
-      { initials: "DRR", name: "[DRR Name]",            role: "District Rotaract Representative",  club: "[Sponsoring Rotary Club]" },
-      { initials: "DC",  name: "[District Chair Name]", role: "District Rotaract Chair",            club: "[Club Name]" },
-      { initials: "IP",  name: "[Immediate Past Name]", role: "Immediate Past District Rep.",       club: "[Club Name]" },
-      { initials: "S",   name: "[Secretary Name]",      role: "District Secretary",                 club: "[Club Name]" },
-      { initials: "T",   name: "[Treasurer Name]",      role: "District Treasurer",                 club: "[Club Name]" },
-      { initials: "PRO", name: "[PRO Name]",            role: "Public Relations Officer",           club: "[Club Name]" },
+      { initials: "DRR",  name: "[DRR Name]",            role: "District Rotaract Representative",  club: "[Sponsoring Rotary Club]" },
+      { initials: "DRC",  name: "Remuel [Last Name]",    role: "District Rotaract Chair",            club: "[Club Name]" },
+      { initials: "DDRC", name: "Ryan [Last Name]",      role: "Deputy District Rotaract Chair",     club: "[Club Name]" },
+      { initials: "IP",   name: "[Immediate Past Name]", role: "Immediate Past District Rep.",       club: "[Club Name]" },
+      { initials: "S",    name: "[Secretary Name]",      role: "District Secretary",                 club: "[Club Name]" },
+      { initials: "T",    name: "[Treasurer Name]",      role: "District Treasurer",                 club: "[Club Name]" },
+      { initials: "PRO",  name: "[PRO Name]",            role: "Public Relations Officer",           club: "[Club Name]" },
+    ],
+
+    /* --- Future DRRs --- */
+    futureDRRs: {
+      eyebrow: "Succession",
+      title:   "Future District Rotaract Representatives",
+      list: [
+        { year: "RY 2027–2028", name: "[Future DRR Name]", club: "[Club Name]" },
+        { year: "RY 2028–2029", name: "[Future DRR Name]", club: "[Club Name]" },
+        { year: "RY 2029–2030", name: "[Future DRR Name]", club: "[Club Name]" },
+      ],
+    },
+  },
+
+  /* --- Meet the DRR --- */
+  drr: {
+    eyebrow:   "Meet the DRR",
+    title:     "[DRR Full Name]",
+    subtitle:  "District Rotaract Representative · RY 2026–2027",
+    photo:     null,   /* set to "drr-photo.jpg" when available */
+    bionote:   "[Paste DRR bionote here. Include background, Rotaract journey, vision for the district, and advocacy for RY 2026–2027.]",
+    achievements: [
+      "[Achievement or Award #1]",
+      "[Achievement or Award #2]",
+      "[Achievement or Award #3]",
+      "[Achievement or Award #4]",
+      "[Achievement or Award #5]",
     ],
   },
 
@@ -357,6 +439,20 @@ const CONFIG = {
       { icon: "💰", title: "Financial Guidelines",    desc: "Budget templates and financial reporting standards for clubs." },
       { icon: "📣", title: "Branding & Comms Kit",    desc: "Official logos, poster templates, and social media guidelines." },
     ],
+
+    /* --- Secretariat Reporting Links ---
+       Paste the actual URLs below when available.
+       These appear as action cards in the Resources section.
+    ---------------------------------------- */
+    secretariat: {
+      eyebrow: "Secretariat",
+      title:   "Reporting & Submissions",
+      links: [
+        { icon: "📊", label: "Reporting Dashboard",         desc: "View real-time club reporting status and compliance.", href: "[PASTE DASHBOARD LINK HERE]"         },
+        { icon: "📄", label: "Reporting Summary",           desc: "Access the consolidated summary of all club reports.",  href: "[PASTE REPORTING SUMMARY LINK HERE]" },
+        { icon: "📬", label: "Centralized Submission Form", desc: "Submit club reports, projects, and documents here.",    href: "[PASTE SUBMISSION FORM LINK HERE]"   },
+      ],
+    },
   },
 
   contact: {
@@ -386,8 +482,8 @@ const CONFIG = {
 
   footer: {
     cols: [
-      { title: "District", links: [ { label: "About Rotaract", href: "#about" }, { label: "Leadership", href: "#officers" }, { label: "Clubs Directory", href: "#clubs" } ] },
-      { title: "Resources", links: [ { label: "Upcoming Events", href: "#events" }, { label: "Resources & Docs", href: "#resources" }, { label: "Contact Us", href: "#contact" } ] },
+      { title: "District", links: [ { label: "About Rotaract", href: "#about" }, { label: "Meet the DRR", href: "#drr" }, { label: "Leadership", href: "#officers" }, { label: "Clubs Directory", href: "#clubs" } ] },
+      { title: "Resources", links: [ { label: "Upcoming Events", href: "#events" }, { label: "District Map", href: "#map" }, { label: "Resources & Docs", href: "#resources" }, { label: "Contact Us", href: "#contact" } ] },
     ],
     copy: `© ${new Date().getFullYear()} Rotaract Clubs of Rotary International District 3860. All rights reserved.`,
   },
@@ -403,6 +499,7 @@ const CONFIG = {
     </a>
     <div class="nav-links" id="nav-links">
       <a href="#about">About</a>
+      <a href="#drr">Meet the DRR</a>
       <a href="#officers">Leadership</a>
       <a href="#events">Events</a>
       <a href="#clubs">Clubs</a>
@@ -414,6 +511,7 @@ const CONFIG = {
   </div>
   <div id="mobile-menu">
     <a href="#about">About Rotaract</a>
+    <a href="#drr">Meet the DRR</a>
     <a href="#officers">Leadership</a>
     <a href="#events">Events</a>
     <a href="#clubs">Clubs</a>
@@ -456,9 +554,27 @@ const CONFIG = {
   <div class="about-grid"     id="about-grid"></div>
 </section>
 
+<!-- MEET THE DRR -->
+<section id="drr">
+  <div class="container">
+    <div class="section-kicker" id="drr-eyebrow"></div>
+    <h2 class="section-heading" id="drr-title"></h2>
+    <p style="font-size:15px;color:var(--gray-500);margin-bottom:48px;" id="drr-subtitle"></p>
+    <div class="drr-layout">
+      <div class="drr-photo-wrap" id="drr-photo-wrap"></div>
+      <div class="drr-content">
+        <p class="drr-bio" id="drr-bio"></p>
+        <div class="drr-achievements-title">Achievements & Awards in Rotaract</div>
+        <div class="drr-achievements" id="drr-achievements"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- OFFICERS -->
 <section id="officers">
   <div class="container">
+    <div id="gov-banner"></div>
     <div class="officers-intro">
       <div>
         <div class="section-kicker" id="officers-eyebrow"></div>
@@ -467,6 +583,7 @@ const CONFIG = {
       <p style="font-size:15px;color:var(--gray-500);line-height:1.75;align-self:end;" id="officers-desc"></p>
     </div>
     <div class="officers-grid" id="officers-grid"></div>
+    <div class="future-drrs" id="future-drrs"></div>
   </div>
 </section>
 
@@ -496,6 +613,7 @@ const CONFIG = {
       <a class="resources-btn" id="resources-btn" href="#" target="_blank" rel="noopener">Open Resources Folder</a>
     </div>
     <div class="resources-grid" id="resources-grid"></div>
+    <div class="secretariat-section" id="secretariat-section"></div>
   </div>
 </section>
 
@@ -809,6 +927,24 @@ const CONFIG = {
     ag.innerHTML+=`<div class="about-card"><div class="about-icon">${c.icon}</div><h3>${c.title}</h3><p>${c.body}</p></div>`;
   });
 
+  /* Governor banner */
+  const gov = C.officers.governor;
+  const govEl = $('gov-banner');
+  if(govEl){
+    const photoHTML = gov.photo
+      ? `<img src="${gov.photo}" alt="${gov.name}"/>`
+      : `<span>${gov.name.split(' ').map(w=>w[0]).join('').slice(0,2)}</span>`;
+    govEl.innerHTML = `<div class="gov-banner">
+      <div class="gov-avatar">${photoHTML}</div>
+      <div>
+        <div class="gov-label">Rotary Governor · District 3860</div>
+        <div class="gov-name">${gov.name}</div>
+        <div class="gov-sub">${gov.district}</div>
+      </div>
+      <div class="gov-badge">RY ${C.rotaryYear}</div>
+    </div>`;
+  }
+
   /* Officers */
   setText('officers-eyebrow', C.officers.eyebrow);
   setText('officers-title',   C.officers.title);
@@ -817,6 +953,57 @@ const CONFIG = {
   C.officers.list.forEach(o=>{
     og.innerHTML+=`<div class="officer-card"><div class="officer-avatar">${o.initials}</div><div class="officer-name">${o.name}</div><div class="officer-role">${o.role}</div><div class="officer-club">${o.club}</div></div>`;
   });
+
+  /* Future DRRs */
+  const fd = $('future-drrs');
+  const fdrr = C.officers.futureDRRs;
+  fd.innerHTML = `
+    <div class="section-kicker">${fdrr.eyebrow}</div>
+    <h3 style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--gray-900);margin-top:8px;">${fdrr.title}</h3>
+    <div class="future-drrs-grid">
+      ${fdrr.list.map(f=>`
+        <div class="future-drr-card">
+          <span class="future-drr-year">${f.year}</span>
+          <div class="future-drr-info">
+            <div class="future-drr-name">${f.name}</div>
+            <div class="future-drr-club">${f.club}</div>
+          </div>
+        </div>`).join('')}
+    </div>`;
+
+  /* Meet the DRR */
+  const drr = C.drr;
+  setText('drr-eyebrow',  drr.eyebrow);
+  setText('drr-title',    drr.title);
+  setText('drr-subtitle', drr.subtitle);
+  setText('drr-bio',      drr.bionote);
+  const dphoto = $('drr-photo-wrap');
+  dphoto.innerHTML = drr.photo
+    ? `<img class="drr-photo" src="${drr.photo}" alt="${drr.title}"/>`
+    : `<div class="drr-photo-placeholder"><span>📷</span><p>Official photo coming soon</p></div>`;
+  const dach = $('drr-achievements');
+  drr.achievements.forEach(a=>{
+    dach.innerHTML += `<div class="drr-achievement"><div class="drr-achievement-dot"></div><span>${a}</span></div>`;
+  });
+
+  /* Secretariat links */
+  const sec = C.resources.secretariat;
+  const secEl = $('secretariat-section');
+  secEl.innerHTML = `
+    <div class="section-kicker">${sec.eyebrow}</div>
+    <h3 style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--gray-900);margin:8px 0 4px;">${sec.title}</h3>
+    <p style="font-size:14px;color:var(--gray-500);margin-bottom:0;">Quick access links for club presidents and officers.</p>
+    <div class="secretariat-grid">
+      ${sec.links.map(l=>`
+        <a class="secretariat-card" href="${l.href}" target="_blank" rel="noopener">
+          <div class="secretariat-icon">${l.icon}</div>
+          <div class="secretariat-text">
+            <div class="secretariat-label">${l.label}</div>
+            <div class="secretariat-desc">${l.desc}</div>
+          </div>
+          <div class="secretariat-arrow">↗</div>
+        </a>`).join('')}
+    </div>`;
 
   /* Events */
   setText('events-eyebrow', C.events.eyebrow);
