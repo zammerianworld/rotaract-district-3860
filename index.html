@@ -742,33 +742,32 @@ const CONFIG = {
   /* Section kicker color fix for dark sections */
   $('clubs-eyebrow').style.color='rgba(212,19,103,.7)';
 
-  /* Map */
-  const MAP_REGIONS=["Western_Visayas", "Central_Visayas", "Eastern_Visayas", "Davao", "SOCCSKSARGEN", "Caraga"];
-  let mapCur=null;
-  function mapTip(e,name){
-    const t=document.getElementById('maptip');
-    const r=document.getElementById('mapwrap').getBoundingClientRect();
-    t.textContent=name;t.style.opacity='1';
-    t.style.left=(e.clientX-r.left)+'px';
-    t.style.top=(e.clientY-r.top-46)+'px';
-  }
-  function mapUntip(){document.getElementById('maptip').style.opacity='0';}
-  function mapPick(id){
-    if(mapCur){
-      document.getElementById('mr_'+mapCur)?.classList.remove('active');
-      document.getElementById('mp_'+mapCur)?.classList.remove('show');
-      document.getElementById('mleg_'+mapCur)?.classList.remove('active');
-    }
-    mapCur=id;
-    MAP_REGIONS.forEach(r=>document.getElementById('mr_'+r)?.classList.toggle('dimmed',r!==id));
-    document.getElementById('mr_'+id)?.classList.add('active');
-    document.getElementById('mr_'+id)?.classList.remove('dimmed');
-    document.getElementById('map-idle').style.display='none';
-    document.getElementById('mp_'+id)?.classList.add('show');
-    document.getElementById('mleg_'+id)?.classList.add('active');
-  }
-
 })();
-</script>
+
+/* Map — global scope required for inline SVG event attributes */
+const MAP_REGIONS=["Western_Visayas","Central_Visayas","Eastern_Visayas","Davao","SOCCSKSARGEN","Caraga"];
+let mapCur=null;
+function mapTip(e,name){
+  const t=document.getElementById('maptip');
+  const r=document.getElementById('mapwrap').getBoundingClientRect();
+  t.textContent=name;t.style.opacity='1';
+  t.style.left=(e.clientX-r.left)+'px';
+  t.style.top=(e.clientY-r.top-46)+'px';
+}
+function mapUntip(){document.getElementById('maptip').style.opacity='0';}
+function mapPick(id){
+  if(mapCur){
+    document.getElementById('mr_'+mapCur)?.classList.remove('active');
+    document.getElementById('mp_'+mapCur)?.classList.remove('show');
+    document.getElementById('mleg_'+mapCur)?.classList.remove('active');
+  }
+  mapCur=id;
+  MAP_REGIONS.forEach(r=>document.getElementById('mr_'+r)?.classList.toggle('dimmed',r!==id));
+  document.getElementById('mr_'+id)?.classList.add('active');
+  document.getElementById('mr_'+id)?.classList.remove('dimmed');
+  document.getElementById('map-idle').style.display='none';
+  document.getElementById('mp_'+id)?.classList.add('show');
+  document.getElementById('mleg_'+id)?.classList.add('active');
+}
 </body>
 </html>
