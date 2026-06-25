@@ -778,6 +778,32 @@ body.dark-mode .contact-wrap h2{color:var(--dm-text);}
 #dark-toggle:hover{transform:translateY(-2px);}
 body.dark-mode #dark-toggle{background:var(--pink);color:#fff;}
 
+/* ── THEME SONG ── */
+#theme-song{padding:72px 0;background:linear-gradient(135deg,var(--pink-deep) 0%,var(--pink-dark) 60%,#9d0a44 100%);position:relative;overflow:hidden;}
+#theme-song::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.06) 1px,transparent 1px);background-size:24px 24px;pointer-events:none;}
+.theme-song-inner{position:relative;z-index:1;display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center;}
+.theme-song-eyebrow{font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+.theme-song-eyebrow::before{content:'🎵';font-size:14px;}
+.theme-song-title{font-family:var(--font-display);font-size:clamp(28px,4vw,44px);font-weight:900;color:#fff;line-height:1.1;margin-bottom:8px;}
+.theme-song-sub{font-size:13px;font-weight:600;color:rgba(255,255,255,.5);letter-spacing:.5px;margin-bottom:14px;}
+.theme-song-desc{font-size:15px;color:rgba(255,255,255,.7);line-height:1.7;max-width:520px;margin-bottom:28px;}
+.theme-song-btns{display:flex;gap:12px;flex-wrap:wrap;}
+.theme-song-btn{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;padding:11px 22px;border-radius:40px;text-decoration:none;transition:all .2s;cursor:pointer;}
+.theme-song-btn-primary{background:#fff;color:var(--pink-deep);}
+.theme-song-btn-primary:hover{background:var(--pink-light);transform:translateY(-2px);}
+.theme-song-btn-secondary{background:rgba(255,255,255,.12);color:#fff;border:1.5px solid rgba(255,255,255,.25);}
+.theme-song-btn-secondary:hover{background:rgba(255,255,255,.22);transform:translateY(-2px);}
+.theme-song-visual{flex-shrink:0;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,.08);border:2px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;position:relative;}
+.theme-song-visual::before{content:'';position:absolute;inset:-8px;border-radius:50%;border:1.5px dashed rgba(255,255,255,.2);animation:spin 20s linear infinite;}
+.theme-song-note{font-size:72px;line-height:1;}
+@keyframes spin{to{transform:rotate(360deg);}}
+@media(prefers-reduced-motion:reduce){.theme-song-visual::before{animation:none;}}
+@media(max-width:640px){
+  .theme-song-inner{grid-template-columns:1fr;}
+  .theme-song-visual{display:none;}
+}
+body.dark-mode #theme-song{background:linear-gradient(135deg,#1a0510 0%,#2d0920 60%,#1f0515 100%);}
+
 /* ── SCROLL ANIMATIONS ── */
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease;}
 .reveal.visible{opacity:1;transform:translateY(0);}
@@ -949,6 +975,19 @@ const CONFIG = {
     ],
   },
 
+  /* --- Theme Song ---
+     "Create Lasting Impact" — Official District Theme Song RY 2026-2027
+     Links to Google Drive folder containing audio and video versions.
+     Set show: true to display.
+  ---------------------------------------- */
+  themeSong: {
+    show:    true,
+    title:   "Create Lasting Impact",
+    subtitle: "Official District Theme Song · RY 2026–2027",
+    desc:    "Listen to the official theme song of Rotaract District 3860 for Rotary Year 2026–2027, available in audio and video versions.",
+    driveFolder: "https://drive.google.com/drive/folders/185Ocjpx5ZzqQhitaaF4yfcObxAll66yz",
+  },
+
   /* --- Advocacy / Theme Banner ---
      The DRR's theme or advocacy for the Rotary Year.
      Set show: false to hide it until content is ready.
@@ -996,7 +1035,7 @@ const CONFIG = {
       name:    "Gov. Arlene J. Adlawan",
       title:   "Rotary Governor",
       district: "Rotary International District 3860",
-      photo:   null,
+      photo:   "https://drive.google.com/thumbnail?id=1jsLBlPBCaexZ_1mGn5kD8Lo_pAWayR50&sz=w300",
     },
 
     groups: [
@@ -1070,7 +1109,7 @@ const CONFIG = {
         list: [
           { initials: "PIC",  name: "Donmaclyn A. Lagapa",              role: "District Public Image Chair",                  club: "RAC Central Butuan"           },
           { initials: "ICO",  name: "Joelie Mae B. Montesclaros",       role: "District Internet and Communications Officer",   club: "RAC Dadiangas-CB"             },
-          { initials: "WS",   name: "Kenneth Nomar Melliza", photo: null,            role: "District Website Specialist",         club: "RAC Downtown Davao Poblacion" },
+          { initials: "WS",   name: "Kenneth Nomar Melliza", photo: "https://drive.google.com/thumbnail?id=1e1iueG58uDSJHhr86XmPZtjAO024PhYI&sz=w300",            role: "District Website Specialist",         club: "RAC Downtown Davao Poblacion" },
           { initials: "GLS",  name: "Christian V. Enario", photo: "https://drive.google.com/thumbnail?id=1dtd6bFoRWS813D4s_ELvjoF3AK17Rw6N&sz=w300",              role: "District Graphics and Layout Specialist",        club: "RAC Metro Cebu-CIT Chapter"   },
           { initials: "GLA",  name: "Guadalupe Niña Marie L. Obando", photo: "https://drive.google.com/thumbnail?id=1bsEi5827Adfuzx1Vbt-0muKyfsB4l4Rg&sz=w300",   role: "District Graphics and Layout Associate",         club: "RAC Metro Cebu"               },
           { initials: "GLA2", name: "Margaret Anne C. Matunog", photo: "https://drive.google.com/thumbnail?id=1iqN_GfsmA_5OC_ghONMC__pOYoICnTrR&sz=w300",         role: "District Graphics and Layout Associate",         club: "RAC Metro Cebu"               },
@@ -1258,15 +1297,94 @@ const CONFIG = {
        Leave as null to show "Coming soon" placeholders.
     ---------------------------------------- */
     clubDetails: {
-      /* Example:
-      "Rotaract Club of Davao": {
-        president:   "Juan Dela Cruz",
-        meeting:     "Every Tuesday, 6:00 PM",
-        venue:       "Davao City Hall, Session Room",
-        email:       "rcdavao@rotaract.org",
-        sponsoredBy: "Rotary Club of Davao"
-      },
-      */
+      "Rotaract Club of Andres Soriano Colleges of Bislig": { president: "Joy C. Serrano", sponsoredBy: "Rotary Club of Bislig" },
+      "Rotaract Club of Bislig": { president: "Reshelle Mae V. Logronio", sponsoredBy: "Rotary Club of Bislig" },
+      "Rotaract Club of Central Tandag": { president: "", sponsoredBy: "Rotary Club of Central Tandag" },
+      "Rotaract Club of Central San Franciso": { president: "Sheena Krista L. Rufila", sponsoredBy: "Rotary Club of Central San Francisco" },
+      "Rotaract Club of San Franciso": { president: "Rex Belli O. Peji", sponsoredBy: "Rotary Club of San Francisco" },
+      "Rotaract Club of Butuan Highlands": { president: "Juniel Rey B. Gigaquit", sponsoredBy: "Rotary Club of Butuan Highlands" },
+      "Rotaract Club of Butuan North Hiraya": { president: "Francis John Doria", sponsoredBy: "Rotary Club of Butuan North" },
+      "Rotaract Club of Butuan North-SJIT Chapter": { president: "Rose Angel R. Lumbay", sponsoredBy: "Rotary Club of Butuan North" },
+      "Rotaract Club of Central Butuan": { president: "Estefano Adrianne H. Salinana", sponsoredBy: "Rotary Club of Central Butuan" },
+      "Rotaract Club of Central Butuan-Caraga State University": { president: "Jenny D. Lamadora", sponsoredBy: "Rotary Club of Cental Butuan" },
+      "Rotaract Club of Central Cabadbaran-Northern Mindanao Colleges": { president: "", sponsoredBy: "Rotary Club of Central Cabadbaran" },
+      "Rotaract Club of Central Cabadbaran Sidlak": { president: "", sponsoredBy: "Rotary Club of Central Cabadbaran" },
+      "Rotaract Club of Downtown Butuan": { president: "", sponsoredBy: "Rotary Club of Downtown Butuan" },
+      "Rotaract Club of Midtown Butuan-CSU Chapter": { president: "Nhykole H. Rufin", sponsoredBy: "Rotary Club of Midtown Butuan" },
+      "Rotaract Club of Midtown Butuan-Community Based": { president: "", sponsoredBy: "Rotary Club of Midtown Butuan" },
+      "Rotaract Club of Panglao Island": { president: "", sponsoredBy: "Rotary Club of Panglao Island" },
+      "Rotaract Club of Panglao Island Ce-C Chapter": { president: "", sponsoredBy: "Rotary Club of Panglao Island" },
+      "Rotaract Club of Tagbilaran": { president: "", sponsoredBy: "Rotary Club of Tagbilaran" },
+      "Rotaract Club of Tagbilaran-BISU Chapter": { president: "", sponsoredBy: "Rotary Club of Tagbilaran" },
+      "Rotaract Club of Tagbilaran-HNU Chapter": { president: "Divine Grace Socobos", sponsoredBy: "Rotary Club of Tagbilaran" },
+      "Rotaract Club of Ubay": { president: "", sponsoredBy: "Rotary Club of Ubay" },
+      "Rotaract Club of Ubay BNSC Chapter": { president: "", sponsoredBy: "Rotary Club of Ubay" },
+      "Rotaract Club of Banilad Metro": { president: "", sponsoredBy: "Rotary Club of Banilad Metro" },
+      "Rotaract Club of Cebu": { president: "Atty. Jul Nicole A. Hernandez", sponsoredBy: "Rotary Club of Cebu" },
+      "Rotaract Club of Cebu Fort San Pedro": { president: "", sponsoredBy: "Rotary Club of Cebu Fort San Pedro" },
+      "Rotaract Club of Cebu Fuente": { president: "Gerald Nitz R. Ponce", sponsoredBy: "Rotary Club of Cebu Fuente" },
+      "Rotaract Club of Cebu Fuente-University of San Carlos": { president: "Mary Antonette S. Inopiquez", sponsoredBy: "Rotary Club of Cebu Fuente" },
+      "Rotaract Club of Cebu Fuente-University of the Visayas Chapter": { president: "Sherleen S. Patalinghug", sponsoredBy: "Rotary Club of Cebu Fuente" },
+      "Rotaract Club of Cebu 3rd District": { president: "Ashley Jade C. Naquines", sponsoredBy: "Rotary Club of Cebu Gloria Maris" },
+      "Rotaract Club of Cebu North-University of the Philippines-Cebu": { president: "", sponsoredBy: "Rotary Club of Cebu North" },
+      "Rotaract Club of Cebu Port Centre": { president: "", sponsoredBy: "Rotary Club of Cebu Port Centre" },
+      "Rotaract Club of Cebu South": { president: "Raye Christoper Taton", sponsoredBy: "Rotary Club of Cebu-South" },
+      "Rotaract Club of Cebu West": { president: "", sponsoredBy: "Rotary Club of Cebu West" },
+      "Rotaract Club of Mandaue": { president: "Angel Mae Lonzaga", sponsoredBy: "Rotary Club of Mandaue" },
+      "Rotaract Club of Madaue East": { president: "Lourdes Bernadette N. Buante", sponsoredBy: "Rotary Club of Mandaue East" },
+      "Rotaract Club of Metro Cebu": { president: "Eva Marie T. Alcansado", sponsoredBy: "Rotary Club of Metro Cebu" },
+      "Rotaract Club of Metro Cebu-CIT Chapter": { president: "Christian Enario", sponsoredBy: "Rotary Club of Metro Cebu" },
+      "Rotaract Club of Mandaue Trailblazers": { president: "", sponsoredBy: "Rotary Club of Metro Mandaue 2006" },
+      "Rotaract Club of Metro Mandaue 2006": { president: "", sponsoredBy: "Rotary Club of Metro Mandaue 2006" },
+      "Rotaract Club of Calinan Davao": { president: "", sponsoredBy: "Rotary Club of Calinan Davao" },
+      "Rotaract Club of Central Davao-University of Immaculate Conception": { president: "", sponsoredBy: "Rotary Club of Central Davao" },
+      "Rotaract Club of Davao": { president: "John Mark U. Sia", sponsoredBy: "Rotary Club of Davao" },
+      "Rotaract Club of Davao 2000": { president: "", sponsoredBy: "Rotary Club of Davao 2000" },
+      "Rotaract Club of Digos": { president: "Ben Jabez A. Necosia", sponsoredBy: "Rotary Club of Digos" },
+      "Rotaract Club of Downtown Davao Poblacion": { president: "Theona F. Aton", sponsoredBy: "Rotary Club of Downtown Davao" },
+      "Rotaract Club of East Davao-Scholars Chapter": { president: "", sponsoredBy: "Rotary Club of East Davao" },
+      "Rotaract Club of Lyceum of the Philippines-Davao": { president: "", sponsoredBy: "Rotary Club of Davao" },
+      "Rotaract Club of South Davao": { president: "", sponsoredBy: "Rotary Club of South Davao" },
+      "Rotaract Club of Waling-Waling Davao": { president: "", sponsoredBy: "Rotary Club of Waling-Waling Davao" },
+      "Rotaract Club of Waling-Waling Davao 2025": { president: "", sponsoredBy: "Rotary Club of Waling-Waling Davao" },
+      "Rotaract Club of West Dilaab Davao": { president: "", sponsoredBy: "Rotary Club of West Davao" },
+      "Rotaract Club of Dadiangas": { president: "Lyka C. Abella", sponsoredBy: "Rotary Club of Dadiangas" },
+      "Rotaract Club of General Santos City-Mindanao State University Chapter": { president: "Shayne C. Joseph", sponsoredBy: "Rotary Club of General Santos City" },
+      "Rotaract Club of Greater General Santos-Stratford International School": { president: "Mosmera K. Abdullah", sponsoredBy: "Rotary Club of Greater General Santos" },
+      "Rotaract Club of Metro Dadiangas": { president: "Jiro L. Sanza", sponsoredBy: "Rotary Club of Metro Dadiangas" },
+      "Rotaract Club of UST General Santos": { president: "Paul Christian S. Salazar", sponsoredBy: "" },
+      "Rotaract Club of Koronadal": { president: "", sponsoredBy: "Rotary Club of Koronadal" },
+      "Rotaract Club of Koronadal-St. Alexius College": { president: "", sponsoredBy: "Rotary Club of Koronadal" },
+      "Rotaract Club of STI College-Koronadal": { president: "Hilario S. Carbon Jr.", sponsoredBy: "Rotary Club of Koronadal Central" },
+      "Rotaract Club of Korbel": { president: "Hilary Grace J. Cartel", sponsoredBy: "Rotary Club of Marbel" },
+      "Rotaract Club of Marbel": { president: "Kevin Dave R. Conejos", sponsoredBy: "Rotary Club of Metro Koronadal" },
+      "Rotaract Club of Matutum": { president: "Aubrey Fe Sabido", sponsoredBy: "Rotary Club of Marbel" },
+      "Rotaract Club of Metro Koronadal": { president: "Myles B. Descuatan", sponsoredBy: "Rotary Club of Metro Koronadal" },
+      "Rotaract Club of Biliran Island": { president: "", sponsoredBy: "Rotary Club of Biliran Island" },
+      "Rotaract Club of EVSU": { president: "", sponsoredBy: "" },
+      "Rotaract Club of Kandaya-Tacloban": { president: "Monica D. Armada", sponsoredBy: "Rotary Club of Kandaya" },
+      "Rotaract Club of Kankabato": { president: "", sponsoredBy: "Rotary Club of Kankabato" },
+      "Rotaract Club of Maasin-Ajonay": { president: "", sponsoredBy: "Rotary Club of Maasin City" },
+      "Rotaract Club of San Juanico": { president: "Alfons Miguel E. Edaniol", sponsoredBy: "Rotary Club of San Juanico - Tacloban" },
+      "Rotaract Club of SLSU": { president: "Jay Niño L. Necosia", sponsoredBy: "Rotary Club of Tacloban" },
+      "Rotaract Club of Southern Leyte": { president: "Lourd Ive M. Visbal", sponsoredBy: "Rotary Club of Tacloban" },
+      "Rotaract Club of SPSPS San Juanico": { president: "Czarina Jovienne G. Pumanes", sponsoredBy: "Rotary Club of San Juanico - Tacloban" },
+      "Rotaract Club of Tacloban": { president: "Samantha Janikka B. Gosyco", sponsoredBy: "Rotary Club of Tacloban" },
+      "Rotaract Club of Dumaguete": { president: "Reymart R. Ansag", sponsoredBy: "Rotary Club of Dumaguete" },
+      "Rotaract Club of Tolong": { president: "", sponsoredBy: "Rotary Club of Tolong" },
+      "Rotaract Club of Siliman University": { president: "Christine Joyce Y. Gravador", sponsoredBy: "Rotary Club of Dumaguete East" },
+      "Rotaract Club of Ibatan-Calbayog": { president: "Rigel Kent Y. Diomangay", sponsoredBy: "Rotary Club of Calbayog City" },
+      "Rotaract Club of Catbalogan": { president: "", sponsoredBy: "Rotary Club of Catbalogan City" },
+      "Rotaract Club of Greater Calbayog": { president: "John Paul V. Balane", sponsoredBy: "Rotary Club of Greater Calbayog" },
+      "Rotaract Club of Christ the King College of Calbayog": { president: "Kate Alexandra L. Pabua", sponsoredBy: "" },
+      "Rotaract Club of Greater Northwest Samar State University": { president: "Reniella N. Pandong", sponsoredBy: "Rotary Club of Greater Calbayog" },
+      "Rotaract Club of Central Surigao": { president: "Alejandro A. Maceda", sponsoredBy: "Rotary Club of Central Surigao" },
+      "Rotaract Club of Metro Surigao": { president: "Joshua A. Orag", sponsoredBy: "Rotary Club of Metro Surigao" },
+      "Rotaract Club of Surigao City": { president: "", sponsoredBy: "Rotary Club of Surigao City" },
+      "Rotaract Club of Central Panabo-Smashers Chapter": { president: "", sponsoredBy: "Rotary Club of Central Panabo City" },
+      "Rotaract Club of Tagum Golden L.A.C.E.S.-St. Thomas More Chapter": { president: "Kimberly Basul", sponsoredBy: "Rotary Club of Tagum Golden LACES" },
+      "Rotaract Club of Tagum North-Palm City Chapter": { president: "Gilconedo Baya Jr", sponsoredBy: "Rotary Club of Tagum North" },
+      "Rotaract Club of UM Tagum": { president: "", sponsoredBy: "Rotary Club of Tagum North" },
     },
   },
 
@@ -1352,6 +1470,7 @@ const CONFIG = {
     </a>
     <div class="nav-links" id="nav-links">
       <a href="#about">About</a>
+      <a href="#theme-song" id="nav-theme" style="display:none;">Theme Song</a>
       <a href="#drr">Meet the DRR</a>
       <a href="#officers">Leadership</a>
       <a href="#events">Events</a>
@@ -1365,6 +1484,7 @@ const CONFIG = {
   </div>
   <div id="mobile-menu">
     <a href="#about">About Rotaract</a>
+    <a href="#theme-song" id="mob-theme" style="display:none;">Theme Song</a>
     <a href="#drr">Meet the DRR</a>
     <a href="#officers">Leadership</a>
     <a href="#events">Events</a>
@@ -1405,6 +1525,25 @@ const CONFIG = {
 <!-- IMPACT STRIP -->
 <section id="impact" aria-label="Key statistics">
   <div class="impact-grid" id="impact-grid"></div>
+</section>
+
+<!-- THEME SONG -->
+<section id="theme-song" style="display:none;">
+  <div class="container">
+    <div class="theme-song-inner">
+      <div>
+        <div class="theme-song-eyebrow" id="ts-eyebrow">District Theme Song</div>
+        <div class="theme-song-title" id="ts-title"></div>
+        <div class="theme-song-sub" id="ts-sub"></div>
+        <p class="theme-song-desc" id="ts-desc"></p>
+        <div class="theme-song-btns">
+          <a class="theme-song-btn theme-song-btn-primary" id="ts-btn" href="#" target="_blank" rel="noopener">🎵 Listen &amp; Watch</a>
+          <a class="theme-song-btn theme-song-btn-secondary" href="#" id="ts-btn2" target="_blank" rel="noopener">📂 All Versions</a>
+        </div>
+      </div>
+      <div class="theme-song-visual"><span class="theme-song-note">🎶</span></div>
+    </div>
+  </div>
 </section>
 
 <!-- ABOUT -->
@@ -1882,7 +2021,7 @@ const CONFIG = {
   const govEl = $('gov-banner');
   if(govEl){
     const photoHTML = gov.photo
-      ? `<img src="${gov.photo}" alt="${gov.name}"/>`
+      ? `<img src="${gov.photo}" alt="${gov.name}" style="width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:center top;" onerror="this.style.display='none';this.parentElement.innerHTML='<span>GA</span>'"  />`
       : `<span>${gov.name.split(' ').map(w=>w[0]).join('').slice(0,2)}</span>`;
     govEl.innerHTML = `<div class="gov-banner">
       <div class="gov-avatar">${photoHTML}</div>
@@ -2092,6 +2231,22 @@ const CONFIG = {
     ham.setAttribute('aria-expanded',false);
     ham.innerHTML='&#9776;';
   }));
+
+  /* Theme Song */
+  const ts = C.themeSong;
+  const tsEl = $('theme-song');
+  if(ts && ts.show && tsEl){
+    tsEl.style.display = '';
+    if($('nav-theme')) $('nav-theme').style.display = '';
+    if($('mob-theme')) $('mob-theme').style.display = '';
+    setText('ts-title', ts.title);
+    setText('ts-sub',   ts.subtitle);
+    setText('ts-desc',  ts.desc);
+    const btn = $('ts-btn');
+    const btn2 = $('ts-btn2');
+    if(btn)  btn.href  = ts.driveFolder;
+    if(btn2) btn2.href = ts.driveFolder;
+  }
 
   /* Announcements */
   const ann = C.announcements;
