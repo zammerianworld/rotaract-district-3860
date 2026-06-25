@@ -51,7 +51,9 @@ a{text-decoration:none;color:inherit;}
   --nav-h:68px;
   --r-sm:6px;--r-md:12px;--r-lg:20px;--r-xl:28px;
 }
-body{font-family:var(--font-body);font-size:16px;line-height:1.7;color:var(--heading-color);background:var(--white);overflow-x:hidden;}
+body{font-family:var(--font-body);opacity:0;transition:opacity .4s ease;}
+body.loaded{opacity:1;}
+.no-fouc{font-size:16px;line-height:1.7;color:var(--heading-color);background:var(--white);overflow-x:hidden;}
 .container{max-width:1080px;margin:0 auto;padding:0 28px;}
 
 /* ── NAV ── */
@@ -378,7 +380,7 @@ body{font-family:var(--font-body);font-size:16px;line-height:1.7;color:var(--hea
 .map-reset.show{display:flex;}
 .map-legend-row{display:flex;align-items:center;gap:0;margin-top:24px;}
 .map-tip{position:absolute;background:var(--gray-900);color:#fff;padding:7px 13px;border-radius:8px;font-size:12px;font-weight:700;pointer-events:none;white-space:nowrap;opacity:0;transition:opacity .15s;z-index:10;transform:translateX(-50%);}
-.map-tip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:var(--heading-color);}
+.map-tip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:var(--gray-900);}
 .map-panel{background:var(--gray-50);border-radius:var(--r-xl);border:1px solid var(--gray-200);padding:28px;min-height:360px;display:flex;flex-direction:column;}
 .map-panel-idle{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:10px;}
 .map-idle-icon{width:52px;height:52px;border-radius:50%;background:var(--pink-light);display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto;}
@@ -391,9 +393,10 @@ body{font-family:var(--font-body);font-size:16px;line-height:1.7;color:var(--hea
 .map-divider{height:1px;background:var(--gray-200);}
 .mclubs-label{font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--gray-400);}
 .mclubs-list{display:flex;flex-direction:column;gap:7px;}
-.mclub-item{display:flex;align-items:center;gap:9px;padding:8px 12px;background:#fff;border-radius:10px;border:1px solid var(--gray-200);font-size:13px;font-weight:600;color:var(--heading-color);cursor:pointer;transition:all .2s;justify-content:space-between;}
+.mclub-item{display:flex;align-items:center;gap:9px;padding:10px 12px;background:#fff;border-radius:10px;border:1px solid var(--gray-200);font-size:12px;font-weight:600;color:var(--heading-color);cursor:pointer;transition:all .2s;justify-content:space-between;min-height:40px;}
 .mclub-item:hover{border-color:var(--pink-light);background:var(--pink-pale);box-shadow:0 2px 8px rgba(212,19,103,.08);}
 .mclub-item-arrow{font-size:11px;color:var(--gray-300);flex-shrink:0;transition:color .2s;}
+.mclub-item span{flex:1;line-height:1.35;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;}
 .mclub-item:hover .mclub-item-arrow{color:var(--pink);}
 .mclub-dot{width:7px;height:7px;border-radius:50%;background:var(--pink);flex-shrink:0;}
 .map-view-btn{display:block;text-align:center;padding:11px;border-radius:40px;border:1.5px solid var(--pink);font-size:13px;font-weight:700;color:var(--pink);cursor:pointer;transition:all .2s;margin-top:4px;}
@@ -705,6 +708,13 @@ body.dark-mode #credit-bar p{color:rgba(255,255,255,.25);}
 body.dark-mode #credit-bar span{color:rgba(255,255,255,.4);}
 
 /* CSS variable overrides in dark mode */
+body.dark-mode .mclub-item span{color:var(--dm-text);}
+body.dark-mode .map-panel-area .map-area-sub{color:var(--dm-muted);}
+body.dark-mode .map-area-pill{background:var(--dm-faint);color:var(--pink);}
+body.dark-mode .map-divider{background:var(--dm-border);}
+body.dark-mode .mclubs-label{color:var(--dm-muted);}
+body.dark-mode #map .section-heading{color:var(--dm-text);}
+body.dark-mode #map .section-sub{color:var(--dm-muted);}
 body.dark-mode{--heading-color: #f0e8ec; --body-color: #9b8a92;}
 
 /* Additional dark mode text fixes */
@@ -1344,7 +1354,7 @@ const CONFIG = {
 <!-- NAV -->
 <nav id="nav">
   <div class="nav-inner">
-    <a class="nav-logo" href="#" aria-label="Home">
+    <a class="nav-logo" href="#hero" aria-label="Home">
       <img src="logo-white.png" alt="Rotaract Clubs of Rotary International District 3860"/>
     </a>
     <div class="nav-links" id="nav-links">
@@ -2129,6 +2139,25 @@ const CONFIG = {
   const btt=$('btt');
   window.addEventListener('scroll',()=>btt.classList.toggle('show',scrollY>500),{passive:true});
 
+  /* Nav scroll spy — highlight active section */
+  const navSections = ['about','drr','officers','events','calendar','clubs','map','resources','contact'];
+  const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+  function updateActiveNav(){
+    let current = '';
+    navSections.forEach(id=>{
+      const el = document.getElementById(id);
+      if(el && el.style.display !== 'none'){
+        const rect = el.getBoundingClientRect();
+        if(rect.top <= 120) current = id;
+      }
+    });
+    navLinks.forEach(a=>{
+      a.classList.toggle('nav-active', a.getAttribute('href') === '#'+current);
+    });
+  }
+  window.addEventListener('scroll', updateActiveNav, {passive:true});
+  updateActiveNav();
+
   /* Scroll reveal — add .reveal to sections and key elements */
   const revealTargets = [
     /* whole sections */
@@ -2175,6 +2204,11 @@ const CONFIG = {
   document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 
 })();
+
+/* Page fade-in */
+window.addEventListener('DOMContentLoaded',function(){
+  document.body.classList.add('loaded');
+});
 
 /* Map — global scope required for inline SVG event attributes */
 function openClubModal(name, council){
