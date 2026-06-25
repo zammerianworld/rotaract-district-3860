@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Rotaract Clubs of Rotary International District 3860</title>
+<title>Rotaract 3860</title>
 <meta name="description" content="Official website of the Rotaract Clubs of Rotary International District 3860 — Visayas and Mindanao."/>
 <meta name="theme-color" content="#D41367"/>
 
@@ -26,7 +26,7 @@
 <meta name="twitter:image"       content="logo.png"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,400;0,6..12,600;0,6..12,700;0,6..12,800;0,6..12,900;1,6..12,400;1,6..12,700&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
@@ -47,7 +47,7 @@ a{text-decoration:none;color:inherit;}
   --gray-700:   #374151;
   --gray-900:   #111827;
   --font-display:'Playfair Display',Georgia,serif;
-  --font-body:'Inter',system-ui,sans-serif;
+  --font-body:'Nunito Sans',system-ui,sans-serif;
   --nav-h:68px;
   --r-sm:6px;--r-md:12px;--r-lg:20px;--r-xl:28px;
 }
@@ -109,8 +109,8 @@ body{font-family:var(--font-body);font-size:16px;line-height:1.7;color:var(--gra
 .impact-item{padding:40px 24px;text-align:center;border-right:1px solid rgba(255,255,255,.06);position:relative;}
 .impact-item:last-child{border-right:none;}
 .impact-item::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:40px;height:3px;background:var(--pink);}
-.impact-num{font-family:var(--font-display);font-size:44px;font-weight:900;color:#fff;line-height:1;margin-bottom:6px;}
-.impact-lbl{font-size:12px;font-weight:600;color:var(--gray-400);letter-spacing:.8px;text-transform:uppercase;}
+.impact-num{font-family:var(--font-display);font-size:56px;font-weight:900;color:#fff;line-height:1;margin-bottom:6px;}
+.impact-lbl{font-size:13px;font-weight:700;color:var(--gray-400);letter-spacing:.8px;text-transform:uppercase;}
 
 /* ── ABOUT ── */
 #about{padding:96px 0;position:relative;}
@@ -141,6 +141,8 @@ body{font-family:var(--font-body);font-size:16px;line-height:1.7;color:var(--gra
 .future-drrs{margin-top:52px;padding-top:48px;border-top:1px solid var(--gray-100);}
 .future-drrs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:24px;}
 .future-drr-card{background:var(--gray-50);border:1px solid var(--gray-100);border-radius:var(--r-lg);padding:20px 24px;display:flex;align-items:center;gap:16px;}
+.future-drr-photo{width:56px;height:56px;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid var(--pink-light);}
+.future-drr-photo-placeholder{width:56px;height:56px;border-radius:50%;background:var(--pink-light);border:2px dashed var(--pink);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
 .future-drr-year{background:var(--pink-light);color:var(--pink-dark);font-size:11px;font-weight:700;padding:4px 10px;border-radius:40px;white-space:nowrap;flex-shrink:0;}
 .future-drr-info{}
 .future-drr-name{font-size:14px;font-weight:700;color:var(--gray-900);}
@@ -185,6 +187,7 @@ body{font-family:var(--font-body);font-size:16px;line-height:1.7;color:var(--gra
 .officer-card::after{content:'';position:absolute;inset:0;border-radius:var(--r-lg);border:2px solid var(--pink);opacity:0;transition:opacity .25s;}
 .officer-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(212,19,103,.1);}
 .officer-card:hover::after{opacity:1;}
+.officer-photo{width:72px;height:72px;border-radius:50%;object-fit:cover;margin:0 auto 16px;border:2.5px solid var(--white);box-shadow:0 0 0 2px var(--pink);display:block;}
 .officer-avatar{width:72px;height:72px;border-radius:50%;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;font-family:var(--font-display);background:var(--pink-light);color:var(--pink);position:relative;}
 .officer-avatar::before{content:'';position:absolute;inset:-3px;border-radius:50%;border:2px dashed var(--pink-light);}
 .officer-name{font-size:15px;font-weight:700;color:var(--gray-900);margin-bottom:4px;}
@@ -931,34 +934,35 @@ const CONFIG = {
         list: [
           { initials: "DRR",  name: "Christian Jade G. Azura",      role: "District Rotaract Representative",              club: "RAC Central Butuan"                  },
           { initials: "DRRe", name: "Jan Dale Carlo T. Catalonia",  role: "District Rotaract Representative-elect",        club: "RAC Metro Cebu"                      },
-          { initials: "RRM",  name: "Christine Joy T. Balobalo",    role: "District Rotaract Representative-Nominee/District Rotaract Representative for Mindanao", club: "RAC Tagum North-Palm City Chapter"   },
-          { initials: "DRC",  name: "Remuel M. Coles",              role: "District Rotaract Chair",                       club: "RAC Metro Surigao"                   },
+          { initials: "RRM",  name: "Christine Joy T. Balobalo", photo: "https://drive.google.com/thumbnail?id=1FTUgokKXVWH142-YonXR_c-xB9ksn75C&sz=w300",   role: "District Rotaract Representative-Nominee / District Rotaract Representative for Mindanao", club: "RAC Tagum North-Palm City Chapter"   },
+      { initials: "DRC",  name: "Remuel M. Coles",              role: "District Rotaract Chair",                       club: "RAC Metro Surigao"                   },
           { initials: "DDRC", name: "Ryan Jae G. Yap",              role: "Deputy District Rotaract Chair",                club: "RAC Central Butuan"                  },
-          { initials: "RRV",  name: "Anna Suzzane P. Miscala",      role: "District Rotaract Representative for Visayas",                       club: "RAC Cebu"                            },
+          { initials: "RRV",  name: "Anna Suzzane P. Miscala", photo: "https://drive.google.com/thumbnail?id=1fVs-s1rxFbfv0UBvuCRLnjIb5gkSxKEq&sz=w300",      role: "District Rotaract Representative for Visayas",                       club: "RAC Cebu"                            },
+    
           { initials: "ES",   name: "Shekinah Marie M. Eupeña",     role: "District Executive Secretary",                  club: "RAC Central Butuan"                  },
-          { initials: "CS",   name: "Mark A. Valencia",             role: "District Chief of Staff",                       club: "RAC Cebu South"                      },
+          { initials: "CS",   name: "Mark A. Valencia", photo: "https://drive.google.com/thumbnail?id=1C8Cea4ydnSIyLKBWIidMC3vALeY-OZ1Y&sz=w300",             role: "District Chief of Staff",                       club: "RAC Cebu South"                      },
           { initials: "LF",   name: "Kenneth D. Banluta",           role: "District Learning Facilitator",                 club: "RAC Central Butuan"                  },
         ],
       },
       {
         group: "Area Management Committee — Visayas",
         list: [
-          { initials: "A1B",  name: "Joshua Pasa",                  role: "Assistant District Rotaract Representative — Area 1 Bohol",   club: "RAC Panglao Island"   },
+          { initials: "A1B",  name: "Joshua Pasa", photo: "https://drive.google.com/thumbnail?id=1SPraRrD40XFduqYFnT7sUZmTywCmLiWk&sz=w300",                  role: "Assistant District Rotaract Representative — Area 1 Bohol",   club: "RAC Panglao Island"   },
           { initials: "A1C",  name: "Lordhan C. Labora",            role: "Assistant District Rotaract Representative — Area 1 Cebu",    club: "RAC Metro Cebu"       },
-          { initials: "A1L",  name: "Larry S. Esperas",             role: "Assistant District Rotaract Representative — Area 1 Leyte",   club: "RAC Tacloban"         },
-          { initials: "A1N",  name: "Patrick Jude I. Espina",       role: "Assistant District Rotaract Representative — Area 1 Negros",  club: "RAC Dumaguete"        },
-          { initials: "A1S",  name: "Frederick S. Jalvez",          role: "Assistant District Rotaract Representative — Area 1 Samar",   club: "RAC Greater Calbayog" },
+          { initials: "A1L",  name: "Larry S. Esperas", photo: "https://drive.google.com/thumbnail?id=11-qUH1RKKT88HcdHU0bAwHk6E_7YtzMR&sz=w300",             role: "Assistant District Rotaract Representative — Area 1 Leyte",   club: "RAC Tacloban"         },
+          { initials: "A1N",  name: "Patrick Jude I. Espina", photo: "https://drive.google.com/thumbnail?id=11-qUH1RKKT88HcdHU0bAwHk6E_7YtzMR&sz=w300",       role: "Assistant District Rotaract Representative — Area 1 Negros",  club: "RAC Dumaguete"        },
+          { initials: "A1S",  name: "Frederick S. Jalvez", photo: "https://drive.google.com/thumbnail?id=1tadYYr0i5tBeiQmRDBQoTxdznjDPA79I&sz=w300",          role: "Assistant District Rotaract Representative — Area 1 Samar",   club: "RAC Greater Calbayog" },
         ],
       },
       {
         group: "Area Management Committee — Mindanao",
         list: [
           { initials: "A2D",  name: "Eileene Lois C. Rojo",         role: "Assistant District Rotaract Representative — Area 2 Davao",           club: "RAC Davao 2000"                   },
-          { initials: "A2G",  name: "Jomar L. Rivera",              role: "Assistant District Rotaract Representative — Area 2 General Santos",  club: "RAC Metro Dadiangas"              },
-          { initials: "A2K",  name: "Ronnie B. San Pedro",          role: "Assistant District Rotaract Representative — Area 2 Koronadal",       club: "RAC Metro Koronadal"              },
-          { initials: "A2T",  name: "Normae Jane B. Caballero",     role: "Assistant District Rotaract Representative — Area 2 Tagum",           club: "RAC Tagum North-Palm City Chapter"},
+          { initials: "A2G",  name: "Jomar L. Rivera", photo: "https://drive.google.com/thumbnail?id=1eRIu5igB0mzUMcHxI_7cDWtb32Fp2Cv9&sz=w300",              role: "Assistant District Rotaract Representative — Area 2 General Santos",  club: "RAC Metro Dadiangas"              },
+          { initials: "A2K",  name: "Ronnie B. San Pedro", photo: "https://drive.google.com/thumbnail?id=1bquteoj3GGJ-yExPxfpXL_zJBFI0CipN&sz=w300",          role: "Assistant District Rotaract Representative — Area 2 Koronadal",       club: "RAC Metro Koronadal"              },
+          { initials: "A2T",  name: "Normae Jane B. Caballero", photo: "https://drive.google.com/thumbnail?id=1-VLXGNL3UExhCqnB0YKRcYeCRp9D_sXk&sz=w300",     role: "Assistant District Rotaract Representative — Area 2 Tagum",           club: "RAC Tagum North-Palm City Chapter"},
           { initials: "A3AN", name: "Cris Jay Angulo",              role: "Assistant District Rotaract Representative — Area 3 Agusan Norte",    club: "RAC Butuan North Hiraya"          },
-          { initials: "A3AS", name: "Charlotte J. Pelayo",          role: "Assistant District Rotaract Representative — Area 3 Agusan Sur & Surigao Sur", club: "RAC Central San Francisco"        },
+          { initials: "A3AS", name: "Charlotte J. Pelayo", photo: "https://drive.google.com/thumbnail?id=1fm3YQONGRpWTkYK0gMXZU1PaVIRZJJ1f&sz=w300",          role: "Assistant District Rotaract Representative — Area 3 Agusan Sur & Surigao Sur", club: "RAC Central San Francisco"        },
           { initials: "A3SN", name: "Jayson Joy Como",              role: "Assistant District Rotaract Representative — Area 3 Surigao Norte",   club: "RAC Metro Surigao"                },
         ],
       },
@@ -966,7 +970,7 @@ const CONFIG = {
         group: "District Rotary Foundation Committee",
         list: [
           { initials: "RFC",  name: "Anna Suzzane P. Miscala",      role: "District Rotary Foundation Committee Chair",            club: "RAC Cebu"          },
-          { initials: "GGC",  name: "June Anthony Doble",           role: "District and Global Grants Chair",club: "RAC Cebu"          },
+          { initials: "GGC",  name: "June Anthony Doble", photo: "https://drive.google.com/thumbnail?id=1P6d6KV6Cx0-JweqYiZQ2dsQJUTAA6GNk&sz=w300",           role: "District and Global Grants Chair",club: "RAC Cebu"          },
           { initials: "EPN",  name: "Klyde Louise Jarabelo II",     role: "District End Polio Now Chair",           club: "RAC San Francisco" },
           { initials: "RFA",  name: "Griffins C. Malazarte",        role: "District Rotary Foundation Committee Advisor",          club: "RAC Cebu South"    },
         ],
@@ -975,7 +979,7 @@ const CONFIG = {
         group: "District Membership Committee",
         list: [
           { initials: "MC",   name: "Jan Dale Carlo T. Catalonia",   role: "District Membership Committee Chair",             club: "RAC Metro Cebu"  },
-          { initials: "MAE",  name: "Gabrielle Ella Agpawa",         role: "District Membership Attraction and Engagement Chair",     club: "RAC Cebu Fuente" },
+          { initials: "MAE",  name: "Gabrielle Ella Agpawa", photo: "https://drive.google.com/thumbnail?id=171SNwGFxwi6AWf-8Gvejo5krqgdE0hw8&sz=w300",         role: "District Membership Attraction and Engagement Chair",     club: "RAC Cebu Fuente" },
           { initials: "NCD",  name: "Hazel Nical",                   role: "District New Club Development Chair",             club: "—"               },
           { initials: "DEI",  name: "Trisha Lyka Merced",            role: "District Diversity, Equity and Inclusion Chair",          club: "RAC Dumaguete"   },
           { initials: "MA",   name: "Jacob Erm Jericho A. Dolino",   role: "District Membership Committee Advisor",           club: "RAC Cebu Fuente" },
@@ -984,8 +988,8 @@ const CONFIG = {
       {
         group: "District Service Committee",
         list: [
-          { initials: "SC",   name: "El Jan Vicent C. Pongos",  role: "District Service Committee Chair",      club: "RAC Tacloban" },
-          { initials: "ISC",  name: "Rolan E. Ramirez",         role: "District International Service Chair",  club: "RAC Cebu"     },
+          { initials: "SC",   name: "El Jan Vicent C. Pongos", photo: "https://drive.google.com/thumbnail?id=1VU-2dK_gnefzVNHUkDbS2ftVJ8NFCDE3&sz=w300",  role: "District Service Committee Chair",      club: "RAC Tacloban" },
+          { initials: "ISC",  name: "Rolan E. Ramirez", photo: "https://drive.google.com/thumbnail?id=1phSb7qi4EBqmhetKKbetJw9cFC1CGtBJ&sz=w300",         role: "District International Service Chair",  club: "RAC Cebu"     },
           { initials: "DRRM", name: "—",                        role: "District Disaster Risk Reduction and Management Chair",                   club: "—"            },
           { initials: "SA",   name: "Mark Glen G. Baldo",       role: "District Service Committee Advisor",    club: "—"            },
         ],
@@ -995,13 +999,13 @@ const CONFIG = {
         list: [
           { initials: "PIC",  name: "Donmaclyn A. Lagapa",              role: "District Public Image Chair",                  club: "RAC Central Butuan"           },
           { initials: "ICO",  name: "Joelie Mae B. Montesclaros",       role: "District Internet and Communications Officer",   club: "RAC Dadiangas-CB"             },
-          { initials: "WS",   name: "Kenneth Nomar Melliza",            role: "District Website Specialist",         club: "RAC Downtown Davao Poblacion" },
-          { initials: "GLS",  name: "Christian V. Enario",              role: "District Graphics and Layout Specialist",        club: "RAC Metro Cebu-CIT Chapter"   },
-          { initials: "GLA",  name: "Guadalupe Niña Marie L. Obando",   role: "District Graphics and Layout Associate",         club: "RAC Metro Cebu"               },
-          { initials: "GLA2", name: "Margaret Anne C. Matunog",         role: "District Graphics and Layout Associate",         club: "RAC Metro Cebu"               },
+          { initials: "WS",   name: "Kenneth Nomar Melliza", photo: "https://drive.google.com/thumbnail?id=11-qUH1RKKT88HcdHU0bAwHk6E_7YtzMR&sz=w300",            role: "District Website Specialist",         club: "RAC Downtown Davao Poblacion" },
+          { initials: "GLS",  name: "Christian V. Enario", photo: "https://drive.google.com/thumbnail?id=1dtd6bFoRWS813D4s_ELvjoF3AK17Rw6N&sz=w300",              role: "District Graphics and Layout Specialist",        club: "RAC Metro Cebu-CIT Chapter"   },
+          { initials: "GLA",  name: "Guadalupe Niña Marie L. Obando", photo: "https://drive.google.com/thumbnail?id=1bsEi5827Adfuzx1Vbt-0muKyfsB4l4Rg&sz=w300",   role: "District Graphics and Layout Associate",         club: "RAC Metro Cebu"               },
+          { initials: "GLA2", name: "Margaret Anne C. Matunog", photo: "https://drive.google.com/thumbnail?id=1iqN_GfsmA_5OC_ghONMC__pOYoICnTrR&sz=w300",         role: "District Graphics and Layout Associate",         club: "RAC Metro Cebu"               },
           { initials: "VS",   name: "Vhon",                             role: "District Videographics Specialist",            club: "—"                            },
           { initials: "VA",   name: "Jhonryll",                         role: "District Videographics Associate",             club: "—"                            },
-          { initials: "NEC",  name: "James Darel C. Dignadice",         role: "District Newsletter Editor-in-Chief",          club: "RAC Marbel"                   },
+          { initials: "NEC",  name: "James Darel C. Dignadice", photo: "https://drive.google.com/thumbnail?id=1pZ0DOsa3noitN0eKc-EgwNTC40jxQPFF&sz=w300",         role: "District Newsletter Editor-in-Chief",          club: "RAC Marbel"                   },
           { initials: "NEA",  name: "Dan Kendrick L. Artil",            role: "District Newsletter Associate Editor",         club: "—"                            },
           { initials: "PIA",  name: "Shevee Resolado",                  role: "District Public Image Advisor",                club: "—"                            },
         ],
@@ -1011,7 +1015,7 @@ const CONFIG = {
         list: [
           { initials: "FCC",  name: "Almar E. Dela Cerna",   role: "District Finance Committee Chair",   club: "RAC Central Butuan"        },
           { initials: "DT",   name: "Charlotte J. Pelayo",   role: "District Treasurer",        club: "RAC Central San Francisco" },
-          { initials: "DA",   name: "Albert M. Dalusa",      role: "District Auditor",          club: "RAC Bislig"                },
+          { initials: "DA",   name: "Albert M. Dalusa", photo: "https://drive.google.com/thumbnail?id=1tV6PH6T-l35JZh491bbBGsWYcjxLA_sX&sz=w300",      role: "District Auditor",          club: "RAC Bislig"                },
           { initials: "FA",   name: "—",                     role: "District Finance Committee Advisor", club: "—"                         },
         ],
       },
@@ -1040,8 +1044,8 @@ const CONFIG = {
       eyebrow: "Succession",
       title:   "Future District Rotaract Representatives",
       list: [
-        { year: "RY 2027–2028", name: "Jan Dale Carlo T. Catalonia", club: "RAC Metro Cebu"                    },
-        { year: "RY 2028–2029", name: "Christine Joy T. Balobalo",   club: "RAC Tagum North-Palm City Chapter" },
+        { year: "RY 2027–2028", name: "Jan Dale Carlo T. Catalonia", club: "RAC Metro Cebu",                    photo: null },
+        { year: "RY 2028–2029", name: "Christine Joy T. Balobalo",   club: "RAC Tagum North-Palm City Chapter", photo: null },
       ],
     },
   },
@@ -1214,6 +1218,10 @@ const CONFIG = {
       { icon: "💰", title: "Financial Guidelines",    desc: "Budget templates and financial reporting standards for clubs." },
       { icon: "📣", title: "Branding & Comms Kit",    desc: "Official logos, poster templates, and social media guidelines." },
     ],
+    onlineTools: [
+      { icon: "🎨", label: "Rotary Brand Center",    desc: "Official Rotary logos, fonts, templates and brand guidelines.", href: "https://brandcenter.rotary.org/en-us/" },
+      { icon: "🏷️", label: "District 3860 Logo Maker", desc: "Create official District 3860 branded logos and materials.", href: "https://logo.rotarydistrict3860.org/" },
+    ],
 
     /* --- Secretariat Reporting Links ---
        Paste the actual URLs below when available.
@@ -1223,8 +1231,8 @@ const CONFIG = {
       eyebrow: "Secretariat",
       title:   "Reporting & Submissions",
       links: [
-        { icon: "📊", label: "Reporting Dashboard",         desc: "View real-time club reporting status and compliance.", href: "[PASTE DASHBOARD LINK HERE]"         },
-        { icon: "📄", label: "Reporting Summary",           desc: "Access the consolidated summary of all club reports.",  href: "[PASTE REPORTING SUMMARY LINK HERE]" },
+        { icon: "📊", label: "Reporting Dashboard",         desc: "View real-time club reporting status and compliance.", href: "https://rotaract.rotarydistrict3860.org/reports/dashboard?qBfx=uHKdkW4W" },
+        { icon: "📄", label: "Reporting Summary",           desc: "Access the consolidated summary of all club reports.",  href: "https://www.rotarydistrict3860.org/district/rotaract-reports/" },
         { icon: "📬", label: "Centralized Submission Form", desc: "Submit club reports, projects, and documents here.",    href: "[PASTE SUBMISSION FORM LINK HERE]"   },
       ],
     },
@@ -1247,9 +1255,8 @@ const CONFIG = {
     ],
     quickLinks: [
       { label: "Find a Rotaract Club",    href: "#clubs" },
-      { label: "Submit Monthly Report",   href: "#"      },
-      { label: "Club E-Bulletin",         href: "#"      },
-      { label: "Documents & Guidelines",  href: "#"      },
+      { label: "Submit Monthly Report",   href: "https://rotaract.rotarydistrict3860.org/reports/dashboard?qBfx=uHKdkW4W" },
+            { label: "Documents & Guidelines",  href: "#"      },
       { label: "Rotary International",    href: "https://www.rotary.org"              },
       { label: "District 3860 Main Site", href: "https://www.rotarydistrict3860.org" },
     ],
@@ -1702,7 +1709,7 @@ const CONFIG = {
 
 <!-- CREDIT BAR -->
 <div id="credit-bar">
-  <p>Developed by: <span>District Website Specialist Kenneth Nomar Melliza, RCDDP</span></p>
+  <p>Developed by: <span>District Website Specialist Kenneth Nomar Melliza, Rotaract Club of Downtown Davao Poblacion</span></p>
 </div>
 
 <!-- FOOTER -->
@@ -1745,7 +1752,7 @@ const CONFIG = {
   const setText = (id,v) => { const e=$(id); if(e) e.textContent=v; };
   const setHTML = (id,v) => { const e=$(id); if(e) e.innerHTML=v;   };
 
-  document.title = C.siteName;
+  document.title = 'Rotaract 3860';
 
   /* Advocacy banner */
   const adv = C.advocacy;
@@ -1812,13 +1819,12 @@ const CONFIG = {
   setText('officers-desc',    C.officers.desc);
   const og = $('officers-groups');
   C.officers.groups.forEach(g=>{
-    const cards = g.list.map(o=>`
-      <div class="officer-card">
-        <div class="officer-avatar">${o.initials}</div>
-        <div class="officer-name">${o.name}</div>
-        <div class="officer-role">${o.role}</div>
-        <div class="officer-club">${o.club}</div>
-      </div>`).join('');
+    const cards = g.list.map(o=>{
+      const photoHTML = o.photo
+        ? `<img class="officer-photo" src="${o.photo}" alt="${o.name}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/><div class="officer-avatar" style="display:none">${o.initials}</div>`
+        : `<div class="officer-avatar">${o.initials}</div>`;
+      return `<div class="officer-card">${photoHTML}<div class="officer-name">${o.name}</div><div class="officer-role">${o.role}</div><div class="officer-club">${o.club}</div></div>`;
+    }).join('');
     og.innerHTML += `
       <div class="officers-group">
         <div class="officers-group-title">${g.group}</div>
@@ -1835,8 +1841,11 @@ const CONFIG = {
     <div class="future-drrs-grid">
       ${fdrr.list.map(f=>`
         <div class="future-drr-card">
-          <span class="future-drr-year">${f.year}</span>
+          ${f.photo
+            ? `<img class="future-drr-photo" src="${f.photo}" alt="${f.name}"/>`
+            : `<div class="future-drr-photo-placeholder">📷</div>`}
           <div class="future-drr-info">
+            <span class="future-drr-year">${f.year}</span>
             <div class="future-drr-name">${f.name}</div>
             <div class="future-drr-club">${f.club}</div>
           </div>
@@ -1857,6 +1866,28 @@ const CONFIG = {
   drr.achievements.forEach(a=>{
     dach.innerHTML += `<div class="drr-achievement"><div class="drr-achievement-dot"></div><span>${a}</span></div>`;
   });
+
+  /* Online Tools */
+  if(C.resources.onlineTools && C.resources.onlineTools.length){
+    const existing = $('secretariat-section');
+    if(existing){
+      const toolsDiv = document.createElement('div');
+      toolsDiv.style.cssText='margin-top:32px;padding-top:32px;border-top:1px solid var(--gray-200);';
+      toolsDiv.innerHTML = `<div class="section-kicker" style="margin-bottom:8px;">Online Tools</div>
+        <h3 style="font-family:var(--font-display);font-size:20px;font-weight:700;color:var(--gray-900);margin-bottom:4px;">Quick Access Tools</h3>
+        <p style="font-size:14px;color:var(--gray-500);margin-bottom:20px;">Official online tools for Rotaract clubs and officers.</p>
+        <div class="secretariat-grid">${C.resources.onlineTools.map(t=>`
+          <a class="secretariat-card" href="${t.href}" target="_blank" rel="noopener">
+            <div class="secretariat-icon">${t.icon}</div>
+            <div class="secretariat-text">
+              <div class="secretariat-label">${t.label}</div>
+              <div class="secretariat-desc">${t.desc}</div>
+            </div>
+            <div class="secretariat-arrow">↗</div>
+          </a>`).join('')}</div>`;
+      existing.appendChild(toolsDiv);
+    }
+  }
 
   /* Secretariat links */
   const sec = C.resources.secretariat;
@@ -2095,19 +2126,11 @@ function openClubModal(name, council){
       <span class="club-detail-label">Current President</span>
       ${ph(det?.president)}
     </div>
-    <div class="club-detail-item">
-      <span class="club-detail-label">Meeting Schedule</span>
-      ${ph(det?.meeting)}
-    </div>
-    <div class="club-detail-item">
-      <span class="club-detail-label">Meeting Venue</span>
-      ${ph(det?.venue)}
-    </div>
-    <div class="club-detail-item">
+    <div class="club-detail-item full">
       <span class="club-detail-label">Club Email</span>
       ${ph(det?.email)}
     </div>
-    <div class="club-detail-item">
+    <div class="club-detail-item full">
       <span class="club-detail-label">Sponsoring Rotary Club</span>
       ${ph(det?.sponsoredBy)}
     </div>`;
@@ -2122,25 +2145,50 @@ function closeClubModal(e){
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeClubModal();});
 /* Search */
 function searchClubs(q){
-  const res = $('clubs-search-results');
-  const tabsEl = $('clubs-tabs');
-  const panelsEl = $('clubs-panels');
-  q = q.trim().toLowerCase();
-  if(!q){ res.style.display='none'; tabsEl.style.display=''; panelsEl.style.display=''; return; }
-  tabsEl.style.display='none'; panelsEl.style.display='none'; res.style.display='block';
+  const res = document.getElementById('clubs-search-results');
+  const tabsEl = document.getElementById('clubs-tabs');
+  const panelsEl = document.getElementById('clubs-panels');
+  if(!res) return;
+  q = (q||'').trim().toLowerCase();
+  if(!q){
+    res.style.display='none';
+    if(tabsEl) tabsEl.style.display='';
+    if(panelsEl) panelsEl.style.display='';
+    return;
+  }
+  if(tabsEl) tabsEl.style.display='none';
+  if(panelsEl) panelsEl.style.display='none';
+  res.style.display='block';
   const matches=[];
   CONFIG.clubs.councils.forEach(c=>{
-    c.clubs.forEach(name=>{
-      if(name.toLowerCase().includes(q)) matches.push({name,council:c.label,id:c.id});
+    c.clubs.forEach(function(name){
+      if(name.toLowerCase().indexOf(q)!==-1) matches.push({name:name,council:c.label,id:c.id});
     });
   });
-  if(!matches.length){ res.innerHTML='<div class="clubs-search-empty">No clubs found for "'+q+'"</div>'; return; }
-  res.innerHTML = matches.map(m=>`
-    <div class="clubs-search-item" onclick="selectClubsTab('${m.id}');$('clubs-search').value='';searchClubs('');openClubModal('${m.name.replace(/'/g,"&#39;")}','${m.council}')">
-      <div class="clubs-search-dot"></div>
-      <span class="clubs-search-name">${m.name}</span>
-      <span class="clubs-search-council">${m.council}</span>
-    </div>`).join('');
+  if(!matches.length){
+    res.innerHTML='<div class="clubs-search-empty">No clubs found for “'+q+'”</div>';
+    return;
+  }
+  res.innerHTML = matches.map(function(m){
+    var safeName = m.name.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
+    var safeCouncil = m.council.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
+    return '<div class="clubs-search-item" data-name="'+safeName+'" data-id="'+m.id+'" data-council="'+safeCouncil+'" onclick="handleSearchClick(this)">'+
+      '<div class="clubs-search-dot"></div>'+
+      '<span class="clubs-search-name">'+m.name+'</span>'+
+      '<span class="clubs-search-council">'+m.council+'</span>'+
+      '</div>';
+  }).join('');
+}
+function handleSearchClick(el){
+  var name = el.getAttribute('data-name');
+  var id = el.getAttribute('data-id');
+  var council = el.getAttribute('data-council');
+  selectClubsTab(id);
+  var inp = document.getElementById('clubs-search');
+  if(inp){ inp.value=''; searchClubs(''); }
+  var res = document.getElementById('clubs-search-results');
+  if(res){ res.style.display='none'; }
+  setTimeout(function(){ openClubModal(name,council); },150);
 }
 /* Close search on outside click */
 document.addEventListener('click',e=>{
