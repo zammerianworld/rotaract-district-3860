@@ -232,6 +232,9 @@ body.loaded{opacity:1;}
 .resources-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;}
 .resource-card{background:#fff;border-radius:var(--r-lg);padding:28px;border:1px solid var(--gray-100);display:flex;gap:18px;align-items:flex-start;transition:all .25s;}
 .resource-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(212,19,103,.09);border-color:var(--pink-light);}
+.resource-card-link{text-decoration:none;cursor:pointer;position:relative;}
+.resource-link-arrow{position:absolute;top:14px;right:14px;font-size:14px;color:var(--pink);opacity:.6;}
+.resource-card-link:hover .resource-link-arrow{opacity:1;}
 .resource-icon{width:48px;height:48px;border-radius:14px;background:var(--pink-light);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;}
 .resource-text h3{font-size:15px;font-weight:700;color:var(--heading-color);margin-bottom:6px;}
 .resource-text p{font-size:13px;color:var(--gray-500);line-height:1.65;}
@@ -868,27 +871,6 @@ body.dark-mode #dark-toggle{background:var(--pink);color:#fff;}
   .drr-photo-wrap{max-width:220px;margin:0 auto;}
   .drr-bio{font-size:14px;padding-left:14px;}
 
-  /* Online Tools */
-  const otEl = $('online-tools-section');
-  if(otEl && C.resources.onlineTools && C.resources.onlineTools.length){
-    const cards = C.resources.onlineTools.map(t=>`
-      <a class="secretariat-card" href="${t.href}" target="_blank" rel="noopener">
-        <div class="secretariat-icon">${t.icon}</div>
-        <div class="secretariat-text">
-          <div class="secretariat-label">${t.label}</div>
-          <div class="secretariat-desc">${t.desc}</div>
-        </div>
-        <div class="secretariat-arrow">↗</div>
-      </a>`).join('');
-    otEl.innerHTML = `
-      <div class="secretariat-section">
-        <div class="section-kicker">Online Tools</div>
-        <h3 style="font-family:var(--font-display);font-size:20px;font-weight:700;color:var(--heading-color);margin:8px 0 4px;">Quick Access Tools</h3>
-        <p style="font-size:14px;color:var(--gray-500);margin-bottom:20px;">Official online tools for Rotaract clubs and officers.</p>
-        <div class="secretariat-grid">${cards}</div>
-      </div>`;
-  }
-
   /* Events */
   .event-card{grid-template-columns:1fr;gap:12px;}
   .event-date-box{width:fit-content;}
@@ -1295,8 +1277,8 @@ const CONFIG = {
   ---------------------------------------- */
   resources: {
     eyebrow:     "For Club Presidents",
-    title:       "Resources & Documents",
-    desc:        "All official documents, guides, and templates for Rotaract club presidents and officers are stored in one place. Access the folder below — no login required.",
+    title:       "Resources, Documents & Tools",
+    desc:        "Official documents, guides, templates, and online tools for Rotaract club presidents and officers. Access the Drive folder below — no login required.",
     driveLink:   "[PASTE YOUR GOOGLE DRIVE FOLDER LINK HERE]",
     driveBtnLabel: "Open Resources Folder",
     items: [
@@ -1306,11 +1288,10 @@ const CONFIG = {
       { icon: "📅", title: "Event Planning Guide",    desc: "Templates and checklists for organizing club projects and events." },
       { icon: "💰", title: "Financial Guidelines",    desc: "Budget templates and financial reporting standards for clubs." },
       { icon: "📣", title: "Branding & Comms Kit",    desc: "Official logos, poster templates, and social media guidelines." },
+      { icon: "🎨", title: "Rotary Brand Center",     desc: "Official Rotary logos, fonts, templates and brand guidelines.",   href: "https://brandcenter.rotary.org/en-us/" },
+      { icon: "🏷️", title: "District 3860 Logo Maker",desc: "Create official District 3860 branded logos and materials.",     href: "https://logo.rotarydistrict3860.org/" },
     ],
-    onlineTools: [
-      { icon: "🎨", label: "Rotary Brand Center",    desc: "Official Rotary logos, fonts, templates and brand guidelines.", href: "https://brandcenter.rotary.org/en-us/" },
-      { icon: "🏷️", label: "District 3860 Logo Maker", desc: "Create official District 3860 branded logos and materials.", href: "https://logo.rotarydistrict3860.org/" },
-    ],
+    onlineTools: [],
 
     /* --- Secretariat Reporting Links ---
        Paste the actual URLs below when available.
@@ -1554,7 +1535,6 @@ const CONFIG = {
     </div>
     <div class="resources-grid" id="resources-grid"></div>
     <div class="secretariat-section" id="secretariat-section"></div>
-    <div id="online-tools-section"></div>
   </div>
 </section>
 
@@ -1989,27 +1969,6 @@ const CONFIG = {
         </a>`).join('')}
     </div>`;
 
-  /* Online Tools */
-  const otEl = $('online-tools-section');
-  if(otEl && C.resources.onlineTools && C.resources.onlineTools.length){
-    const cards = C.resources.onlineTools.map(t=>`
-      <a class="secretariat-card" href="${t.href}" target="_blank" rel="noopener">
-        <div class="secretariat-icon">${t.icon}</div>
-        <div class="secretariat-text">
-          <div class="secretariat-label">${t.label}</div>
-          <div class="secretariat-desc">${t.desc}</div>
-        </div>
-        <div class="secretariat-arrow">↗</div>
-      </a>`).join('');
-    otEl.innerHTML = `
-      <div class="secretariat-section">
-        <div class="section-kicker">Online Tools</div>
-        <h3 style="font-family:var(--font-display);font-size:20px;font-weight:700;color:var(--heading-color);margin:8px 0 4px;">Quick Access Tools</h3>
-        <p style="font-size:14px;color:var(--gray-500);margin-bottom:20px;">Official online tools for Rotaract clubs and officers.</p>
-        <div class="secretariat-grid">${cards}</div>
-      </div>`;
-  }
-
   /* Events */
   setText('events-eyebrow', C.events.eyebrow);
   setText('events-title',   C.events.title);
@@ -2051,7 +2010,11 @@ const CONFIG = {
   rb.href=C.resources.driveLink;
   const rg=$('resources-grid');
   C.resources.items.forEach(r=>{
-    rg.innerHTML+=`<div class="resource-card"><div class="resource-icon">${r.icon}</div><div class="resource-text"><h3>${r.title}</h3><p>${r.desc}</p></div></div>`;
+    if(r.href){
+      rg.innerHTML+=`<a class="resource-card resource-card-link" href="${r.href}" target="_blank" rel="noopener"><div class="resource-icon">${r.icon}</div><div class="resource-text"><h3>${r.title}</h3><p>${r.desc}</p></div><span class="resource-link-arrow">↗</span></a>`;
+    } else {
+      rg.innerHTML+=`<div class="resource-card"><div class="resource-icon">${r.icon}</div><div class="resource-text"><h3>${r.title}</h3><p>${r.desc}</p></div></div>`;
+    }
   });
 
   /* Clubs */
