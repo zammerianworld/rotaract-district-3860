@@ -289,13 +289,26 @@ body{font-family:var(--font-body);font-size:16px;line-height:1.7;color:var(--gra
 }
 
 /* ── CLUBS ── */
-#clubs{background:var(--gray-900);padding:96px 0;position:relative;overflow:hidden;}
-#clubs::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(212,19,103,.15) 1px,transparent 1px);background-size:28px 28px;}
-.clubs-inner{position:relative;z-index:1;}
-.clubs-placeholder-box{margin-top:48px;background:rgba(255,255,255,.04);border:1.5px dashed rgba(212,19,103,.4);border-radius:var(--r-xl);padding:64px 48px;text-align:center;}
-.clubs-placeholder-icon{font-size:48px;margin-bottom:20px;}
-.clubs-placeholder-box p{font-size:17px;color:rgba(255,255,255,.6);margin-bottom:8px;}
-.clubs-placeholder-box span{font-size:14px;color:rgba(255,255,255,.25);}
+#clubs{background:var(--white);padding:96px 0;}
+.clubs-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px;}
+.clubs-tab{font-size:12px;font-weight:700;padding:7px 16px;border-radius:40px;border:1.5px solid var(--gray-200);color:var(--gray-500);cursor:pointer;transition:all .2s;background:#fff;}
+.clubs-tab:hover{border-color:var(--pink);color:var(--pink);}
+.clubs-tab.active{background:var(--pink);border-color:var(--pink);color:#fff;}
+.clubs-panel{display:none;}
+.clubs-panel.active{display:block;}
+.clubs-council-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;}
+.clubs-council-name{font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--gray-900);}
+.clubs-council-count{font-size:12px;font-weight:700;background:var(--pink-light);color:var(--pink-dark);padding:4px 12px;border-radius:40px;}
+.clubs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;}
+.club-card{background:var(--gray-50);border:1px solid var(--gray-100);border-radius:var(--r-md);padding:14px 16px;display:flex;align-items:center;gap:12px;transition:all .2s;}
+.club-card:hover{background:#fff;border-color:var(--pink-light);box-shadow:0 4px 16px rgba(212,19,103,.08);transform:translateY(-1px);}
+.club-card-dot{width:8px;height:8px;border-radius:50%;background:var(--pink);flex-shrink:0;}
+.club-card-name{font-size:13px;font-weight:600;color:var(--gray-800,#1f2937);line-height:1.4;}
+@media(max-width:640px){
+  .clubs-tabs{gap:6px;}
+  .clubs-tab{font-size:11px;padding:5px 12px;}
+  .clubs-grid{grid-template-columns:1fr;}
+}
 
 /* ── CONTACT ── */
 #contact{padding:96px 0;background:var(--gray-50);}
@@ -808,10 +821,23 @@ const CONFIG = {
   },
 
   clubs: {
-    eyebrow:     "Our Clubs",
-    title:       "Rotaract Clubs Directory",
-    placeholder: "88 Rotaract Clubs across 12 areas — full directory coming soon.",
-    hint:        "Contact the district secretariat for club-specific inquiries.",
+    eyebrow: "Our Clubs",
+    title:   "Rotaract Clubs Directory",
+    desc:    "88 Rotaract Clubs across 12 councils in Visayas and Mindanao. Click a council to view its clubs.",
+    councils: [
+      { id: "bohol",        label: "Bohol Council",                    clubs: ["Rotaract Club of Panglao Island","Rotaract Club of Panglao Island Ce-C Chapter","Rotaract Club of Tagbilaran","Rotaract Club of Tagbilaran-BISU Chapter","Rotaract Club of Tagbilaran-HNU Chapter","Rotaract Club of Ubay","Rotaract Club of Ubay BNSC Chapter"] },
+      { id: "cebu",         label: "Cebu Council",                     clubs: ["Rotaract Club of Banilad Metro","Rotaract Club of Cebu","Rotaract Club of Cebu Fort San Pedro","Rotaract Club of Cebu Fuente","Rotaract Club of Cebu Fuente-University of San Carlos","Rotaract Club of Cebu Fuente-University of the Visayas Chapter","Rotaract Club of Cebu 3rd District","Rotaract Club of Cebu North-University of the Philippines-Cebu","Rotaract Club of Cebu Port Centre","Rotaract Club of Cebu South","Rotaract Club of Cebu West","Rotaract Club of Mandaue","Rotaract Club of Mandaue East","Rotaract Club of Metro Cebu","Rotaract Club of Metro Cebu-CIT Chapter","Rotaract Club of Mandaue Trailblazers","Rotaract Club of Metro Mandaue 2006"] },
+      { id: "davao",        label: "Davao Council",                    clubs: ["Rotaract Club of Calinan Davao","Rotaract Club of Central Davao-University of Immaculate Conception","Rotaract Club of Davao","Rotaract Club of Davao 2000","Rotaract Club of Digos","Rotaract Club of Downtown Davao Poblacion","Rotaract Club of East Davao-Scholars Chapter","Rotaract Club of Lyceum of the Philippines-Davao","Rotaract Club of South Davao","Rotaract Club of Waling-Waling Davao","Rotaract Club of Waling-Waling Davao 2025","Rotaract Club of West Dilaab Davao"] },
+      { id: "tagum",        label: "Tagum Council",                    clubs: ["Rotaract Club of Central Panabo-Smashers Chapter","Rotaract Club of Tagum Golden L.A.C.E.S.-St. Thomas More Chapter","Rotaract Club of Tagum North-Palm City Chapter","Rotaract Club of UM Tagum"] },
+      { id: "leyte",        label: "Leyte Council",                    clubs: ["Rotaract Club of Biliran Island","Rotaract Club of EVSU","Rotaract Club of Kandaya-Tacloban","Rotaract Club of Kankabato","Rotaract Club of Maasin-Ajonay","Rotaract Club of San Juanico","Rotaract Club of SLSU","Rotaract Club of Southern Leyte","Rotaract Club of SPSPS San Juanico","Rotaract Club of Tacloban"] },
+      { id: "negros",       label: "Negros Council",                   clubs: ["Rotaract Club of Dumaguete","Rotaract Club of Tolong","Rotaract Club of Silliman University"] },
+      { id: "samar",        label: "Samar Council",                    clubs: ["Rotaract Club of Ibatan-Calbayog","Rotaract Club of Catbalogan","Rotaract Club of Greater Calbayog","Rotaract Club of Christ the King College of Calbayog","Rotaract Club of Greater Northwest Samar State University"] },
+      { id: "gensan",       label: "General Santos Council",           clubs: ["Rotaract Club of Dadiangas","Rotaract Club of General Santos City-Mindanao State University Chapter","Rotaract Club of Greater General Santos-Stratford International School","Rotaract Club of Metro Dadiangas","Rotaract Club of UST General Santos"] },
+      { id: "agusan_norte", label: "Agusan Norte Council",             clubs: ["Rotaract Club of Butuan Highlands","Rotaract Club of Butuan North Hiraya","Rotaract Club of Butuan North-SJIT Chapter","Rotaract Club of Central Butuan","Rotaract Club of Central Butuan-Caraga State University","Rotaract Club of Central Cabadbaran-Northern Mindanao Colleges","Rotaract Club of Central Cabadbaran Sidlak","Rotaract Club of Downtown Butuan","Rotaract Club of Midtown Butuan-CSU Chapter","Rotaract Club of Midtown Butuan-Community Based"] },
+      { id: "agusan_sur",   label: "Agusan Sur - Surigao Sur Council", clubs: ["Rotaract Club of Andres Soriano Colleges of Bislig","Rotaract Club of Bislig","Rotaract Club of Central Tandag","Rotaract Club of Central San Francisco","Rotaract Club of San Francisco"] },
+      { id: "surigao_norte",label: "Surigao Norte Council",            clubs: ["Rotaract Club of Central Surigao","Rotaract Club of Metro Surigao","Rotaract Club of Surigao City"] },
+      { id: "koronadal",    label: "Koronadal Council",                clubs: ["Rotaract Club of Koronadal","Rotaract Club of Koronadal-St. Alexius College","Rotaract Club of STI College-Koronadal","Rotaract Club of Korbel","Rotaract Club of Marbel","Rotaract Club of Matutum","Rotaract Club of Metro Koronadal"] },
+    ],
   },
 
   /* --- Resources ---
@@ -1049,10 +1075,12 @@ const CONFIG = {
 
 <!-- CLUBS -->
 <section id="clubs">
-  <div class="container clubs-inner">
-    <div class="section-kicker" id="clubs-eyebrow" style="color:rgba(255,255,255,.5);"></div>
-    <h2 class="section-heading" id="clubs-title" style="color:#fff;"></h2>
-    <div id="clubs-placeholder"></div>
+  <div class="container">
+    <div class="section-kicker" id="clubs-eyebrow"></div>
+    <h2 class="section-heading" id="clubs-title"></h2>
+    <p class="section-sub" style="margin-bottom:36px;" id="clubs-desc"></p>
+    <div class="clubs-tabs" id="clubs-tabs"></div>
+    <div id="clubs-panels"></div>
   </div>
 </section>
 
@@ -1487,7 +1515,27 @@ const CONFIG = {
   /* Clubs */
   setText('clubs-eyebrow', C.clubs.eyebrow);
   setText('clubs-title',   C.clubs.title);
-  setHTML('clubs-placeholder',`<div class="clubs-placeholder-box"><div class="clubs-placeholder-icon">🗺️</div><p>${C.clubs.placeholder}</p><span>${C.clubs.hint}</span></div>`);
+  setText('clubs-desc',    C.clubs.desc);
+  const clubsTabs   = $('clubs-tabs');
+  const clubsPanels = $('clubs-panels');
+  C.clubs.councils.forEach((c,i)=>{
+    const tab = document.createElement('div');
+    tab.className = 'clubs-tab'+(i===0?' active':'');
+    tab.textContent = c.label+' ('+c.clubs.length+')';
+    tab.onclick = ()=>{
+      document.querySelectorAll('.clubs-tab').forEach(t=>t.classList.remove('active'));
+      document.querySelectorAll('.clubs-panel').forEach(p=>p.classList.remove('active'));
+      tab.classList.add('active');
+      $('clubs-panel-'+c.id).classList.add('active');
+    };
+    clubsTabs.appendChild(tab);
+    const cards = c.clubs.map(name=>`<div class="club-card"><div class="club-card-dot"></div><div class="club-card-name">${name}</div></div>`).join('');
+    const panel = document.createElement('div');
+    panel.className = 'clubs-panel'+(i===0?' active':'');
+    panel.id = 'clubs-panel-'+c.id;
+    panel.innerHTML = `<div class="clubs-council-header"><div class="clubs-council-name">${c.label}</div><span class="clubs-council-count">${c.clubs.length} clubs</span></div><div class="clubs-grid">${cards}</div>`;
+    clubsPanels.appendChild(panel);
+  });
 
   /* Contact */
   setText('contact-eyebrow', C.contact.eyebrow);
@@ -1536,9 +1584,6 @@ const CONFIG = {
   /* Back to top */
   const btt=$('btt');
   window.addEventListener('scroll',()=>btt.classList.toggle('show',scrollY>500),{passive:true});
-
-  /* Section kicker color fix for dark sections */
-  $('clubs-eyebrow').style.color='rgba(212,19,103,.7)';
 
   /* Scroll reveal — add .reveal to sections and key elements */
   const revealTargets = [
