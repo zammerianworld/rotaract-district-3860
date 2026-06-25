@@ -279,21 +279,24 @@ body.loaded{opacity:1;}
 /* ── CALENDAR ── */
 #calendar{padding:96px 0;background:var(--gray-50);}
 .calendar-embed{width:100%;height:500px;border:none;border-radius:var(--r-lg);margin-top:48px;}
-.calendar-list{display:flex;flex-direction:column;gap:14px;margin-top:48px;}
-.cal-item{background:#fff;border:1px solid var(--gray-100);border-radius:var(--r-lg);padding:18px 24px;display:grid;grid-template-columns:64px 1fr auto;gap:20px;align-items:center;transition:all .25s;border-left:4px solid var(--pink);}
+.calendar-list{display:flex;flex-direction:column;gap:12px;margin-top:48px;}
+.cal-item{background:#fff;border:1px solid var(--gray-100);border-radius:var(--r-lg);padding:16px 20px;display:flex;align-items:center;gap:16px;transition:all .25s;border-left:4px solid var(--pink);}
 .cal-item:hover{box-shadow:0 8px 24px rgba(212,19,103,.08);transform:translateX(4px);}
-.cal-date{text-align:center;}
-.cal-day{font-family:var(--font-display);font-size:28px;font-weight:900;color:var(--pink);line-height:1;}
-.cal-month{font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--gray-400);margin-top:2px;}
+.cal-date{background:var(--pink-light);border-radius:var(--r-md);padding:8px 12px;text-align:center;min-width:56px;flex-shrink:0;}
+.cal-day{font-family:var(--font-display);font-size:20px;font-weight:900;color:var(--pink);line-height:1;}
+.cal-month{font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--pink-dark);margin-top:2px;}
+.cal-body{flex:1;min-width:0;}
 .cal-title{font-size:15px;font-weight:700;color:var(--heading-color);margin-bottom:4px;}
 .cal-loc{font-size:13px;color:var(--gray-500);}
 .cal-loc::before{content:'📍';font-size:11px;margin-right:4px;}
-.cal-tag{display:inline-block;background:var(--pink-light);color:var(--pink-dark);font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:4px 12px;border-radius:40px;white-space:nowrap;}
+.cal-tag{display:inline-block;background:var(--pink-light);color:var(--pink-dark);font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:3px 10px;border-radius:40px;white-space:nowrap;flex-shrink:0;}
 .calendar-placeholder{background:rgba(212,19,103,.04);border:1.5px dashed rgba(212,19,103,.25);border-radius:var(--r-lg);padding:52px 24px;text-align:center;margin-top:48px;}
 .calendar-placeholder p{font-size:15px;color:var(--gray-500);margin-bottom:6px;}
 .calendar-placeholder span{font-size:13px;color:var(--gray-400);}
 @media(max-width:640px){
-  .cal-item{grid-template-columns:52px 1fr;gap:14px;}
+  .cal-item{padding:14px 16px;gap:12px;}
+  .cal-date{min-width:48px;padding:6px 10px;}
+  .cal-day{font-size:17px;}
   .cal-tag{display:none;}
 }
 
@@ -2251,12 +2254,13 @@ const CONFIG = {
     if(cal.type === 'google'){
       calBody.innerHTML = `<iframe class="calendar-embed" src="${cal.embedUrl}" frameborder="0" scrolling="no" title="Calendar of Activities"></iframe>`;
     } else {
-      calBody.innerHTML = `<div class="calendar-list">${cal.list.map(a=>`
-        <div class="cal-item">
-          <div class="cal-date"><div class="cal-day">${a.date}</div><div class="cal-month">${a.month}</div></div>
-          <div><div class="cal-title">${a.title}</div><div class="cal-loc">${a.location}</div></div>
-          <span class="cal-tag">${a.tag}</span>
-        </div>`).join('')}</div>`;
+      calBody.innerHTML = '<div class="calendar-list">'+cal.list.map(function(a){
+        return '<div class="cal-item">'+
+          '<div class="cal-date"><div class="cal-day">'+a.date+'</div><div class="cal-month">'+a.month+'</div></div>'+
+          '<div class="cal-body"><div class="cal-title">'+a.title+'</div><div class="cal-loc">'+a.location+'</div></div>'+
+          '<span class="cal-tag">'+a.tag+'</span>'+
+          '</div>';
+      }).join('')+'</div>';
     }
   }
 
