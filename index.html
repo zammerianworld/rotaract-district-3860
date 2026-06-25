@@ -93,6 +93,16 @@ body{font-family:var(--font-body);font-size:16px;line-height:1.7;color:var(--gra
 .hero-scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,var(--gray-300),transparent);animation:scrollpulse 2s ease-in-out infinite;}
 @keyframes scrollpulse{0%,100%{opacity:.4;transform:scaleY(.8);}50%{opacity:1;transform:scaleY(1);}}
 
+/* ── ADVOCACY BANNER ── */
+#advocacy{background:var(--pink-deep);padding:36px 28px;text-align:center;position:relative;overflow:hidden;}
+#advocacy::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.08) 1px,transparent 1px);background-size:20px 20px;pointer-events:none;}
+.advocacy-inner{position:relative;z-index:1;max-width:680px;margin:0 auto;}
+.advocacy-eyebrow{font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:10px;}
+.advocacy-theme{font-family:var(--font-display);font-size:clamp(22px,4vw,36px);font-weight:900;color:#fff;margin-bottom:10px;line-height:1.15;}
+.advocacy-tagline{font-size:15px;color:rgba(255,255,255,.65);line-height:1.7;margin-bottom:20px;}
+.advocacy-cta{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;font-size:13px;font-weight:700;padding:9px 22px;border-radius:40px;text-decoration:none;transition:all .2s;}
+.advocacy-cta:hover{background:rgba(255,255,255,.2);}
+
 /* ── IMPACT STRIP ── */
 #impact{background:var(--gray-900);padding:0 28px;}
 .impact-grid{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);}
@@ -216,6 +226,63 @@ body{font-family:var(--font-body);font-size:16px;line-height:1.7;color:var(--gra
 .resource-icon{width:48px;height:48px;border-radius:14px;background:var(--pink-light);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;}
 .resource-text h3{font-size:15px;font-weight:700;color:var(--gray-900);margin-bottom:6px;}
 .resource-text p{font-size:13px;color:var(--gray-500);line-height:1.65;}
+
+/* ── CALENDAR ── */
+#calendar{padding:96px 0;background:var(--gray-50);}
+.calendar-embed{width:100%;height:600px;border-radius:var(--r-lg);border:1px solid var(--gray-200);overflow:hidden;margin-top:48px;}
+.calendar-embed iframe{width:100%;height:100%;border:none;}
+.calendar-placeholder{margin-top:48px;background:#fff;border:1.5px dashed var(--gray-200);border-radius:var(--r-lg);padding:52px 24px;text-align:center;}
+.calendar-placeholder-icon{font-size:44px;margin-bottom:16px;}
+.calendar-placeholder p{font-size:15px;color:var(--gray-500);margin-bottom:6px;}
+.calendar-placeholder span{font-size:13px;color:var(--gray-300);}
+.calendar-list{display:flex;flex-direction:column;gap:14px;margin-top:48px;}
+.cal-item{background:#fff;border:1px solid var(--gray-100);border-radius:var(--r-lg);padding:20px 24px 20px 28px;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:start;position:relative;overflow:hidden;}
+.cal-item::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--pink);}
+.cal-date{background:var(--pink-light);border-radius:var(--r-md);padding:10px 14px;text-align:center;min-width:58px;}
+.cal-date .day{font-family:var(--font-display);font-size:24px;font-weight:900;color:var(--pink);line-height:1;}
+.cal-date .mo{font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--pink-dark);margin-top:2px;}
+.cal-info h3{font-size:15px;font-weight:700;color:var(--gray-900);margin-bottom:4px;}
+.cal-info p{font-size:13px;color:var(--gray-500);line-height:1.6;margin-bottom:6px;}
+.cal-loc{font-size:12px;color:var(--gray-400);}
+.cal-loc::before{content:'📍';font-size:11px;margin-right:3px;}
+
+/* ── CALENDAR ── */
+#calendar{padding:96px 0;background:var(--gray-50);}
+.cal-embed{width:100%;height:600px;border:none;border-radius:var(--r-lg);margin-top:48px;}
+.cal-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-top:48px;}
+.cal-card{background:#fff;border:1px solid var(--gray-100);border-radius:var(--r-lg);padding:16px 20px;display:flex;gap:16px;align-items:center;transition:all .2s;}
+.cal-card:hover{box-shadow:0 8px 24px rgba(212,19,103,.08);border-color:var(--pink-light);}
+.cal-month{background:var(--pink);color:#fff;border-radius:var(--r-md);padding:8px 12px;text-align:center;min-width:52px;flex-shrink:0;}
+.cal-month .day{font-family:var(--font-display);font-size:22px;font-weight:900;line-height:1;color:#fff;}
+.cal-month .mo{font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:rgba(255,255,255,.7);margin-top:2px;}
+.cal-info{flex:1;}
+.cal-title{font-size:14px;font-weight:700;color:var(--gray-900);margin-bottom:4px;}
+.cal-loc{font-size:12px;color:var(--gray-500);}
+.cal-type{font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:2px 8px;border-radius:20px;background:var(--pink-light);color:var(--pink-dark);margin-bottom:4px;display:inline-block;}
+.cal-placeholder{background:rgba(255,255,255,.04);border:1.5px dashed rgba(212,19,103,.3);border-radius:var(--r-xl);padding:52px 24px;text-align:center;margin-top:48px;}
+.cal-placeholder p{font-size:15px;color:var(--gray-500);margin-bottom:6px;}
+.cal-placeholder span{font-size:13px;color:var(--gray-400);}
+
+/* ── CALENDAR ── */
+#calendar{padding:96px 0;background:var(--gray-50);}
+.calendar-embed{width:100%;height:500px;border:none;border-radius:var(--r-lg);margin-top:48px;}
+.calendar-list{display:flex;flex-direction:column;gap:14px;margin-top:48px;}
+.cal-item{background:#fff;border:1px solid var(--gray-100);border-radius:var(--r-lg);padding:18px 24px;display:grid;grid-template-columns:64px 1fr auto;gap:20px;align-items:center;transition:all .25s;border-left:4px solid var(--pink);}
+.cal-item:hover{box-shadow:0 8px 24px rgba(212,19,103,.08);transform:translateX(4px);}
+.cal-date{text-align:center;}
+.cal-day{font-family:var(--font-display);font-size:28px;font-weight:900;color:var(--pink);line-height:1;}
+.cal-month{font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--gray-400);margin-top:2px;}
+.cal-title{font-size:15px;font-weight:700;color:var(--gray-900);margin-bottom:4px;}
+.cal-loc{font-size:13px;color:var(--gray-500);}
+.cal-loc::before{content:'📍';font-size:11px;margin-right:4px;}
+.cal-tag{display:inline-block;background:var(--pink-light);color:var(--pink-dark);font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:4px 12px;border-radius:40px;white-space:nowrap;}
+.calendar-placeholder{background:rgba(212,19,103,.04);border:1.5px dashed rgba(212,19,103,.25);border-radius:var(--r-lg);padding:52px 24px;text-align:center;margin-top:48px;}
+.calendar-placeholder p{font-size:15px;color:var(--gray-500);margin-bottom:6px;}
+.calendar-placeholder span{font-size:13px;color:var(--gray-400);}
+@media(max-width:640px){
+  .cal-item{grid-template-columns:52px 1fr;gap:14px;}
+  .cal-tag{display:none;}
+}
 
 /* ── CLUBS ── */
 #clubs{background:var(--gray-900);padding:96px 0;position:relative;overflow:hidden;}
@@ -469,6 +536,18 @@ const CONFIG = {
     white: "logo-white.png",
   },
 
+  /* --- Advocacy / Theme Banner ---
+     The DRR's theme or advocacy for the Rotary Year.
+     Set show: false to hide it until content is ready.
+  ---------------------------------------- */
+  advocacy: {
+    show:    false,   /* set to true to display */
+    eyebrow: "District Advocacy",
+    theme:   "[RY 2026–2027 District Theme]",
+    tagline: "[DRR's advocacy tagline or call to action goes here.]",
+    cta:     { label: "Learn More", href: "#about" },
+  },
+
   hero: {
     eyebrow:  "Rotary Year 2026 – 2027",
     headline: ["Rotaract Clubs of", "Rotary International", "District 3860"],
@@ -555,6 +634,75 @@ const CONFIG = {
       { day: "—", month: "—", title: "District Assembly",   desc: "Orientation and training for all incoming Rotaract club officers for RY 2026–2027.", location: "[Venue, City]", tag: { label: "Training",    type: "tag-pink" } },
       { day: "—", month: "—", title: "District RYLA",       desc: "Rotaract Youth Leadership Awards — developing tomorrow's leaders through immersive workshops.",    location: "[Venue, City]", tag: { label: "Leadership",  type: "tag-dark" } },
       { day: "—", month: "—", title: "District Conference", desc: "Annual gathering of all Rotaract clubs for fellowship, project showcases, and awards night.",      location: "[Venue, City]", tag: { label: "Conference",  type: "tag-pink" } },
+    ],
+  },
+
+  /* --- Calendar of Activities ---
+     Options when ready:
+     type: "google"  → paste Google Calendar embed URL in embedUrl
+     type: "list"    → add activities to the list array below
+     Set show: false to hide until ready.
+  ---------------------------------------- */
+  calendar: {
+    show:     false,
+    eyebrow:  "Schedule",
+    title:    "Calendar of Activities",
+    desc:     "Stay updated on all district activities, deadlines, and club events for RY 2026–2027.",
+    type:     "list",       /* "google" or "list" */
+    embedUrl: "[PASTE GOOGLE CALENDAR EMBED URL HERE]",
+    list: [
+      { date: "—", month: "—", title: "[Activity Name]", desc: "[Description]", location: "[Venue, City]" },
+      { date: "—", month: "—", title: "[Activity Name]", desc: "[Description]", location: "[Venue, City]" },
+      { date: "—", month: "—", title: "[Activity Name]", desc: "[Description]", location: "[Venue, City]" },
+    ],
+  },
+
+  /* --- Calendar of Activities ---
+     Two modes:
+     mode: "embed"  → paste a Google Calendar embed URL in embedUrl
+     mode: "list"   → list activities manually in the items array
+     Set show: false to hide until ready.
+  ---------------------------------------- */
+  calendar: {
+    show:     false,
+    eyebrow:  "Schedule",
+    title:    "Calendar of Activities",
+    desc:     "Stay updated on all district-wide events, deadlines, and activities for Rotary Year 2026–2027.",
+    mode:     "list",   /* "embed" or "list" */
+    embedUrl: "[PASTE GOOGLE CALENDAR EMBED URL HERE]",
+    items: [
+      { month: "JUL", day: "—", title: "[Activity Title]",   type: "District",  location: "[Venue, City]" },
+      { month: "AUG", day: "—", title: "[Activity Title]",   type: "Training",  location: "[Venue, City]" },
+      { month: "SEP", day: "—", title: "[Activity Title]",   type: "Service",   location: "[Venue, City]" },
+      { month: "OCT", day: "—", title: "[Activity Title]",   type: "District",  location: "[Venue, City]" },
+      { month: "NOV", day: "—", title: "[Activity Title]",   type: "Conference",location: "[Venue, City]" },
+      { month: "DEC", day: "—", title: "[Activity Title]",   type: "Service",   location: "[Venue, City]" },
+      { month: "JAN", day: "—", title: "[Activity Title]",   type: "Training",  location: "[Venue, City]" },
+      { month: "FEB", day: "—", title: "[Activity Title]",   type: "District",  location: "[Venue, City]" },
+      { month: "MAR", day: "—", title: "[Activity Title]",   type: "Service",   location: "[Venue, City]" },
+      { month: "APR", day: "—", title: "[Activity Title]",   type: "District",  location: "[Venue, City]" },
+      { month: "MAY", day: "—", title: "[Activity Title]",   type: "Conference",location: "[Venue, City]" },
+      { month: "JUN", day: "—", title: "[Activity Title]",   type: "District",  location: "[Venue, City]" },
+    ],
+  },
+
+  /* --- Calendar of Activities ---
+     Options when ready:
+     type: "google"  → paste Google Calendar embed URL in embedUrl
+     type: "list"    → add activities to the list array manually
+     Set show: false to hide until ready.
+  ---------------------------------------- */
+  calendar: {
+    show:     false,
+    eyebrow:  "Schedule",
+    title:    "Calendar of Activities",
+    desc:     "Stay updated on all district events, deadlines, and activities for Rotary Year 2026–2027.",
+    type:     "list",   /* "google" or "list" */
+    embedUrl: "[PASTE GOOGLE CALENDAR EMBED URL HERE]",
+    list: [
+      { date: "—", month: "—", title: "[Activity Name]", location: "[Venue, City]", tag: "District" },
+      { date: "—", month: "—", title: "[Activity Name]", location: "[Venue, City]", tag: "Training"  },
+      { date: "—", month: "—", title: "[Activity Name]", location: "[Venue, City]", tag: "Service"   },
     ],
   },
 
@@ -648,7 +796,9 @@ const CONFIG = {
       <a href="#drr">Meet the DRR</a>
       <a href="#officers">Leadership</a>
       <a href="#events">Events</a>
+      <a href="#calendar" id="nav-calendar" style="display:none;">Calendar</a>
       <a href="#clubs">Clubs</a>
+      <a href="#calendar" id="nav-cal" style="display:none;">Calendar</a>
       <a href="#map">Map</a>
       <a href="#resources">Resources</a>
       <a href="#contact" class="nav-cta">Contact Us</a>
@@ -660,6 +810,7 @@ const CONFIG = {
     <a href="#drr">Meet the DRR</a>
     <a href="#officers">Leadership</a>
     <a href="#events">Events</a>
+    <a href="#calendar" id="mob-cal" style="display:none;">Calendar</a>
     <a href="#clubs">Clubs</a>
     <a href="#map">Map</a>
     <a href="#resources">Resources</a>
@@ -686,6 +837,9 @@ const CONFIG = {
   </div>
   <div class="hero-scroll" aria-hidden="true"><div class="hero-scroll-line"></div></div>
 </header>
+
+<!-- ADVOCACY BANNER -->
+<div id="advocacy" style="display:none;"></div>
 
 <!-- IMPACT STRIP -->
 <section id="impact" aria-label="Key statistics">
@@ -744,6 +898,36 @@ const CONFIG = {
       <p style="font-size:15px;color:var(--gray-500);line-height:1.75;align-self:end;" id="events-desc"></p>
     </div>
     <div class="events-stack" id="events-list"></div>
+  </div>
+</section>
+
+<!-- CALENDAR -->
+<section id="calendar" style="display:none;">
+  <div class="container">
+    <div class="section-kicker" id="cal-eyebrow"></div>
+    <h2 class="section-heading" id="cal-title"></h2>
+    <p class="section-sub" id="cal-desc"></p>
+    <div id="cal-body"></div>
+  </div>
+</section>
+
+<!-- CALENDAR -->
+<section id="calendar" style="display:none;">
+  <div class="container">
+    <div class="section-kicker" id="cal-eyebrow"></div>
+    <h2 class="section-heading" id="cal-title"></h2>
+    <p class="section-sub" id="cal-desc"></p>
+    <div id="cal-body"></div>
+  </div>
+</section>
+
+<!-- CALENDAR -->
+<section id="calendar" style="display:none;">
+  <div class="container">
+    <div class="section-kicker" id="cal-eyebrow"></div>
+    <h2 class="section-heading" id="cal-title"></h2>
+    <p class="section-sub" id="cal-desc"></p>
+    <div id="cal-body"></div>
   </div>
 </section>
 
@@ -1050,6 +1234,19 @@ const CONFIG = {
 
   document.title = C.siteName;
 
+  /* Advocacy banner */
+  const adv = C.advocacy;
+  const advEl = $('advocacy');
+  if(adv.show && advEl){
+    advEl.style.display = 'block';
+    advEl.innerHTML = `<div class="advocacy-inner">
+      <div class="advocacy-eyebrow">${adv.eyebrow}</div>
+      <div class="advocacy-theme">${adv.theme}</div>
+      <p class="advocacy-tagline">${adv.tagline}</p>
+      <a class="advocacy-cta" href="${adv.cta.href}">${adv.cta.label} →</a>
+    </div>`;
+  }
+
   /* Hero */
   setText('hero-tagline',   'Rotary Year ' + C.rotaryYear);
   setText('hero-eyebrow-el', C.hero.eyebrow);
@@ -1164,6 +1361,29 @@ const CONFIG = {
   C.events.list.forEach(e=>{
     el.innerHTML+=`<div class="event-card"><div class="event-date-box"><div class="day">${e.day}</div><div class="mo">${e.month}</div></div><div class="event-body"><h3>${e.title}</h3><p>${e.desc}</p><div class="event-meta"><span class="tag ${e.tag.type}">${e.tag.label}</span><span class="event-loc">${e.location}</span></div></div></div>`;
   });
+
+  /* Calendar */
+  const cal = C.calendar;
+  const calSection = $('calendar');
+  if(cal.show && calSection){
+    calSection.style.display = '';
+    if($('nav-cal')) $('nav-cal').style.display = '';
+    if($('mob-cal')) $('mob-cal').style.display = '';
+    setText('cal-eyebrow', cal.eyebrow);
+    setText('cal-title',   cal.title);
+    setText('cal-desc',    cal.desc);
+    const calBody = $('cal-body');
+    if(cal.type === 'google'){
+      calBody.innerHTML = `<iframe class="calendar-embed" src="${cal.embedUrl}" frameborder="0" scrolling="no" title="Calendar of Activities"></iframe>`;
+    } else {
+      calBody.innerHTML = `<div class="calendar-list">${cal.list.map(a=>`
+        <div class="cal-item">
+          <div class="cal-date"><div class="cal-day">${a.date}</div><div class="cal-month">${a.month}</div></div>
+          <div><div class="cal-title">${a.title}</div><div class="cal-loc">${a.location}</div></div>
+          <span class="cal-tag">${a.tag}</span>
+        </div>`).join('')}</div>`;
+    }
+  }
 
   /* Resources */
   setText('resources-eyebrow', C.resources.eyebrow);
