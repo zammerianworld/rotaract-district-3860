@@ -302,7 +302,20 @@ body{font-family:var(--font-body);font-size:16px;line-height:1.7;color:var(--gra
 #btt.show{opacity:1;pointer-events:auto;}
 #btt:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(212,19,103,.5);}
 
-/* ── RESPONSIVE ── */
+/* ── SCROLL ANIMATIONS ── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal-delay-1{transition-delay:.1s;}
+.reveal-delay-2{transition-delay:.2s;}
+.reveal-delay-3{transition-delay:.3s;}
+.reveal-delay-4{transition-delay:.4s;}
+.reveal-delay-5{transition-delay:.5s;}
+.reveal-delay-6{transition-delay:.6s;}
+@media(prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none;}
+}
+
+
 
 /* Tablet — 900px */
 @media(max-width:900px){
@@ -1201,6 +1214,51 @@ const CONFIG = {
 
   /* Section kicker color fix for dark sections */
   $('clubs-eyebrow').style.color='rgba(212,19,103,.7)';
+
+  /* Scroll reveal — add .reveal to sections and key elements */
+  const revealTargets = [
+    /* whole sections */
+    '#impact',
+    /* headings + desc per section */
+    '#about .section-kicker','#about .section-heading','#about .section-sub',
+    '#drr .section-kicker','#drr .section-heading',
+    '#officers .section-kicker','#officers .section-heading',
+    '#events .section-kicker','#events .section-heading',
+    '#resources .section-kicker','#resources .section-heading',
+    '#map .section-kicker','#map .section-heading','#map .section-sub',
+    '#clubs .section-kicker','#clubs .section-heading',
+    '#contact .section-kicker','#contact .section-heading',
+    /* cards and grids */
+    '#about-grid .about-card',
+    '#officers .gov-banner',
+    '#officers-grid .officer-card',
+    '#officers .future-drrs',
+    '.drr-photo-wrap','.drr-content',
+    '#events-list .event-card',
+    '#resources-grid .resource-card',
+    '#secretariat-section .secretariat-card',
+    '#clubs-placeholder',
+    '.contact-card',
+    '.map-layout',
+  ];
+
+  revealTargets.forEach(selector=>{
+    document.querySelectorAll(selector).forEach((el,i)=>{
+      el.classList.add('reveal');
+      if(i>0 && i<=6) el.classList.add(`reveal-delay-${i}`);
+    });
+  });
+
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  },{threshold:0.12,rootMargin:'0px 0px -40px 0px'});
+
+  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 
 })();
 
