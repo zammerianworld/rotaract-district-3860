@@ -379,7 +379,7 @@ body.dark-mode .qr-svg-wrap svg rect{fill:var(--dm-surface);}
 
 /* ── MAP ── */
 #map{padding:96px 0;background:var(--white);}
-.map-layout{display:grid;grid-template-columns:1fr 300px;gap:36px;align-items:start;}
+.map-layout{display:grid;grid-template-columns:1fr 360px;gap:36px;align-items:start;}
 .map-svg-wrap{position:relative;}
 .map-svg-wrap svg{width:100%;height:auto;display:block;}
 .map-region{fill:var(--pink-light);stroke:#fff;stroke-width:2;cursor:pointer;transition:fill .25s,opacity .25s;opacity:.4;}
@@ -403,12 +403,13 @@ body.dark-mode .qr-svg-wrap svg rect{fill:var(--dm-surface);}
 .map-area-sub{font-size:13px;color:var(--gray-500);}
 .map-divider{height:1px;background:var(--gray-200);}
 .mclubs-label{font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--gray-400);}
-.mclubs-list{display:flex;flex-direction:column;gap:7px;}
-.mclub-item{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;background:#fff;border-radius:10px;border:1px solid var(--gray-200);font-size:13px;font-weight:600;color:var(--heading-color);cursor:pointer;transition:all .2s;}
-.mclub-item:hover{border-color:var(--pink-light);background:var(--pink-pale);box-shadow:0 2px 8px rgba(212,19,103,.08);}
-.mclub-item-arrow{font-size:11px;color:var(--gray-300);flex-shrink:0;transition:color .2s;margin-top:2px;}
-.mclub-item span{flex:1;line-height:1.5;text-align:left;}
-.mclub-item:hover .mclub-item-arrow{color:var(--pink);}
+.mclubs-list{display:flex;flex-direction:column;gap:5px;}
+.mclub-item{display:flex;align-items:flex-start;gap:8px;padding:8px 10px;background:#fff;border-radius:8px;border:1px solid var(--gray-200);font-size:12px;font-weight:600;color:var(--heading-color);cursor:pointer;transition:all .2s;}
+.mclub-item:hover{border-color:var(--pink);background:var(--pink-pale);box-shadow:0 2px 8px rgba(212,19,103,.08);}
+.mclub-item-arrow{display:none;}
+.mclub-item span{flex:1;line-height:1.45;text-align:left;}
+.mclub-item .mclub-dot{margin-top:3px;flex-shrink:0;}
+.mclub-item:hover .mclub-dot{background:var(--pink-dark);}
 .mclub-dot{width:7px;height:7px;border-radius:50%;background:var(--pink);flex-shrink:0;}
 .map-view-btn{display:block;text-align:center;padding:11px;border-radius:40px;border:1.5px solid var(--pink);font-size:13px;font-weight:700;color:var(--pink);cursor:pointer;transition:all .2s;margin-top:4px;}
 .map-view-btn:hover{background:var(--pink);color:#fff;}
