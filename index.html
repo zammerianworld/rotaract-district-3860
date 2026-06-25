@@ -176,7 +176,11 @@ body{font-family:var(--font-body);font-size:16px;line-height:1.7;color:var(--gra
 /* ── OFFICERS ── */
 #officers{background:var(--gray-50);padding:96px 0;}
 .officers-intro{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end;margin-bottom:52px;}
-.officers-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;}
+.officers-group{margin-bottom:44px;}
+.officers-group:last-child{margin-bottom:0;}
+.officers-group-title{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--pink);margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid var(--pink-light);display:flex;align-items:center;gap:8px;}
+.officers-group-title::before{content:'';display:block;width:3px;height:14px;background:var(--pink);border-radius:2px;flex-shrink:0;}
+.officers-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px;}
 .officer-card{background:#fff;border-radius:var(--r-lg);padding:32px 24px;text-align:center;border:1px solid var(--gray-100);transition:all .25s;position:relative;overflow:hidden;}
 .officer-card::after{content:'';position:absolute;inset:0;border-radius:var(--r-lg);border:2px solid var(--pink);opacity:0;transition:opacity .25s;}
 .officer-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(212,19,103,.1);}
@@ -586,39 +590,123 @@ const CONFIG = {
       photo:   null,
     },
 
-    list: [
-      { initials: "DRR",  name: "Christian Jade G. Azura",      role: "District Rotaract Representative",                club: "RAC Central Butuan"                   },
-      { initials: "DRRe", name: "Jan Dale Carlo T. Catalonia",  role: "District Rotaract Representative-elect",          club: "RAC Metro Cebu"                       },
-      { initials: "DRC",  name: "Remuel M. Coles",              role: "District Rotaract Chair",                         club: "RAC Metro Surigao"                    },
-      { initials: "DDRC", name: "Ryan Jae G. Yap",              role: "Deputy District Rotaract Chair",                  club: "RAC Central Butuan"                   },
-      { initials: "RRV",  name: "Anna Suzzane P. Miscala",      role: "District Rotaract Representative for Visayas",    club: "RAC Cebu"                             },
-      { initials: "RRM",  name: "Christine Joy T. Balobalo",    role: "District Rotaract Representative for Mindanao",   club: "RAC Tagum North-Palm City Chapter"    },
-      { initials: "ES",   name: "Shekinah Marie M. Eupeña",     role: "District Executive Secretary",                    club: "RAC Central Butuan"                   },
-      { initials: "CS",   name: "Mark A. Valencia",             role: "District Chief of Staff",                         club: "RAC Cebu South"                       },
-      { initials: "LF",   name: "Kenneth D. Banluta",           role: "District Learning Facilitator",                   club: "RAC Central Butuan"                   },
-      /* Area Management Committee — Visayas */
-      { initials: "A1B",  name: "Joshua Pasa",                  role: "ADRR — Area 1 Bohol",                             club: "RAC Panglao Island"                   },
-      { initials: "A1C",  name: "Lordhan C. Labora",            role: "ADRR — Area 1 Cebu",                              club: "RAC Metro Cebu"                       },
-      { initials: "A1L",  name: "Larry S. Esperas",             role: "ADRR — Area 1 Leyte",                             club: "RAC Tacloban"                         },
-      { initials: "A1N",  name: "Patrick Jude I. Espina",       role: "ADRR — Area 1 Negros",                            club: "RAC Dumaguete"                        },
-      { initials: "A1S",  name: "Frederick S. Jalvez",          role: "ADRR — Area 1 Samar",                             club: "RAC Greater Calbayog"                 },
-      /* Area Management Committee — Mindanao */
-      { initials: "A2D",  name: "Eileene Lois C. Rojo",         role: "ADRR — Area 2 Davao",                             club: "RAC Davao 2000"                       },
-      { initials: "A2G",  name: "Jomar L. Rivera",              role: "ADRR — Area 2 General Santos",                    club: "RAC Metro Dadiangas"                  },
-      { initials: "A2K",  name: "Ronnie B. San Pedro",          role: "ADRR — Area 2 Koronadal",                         club: "RAC Metro Koronadal"                  },
-      { initials: "A2T",  name: "Normae Jane B. Caballero",     role: "ADRR — Area 2 Tagum",                             club: "RAC Tagum North-Palm City Chapter"    },
-      { initials: "A3AN", name: "Cris Jay Angulo",              role: "ADRR — Area 3 Agusan Norte",                      club: "RAC Butuan North Hiraya"              },
-      { initials: "A3AS", name: "Charlotte J. Pelayo",          role: "ADRR — Area 3 Agusan Sur & Surigao Sur",          club: "RAC Central San Francisco"            },
-      { initials: "A3SN", name: "Jayson Joy Como",              role: "ADRR — Area 3 Surigao Norte",                     club: "RAC Metro Surigao"                    },
+    groups: [
+      {
+        group: "District Executive Committee",
+        list: [
+          { initials: "DRR",  name: "Christian Jade G. Azura",      role: "District Rotaract Representative",              club: "RAC Central Butuan"                  },
+          { initials: "DRRe", name: "Jan Dale Carlo T. Catalonia",  role: "District Rotaract Representative-elect",        club: "RAC Metro Cebu"                      },
+          { initials: "DRC",  name: "Remuel M. Coles",              role: "District Rotaract Chair",                       club: "RAC Metro Surigao"                   },
+          { initials: "DDRC", name: "Ryan Jae G. Yap",              role: "Deputy District Rotaract Chair",                club: "RAC Central Butuan"                  },
+          { initials: "RRV",  name: "Anna Suzzane P. Miscala",      role: "District Rotaract Representative for Visayas",                       club: "RAC Cebu"                            },
+          { initials: "RRM",  name: "Christine Joy T. Balobalo",    role: "District Rotaract Representative-Nominee for Mindanao / Future DRR RY 2028–2029", club: "RAC Tagum North-Palm City Chapter"   },
+          { initials: "ES",   name: "Shekinah Marie M. Eupeña",     role: "District Executive Secretary",                  club: "RAC Central Butuan"                  },
+          { initials: "CS",   name: "Mark A. Valencia",             role: "District Chief of Staff",                       club: "RAC Cebu South"                      },
+          { initials: "LF",   name: "Kenneth D. Banluta",           role: "District Learning Facilitator",                 club: "RAC Central Butuan"                  },
+        ],
+      },
+      {
+        group: "Area Management Committee — Visayas",
+        list: [
+          { initials: "A1B",  name: "Joshua Pasa",                  role: "Assistant District Rotaract Representative — Area 1 Bohol",   club: "RAC Panglao Island"   },
+          { initials: "A1C",  name: "Lordhan C. Labora",            role: "Assistant District Rotaract Representative — Area 1 Cebu",    club: "RAC Metro Cebu"       },
+          { initials: "A1L",  name: "Larry S. Esperas",             role: "Assistant District Rotaract Representative — Area 1 Leyte",   club: "RAC Tacloban"         },
+          { initials: "A1N",  name: "Patrick Jude I. Espina",       role: "Assistant District Rotaract Representative — Area 1 Negros",  club: "RAC Dumaguete"        },
+          { initials: "A1S",  name: "Frederick S. Jalvez",          role: "Assistant District Rotaract Representative — Area 1 Samar",   club: "RAC Greater Calbayog" },
+        ],
+      },
+      {
+        group: "Area Management Committee — Mindanao",
+        list: [
+          { initials: "A2D",  name: "Eileene Lois C. Rojo",         role: "Assistant District Rotaract Representative — Area 2 Davao",           club: "RAC Davao 2000"                   },
+          { initials: "A2G",  name: "Jomar L. Rivera",              role: "Assistant District Rotaract Representative — Area 2 General Santos",  club: "RAC Metro Dadiangas"              },
+          { initials: "A2K",  name: "Ronnie B. San Pedro",          role: "Assistant District Rotaract Representative — Area 2 Koronadal",       club: "RAC Metro Koronadal"              },
+          { initials: "A2T",  name: "Normae Jane B. Caballero",     role: "Assistant District Rotaract Representative — Area 2 Tagum",           club: "RAC Tagum North-Palm City Chapter"},
+          { initials: "A3AN", name: "Cris Jay Angulo",              role: "Assistant District Rotaract Representative — Area 3 Agusan Norte",    club: "RAC Butuan North Hiraya"          },
+          { initials: "A3AS", name: "Charlotte J. Pelayo",          role: "Assistant District Rotaract Representative — Area 3 Agusan Sur & Surigao Sur", club: "RAC Central San Francisco"        },
+          { initials: "A3SN", name: "Jayson Joy Como",              role: "Assistant District Rotaract Representative — Area 3 Surigao Norte",   club: "RAC Metro Surigao"                },
+        ],
+      },
+      {
+        group: "District Rotary Foundation Committee",
+        list: [
+          { initials: "RFC",  name: "Anna Suzzane P. Miscala",      role: "District Rotary Foundation Committee Chair",            club: "RAC Cebu"          },
+          { initials: "GGC",  name: "June Anthony Doble",           role: "District and Global Grants Chair",club: "RAC Cebu"          },
+          { initials: "EPN",  name: "Klyde Louise Jarabelo II",     role: "District End Polio Now Chair",           club: "RAC San Francisco" },
+          { initials: "RFA",  name: "Griffins C. Malazarte",        role: "District Rotary Foundation Committee Advisor",          club: "RAC Cebu South"    },
+        ],
+      },
+      {
+        group: "District Membership Committee",
+        list: [
+          { initials: "MC",   name: "Jan Dale Carlo T. Catalonia",   role: "District Membership Committee Chair",             club: "RAC Metro Cebu"  },
+          { initials: "MAE",  name: "Gabrielle Ella Agpawa",         role: "District Membership Attraction and Engagement Chair",     club: "RAC Cebu Fuente" },
+          { initials: "NCD",  name: "Hazel Nical",                   role: "District New Club Development Chair",             club: "—"               },
+          { initials: "DEI",  name: "Trisha Lyka Merced",            role: "District Diversity, Equity and Inclusion Chair",          club: "RAC Dumaguete"   },
+          { initials: "MA",   name: "Jacob Erm Jericho A. Dolino",   role: "District Membership Committee Advisor",           club: "RAC Cebu Fuente" },
+        ],
+      },
+      {
+        group: "District Service Committee",
+        list: [
+          { initials: "SC",   name: "El Jan Vicent C. Pongos",  role: "District Service Committee Chair",      club: "RAC Tacloban" },
+          { initials: "ISC",  name: "Rolan E. Ramirez",         role: "District International Service Chair",  club: "RAC Cebu"     },
+          { initials: "DRRM", name: "—",                        role: "District Disaster Risk Reduction and Management Chair",                   club: "—"            },
+          { initials: "SA",   name: "Mark Glen G. Baldo",       role: "District Service Committee Advisor",    club: "—"            },
+        ],
+      },
+      {
+        group: "District Public Image & Communications Committee",
+        list: [
+          { initials: "PIC",  name: "Donmaclyn A. Lagapa",              role: "District Public Image Chair",                  club: "RAC Central Butuan"           },
+          { initials: "ICO",  name: "Joelie Mae B. Montesclaros",       role: "District Internet and Communications Officer",   club: "RAC Dadiangas-CB"             },
+          { initials: "WS",   name: "Kenneth Nomar Melliza",            role: "District Website Specialist",         club: "RAC Downtown Davao Poblacion" },
+          { initials: "GLS",  name: "Christian V. Enario",              role: "District Graphics and Layout Specialist",        club: "RAC Metro Cebu-CIT Chapter"   },
+          { initials: "GLA",  name: "Guadalupe Niña Marie L. Obando",   role: "District Graphics and Layout Associate",         club: "RAC Metro Cebu"               },
+          { initials: "GLA2", name: "Margaret Anne C. Matunog",         role: "District Graphics and Layout Associate",         club: "RAC Metro Cebu"               },
+          { initials: "VS",   name: "Vhon",                             role: "District Videographics Specialist",            club: "—"                            },
+          { initials: "VA",   name: "Jhonryll",                         role: "District Videographics Associate",             club: "—"                            },
+          { initials: "NEC",  name: "James Darel C. Dignadice",         role: "District Newsletter Editor-in-Chief",          club: "RAC Marbel"                   },
+          { initials: "NEA",  name: "Dan Kendrick L. Artil",            role: "District Newsletter Associate Editor",         club: "—"                            },
+          { initials: "PIA",  name: "Shevee Resolado",                  role: "District Public Image Advisor",                club: "—"                            },
+        ],
+      },
+      {
+        group: "District Finance Committee",
+        list: [
+          { initials: "FCC",  name: "Almar E. Dela Cerna",   role: "District Finance Committee Chair",   club: "RAC Central Butuan"        },
+          { initials: "DT",   name: "Charlotte J. Pelayo",   role: "District Treasurer",        club: "RAC Central San Francisco" },
+          { initials: "DA",   name: "Albert M. Dalusa",      role: "District Auditor",          club: "RAC Bislig"                },
+          { initials: "FA",   name: "—",                     role: "District Finance Committee Advisor", club: "—"                         },
+        ],
+      },
+      {
+        group: "District Support Committee",
+        list: [
+          { initials: "ENC",  name: "Remuel M. Coles",       role: "District Elections and Nominating Chair",          club: "RAC Metro Surigao" },
+          { initials: "AC",   name: "Kenneth D. Banluta",    role: "District Awards Chair",                          club: "RAC Central Butuan"},
+          { initials: "LO",   name: "—",                     role: "District Legal Officer",                club: "—"                  },
+          { initials: "PC27", name: "—",                     role: "District Promotions Chair for PROCON 2027",      club: "—"                  },
+          { initials: "AP27", name: "Griffins C. Malazarte", role: "District Promotions Chair for APRRC 2027, Philippines",       club: "RAC Cebu South"    },
+        ],
+      },
+      {
+        group: "District Learning & Development Committee",
+        list: [
+          { initials: "DLF",  name: "Kenneth D. Banluta",           role: "District Learning Facilitator",  club: "RAC Central Butuan" },
+          { initials: "PLL",  name: "Jan Dale Carlo T. Catalonia",  role: "PELS-SELS Learning Leader",      club: "RAC Metro Cebu"     },
+          { initials: "ALL",  name: "Mark A. Valencia",             role: "ADRRLS-DTLS Learning Leader",    club: "RAC Cebu South"     },
+          { initials: "DLA",  name: "Elcasmer G. Acedo",            role: "District Learning Advisor",      club: "—"                  },
+        ],
+      },
     ],
 
     futureDRRs: {
       eyebrow: "Succession",
       title:   "Future District Rotaract Representatives",
       list: [
-        { year: "RY 2026–2027", name: "Christian Jade G. Azura",     club: "RAC Central Butuan" },
-        { year: "RY 2027–2028", name: "Jan Dale Carlo T. Catalonia", club: "RAC Metro Cebu"     },
-        { year: "RY 2028–2029", name: "[Future DRR Name]",           club: "[Club Name]"        },
+        { year: "RY 2027–2028", name: "Jan Dale Carlo T. Catalonia", club: "RAC Metro Cebu"                    },
+        { year: "RY 2028–2029", name: "Christine Joy T. Balobalo",   club: "RAC Tagum North-Palm City Chapter" },
       ],
     },
   },
@@ -894,7 +982,7 @@ const CONFIG = {
       </div>
       <p style="font-size:15px;color:var(--gray-500);line-height:1.75;align-self:end;" id="officers-desc"></p>
     </div>
-    <div class="officers-grid" id="officers-grid"></div>
+    <div id="officers-groups"></div>
     <div class="future-drrs" id="future-drrs"></div>
   </div>
 </section>
@@ -1285,9 +1373,20 @@ const CONFIG = {
   setText('officers-eyebrow', C.officers.eyebrow);
   setText('officers-title',   C.officers.title);
   setText('officers-desc',    C.officers.desc);
-  const og=$('officers-grid');
-  C.officers.list.forEach(o=>{
-    og.innerHTML+=`<div class="officer-card"><div class="officer-avatar">${o.initials}</div><div class="officer-name">${o.name}</div><div class="officer-role">${o.role}</div><div class="officer-club">${o.club}</div></div>`;
+  const og = $('officers-groups');
+  C.officers.groups.forEach(g=>{
+    const cards = g.list.map(o=>`
+      <div class="officer-card">
+        <div class="officer-avatar">${o.initials}</div>
+        <div class="officer-name">${o.name}</div>
+        <div class="officer-role">${o.role}</div>
+        <div class="officer-club">${o.club}</div>
+      </div>`).join('');
+    og.innerHTML += `
+      <div class="officers-group">
+        <div class="officers-group-title">${g.group}</div>
+        <div class="officers-grid">${cards}</div>
+      </div>`;
   });
 
   /* Future DRRs */
