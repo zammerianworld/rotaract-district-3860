@@ -285,6 +285,11 @@ body{font-family:var(--font-body);font-size:16px;line-height:1.7;color:var(--gra
 .mleg-item:hover,.mleg-item.active{background:var(--pink-light);border-color:var(--pink);color:var(--pink-dark);}
 .mleg-item.active::before{background:var(--pink);}
 
+/* ── CREDIT BAR ── */
+#credit-bar{background:var(--gray-900);padding:10px 28px;display:flex;justify-content:center;align-items:center;}
+#credit-bar p{font-size:12px;color:rgba(255,255,255,.35);letter-spacing:.3px;}
+#credit-bar span{color:rgba(255,255,255,.6);font-weight:600;}
+
 /* ── FOOTER ── */
 #footer{background:var(--pink-deep);padding:52px 28px 32px;}
 .footer-top{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:48px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.08);}
@@ -294,8 +299,11 @@ body{font-family:var(--font-body);font-size:16px;line-height:1.7;color:var(--gra
 .footer-col-title{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:16px;}
 .footer-col a{display:block;font-size:13px;color:rgba(255,255,255,.5);margin-bottom:10px;transition:color .15s;}
 .footer-col a:hover{color:#fff;}
-.footer-bottom{max-width:1080px;margin:28px auto 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+.footer-bottom{max-width:1080px;margin:28px auto 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;}
 .footer-copy{font-size:12px;color:rgba(255,255,255,.2);}
+.footer-dev{font-size:12px;color:rgba(255,255,255,.2);}
+.footer-dev a{color:rgba(255,255,255,.5);text-decoration:underline;text-underline-offset:3px;transition:color .15s;}
+.footer-dev a:hover{color:#fff;}
 
 /* ── BACK TO TOP ── */
 #btt{position:fixed;bottom:28px;right:28px;width:44px;height:44px;border-radius:50%;background:var(--pink);color:#fff;font-size:18px;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;pointer-events:none;transition:all .25s;border:none;box-shadow:0 4px 20px rgba(212,19,103,.4);z-index:50;}
@@ -623,6 +631,7 @@ const CONFIG = {
       { title: "Resources", links: [ { label: "Upcoming Events", href: "#events" }, { label: "District Map", href: "#map" }, { label: "Resources & Docs", href: "#resources" }, { label: "Contact Us", href: "#contact" } ] },
     ],
     copy: `© ${new Date().getFullYear()} Rotaract Clubs of Rotary International District 3860. All rights reserved.`,
+    devCredit: { name: "Ken", url: "#" },  /* update url to your portfolio link */
   },
 };
 /* ============================================================ END CONFIG */
@@ -1010,6 +1019,11 @@ const CONFIG = {
   </div>
 </section>
 
+<!-- CREDIT BAR -->
+<div id="credit-bar">
+  <p>Developed by: <span>District Website Specialist Ken, RCDDP</span></p>
+</div>
+
 <!-- FOOTER -->
 <footer id="footer">
   <div class="footer-top">
@@ -1189,6 +1203,10 @@ const CONFIG = {
   setText('footer-name',   C.siteName);
   setText('footer-region', C.region);
   setText('footer-copy',   C.footer.copy);
+  const devEl = $('footer-dev');
+  if(devEl && C.footer.devCredit){
+    devEl.innerHTML = `Developed by <a href="${C.footer.devCredit.url}" target="_blank" rel="noopener">${C.footer.devCredit.name}</a>`;
+  }
   const fc=$('footer-cols');
   C.footer.cols.forEach(col=>{
     let links=col.links.map(l=>`<a href="${l.href}">${l.label}</a>`).join('');
