@@ -300,22 +300,38 @@ body{font-family:var(--font-body);font-size:16px;line-height:1.7;color:var(--gra
 .clubs-council-name{font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--gray-900);}
 .clubs-council-count{font-size:12px;font-weight:700;background:var(--pink-light);color:var(--pink-dark);padding:4px 12px;border-radius:40px;}
 .clubs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;}
-.club-card{background:var(--gray-50);border:1px solid var(--gray-100);border-radius:var(--r-md);padding:0;transition:all .2s;cursor:pointer;overflow:hidden;}
-.club-card:hover{border-color:var(--pink-light);box-shadow:0 4px 16px rgba(212,19,103,.08);}
-.club-card.open{border-color:var(--pink);background:#fff;}
-.club-card-header{display:flex;align-items:center;gap:12px;padding:14px 16px;}
-.club-card-dot{width:8px;height:8px;border-radius:50%;background:var(--pink);flex-shrink:0;}
+/* Club cards */
+.club-card{background:var(--gray-50);border:1px solid var(--gray-100);border-radius:var(--r-md);padding:14px 16px;display:flex;align-items:center;gap:12px;transition:all .2s;cursor:pointer;}
+.club-card:hover{background:#fff;border-color:var(--pink-light);box-shadow:0 4px 16px rgba(212,19,103,.08);transform:translateY(-1px);}
+.club-card.active{border-color:var(--pink);background:#fff;box-shadow:0 4px 16px rgba(212,19,103,.12);}
+.club-card-dot{width:8px;height:8px;border-radius:50%;background:var(--pink);flex-shrink:0;transition:transform .2s;}
+.club-card.active .club-card-dot{transform:scale(1.4);}
 .club-card-name{font-size:13px;font-weight:600;color:var(--gray-900);line-height:1.4;flex:1;}
-.club-card-arrow{font-size:12px;color:var(--gray-400);transition:transform .2s;flex-shrink:0;}
-.club-card.open .club-card-arrow{transform:rotate(180deg);color:var(--pink);}
-.club-card-details{display:none;padding:0 16px 14px;border-top:1px solid var(--gray-100);margin:0 16px;}
-.club-card.open .club-card-details{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding-top:12px;}
-.club-detail-item{display:flex;flex-direction:column;gap:2px;}
-.club-detail-label{font-size:10px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--gray-400);}
-.club-detail-value{font-size:12px;color:var(--gray-700);font-weight:500;line-height:1.4;}
-.club-detail-value.placeholder{color:var(--gray-300);font-style:italic;}
-@media(max-width:640px){
-  .club-card.open .club-card-details{grid-template-columns:1fr;}
+.club-card-icon{font-size:12px;color:var(--gray-300);flex-shrink:0;transition:color .2s;}
+.club-card:hover .club-card-icon,.club-card.active .club-card-icon{color:var(--pink);}
+/* Modal overlay */
+.club-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:500;display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:opacity .25s;}
+.club-modal-overlay.open{opacity:1;pointer-events:auto;}
+.club-modal{background:#fff;border-radius:var(--r-xl);width:100%;max-width:480px;box-shadow:0 24px 64px rgba(0,0,0,.18);transform:translateY(16px) scale(.97);transition:transform .25s,opacity .25s;overflow:hidden;}
+.club-modal-overlay.open .club-modal{transform:translateY(0) scale(1);}
+.club-modal-header{background:var(--pink);padding:24px 28px;position:relative;}
+.club-modal-pill{font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:6px;}
+.club-modal-name{font-family:var(--font-display);font-size:20px;font-weight:700;color:#fff;line-height:1.25;padding-right:32px;}
+.club-modal-close{position:absolute;top:20px;right:20px;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.15);border:none;color:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;line-height:1;}
+.club-modal-close:hover{background:rgba(255,255,255,.3);}
+.club-modal-body{padding:24px 28px;display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.club-detail-item{display:flex;flex-direction:column;gap:4px;}
+.club-detail-item.full{grid-column:1/-1;}
+.club-detail-label{font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--gray-400);}
+.club-detail-value{font-size:14px;color:var(--gray-900);font-weight:500;line-height:1.5;}
+.club-detail-value.placeholder{color:var(--gray-300);font-style:italic;font-weight:400;}
+.club-modal-footer{padding:16px 28px;border-top:1px solid var(--gray-100);display:flex;justify-content:flex-end;}
+.club-modal-dismiss{font-size:13px;font-weight:700;color:var(--pink);background:var(--pink-light);border:none;padding:9px 20px;border-radius:40px;cursor:pointer;transition:all .2s;}
+.club-modal-dismiss:hover{background:var(--pink);color:#fff;}
+@media(max-width:480px){
+  .club-modal-body{grid-template-columns:1fr;}
+  .club-detail-item.full{grid-column:auto;}
+  .club-modal{border-radius:var(--r-lg);}
 }
 @media(max-width:640px){
   .clubs-tabs{gap:6px;}
@@ -1357,6 +1373,21 @@ const CONFIG = {
   </div>
 </footer>
 
+<!-- CLUB MODAL -->
+<div class="club-modal-overlay" id="club-modal-overlay" onclick="closeClubModal(event)">
+  <div class="club-modal" id="club-modal">
+    <div class="club-modal-header">
+      <div class="club-modal-pill" id="modal-council"></div>
+      <div class="club-modal-name" id="modal-name"></div>
+      <button class="club-modal-close" onclick="closeClubModal()" aria-label="Close">✕</button>
+    </div>
+    <div class="club-modal-body" id="modal-body"></div>
+    <div class="club-modal-footer">
+      <button class="club-modal-dismiss" onclick="closeClubModal()">Close</button>
+    </div>
+  </div>
+</div>
+
 <button id="btt" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
 <script>
@@ -1560,26 +1591,11 @@ const CONFIG = {
     };
     clubsTabs.appendChild(tab);
     const cards = c.clubs.map((name,ci)=>{
-      const det = (C.clubs.clubDetails && C.clubs.clubDetails[name]) || null;
-      const pres  = det?.president   || null;
-      const meet  = det?.meeting     || null;
-      const venue = det?.venue       || null;
-      const email = det?.email       || null;
-      const spons = det?.sponsoredBy || null;
-      const ph = v => v ? `<span class="club-detail-value">${v}</span>` : `<span class="club-detail-value placeholder">Coming soon</span>`;
-      return `<div class="club-card" id="cc_${c.id}_${ci}" onclick="toggleClub('cc_${c.id}_${ci}')">
-        <div class="club-card-header">
-          <div class="club-card-dot"></div>
-          <div class="club-card-name">${name}</div>
-          <span class="club-card-arrow">▾</span>
-        </div>
-        <div class="club-card-details">
-          <div class="club-detail-item"><span class="club-detail-label">Current President</span>${ph(pres)}</div>
-          <div class="club-detail-item"><span class="club-detail-label">Meeting Schedule</span>${ph(meet)}</div>
-          <div class="club-detail-item"><span class="club-detail-label">Meeting Venue</span>${ph(venue)}</div>
-          <div class="club-detail-item"><span class="club-detail-label">Club Email</span>${ph(email)}</div>
-          <div class="club-detail-item"><span class="club-detail-label">Sponsoring Rotary Club</span>${ph(spons)}</div>
-        </div>
+      const esc = name.replace(/'/g,"&#39;");
+      return `<div class="club-card" id="cc_${c.id}_${ci}" onclick="openClubModal('${esc}','${c.label}')">
+        <div class="club-card-dot"></div>
+        <div class="club-card-name">${name}</div>
+        <span class="club-card-icon">↗</span>
       </div>`;
     }).join('');
     const panel = document.createElement('div');
@@ -1685,16 +1701,44 @@ const CONFIG = {
 })();
 
 /* Map — global scope required for inline SVG event attributes */
-function toggleClub(id){
-  const card = document.getElementById(id);
-  if(!card) return;
-  const isOpen = card.classList.contains('open');
-  /* Close all other open cards in same grid */
-  card.closest('.clubs-grid')?.querySelectorAll('.club-card.open').forEach(c=>{
-    if(c!==card) c.classList.remove('open');
-  });
-  card.classList.toggle('open', !isOpen);
+function openClubModal(name, council){
+  const C = CONFIG;
+  const det = (C.clubs.clubDetails && C.clubs.clubDetails[name]) || null;
+  const ph = v => v
+    ? `<span class="club-detail-value">${v}</span>`
+    : `<span class="club-detail-value placeholder">Coming soon</span>`;
+  document.getElementById('modal-council').textContent = council;
+  document.getElementById('modal-name').textContent = name;
+  document.getElementById('modal-body').innerHTML = `
+    <div class="club-detail-item full">
+      <span class="club-detail-label">Current President</span>
+      ${ph(det?.president)}
+    </div>
+    <div class="club-detail-item">
+      <span class="club-detail-label">Meeting Schedule</span>
+      ${ph(det?.meeting)}
+    </div>
+    <div class="club-detail-item">
+      <span class="club-detail-label">Meeting Venue</span>
+      ${ph(det?.venue)}
+    </div>
+    <div class="club-detail-item">
+      <span class="club-detail-label">Club Email</span>
+      ${ph(det?.email)}
+    </div>
+    <div class="club-detail-item">
+      <span class="club-detail-label">Sponsoring Rotary Club</span>
+      ${ph(det?.sponsoredBy)}
+    </div>`;
+  document.getElementById('club-modal-overlay').classList.add('open');
+  document.body.style.overflow='hidden';
 }
+function closeClubModal(e){
+  if(e && e.target!==document.getElementById('club-modal-overlay')) return;
+  document.getElementById('club-modal-overlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeClubModal();});
 function selectClubsTab(councilId){
   const tabs   = document.querySelectorAll('.clubs-tab');
   const panels = document.querySelectorAll('.clubs-panel');
