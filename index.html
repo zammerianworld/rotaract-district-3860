@@ -279,7 +279,7 @@ body.loaded{opacity:1;}
 
 /* ── CALENDAR ── */
 #calendar{padding:96px 0;background:var(--gray-50);}
-.calendar-embed{width:100%;height:500px;border:none;border-radius:var(--r-lg);margin-top:48px;}
+.calendar-embed{width:100%;height:600px;border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--gray-200);margin-top:48px;}
 /* Month tabs */
 .cal-month-tabs{display:flex;flex-wrap:wrap;gap:6px;margin-top:36px;margin-bottom:24px;}
 .cal-month-tab{font-size:12px;font-weight:700;padding:6px 14px;border-radius:40px;border:1.5px solid var(--gray-200);color:var(--gray-500);cursor:pointer;transition:all .2s;background:#fff;}
@@ -1263,6 +1263,13 @@ const CONFIG = {
     eyebrow: "What's Coming",
     title:   "Upcoming Events",
     desc:    "Stay updated on district-wide gatherings, trainings, and community activities.",
+    /* HOW TO USE WITH GOOGLE CALENDAR:
+       Once the Google Calendar is set up, prefix major events with ⭐ in the title
+       e.g. "⭐ District Assembly" — these will auto-appear here.
+       For now, manually list major events below.
+       FORMAT: { day: "15", month: "AUG", title: "Event Name", desc: "Description.", location: "Venue, City", tag: { label: "Training", type: "tag-pink" } }
+       tag types: "tag-pink" (pink) or "tag-dark" (dark)
+    */
     list: [
       { day: "—", month: "—", title: "District Assembly",   desc: "Orientation and training for all incoming Rotaract club officers for RY 2026–2027.", location: "[Venue, City]", tag: { label: "Training",    type: "tag-pink" } },
       { day: "—", month: "—", title: "District RYLA",       desc: "Rotaract Youth Leadership Awards — developing tomorrow's leaders through immersive workshops.",    location: "[Venue, City]", tag: { label: "Leadership",  type: "tag-dark" } },
@@ -1276,13 +1283,19 @@ const CONFIG = {
      type: "list"    → add activities to the list array below
      Set show: false to hide until ready.
   ---------------------------------------- */
+  /* --- Calendar of Activities ---
+     STEP 1: In Google Calendar → Settings → Integrate Calendar → copy the URL inside src="..."
+     STEP 2: Paste it below in embedUrl
+     STEP 3: Change type from "list" to "google"
+     That's it! The full calendar grid will appear automatically.
+  ---------------------------------------- */
   calendar: {
     show:     true,
     eyebrow:  "Schedule",
     title:    "Calendar of Activities",
     desc:     "Stay updated on all district activities, deadlines, and club events for RY 2026–2027.",
-    type:     "list",       /* "google" or "list" */
-    embedUrl: "[PASTE GOOGLE CALENDAR EMBED URL HERE]",
+    type:     "list",       /* CHANGE TO "google" once embedUrl is set */
+    embedUrl: "[PASTE GOOGLE CALENDAR EMBED URL HERE]",  /* ← paste URL here */
     list: [
       { date: "—", month: "—", title: "[Activity Name]", desc: "[Description]", location: "[Venue, City]" },
       { date: "—", month: "—", title: "[Activity Name]", desc: "[Description]", location: "[Venue, City]" },
@@ -2373,8 +2386,12 @@ const CONFIG = {
     setText('cal-title',   cal.title);
     setText('cal-desc',    cal.desc);
     const calBody = $('cal-body');
-    if(cal.type === 'google'){
-      calBody.innerHTML = '<iframe class="calendar-embed" src="'+cal.embedUrl+'" frameborder="0" scrolling="no" title="Calendar of Activities"></iframe>';
+    if(cal.type === 'google' && cal.embedUrl && cal.embedUrl !== '[PASTE GOOGLE CALENDAR EMBED URL HERE]'){
+      // Full Google Calendar embed
+      var embedSrc = cal.embedUrl;
+      // Ensure proper styling params
+      if(embedSrc.indexOf('showTitle=0') === -1) embedSrc += (embedSrc.indexOf('?')>-1?'&':'?')+'showTitle=0&showNav=1&showDate=1&showPrint=0&showTabs=0&showCalendars=0&mode=MONTH';
+      calBody.innerHTML = '<div class="calendar-embed"><iframe src="'+embedSrc+'" frameborder="0" scrolling="no" title="Calendar of Activities" style="width:100%;height:100%;border:none;"></iframe></div>';
     } else {
       // Build month tabs + grid calendar — RY order: July 2026 → June 2027
     var MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
