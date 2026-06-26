@@ -147,7 +147,7 @@ body.loaded{opacity:1;}
 .future-drr-photo-placeholder{width:100px;height:100px;border-radius:50%;background:var(--pink-light);border:2px dashed var(--pink);box-shadow:0 0 0 3px var(--pink-light);display:flex;align-items:center;justify-content:center;font-size:32px;flex-shrink:0;}
 .future-drr-year{background:var(--pink-light);color:var(--pink-dark);font-size:12px;font-weight:700;padding:5px 14px;border-radius:40px;white-space:nowrap;flex-shrink:0;}
 .future-drr-info{}
-.future-drr-name{font-size:18px;font-weight:700;color:var(--heading-color);margin-top:4px;}
+.future-drr-name{font-size:18px;font-weight:800;color:var(--heading-color);margin-top:4px;}
 .future-drr-club{font-size:14px;color:var(--gray-500);margin-top:4px;}
 
 /* ── MEET THE DRR ── */
@@ -193,7 +193,7 @@ body.loaded{opacity:1;}
 .officer-photo{width:96px;height:96px;border-radius:50%;object-fit:cover;object-position:center top;margin:0 auto 16px;border:3px solid #fff;box-shadow:0 0 0 3px var(--pink);display:block;background:var(--pink-light);}
 .officer-avatar{width:96px;height:96px;border-radius:50%;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;font-family:var(--font-display);background:var(--pink-light);color:var(--pink);position:relative;}
 .officer-avatar::before{content:'';position:absolute;inset:-3px;border-radius:50%;border:2px dashed var(--pink-light);}
-.officer-name{font-size:16px;font-weight:700;color:var(--heading-color);margin-bottom:6px;}
+.officer-name{font-size:16px;font-weight:800;color:var(--heading-color);margin-bottom:6px;letter-spacing:-.2px;}
 .officer-role{font-size:12px;font-weight:700;letter-spacing:.5px;color:var(--pink);text-transform:uppercase;margin-bottom:8px;}
 .officer-club{font-size:14px;color:var(--gray-400);line-height:1.4;}
 
@@ -279,25 +279,39 @@ body.loaded{opacity:1;}
 /* ── CALENDAR ── */
 #calendar{padding:96px 0;background:var(--gray-50);}
 .calendar-embed{width:100%;height:500px;border:none;border-radius:var(--r-lg);margin-top:48px;}
-.calendar-list{display:flex;flex-direction:column;gap:12px;margin-top:48px;}
-.cal-item{background:#fff;border:1px solid var(--gray-100);border-radius:var(--r-lg);padding:16px 20px;display:flex;align-items:center;gap:16px;transition:all .25s;border-left:4px solid var(--pink);}
-.cal-item:hover{box-shadow:0 8px 24px rgba(212,19,103,.08);transform:translateX(4px);}
-.cal-date{background:var(--pink-light);border-radius:var(--r-md);padding:8px 12px;text-align:center;min-width:56px;flex-shrink:0;}
-.cal-day{font-family:var(--font-display);font-size:20px;font-weight:900;color:var(--pink);line-height:1;}
-.cal-month{font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--pink-dark);margin-top:2px;}
-.cal-body{flex:1;min-width:0;}
-.cal-title{font-size:15px;font-weight:700;color:var(--heading-color);margin-bottom:4px;}
-.cal-loc{font-size:13px;color:var(--gray-500);}
-.cal-loc::before{content:'📍';font-size:11px;margin-right:4px;}
-.cal-tag{display:inline-block;background:var(--pink-light);color:var(--pink-dark);font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:3px 10px;border-radius:40px;white-space:nowrap;flex-shrink:0;}
-.calendar-placeholder{background:rgba(212,19,103,.04);border:1.5px dashed rgba(212,19,103,.25);border-radius:var(--r-lg);padding:52px 24px;text-align:center;margin-top:48px;}
-.calendar-placeholder p{font-size:15px;color:var(--gray-500);margin-bottom:6px;}
-.calendar-placeholder span{font-size:13px;color:var(--gray-400);}
+/* Month tabs */
+.cal-month-tabs{display:flex;flex-wrap:wrap;gap:6px;margin-top:36px;margin-bottom:24px;}
+.cal-month-tab{font-size:12px;font-weight:700;padding:6px 14px;border-radius:40px;border:1.5px solid var(--gray-200);color:var(--gray-500);cursor:pointer;transition:all .2s;background:#fff;}
+.cal-month-tab:hover{border-color:var(--pink);color:var(--pink);}
+.cal-month-tab.active{background:var(--pink);border-color:var(--pink);color:#fff;}
+.cal-month-tab.has-events{border-color:var(--pink-light);}
+/* Month panel */
+.cal-month-panel{display:none;}
+.cal-month-panel.active{display:block;}
+/* Weekly grid */
+.cal-week-header{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:4px;}
+.cal-week-day{text-align:center;font-size:11px;font-weight:700;color:var(--gray-400);padding:8px 0;}
+.cal-month-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;}
+.cal-day-cell{min-height:72px;background:#fff;border:1px solid var(--gray-100);border-radius:8px;padding:6px;position:relative;transition:all .2s;}
+.cal-day-cell.other-month{background:var(--gray-50);opacity:.5;}
+.cal-day-cell.today{border-color:var(--pink);background:var(--pink-pale);}
+.cal-day-num{font-size:12px;font-weight:700;color:var(--gray-400);margin-bottom:2px;}
+.cal-day-cell.today .cal-day-num{color:var(--pink);font-weight:800;}
+.cal-event-pill{background:var(--pink);color:#fff;font-size:10px;font-weight:700;border-radius:4px;padding:2px 5px;margin-top:2px;line-height:1.3;cursor:pointer;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.cal-event-pill.tba{background:var(--gray-300);color:var(--gray-700);}
+/* No events */
+.cal-no-events{text-align:center;padding:48px 24px;color:var(--gray-400);font-size:14px;}
+body.dark-mode .cal-month-tab{background:var(--dm-surface2);border-color:var(--dm-border);color:var(--dm-muted);}
+body.dark-mode .cal-month-tab.active{background:var(--pink);border-color:var(--pink);color:#fff;}
+body.dark-mode .cal-day-cell{background:var(--dm-surface2);border-color:var(--dm-border);}
+body.dark-mode .cal-day-cell.other-month{background:var(--dm-bg);}
+body.dark-mode .cal-day-cell.today{background:var(--dm-faint);border-color:var(--pink);}
+body.dark-mode .cal-day-num{color:var(--dm-muted);}
 @media(max-width:640px){
-  .cal-item{padding:14px 16px;gap:12px;}
-  .cal-date{min-width:48px;padding:6px 10px;}
-  .cal-day{font-size:17px;}
-  .cal-tag{display:none;}
+  .cal-week-day{font-size:10px;padding:6px 0;}
+  .cal-day-cell{min-height:52px;padding:4px;}
+  .cal-day-num{font-size:11px;}
+  .cal-event-pill{font-size:9px;}
 }
 
 /* ── MEMBERSHIP INQUIRY ── */
@@ -342,8 +356,8 @@ body.dark-mode .membership-card{background:linear-gradient(135deg,#1a0510 0%,#2d
 .club-modal{background:#fff;border-radius:var(--r-xl);width:100%;max-width:480px;box-shadow:0 24px 64px rgba(0,0,0,.18);transform:translateY(16px) scale(.97);transition:transform .25s,opacity .25s;overflow:hidden;}
 .club-modal-overlay.open .club-modal{transform:translateY(0) scale(1);}
 .club-modal-header{background:var(--pink);padding:24px 28px;position:relative;}
-.club-modal-pill{font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:6px;}
-.club-modal-name{font-family:var(--font-display);font-size:20px;font-weight:700;color:#fff;line-height:1.25;padding-right:32px;}
+.club-modal-pill{font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:rgba(255,255,255,.9);margin-bottom:6px;background:rgba(255,255,255,.15);padding:3px 10px;border-radius:20px;display:inline-block;}
+.club-modal-name{font-family:var(--font-display);font-size:20px;font-weight:900;color:#fff;line-height:1.25;padding-right:32px;text-shadow:0 1px 4px rgba(0,0,0,.3);}
 .club-modal-close{position:absolute;top:20px;right:20px;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.15);border:none;color:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;line-height:1;}
 .club-modal-close:hover{background:rgba(255,255,255,.3);}
 .club-modal-body{padding:24px 28px;display:grid;grid-template-columns:1fr 1fr;gap:20px;}
@@ -1210,11 +1224,17 @@ const CONFIG = {
     photo:     null,
     bionote:   "[Paste DRR bionote here. Include background, Rotaract journey, vision for the district, and advocacy for RY 2026–2027.]",
     pastPositions: [
-      "[District Position or Role #1]",
-      "[District Position or Role #2]",
-      "[District Position or Role #3]",
-      "[District Position or Role #4]",
-      "[District Position or Role #5]",
+      "2016-2017 · Charter President, RAC Central Butuan-Caraga State University",
+      "2016-2017 · Assistant District Rotaract Representative for CARAGA Council",
+      "2017-2018 · Assistant District Rotaract Representative for Agusan Council",
+      "2018-2019 · Assistant District Rotaract Representative for Agusan Council",
+      "2019-2020 · Assistant District Rotaract Representative for Agusan Council",
+      "2020-2021 · District Public Relations Officer",
+      "2022-2023 · Club Secretary, Rotary Club of Central Butuan",
+      "2023-2024 · Assistant District Rotaract Representative for Agusan Norte Council",
+      "2023-2024 · District Internet and Communications Officer — RID 3860",
+      "2024-2025 · Deputy District Rotaract Representative for Mindanao",
+      "2025-2026 · District End Polio Now Chair",
     ],
   },
 
@@ -2335,13 +2355,76 @@ const CONFIG = {
     if(cal.type === 'google'){
       calBody.innerHTML = '<iframe class="calendar-embed" src="'+cal.embedUrl+'" frameborder="0" scrolling="no" title="Calendar of Activities"></iframe>';
     } else {
-      calBody.innerHTML = '<div class="calendar-list">'+cal.list.map(function(a){
-        return '<div class="cal-item">'+
-          '<div class="cal-date"><div class="cal-day">'+a.date+'</div><div class="cal-month">'+a.month+'</div></div>'+
-          '<div class="cal-body"><div class="cal-title">'+a.title+'</div><div class="cal-loc">'+a.location+'</div></div>'+
-          '<span class="cal-tag">'+a.tag+'</span>'+
-          '</div>';
-      }).join('')+'</div>';
+      // Build month tabs + grid calendar
+    var MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    var MONTH_ABBR  = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+    var today = new Date();
+    var curM = today.getMonth(); // 0-indexed
+    var curY = today.getFullYear();
+    // Map events to month index
+    var evByMonth = {};
+    cal.list.forEach(function(a){
+      var mi = MONTH_ABBR.indexOf(a.month);
+      if(mi === -1) mi = curM;
+      if(!evByMonth[mi]) evByMonth[mi] = [];
+      evByMonth[mi].push(a);
+    });
+    // Build tabs — show all 12 months, highlight those with events
+    var tabsHtml = '<div class="cal-month-tabs">';
+    for(var m=0;m<12;m++){
+      var hasEv = evByMonth[m] && evByMonth[m].length > 0;
+      tabsHtml += '<div class="cal-month-tab'+(m===curM?' active':'')+(hasEv?' has-events':'')+'" onclick="calSelectMonth('+m+','+curY+')" id="cal-tab-'+m+'">'+MONTH_NAMES[m]+'</div>';
+    }
+    tabsHtml += '</div>';
+    // Build panels
+    var panelsHtml = '';
+    for(var m=0;m<12;m++){
+      panelsHtml += '<div class="cal-month-panel'+(m===curM?' active':'')+'" id="cal-panel-'+m+'">';
+      // Week header
+      panelsHtml += '<div class="cal-week-header">';
+      ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].forEach(function(d){ panelsHtml += '<div class="cal-week-day">'+d+'</div>'; });
+      panelsHtml += '</div>';
+      // Day grid
+      var firstDay = new Date(curY, m, 1).getDay();
+      var daysInMonth = new Date(curY, m+1, 0).getDate();
+      var daysInPrev = new Date(curY, m, 0).getDate();
+      panelsHtml += '<div class="cal-month-grid">';
+      // Leading days
+      for(var d=firstDay-1;d>=0;d--){
+        panelsHtml += '<div class="cal-day-cell other-month"><div class="cal-day-num">'+(daysInPrev-d)+'</div></div>';
+      }
+      // Days of month
+      var events = evByMonth[m] || [];
+      for(var d=1;d<=daysInMonth;d++){
+        var isToday = (d===today.getDate() && m===today.getMonth() && curY===today.getFullYear());
+        panelsHtml += '<div class="cal-day-cell'+(isToday?' today':'')+'"><div class="cal-day-num">'+d+'</div>';
+        events.forEach(function(a){
+          var aDay = parseInt(a.date) || 0;
+          if(aDay===d){
+            var isTba = a.date==='TBA';
+            panelsHtml += '<div class="cal-event-pill'+(isTba?' tba':'')+'">'+a.title+'</div>';
+          }
+        });
+        // TBA events show on day 1
+        if(d===1){
+          events.forEach(function(a){
+            if(a.date==='TBA'){
+              panelsHtml += '<div class="cal-event-pill tba">TBA: '+a.title+'</div>';
+            }
+          });
+        }
+        panelsHtml += '</div>';
+      }
+      // Trailing days
+      var total = firstDay + daysInMonth;
+      var trailing = total % 7 === 0 ? 0 : 7 - (total % 7);
+      for(var d=1;d<=trailing;d++){
+        panelsHtml += '<div class="cal-day-cell other-month"><div class="cal-day-num">'+d+'</div></div>';
+      }
+      panelsHtml += '</div>'; // cal-month-grid
+      panelsHtml += '</div>'; // cal-month-panel
+    }
+    calBody.innerHTML = tabsHtml + panelsHtml;
     }
   }
 
@@ -2645,6 +2728,10 @@ document.addEventListener('click',e=>{
   }
 });
 /* Dark mode */
+function calSelectMonth(m,y){
+  document.querySelectorAll('.cal-month-tab').forEach(function(t,i){ t.classList.toggle('active', i===m); });
+  document.querySelectorAll('.cal-month-panel').forEach(function(p,i){ p.classList.toggle('active', i===m); });
+}
 function openFutureDRRModal(name,year,club,photo){
   document.getElementById('fm-year').textContent = year;
   document.getElementById('fm-name').textContent = name;
