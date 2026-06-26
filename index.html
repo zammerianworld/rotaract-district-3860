@@ -904,7 +904,7 @@ body.dark-mode #theme-song{background:linear-gradient(135deg,#1a0510 0%,#2d0920 
   #about,#officers,#events,#resources,#clubs,#contact,#map,#drr{padding:56px 0;}
 
   /* About cards */
-  .about-grid{grid-template-columns:1fr;}
+  .about-grid{grid-template-columns:1fr;gap:16px;}
 
   /* Governor banner */
   .gov-banner{flex-direction:column;align-items:flex-start;gap:16px;padding:20px;}
@@ -959,7 +959,7 @@ body.dark-mode #theme-song{background:linear-gradient(135deg,#1a0510 0%,#2d0920 
 
 /* Small mobile — 400px */
 @media(max-width:400px){
-  .container{padding:0 16px;}
+  .container{padding:0 20px;}
   .officers-grid{grid-template-columns:1fr;}
   .impact-grid{grid-template-columns:1fr;}
   .impact-item{border-right:none !important;border-bottom:1px solid rgba(255,255,255,.06);}
@@ -1058,8 +1058,8 @@ const CONFIG = {
     desc:    "Meet the officers guiding the Rotaract clubs of District 3860 for Rotary Year 2026–2027.",
 
     governor: {
-      name:    "Gov. Arlene J. Adlawan",
-      title:   "Rotary Governor",
+      name:    "Arlene J. Adlawan",
+      title:   "District Governor",
       district: "Rotary International District 3860",
       photo:   "https://drive.google.com/thumbnail?id=1jsLBlPBCaexZ_1mGn5kD8Lo_pAWayR50&sz=w300",
     },
@@ -1994,6 +1994,48 @@ const CONFIG = {
   </div>
 </footer>
 
+<!-- FUTURE DRR MODAL -->
+<div class="club-modal-overlay" id="fdrr-modal-overlay" onclick="closeFutureDRRModal(event)">
+  <div class="club-modal" id="fdrr-modal">
+    <div class="club-modal-header">
+      <div class="club-modal-pill" id="fm-year"></div>
+      <div class="club-modal-name" id="fm-name"></div>
+      <button class="club-modal-close" onclick="closeFutureDRRModal()" aria-label="Close">✕</button>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;padding:28px 28px 0;">
+      <div id="fm-photo-wrap" style="margin-bottom:16px;"></div>
+      <div style="text-align:center;">
+        <div style="font-size:12px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--pink);margin-bottom:6px;">Future District Rotaract Representative</div>
+        <div id="fm-club" style="font-size:14px;color:var(--gray-500);"></div>
+      </div>
+    </div>
+    <div class="club-modal-footer">
+      <button class="club-modal-dismiss" onclick="closeFutureDRRModal()">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- GOVERNOR MODAL -->
+<div class="club-modal-overlay" id="gov-modal-overlay" onclick="closeGovModal(event)">
+  <div class="club-modal" id="gov-modal">
+    <div class="club-modal-header">
+      <div class="club-modal-pill">District Governor</div>
+      <div class="club-modal-name" id="gm-name"></div>
+      <button class="club-modal-close" onclick="closeGovModal()" aria-label="Close">✕</button>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;padding:28px 28px 0;">
+      <div id="gm-photo-wrap" style="margin-bottom:16px;"></div>
+      <div style="text-align:center;">
+        <div style="font-size:12px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--pink);margin-bottom:6px;">District Governor</div>
+        <div id="gm-district" style="font-size:14px;color:var(--gray-500);"></div>
+      </div>
+    </div>
+    <div class="club-modal-footer">
+      <button class="club-modal-dismiss" onclick="closeGovModal()">Close</button>
+    </div>
+  </div>
+</div>
+
 <!-- OFFICER MODAL -->
 <div class="club-modal-overlay" id="officer-modal-overlay" onclick="closeOfficerModal(event)">
   <div class="club-modal" id="officer-modal">
@@ -2047,12 +2089,12 @@ const CONFIG = {
   const advEl = $('advocacy');
   if(adv.show && advEl){
     advEl.style.display = 'block';
-    advEl.innerHTML = `<div class="advocacy-inner">
-      <div class="advocacy-eyebrow">${adv.eyebrow}</div>
-      <div class="advocacy-theme">${adv.theme}</div>
-      <p class="advocacy-tagline">${adv.tagline}</p>
-      <a class="advocacy-cta" href="${adv.cta.href}">${adv.cta.label} →</a>
-    </div>`;
+    advEl.innerHTML = '<div class="advocacy-inner">'+
+      '<div class="advocacy-eyebrow">'+adv.eyebrow+'</div>'+
+      '<div class="advocacy-theme">'+adv.theme+'</div>'+
+      '<p class="advocacy-tagline">'+adv.tagline+'</p>'+
+      '<a class="advocacy-cta" href="'+adv.cta.href+'">'+adv.cta.label+' →</a>'+
+    '</div>';
   }
 
   /* Hero */
@@ -2061,7 +2103,7 @@ const CONFIG = {
   const h1 = $('hero-h1');
   h1.innerHTML = C.hero.headline.map((line,i) =>
     i === C.hero.headline.length - 1
-      ? `<em>${line}</em>`
+      ? '<em>'+line+'</em>'
       : line + '<br/>'
   ).join('');
   setText('hero-sub', C.hero.subtext);
@@ -2071,7 +2113,7 @@ const CONFIG = {
   /* Impact */
   const ig=$('impact-grid');
   C.stats.forEach(s=>{
-    ig.innerHTML+=`<div class="impact-item"><div class="impact-num">${s.num}</div><div class="impact-lbl">${s.label}</div></div>`;
+    ig.innerHTML+='<div class="impact-item"><div class="impact-num">'+s.num+'</div><div class="impact-lbl">'+s.label+'</div></div>';
   });
 
   /* About */
@@ -2080,7 +2122,7 @@ const CONFIG = {
   setText('about-desc',    C.about.desc);
   const ag=$('about-grid');
   C.about.cards.forEach(c=>{
-    ag.innerHTML+=`<div class="about-card"><div class="about-icon">${c.icon}</div><h3>${c.title}</h3><p>${c.body}</p></div>`;
+    ag.innerHTML+='<div class="about-card"><div class="about-icon">'+c.icon+'</div><h3>'+c.title+'</h3><p>'+c.body+'</p></div>';
   });
 
   /* Governor banner */
@@ -2088,17 +2130,31 @@ const CONFIG = {
   const govEl = $('gov-banner');
   if(govEl){
     const photoHTML = gov.photo
-      ? `<img src="${gov.photo}" alt="${gov.name}" style="width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:center top;" onerror="this.style.display='none';this.parentElement.innerHTML='<span>GA</span>'"  />`
-      : `<span>${gov.name.split(' ').map(w=>w[0]).join('').slice(0,2)}</span>`;
-    govEl.innerHTML = `<div class="gov-banner">
-      <div class="gov-avatar">${photoHTML}</div>
-      <div>
-        <div class="gov-label">Rotary Governor · District 3860</div>
-        <div class="gov-name">${gov.name}</div>
-        <div class="gov-sub">${gov.district}</div>
-      </div>
-      <div class="gov-badge">RY ${C.rotaryYear}</div>
-    </div>`;
+      ? '<img src="'+gov.photo+'" alt="'+gov.name+'" style="width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:center top;"/>'
+      : '<span>'+gov.name.split(' ').map(function(w){return w[0];}).join('').slice(0,2)+'</span>';
+    var gb=document.createElement("div"); gb.className="gov-banner"; gb.style.cursor="pointer"; gb.onclick=openGovModal;
+    var ga=document.createElement("div"); ga.className="gov-avatar";
+    if(gov.photo){
+      var gimg=document.createElement("img");
+      gimg.src=gov.photo; gimg.alt=gov.name;
+      gimg.style.cssText="width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:center top;";
+      gimg.onerror=function(){
+        ga.innerHTML='<span style="font-size:22px;font-weight:700;color:#fff;">DG</span>';
+        this.remove();
+      };
+      ga.appendChild(gimg);
+    } else {
+      ga.innerHTML='<span style="font-size:22px;font-weight:700;color:#fff;">DG</span>';
+    }
+    gb.appendChild(ga);
+    var ginfo=document.createElement("div");
+    ginfo.innerHTML='<div class="gov-label">District Governor · Rotary International District 3860</div>'+
+      '<div class="gov-name">'+gov.name+'</div>'+
+      '<div class="gov-sub">'+gov.district+'</div>';
+    gb.appendChild(ginfo);
+    var gbadge=document.createElement("div"); gbadge.className="gov-badge"; gbadge.textContent="RY "+C.rotaryYear;
+    gb.appendChild(gbadge);
+    govEl.appendChild(gb);
   }
 
   /* Officers */
@@ -2179,22 +2235,44 @@ const CONFIG = {
   /* Future DRRs */
   const fd = $('future-drrs');
   const fdrr = C.officers.futureDRRs;
-  fd.innerHTML = `
-    <div class="section-kicker">${fdrr.eyebrow}</div>
-    <h3 style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--heading-color);margin-top:8px;">${fdrr.title}</h3>
-    <div class="future-drrs-grid">
-      ${fdrr.list.map(f=>`
-        <div class="future-drr-card">
-          ${f.photo
-            ? `<img class="future-drr-photo" src="${f.photo}" alt="${f.name}"/>`
-            : `<div class="future-drr-photo-placeholder">📷</div>`}
-          <div class="future-drr-info">
-            <span class="future-drr-year">${f.year}</span>
-            <div class="future-drr-name">${f.name}</div>
-            <div class="future-drr-club">${f.club}</div>
-          </div>
-        </div>`).join('')}
-    </div>`;
+  fd.innerHTML = '<div class="section-kicker">'+fdrr.eyebrow+'</div>'+
+    '<h3 style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--heading-color);margin-top:8px;">'+fdrr.title+'</h3>'
+    const fGrid = document.createElement('div');
+    fGrid.className = 'future-drrs-grid';
+    fdrr.list.forEach(function(f){
+      const fc = document.createElement('div');
+      fc.className = 'future-drr-card';
+      fc.style.cursor = 'pointer';
+      // Photo
+      if(f.photo){
+        const img = document.createElement('img');
+        img.className = 'future-drr-photo';
+        img.src = f.photo;
+        img.alt = f.name;
+        fc.appendChild(img);
+      } else {
+        const ph = document.createElement('div');
+        ph.className = 'future-drr-photo-placeholder';
+        ph.textContent = '📷';
+        fc.appendChild(ph);
+      }
+      // Info
+      const info = document.createElement('div');
+      info.className = 'future-drr-info';
+      info.innerHTML = '<span class="future-drr-year">'+f.year+'</span>'+
+        '<div class="future-drr-name">'+f.name+'</div>'+
+        '<div class="future-drr-club">'+f.club+'</div>';
+      fc.appendChild(info);
+      // Click → open modal
+      fc.addEventListener('click', function(){
+        openFutureDRRModal(f.name, f.year, f.club, f.photo||'');
+      });
+      fGrid.appendChild(fc);
+    });
+    fd.appendChild(fGrid);
+    fd.innerHTML = '<div class="section-kicker">'+fdrr.eyebrow+'</div>'+
+      '<h3 style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--heading-color);margin-top:8px;">'+fdrr.title+'</h3>'+
+      fGrid.outerHTML;
 
   /* Meet the DRR */
   const drr = C.drr;
@@ -2203,33 +2281,37 @@ const CONFIG = {
   setText('drr-subtitle', drr.subtitle);
   setText('drr-bio',      drr.bionote);
   const dphoto = $('drr-photo-wrap');
-  dphoto.innerHTML = drr.photo
-    ? `<img class="drr-photo" src="${drr.photo}" alt="${drr.title}"/>`
-    : `<div class="drr-photo-placeholder"><span>📷</span><p>Official photo coming soon</p></div>`;
+  if(drr.photo){
+    const dimg = document.createElement('img');
+    dimg.className = 'drr-photo';
+    dimg.src = drr.photo;
+    dimg.alt = drr.title;
+    dphoto.innerHTML = '';
+    dphoto.appendChild(dimg);
+  } else {
+    dphoto.innerHTML = '<div class="drr-photo-placeholder"><span>📷</span><p>Official photo coming soon</p></div>';
+  }
   const dach = $('drr-achievements');
-  (drr.pastPositions||drr.achievements||[]).forEach(a=>{
-    dach.innerHTML += `<div class="drr-achievement"><div class="drr-achievement-dot"></div><span>${a}</span></div>`;
+  (drr.pastPositions||drr.achievements||[]).forEach(function(a){
+    var d=document.createElement("div"); d.className="drr-achievement";
+    d.innerHTML='<div class="drr-achievement-dot"></div><span>'+a+'</span>';
+    dach.appendChild(d);
   });
 
   /* Online Tools — rendered into dedicated slot after secretariat */
   /* Secretariat links */
   const sec = C.resources.secretariat;
   const secEl = $('secretariat-section');
-  secEl.innerHTML = `
-    <div class="section-kicker">${sec.eyebrow}</div>
-    <h3 style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--heading-color);margin:8px 0 4px;">${sec.title}</h3>
-    <p style="font-size:14px;color:var(--gray-500);margin-bottom:0;">Quick access links for club presidents and officers.</p>
-    <div class="secretariat-grid">
-      ${sec.links.map(l=>`
-        <a class="secretariat-card" href="${l.href}" target="_blank" rel="noopener">
-          <div class="secretariat-icon">${l.icon}</div>
-          <div class="secretariat-text">
-            <div class="secretariat-label">${l.label}</div>
-            <div class="secretariat-desc">${l.desc}</div>
-          </div>
-          <div class="secretariat-arrow">↗</div>
-        </a>`).join('')}
-    </div>`;
+  secEl.innerHTML='<div class="section-kicker">'+sec.eyebrow+'</div>'+
+    '<h3 style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--heading-color);margin:8px 0 4px;">'+sec.title+'</h3>'+
+    '<p style="font-size:14px;color:var(--gray-500);margin-bottom:0;">Quick access links for club presidents and officers.</p>'+
+    '<div class="secretariat-grid">'+
+    sec.links.map(function(l){
+      return '<a class="secretariat-card" href="'+l.href+'" target="_blank" rel="noopener">'+
+        '<div class="secretariat-icon">'+l.icon+'</div>'+
+        '<div class="secretariat-text"><div class="secretariat-label">'+l.label+'</div><div class="secretariat-desc">'+l.desc+'</div></div>'+
+        '<div class="secretariat-arrow">↗</div></a>';
+    }).join('')+'</div>';
 
   /* Events */
   setText('events-eyebrow', C.events.eyebrow);
@@ -2237,7 +2319,7 @@ const CONFIG = {
   setText('events-desc',    C.events.desc);
   const el=$('events-list');
   C.events.list.forEach(e=>{
-    el.innerHTML+=`<div class="event-card"><div class="event-date-box"><div class="day">${e.day}</div><div class="mo">${e.month}</div></div><div class="event-body"><h3>${e.title}</h3><p>${e.desc}</p><div class="event-meta"><span class="tag ${e.tag.type}">${e.tag.label}</span><span class="event-loc">${e.location}</span></div></div></div>`;
+    el.innerHTML+='<div class="event-card"><div class="event-date-box"><div class="day">'+e.day+'</div><div class="mo">'+e.month+'</div></div><div class="event-body"><h3>'+e.title+'</h3><p>'+e.desc+'</p><div class="event-meta"><span class="tag '+e.tag.type+'">'+e.tag.label+'</span><span class="event-loc">'+e.location+'</span></div></div></div>';
   });
 
   /* Calendar */
@@ -2252,7 +2334,7 @@ const CONFIG = {
     setText('cal-desc',    cal.desc);
     const calBody = $('cal-body');
     if(cal.type === 'google'){
-      calBody.innerHTML = `<iframe class="calendar-embed" src="${cal.embedUrl}" frameborder="0" scrolling="no" title="Calendar of Activities"></iframe>`;
+      calBody.innerHTML = '<iframe class="calendar-embed" src="'+cal.embedUrl+'" frameborder="0" scrolling="no" title="Calendar of Activities"></iframe>';
     } else {
       calBody.innerHTML = '<div class="calendar-list">'+cal.list.map(function(a){
         return '<div class="cal-item">'+
@@ -2274,9 +2356,9 @@ const CONFIG = {
   const rg=$('resources-grid');
   C.resources.items.forEach(r=>{
     if(r.href){
-      rg.innerHTML+=`<a class="resource-card resource-card-link" href="${r.href}" target="_blank" rel="noopener"><div class="resource-icon">${r.icon}</div><div class="resource-text"><h3>${r.title}</h3><p>${r.desc}</p></div><span class="resource-link-arrow">↗</span></a>`;
+      rg.innerHTML+='<a class="resource-card resource-card-link" href="'+r.href+'" target="_blank" rel="noopener"><div class="resource-icon">'+r.icon+'</div><div class="resource-text"><h3>'+r.title+'</h3><p>'+r.desc+'</p></div><span class="resource-link-arrow">↗</span></a>';
     } else {
-      rg.innerHTML+=`<div class="resource-card"><div class="resource-icon">${r.icon}</div><div class="resource-text"><h3>${r.title}</h3><p>${r.desc}</p></div></div>`;
+      rg.innerHTML+='<div class="resource-card"><div class="resource-icon">'+r.icon+'</div><div class="resource-text"><h3>'+r.title+'</h3><p>'+r.desc+'</p></div></div>';
     }
   });
 
@@ -2299,16 +2381,16 @@ const CONFIG = {
     clubsTabs.appendChild(tab);
     const cards = c.clubs.map((name,ci)=>{
       const esc = name.replace(/'/g,"&#39;");
-      return `<div class="club-card" id="cc_${c.id}_${ci}" onclick="openClubModal('${esc}','${c.label}')">
-        <div class="club-card-dot"></div>
-        <div class="club-card-name">${name}</div>
-        <span class="club-card-icon">↗</span>
-      </div>`;
+      return '<div class="club-card" id="cc_'+c.id+'_'+ci+'" data-council="'+c.label+'" onclick="openClubModal(this)">'+
+        '<div class="club-card-dot"></div>'+
+        '<div class="club-card-name">'+name+'</div>'+
+        '<span class="club-card-icon">↗</span>'+
+      '</div>';
     }).join('');
     const panel = document.createElement('div');
     panel.className = 'clubs-panel'+(i===0?' active':'');
     panel.id = 'clubs-panel-'+c.id;
-    panel.innerHTML = `<div class="clubs-council-header"><div class="clubs-council-name">${c.label}</div><span class="clubs-council-count">${c.clubs.length} clubs</span></div><div class="clubs-grid">${cards}</div>`;
+    panel.innerHTML = '<div class="clubs-council-header"><div class="clubs-council-name">'+c.label+'</div><span class="clubs-council-count">'+c.clubs.length+' clubs</span></div><div class="clubs-grid">'+cards+'</div>';
     clubsPanels.appendChild(panel);
   });
 
@@ -2318,15 +2400,15 @@ const CONFIG = {
   setText('contact-desc',    C.contact.desc);
   const cd=$('contact-details');
   C.contact.details.forEach(d=>{
-    cd.innerHTML+=`<div class="contact-row"><div class="contact-row-icon">${d.icon}</div><div class="contact-row-text"><strong>${d.label}</strong><span>${d.value}</span></div></div>`;
+    cd.innerHTML+='<div class="contact-row"><div class="contact-row-icon">'+d.icon+'</div><div class="contact-row-text"><strong>'+d.label+'</strong><span>'+d.value+'</span></div></div>';
   });
   const cs=$('contact-socials');
   C.contact.socials.forEach(s=>{
-    cs.innerHTML+=`<a class="soc-btn" href="${s.href}" target="_blank" rel="noopener">${s.label}</a>`;
+    cs.innerHTML+='<a class="soc-btn" href="'+s.href+'" target="_blank" rel="noopener">'+s.label+'</a>';
   });
   const ql=$('quick-links');
   C.contact.quickLinks.forEach(l=>{
-    ql.innerHTML+=`<li><a href="${l.href}" ${l.href.startsWith('http')?'target="_blank" rel="noopener"':''}>${l.label}</a></li>`;
+    ql.innerHTML+='<li><a href="'+l.href+'" '+(l.href.startsWith('http')?'target="_blank" rel="noopener"':'')+'>'+l.label+'</a></li>';
   });
 
   /* Footer */
@@ -2335,12 +2417,12 @@ const CONFIG = {
   setText('footer-copy',   C.footer.copy);
   const devEl = $('footer-dev');
   if(devEl && C.footer.devCredit){
-    devEl.innerHTML = `Developed by <a href="${C.footer.devCredit.url}" target="_blank" rel="noopener">${C.footer.devCredit.name}</a>`;
+    devEl.innerHTML = 'Developed by <a href="'+C.footer.devCredit.url+'" target="_blank" rel="noopener">'+C.footer.devCredit.name+'</a>';
   }
   const fc=$('footer-cols');
   C.footer.cols.forEach(col=>{
-    let links=col.links.map(l=>`<a href="${l.href}">${l.label}</a>`).join('');
-    fc.innerHTML+=`<div class="footer-col"><div class="footer-col-title">${col.title}</div>${links}</div>`;
+    let links=col.links.map(function(l){return '<a href="'+l.href+'">'+l.label+'</a>';}).join('');
+    fc.innerHTML+='<div class="footer-col"><div class="footer-col-title">'+col.title+'</div>'+links+'</div>';
   });
 
   /* Mobile menu */
@@ -2377,13 +2459,14 @@ const CONFIG = {
   const annEl = $('announcements');
   if(ann.show && annEl && ann.items.length){
     annEl.style.display='block';
-    const items = ann.items.map(a=>`
-      <div class="announce-item">
-        <div class="announce-dot-${a.type}"></div>
-        <span class="announce-text">${a.text}</span>
-        ${a.link&&a.linkLabel?`<a class="announce-link" href="${a.link}">${a.linkLabel}</a>`:''}
-      </div>`).join('');
-    annEl.innerHTML=`<div class="announce-bar"><div class="announce-inner">${items}</div></div>`;
+    const items = ann.items.map(function(a){
+      return '<div class="announce-item">'+
+        '<div class="announce-dot-'+a.type+'"></div>'+
+        '<span class="announce-text">'+a.text+'</span>'+
+        (a.link&&a.linkLabel?'<a class="announce-link" href="'+a.link+'">'+a.linkLabel+'</a>':'')+
+      '</div>';
+    }).join('');
+    annEl.innerHTML='<div class="announce-bar"><div class="announce-inner">'+items+'</div></div>';
   }
 
   /* District Achievements */
@@ -2396,7 +2479,7 @@ const CONFIG = {
     setText('ach-desc',    achC.desc);
     const ag=$('ach-grid');
     achC.list.forEach(a=>{
-      ag.innerHTML+=`<div class="achievement-card"><div class="achievement-icon">${a.icon}</div><div><div class="achievement-title">${a.title}</div><div class="achievement-desc">${a.desc}</div></div></div>`;
+      ag.innerHTML+='<div class="achievement-card"><div class="achievement-icon">'+a.icon+'</div><div><div class="achievement-title">'+a.title+'</div><div class="achievement-desc">'+a.desc+'</div></div></div>';
     });
   }
 
@@ -2453,7 +2536,7 @@ const CONFIG = {
   revealTargets.forEach(selector=>{
     document.querySelectorAll(selector).forEach((el,i)=>{
       el.classList.add('reveal');
-      if(i>0 && i<=6) el.classList.add(`reveal-delay-${i}`);
+      if(i>0 && i<=6) el.classList.add('reveal-delay-'+i);
     });
   });
 
@@ -2482,7 +2565,9 @@ window.addEventListener('DOMContentLoaded',function(){
 });
 
 /* Map — global scope required for inline SVG event attributes */
-function openClubModal(name, council){
+function openClubModal(el, council){
+  var name = typeof el === 'string' ? el : (el.querySelector('.club-card-name')||{textContent:''}).textContent;
+  if(!council && el && el.getAttribute) council = el.getAttribute('data-council')||'';
   /* If council not passed (from map), get it from active map panel */
   if(!council){
     const pill = document.querySelector('.map-panel-area.show .map-area-pill');
@@ -2490,24 +2575,13 @@ function openClubModal(name, council){
   }
   const C = CONFIG;
   const det = (C.clubs.clubDetails && C.clubs.clubDetails[name]) || null;
-  const ph = v => v
-    ? `<span class="club-detail-value">${v}</span>`
-    : `<span class="club-detail-value placeholder">Coming soon</span>`;
+  const ph = function(v){ return v ? '<span class="club-detail-value">'+v+'</span>' : '<span class="club-detail-value placeholder">Coming soon</span>'; };
   document.getElementById('modal-council').textContent = council;
   document.getElementById('modal-name').textContent = name;
-  document.getElementById('modal-body').innerHTML = `
-    <div class="club-detail-item full">
-      <span class="club-detail-label">Impact-Building President</span>
-      ${ph(det?.president)}
-    </div>
-    <div class="club-detail-item full">
-      <span class="club-detail-label">Club Email</span>
-      ${ph(det?.email)}
-    </div>
-    <div class="club-detail-item full">
-      <span class="club-detail-label">Sponsoring Rotary Club</span>
-      ${ph(det?.sponsoredBy)}
-    </div>`;
+  document.getElementById('modal-body').innerHTML =
+    '<div class="club-detail-item full"><span class="club-detail-label">Impact-Building President</span>'+ph(det?det.president:null)+'</div>'+
+    '<div class="club-detail-item full"><span class="club-detail-label">Club Email</span>'+ph(det?det.email:null)+'</div>'+
+    '<div class="club-detail-item full"><span class="club-detail-label">Sponsoring Rotary Club</span>'+ph(det?det.sponsoredBy:null)+'</div>';
   document.getElementById('club-modal-overlay').classList.add('open');
   document.body.style.overflow='hidden';
 }
@@ -2516,7 +2590,7 @@ function closeClubModal(e){
   document.getElementById('club-modal-overlay').classList.remove('open');
   document.body.style.overflow='';
 }
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeClubModal();closeOfficerModal();}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeClubModal();closeOfficerModal();closeGovModal();closeFutureDRRModal();}});
 /* Search */
 function searchClubs(q){
   const res = document.getElementById('clubs-search-results');
@@ -2572,6 +2646,56 @@ document.addEventListener('click',e=>{
   }
 });
 /* Dark mode */
+function openFutureDRRModal(name,year,club,photo){
+  document.getElementById('fm-year').textContent = year;
+  document.getElementById('fm-name').textContent = name;
+  document.getElementById('fm-club').textContent = club;
+  const wrap = document.getElementById('fm-photo-wrap');
+  if(photo){
+    const img = document.createElement('img');
+    img.className = 'om-photo';
+    img.src = photo;
+    img.alt = name;
+    img.style.objectPosition = 'center top';
+    img.onerror = function(){ this.outerHTML = '<div class="om-avatar">DRR</div>'; };
+    wrap.innerHTML = '';
+    wrap.appendChild(img);
+  } else {
+    wrap.innerHTML = '<div class="om-avatar" style="font-size:14px;">📷</div>';
+  }
+  document.getElementById('fdrr-modal-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeFutureDRRModal(e){
+  if(e && e.target !== document.getElementById('fdrr-modal-overlay')) return;
+  document.getElementById('fdrr-modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function openGovModal(){
+  const gov = CONFIG.officers.governor;
+  document.getElementById('gm-name').textContent = gov.name;
+  document.getElementById('gm-district').textContent = gov.district;
+  const wrap = document.getElementById('gm-photo-wrap');
+  if(gov.photo){
+    const img = document.createElement('img');
+    img.className = 'om-photo';
+    img.src = gov.photo;
+    img.alt = gov.name;
+    img.style.objectPosition = 'center top';
+    img.onerror = function(){ this.outerHTML = '<div class="om-avatar">GA</div>'; };
+    wrap.innerHTML = '';
+    wrap.appendChild(img);
+  } else {
+    wrap.innerHTML = '<div class="om-avatar">GA</div>';
+  }
+  document.getElementById('gov-modal-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeGovModal(e){
+  if(e && e.target !== document.getElementById('gov-modal-overlay')) return;
+  document.getElementById('gov-modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
 function openOfficerModal(el){
   const name     = el.getAttribute('data-name');
   const role     = el.getAttribute('data-role');
