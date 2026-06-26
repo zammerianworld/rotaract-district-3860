@@ -329,6 +329,8 @@ body.dark-mode .cal-day-num{color:var(--dm-muted);}
   .membership-btn{width:100%;justify-content:center;}
 }
 body.dark-mode .membership-card{background:linear-gradient(135deg,#1a0510 0%,#2d0920 100%);}
+body.dark-mode .membership-title{color:#fff;}
+body.dark-mode .membership-sub{color:rgba(255,255,255,.6);}
 
 /* ── CLUBS ── */
 #clubs{background:var(--white);padding:96px 0;}
@@ -677,6 +679,21 @@ body.dark-mode #calendar{background:var(--dm-bg);}
 body.dark-mode .cal-item{background:var(--dm-surface2);border-color:var(--dm-border);}
 body.dark-mode .cal-title{color:var(--dm-text);}
 body.dark-mode .cal-loc{color:var(--dm-muted);}
+/* Calendar grid dark mode */
+body.dark-mode .cal-month-tab{background:var(--dm-surface2);border-color:var(--dm-border);color:var(--dm-muted);}
+body.dark-mode .cal-month-tab:hover{border-color:var(--pink);color:var(--pink);}
+body.dark-mode .cal-month-tab.active{background:var(--pink);border-color:var(--pink);color:#fff;}
+body.dark-mode .cal-month-tab.has-events{border-color:rgba(212,19,103,.4);}
+body.dark-mode #cal-body *[style*="font-family"]{color:var(--dm-text) !important;}
+body.dark-mode .cal-week-day{color:var(--dm-muted);}
+body.dark-mode .cal-month-grid .cal-day-cell{background:var(--dm-surface2);border-color:var(--dm-border);}
+body.dark-mode .cal-day-cell.other-month{background:var(--dm-bg);opacity:.6;}
+body.dark-mode .cal-day-cell.today{background:var(--dm-faint);border-color:var(--pink);}
+body.dark-mode .cal-day-num{color:var(--dm-muted);}
+body.dark-mode .cal-day-cell.today .cal-day-num{color:var(--pink);}
+body.dark-mode .cal-event-pill{background:var(--pink);color:#fff;}
+body.dark-mode .cal-event-pill.tba{background:var(--dm-faint);color:var(--dm-muted);}
+body.dark-mode [style*="font-family:var(--font-display)"]{color:var(--dm-text);}
 
 /* Resources */
 body.dark-mode #resources{background:var(--dm-surface);}
@@ -843,6 +860,9 @@ body.dark-mode #dark-toggle{background:var(--pink);color:#fff;}
   .theme-song-visual{display:none;}
 }
 body.dark-mode #theme-song{background:linear-gradient(135deg,#1a0510 0%,#2d0920 60%,#1f0515 100%);}
+body.dark-mode .theme-song-title{color:#fff;}
+body.dark-mode .theme-song-sub{color:rgba(255,255,255,.5);}
+body.dark-mode .theme-song-desc{color:rgba(255,255,255,.65);}
 
 /* ── SCROLL ANIMATIONS ── */
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease;}
