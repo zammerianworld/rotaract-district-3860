@@ -2118,7 +2118,7 @@ const CONFIG = {
   }
 
   /* Hero */
-  setText('hero-tagline',   'Rotary Year ' + C.rotaryYear);
+  // hero-tagline removed
   setText('hero-eyebrow-el', C.hero.eyebrow);
   const h1 = $('hero-h1');
   h1.innerHTML = C.hero.headline.map((line,i) =>
@@ -2355,86 +2355,96 @@ const CONFIG = {
     if(cal.type === 'google'){
       calBody.innerHTML = '<iframe class="calendar-embed" src="'+cal.embedUrl+'" frameborder="0" scrolling="no" title="Calendar of Activities"></iframe>';
     } else {
-      // Build month tabs + grid calendar
+      // Build month tabs + grid calendar — RY order: July 2026 → June 2027
     var MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
     var MONTH_ABBR  = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+    // RY months: Jul(6), Aug(7), Sep(8), Oct(9), Nov(10), Dec(11), Jan(0), Feb(1), Mar(2), Apr(3), May(4), Jun(5)
+    var RY_MONTHS = [6,7,8,9,10,11,0,1,2,3,4,5];
+    var RY_YEARS  = [2026,2026,2026,2026,2026,2026,2027,2027,2027,2027,2027,2027];
     var today = new Date();
-    var curM = today.getMonth(); // 0-indexed
+    var curM = today.getMonth();
     var curY = today.getFullYear();
-    // Map events to month index
-    var evByMonth = {};
+    // Find which RY slot is current month
+    var activeSlot = 0;
+    for(var i=0;i<12;i++){
+      if(RY_MONTHS[i]===curM && RY_YEARS[i]===curY){ activeSlot=i; break; }
+    }
+    // Map events to RY slot
+    var evBySlot = {};
     cal.list.forEach(function(a){
       var mi = MONTH_ABBR.indexOf(a.month);
-      if(mi === -1) mi = curM;
-      if(!evByMonth[mi]) evByMonth[mi] = [];
-      evByMonth[mi].push(a);
+      if(mi===-1) return;
+      for(var i=0;i<12;i++){
+        if(RY_MONTHS[i]===mi){ evBySlot[i]=evBySlot[i]||[]; evBySlot[i].push(a); break; }
+      }
     });
-    // Build tabs — show all 12 months, highlight those with events
+    // Build tabs
     var tabsHtml = '<div class="cal-month-tabs">';
-    for(var m=0;m<12;m++){
-      var hasEv = evByMonth[m] && evByMonth[m].length > 0;
-      tabsHtml += '<div class="cal-month-tab'+(m===curM?' active':'')+(hasEv?' has-events':'')+'" onclick="calSelectMonth('+m+','+curY+')" id="cal-tab-'+m+'">'+MONTH_NAMES[m]+'</div>';
+    for(var i=0;i<12;i++){
+      var m=RY_MONTHS[i], y=RY_YEARS[i];
+      var hasEv = evBySlot[i] && evBySlot[i].length>0;
+                        var label = MONTH_NAMES[m].substring(0,3)+(y===2026?' \'26':' \'27');
+      
+      tabsHtml += '<div class="cal-month-tab'+(i===activeSlot?' active':'')+(hasEv?' has-events':'')+
+        '" onclick="calSelectSlot('+i+')" id="cal-tab-'+i+'">'+label+'</div>';
     }
     tabsHtml += '</div>';
     // Build panels
     var panelsHtml = '';
-    for(var m=0;m<12;m++){
-      panelsHtml += '<div class="cal-month-panel'+(m===curM?' active':'')+'" id="cal-panel-'+m+'">';
-      // Week header
+    for(var i=0;i<12;i++){
+      var m=RY_MONTHS[i], y=RY_YEARS[i];
+      panelsHtml += '<div class="cal-month-panel'+(i===activeSlot?' active':'')+'" id="cal-panel-'+i+'">';
+      panelsHtml += '<div style="font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--heading-color);margin-bottom:12px;">'+MONTH_NAMES[m]+' '+y+'</div>';
       panelsHtml += '<div class="cal-week-header">';
       ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].forEach(function(d){ panelsHtml += '<div class="cal-week-day">'+d+'</div>'; });
       panelsHtml += '</div>';
-      // Day grid
-      var firstDay = new Date(curY, m, 1).getDay();
-      var daysInMonth = new Date(curY, m+1, 0).getDate();
-      var daysInPrev = new Date(curY, m, 0).getDate();
+      var firstDay = new Date(y, m, 1).getDay();
+      var daysInMonth = new Date(y, m+1, 0).getDate();
+      var daysInPrev = new Date(y, m, 0).getDate();
+      var events = evBySlot[i] || [];
       panelsHtml += '<div class="cal-month-grid">';
-      // Leading days
       for(var d=firstDay-1;d>=0;d--){
         panelsHtml += '<div class="cal-day-cell other-month"><div class="cal-day-num">'+(daysInPrev-d)+'</div></div>';
       }
-      // Days of month
-      var events = evByMonth[m] || [];
       for(var d=1;d<=daysInMonth;d++){
-        var isToday = (d===today.getDate() && m===today.getMonth() && curY===today.getFullYear());
+        var isToday=(d===today.getDate()&&m===today.getMonth()&&y===today.getFullYear());
         panelsHtml += '<div class="cal-day-cell'+(isToday?' today':'')+'"><div class="cal-day-num">'+d+'</div>';
         events.forEach(function(a){
-          var aDay = parseInt(a.date) || 0;
-          if(aDay===d){
-            var isTba = a.date==='TBA';
-            panelsHtml += '<div class="cal-event-pill'+(isTba?' tba':'')+'">'+a.title+'</div>';
-          }
+          var aDay=parseInt(a.date)||0;
+          if(aDay===d) panelsHtml += '<div class="cal-event-pill">'+a.title+'</div>';
         });
-        // TBA events show on day 1
-        if(d===1){
-          events.forEach(function(a){
-            if(a.date==='TBA'){
-              panelsHtml += '<div class="cal-event-pill tba">TBA: '+a.title+'</div>';
-            }
-          });
-        }
+        if(d===1){ events.forEach(function(a){ if(a.date==='TBA') panelsHtml += '<div class="cal-event-pill tba">TBA: '+a.title+'</div>'; }); }
         panelsHtml += '</div>';
       }
-      // Trailing days
-      var total = firstDay + daysInMonth;
-      var trailing = total % 7 === 0 ? 0 : 7 - (total % 7);
-      for(var d=1;d<=trailing;d++){
-        panelsHtml += '<div class="cal-day-cell other-month"><div class="cal-day-num">'+d+'</div></div>';
-      }
-      panelsHtml += '</div>'; // cal-month-grid
-      panelsHtml += '</div>'; // cal-month-panel
+      var total=firstDay+daysInMonth;
+      var trailing=total%7===0?0:7-(total%7);
+      for(var d=1;d<=trailing;d++){ panelsHtml += '<div class="cal-day-cell other-month"><div class="cal-day-num">'+d+'</div></div>'; }
+      panelsHtml += '</div></div>';
     }
     calBody.innerHTML = tabsHtml + panelsHtml;
     }
+  }
+
+  /* District Achievements */
+  const ach = C.achievements;
+  const achSection = $('district-achievements');
+  if(ach && ach.show && achSection){
+    achSection.style.display = '';
+    setText('ach-eyebrow', ach.eyebrow);
+    setText('ach-title',   ach.title);
+    setText('ach-desc',    ach.desc);
+    const ag2 = $('ach-grid');
+    ach.list.forEach(a=>{
+      ag2.innerHTML+='<div class="achievement-card"><div class="achievement-icon">'+a.icon+'</div><div><div class="achievement-title">'+a.title+'</div><div class="achievement-desc">'+a.desc+'</div></div></div>';
+    });
   }
 
   /* Resources */
   setText('resources-eyebrow', C.resources.eyebrow);
   setText('resources-title',   C.resources.title);
   setText('resources-desc',    C.resources.desc);
-  const rb=$('resources-btn');
-  rb.textContent=C.resources.driveBtnLabel + ' ↗';
-  rb.href=C.resources.driveLink;
+  const rb = $('resources-btn');
+  if(rb){ rb.href = C.resources.driveLink; rb.textContent = C.resources.driveBtnLabel+' ↗'; }
   const rg=$('resources-grid');
   C.resources.items.forEach(r=>{
     if(r.href){
@@ -2450,28 +2460,23 @@ const CONFIG = {
   setText('clubs-desc',    C.clubs.desc);
   const clubsTabs   = $('clubs-tabs');
   const clubsPanels = $('clubs-panels');
-  C.clubs.councils.forEach((c,i)=>{
+  C.clubs.councils.forEach((c,ci)=>{
     const tab = document.createElement('div');
-    tab.className = 'clubs-tab'+(i===0?' active':'');
-    tab.textContent = c.label+' ('+c.clubs.length+')';
-    tab.onclick = ()=>{
-      document.querySelectorAll('.clubs-tab').forEach(t=>t.classList.remove('active'));
-      document.querySelectorAll('.clubs-panel').forEach(p=>p.classList.remove('active'));
-      tab.classList.add('active');
-      $('clubs-panel-'+c.id).classList.add('active');
-    };
+    tab.className = 'clubs-tab'+(ci===0?' active':'');
+    tab.textContent = c.label;
+    tab.onclick = function(){ selectClubsTab(c.id); };
     clubsTabs.appendChild(tab);
-    const cards = c.clubs.map((name,ci)=>{
-      const esc = name.replace(/'/g,"&#39;");
-      return '<div class="club-card" id="cc_'+c.id+'_'+ci+'" data-council="'+c.label+'" onclick="openClubModal(this)">'+
+    const panel = document.createElement('div');
+    panel.className = 'clubs-panel'+(ci===0?' active':'');
+    panel.id = 'panel_'+c.id;
+    const cards = c.clubs.map((name,i)=>{
+      var esc = name.replace(/'/g,"\\'");
+      return '<div class="club-card" data-council="'+c.label+'" onclick="openClubModal(this)">'+
         '<div class="club-card-dot"></div>'+
         '<div class="club-card-name">'+name+'</div>'+
         '<span class="club-card-icon">↗</span>'+
-      '</div>';
+        '</div>';
     }).join('');
-    const panel = document.createElement('div');
-    panel.className = 'clubs-panel'+(i===0?' active':'');
-    panel.id = 'clubs-panel-'+c.id;
     panel.innerHTML = '<div class="clubs-council-header"><div class="clubs-council-name">'+c.label+'</div><span class="clubs-council-count">'+c.clubs.length+' clubs</span></div><div class="clubs-grid">'+cards+'</div>';
     clubsPanels.appendChild(panel);
   });
@@ -2494,31 +2499,16 @@ const CONFIG = {
   });
 
   /* Footer */
-  setText('footer-name',   C.siteName);
-  setText('footer-region', C.region);
-  setText('footer-copy',   C.footer.copy);
-  const devEl = $('footer-dev');
-  if(devEl && C.footer.devCredit){
-    devEl.innerHTML = 'Developed by <a href="'+C.footer.devCredit.url+'" target="_blank" rel="noopener">'+C.footer.devCredit.name+'</a>';
-  }
+  setText('footer-name', C.siteName);
   const fc=$('footer-cols');
   C.footer.cols.forEach(col=>{
     let links=col.links.map(function(l){return '<a href="'+l.href+'">'+l.label+'</a>';}).join('');
     fc.innerHTML+='<div class="footer-col"><div class="footer-col-title">'+col.title+'</div>'+links+'</div>';
   });
+  setText('footer-copy', '© '+new Date().getFullYear()+' Rotaract Clubs of Rotary International District 3860. All rights reserved.');
 
-  /* Mobile menu */
-  const ham=$('ham'), menu=$('mobile-menu');
-  ham.addEventListener('click',()=>{
-    const open=menu.classList.toggle('open');
-    ham.setAttribute('aria-expanded',open);
-    ham.innerHTML=open?'&#10005;':'&#9776;';
-  });
-  menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
-    menu.classList.remove('open');
-    ham.setAttribute('aria-expanded',false);
-    ham.innerHTML='&#9776;';
-  }));
+  /* Dev credit */
+  const devEl=$('credit-bar');
 
   /* Theme Song */
   const ts = C.themeSong;
@@ -2539,8 +2529,8 @@ const CONFIG = {
   /* Announcements */
   const ann = C.announcements;
   const annEl = $('announcements');
-  if(ann.show && annEl && ann.items.length){
-    annEl.style.display='block';
+  if(ann.show && annEl){
+    annEl.style.display = '';
     const items = ann.items.map(function(a){
       return '<div class="announce-item">'+
         '<div class="announce-dot-'+a.type+'"></div>'+
@@ -2551,25 +2541,11 @@ const CONFIG = {
     annEl.innerHTML='<div class="announce-bar"><div class="announce-inner">'+items+'</div></div>';
   }
 
-  /* District Achievements */
-  const achC = C.achievements;
-  const achEl = $('district-achievements');
-  if(achC.show && achEl){
-    achEl.style.display='';
-    setText('ach-eyebrow', achC.eyebrow);
-    setText('ach-title',   achC.title);
-    setText('ach-desc',    achC.desc);
-    const ag=$('ach-grid');
-    achC.list.forEach(a=>{
-      ag.innerHTML+='<div class="achievement-card"><div class="achievement-icon">'+a.icon+'</div><div><div class="achievement-title">'+a.title+'</div><div class="achievement-desc">'+a.desc+'</div></div></div>';
-    });
-  }
-
   /* Back to top */
   const btt=$('btt');
   window.addEventListener('scroll',()=>btt.classList.toggle('show',scrollY>500),{passive:true});
 
-  /* Nav scroll spy — highlight active section */
+  /* Nav scroll spy */
   const navSections = ['about','drr','officers','events','calendar','clubs','map','resources','contact'];
   const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
   function updateActiveNav(){
@@ -2588,78 +2564,110 @@ const CONFIG = {
   window.addEventListener('scroll', updateActiveNav, {passive:true});
   updateActiveNav();
 
-  /* Scroll reveal — add .reveal to sections and key elements */
-  const revealTargets = [
-    /* whole sections */
-    '#impact',
-    /* headings + desc per section */
-    '#about .section-kicker','#about .section-heading','#about .section-sub',
-    '#drr .section-kicker','#drr .section-heading',
-    '#officers .section-kicker','#officers .section-heading',
-    '#events .section-kicker','#events .section-heading',
-    '#resources .section-kicker','#resources .section-heading',
-    '#map .section-kicker','#map .section-heading','#map .section-sub',
-    '#clubs .section-kicker','#clubs .section-heading',
-    '#contact .section-kicker','#contact .section-heading',
-    /* cards and grids */
-    '#about-grid .about-card',
-    '#officers .gov-banner',
-    '#officers-grid .officer-card',
-    '#officers .future-drrs',
-    '.drr-photo-wrap','.drr-content',
-    '#events-list .event-card',
-    '#resources-grid .resource-card',
-    '#secretariat-section .secretariat-card',
-    '#clubs-placeholder',
-    '.contact-card',
-    '.map-layout',
-  ];
-
-  revealTargets.forEach(selector=>{
-    document.querySelectorAll(selector).forEach((el,i)=>{
-      el.classList.add('reveal');
-      if(i>0 && i<=6) el.classList.add('reveal-delay-'+i);
-    });
-  });
-
-  const observer = new IntersectionObserver((entries)=>{
-    entries.forEach(entry=>{
-      if(entry.isIntersecting){
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  },{threshold:0.12,rootMargin:'0px 0px -40px 0px'});
-
-  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
-
   /* Officer card click delegation */
   document.addEventListener('click', function(e){
     const card = e.target.closest('.officer-card');
     if(card && card.getAttribute('data-name')) openOfficerModal(card);
   });
 
+  /* Scroll reveal */
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  },{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+  document.querySelectorAll('.reveal').forEach((el,i)=>{
+    if(i>0 && i<=6) el.classList.add('reveal-delay-'+i);
+  });
+
+  /* Page fade-in */
+  window.addEventListener('DOMContentLoaded',function(){
+    document.body.classList.add('loaded');
+  });
+  document.body.classList.add('loaded');
+
+  /* Mobile menu */
+  const ham=$('ham'), menu=$('mobile-me' + 'nu');
+  if(ham && menu){
+    ham.onclick = ()=>{
+      const open = menu.classList.toggle('open');
+      ham.setAttribute('aria-expanded', open);
+    };
+    menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>menu.classList.remove('open')));
+  }
+
+  /* ESC key */
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeClubModal();closeOfficerModal();closeGovModal();closeFutureDRRModal();}});
+
 })();
 
-/* Page fade-in */
-window.addEventListener('DOMContentLoaded',function(){
-  document.body.classList.add('loaded');
-});
-
-/* Map — global scope required for inline SVG event attributes */
-function openClubModal(el, council){
-  var name = typeof el === 'string' ? el : (el.querySelector('.club-card-name')||{textContent:''}).textContent;
-  if(!council && el && el.getAttribute) council = el.getAttribute('data-council')||'';
-  /* If council not passed (from map), get it from active map panel */
-  if(!council){
-    const pill = document.querySelector('.map-panel-area.show .map-area-pill');
-    council = pill ? pill.textContent : '';
+/* Map */
+function councilPick(id, region){
+  document.querySelectorAll('.map-region').forEach(r=>r.classList.remove('active','dimmed'));
+  const rg = document.getElementById('rg_'+region);
+  if(rg){
+    rg.classList.add('active');
+    document.querySelectorAll('.map-region').forEach(r=>{ if(r!==rg) r.classList.add('dimmed'); });
   }
-  const C = CONFIG;
-  const det = (C.clubs.clubDetails && C.clubs.clubDetails[name]) || null;
-  const ph = function(v){ return v ? '<span class="club-detail-value">'+v+'</span>' : '<span class="club-detail-value placeholder">Coming soon</span>'; };
+  document.querySelectorAll('.council-pin').forEach(p=>p.classList.remove('active'));
+  const pin = document.getElementById('pin_'+id);
+  if(pin) pin.classList.add('active');
+  document.querySelectorAll('.map-panel-area').forEach(p=>p.classList.remove('show'));
+  const panel = document.getElementById('mp_'+id);
+  if(panel) panel.classList.add('show');
+  document.getElementById('map-idle').style.display='none';
+  document.getElementById('map-reset').classList.add('show');
+  document.querySelectorAll('.mleg-item').forEach(l=>l.classList.remove('active'));
+  const leg = document.getElementById('mleg_'+id);
+  if(leg) leg.classList.add('active');
+}
+function mapReset(){
+  document.querySelectorAll('.map-region').forEach(r=>r.classList.remove('active','dimmed'));
+  document.querySelectorAll('.council-pin').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.map-panel-area').forEach(p=>p.classList.remove('show'));
+  document.querySelectorAll('.mleg-item').forEach(l=>l.classList.remove('active'));
+  document.getElementById('map-idle').style.display='';
+  document.getElementById('map-reset').classList.remove('show');
+}
+function mapTip(e,label){
+  const tip=document.getElementById('maptip');
+  tip.textContent=label; tip.style.opacity='1';
+  const rect=e.currentTarget.closest('svg').getBoundingClientRect();
+  const cx=parseFloat(e.currentTarget.querySelector('circle').getAttribute('cx'));
+  const cy=parseFloat(e.currentTarget.querySelector('circle').getAttribute('cy'));
+  const vb=e.currentTarget.closest('svg').viewBox.baseVal;
+  const scaleX=rect.width/vb.width, scaleY=rect.height/vb.height;
+  tip.style.left=((cx-vb.x)*scaleX)+'px';
+  tip.style.top=((cy-vb.y)*scaleY-36)+'px';
+}
+function mapUntip(){ document.getElementById('maptip').style.opacity='0'; }
+
+function selectClubsTab(id){
+  document.querySelectorAll('.clubs-tab').forEach((t,i)=>{
+    const panel = document.querySelectorAll('.clubs-panel')[i];
+    const active = t.textContent === document.querySelector('#panel_'+id)?.previousElementSibling?.textContent ||
+      document.getElementById('panel_'+id) === panel;
+    t.classList.toggle('active', active);
+    if(panel) panel.classList.toggle('active', active);
+  });
+  const target = document.getElementById('panel_'+id);
+  if(target){
+    document.querySelectorAll('.clubs-panel').forEach(p=>p.classList.remove('active'));
+    document.querySelectorAll('.clubs-tab').forEach(t=>t.classList.remove('active'));
+    target.classList.add('active');
+    const tabs = document.querySelectorAll('.clubs-tab');
+    const panels = document.querySelectorAll('.clubs-panel');
+    panels.forEach((p,i)=>{ if(p===target && tabs[i]) tabs[i].classList.add('active'); });
+  }
+}
+
+function openClubModal(el){
+  const name = el.querySelector('.club-card-name').textContent;
+  const council = el.getAttribute('data-council')||'';
   document.getElementById('modal-council').textContent = council;
   document.getElementById('modal-name').textContent = name;
+  const det = CONFIG.clubs.clubDetails[name];
+  const ph = function(v){ return v ? '<span class="club-detail-value">'+v+'</span>' : '<span class="club-detail-value placeholder">Coming soon</span>'; };
   document.getElementById('modal-body').innerHTML =
     '<div class="club-detail-item full"><span class="club-detail-label">Impact-Building President</span>'+ph(det?det.president:null)+'</div>'+
     '<div class="club-detail-item full"><span class="club-detail-label">Club Email</span>'+ph(det?det.email:null)+'</div>'+
@@ -2672,34 +2680,18 @@ function closeClubModal(e){
   document.getElementById('club-modal-overlay').classList.remove('open');
   document.body.style.overflow='';
 }
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeClubModal();closeOfficerModal();closeGovModal();closeFutureDRRModal();}});
-/* Search */
+
 function searchClubs(q){
-  const res = document.getElementById('clubs-search-results');
-  const tabsEl = document.getElementById('clubs-tabs');
-  const panelsEl = document.getElementById('clubs-panels');
-  if(!res) return;
-  q = (q||'').trim().toLowerCase();
-  if(!q){
-    res.style.display='none';
-    if(tabsEl) tabsEl.style.display='';
-    if(panelsEl) panelsEl.style.display='';
-    return;
-  }
-  if(tabsEl) tabsEl.style.display='none';
-  if(panelsEl) panelsEl.style.display='none';
-  res.style.display='block';
+  const res=document.getElementById('clubs-search-results');
+  if(!q.trim()){res.style.display='none';return;}
   const matches=[];
   CONFIG.clubs.councils.forEach(c=>{
-    c.clubs.forEach(function(name){
-      if(name.toLowerCase().indexOf(q)!==-1) matches.push({name:name,council:c.label,id:c.id});
+    c.clubs.forEach(name=>{
+      if(name.toLowerCase().includes(q.toLowerCase())) matches.push({name,council:c.label,id:c.id});
     });
   });
-  if(!matches.length){
-    res.innerHTML='<div class="clubs-search-empty">No clubs found for “'+q+'”</div>';
-    return;
-  }
-  res.innerHTML = matches.map(function(m){
+  if(!matches.length){res.innerHTML='<div class="clubs-search-empty">No clubs found</div>';res.style.display='block';return;}
+  res.innerHTML = matches.slice(0,8).map(function(m){
     var safeName = m.name.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
     var safeCouncil = m.council.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
     return '<div class="clubs-search-item" data-name="'+safeName+'" data-id="'+m.id+'" data-council="'+safeCouncil+'" onclick="handleSearchClick(this)">'+
@@ -2708,30 +2700,47 @@ function searchClubs(q){
       '<span class="clubs-search-council">'+m.council+'</span>'+
       '</div>';
   }).join('');
+  res.style.display='block';
 }
 function handleSearchClick(el){
-  var name = el.getAttribute('data-name');
-  var id = el.getAttribute('data-id');
-  var council = el.getAttribute('data-council');
+  const name=el.getAttribute('data-name');
+  const id=el.getAttribute('data-id');
+  const council=el.getAttribute('data-council');
+  document.getElementById('clubs-search-results').style.display='none';
+  document.getElementById('clubs-search').value='';
   selectClubsTab(id);
-  var inp = document.getElementById('clubs-search');
-  if(inp){ inp.value=''; searchClubs(''); }
-  var res = document.getElementById('clubs-search-results');
-  if(res){ res.style.display='none'; }
-  setTimeout(function(){ openClubModal(name,council); },150);
+  setTimeout(()=>{
+    const card = Array.from(document.querySelectorAll('.club-card-name')).find(n=>n.textContent===name);
+    if(card){
+      const cardEl=card.closest('.club-card');
+      cardEl.classList.add('active');
+      cardEl.scrollIntoView({behavior:'smooth',block:'center'});
+      openClubModal(cardEl);
+    }
+  },100);
 }
-/* Close search on outside click */
 document.addEventListener('click',e=>{
-  if(!e.target.closest('.clubs-search-wrap')){
-    const res=$('clubs-search-results');
-    if(res) res.style.display='none';
+  if(!e.target.closest('.clubs-search-wrap')) document.getElementById('clubs-search-results').style.display='none';
+});
+document.addEventListener('keydown',e=>{
+  if(e.key==='/'){
+    const search=document.getElementById('clubs-search');
+    if(document.activeElement!==search){e.preventDefault();search.focus();}
   }
 });
-/* Dark mode */
-function calSelectMonth(m,y){
-  document.querySelectorAll('.cal-month-tab').forEach(function(t,i){ t.classList.toggle('active', i===m); });
-  document.querySelectorAll('.cal-month-panel').forEach(function(p,i){ p.classList.toggle('active', i===m); });
+
+function calSelectSlot(slot){
+  document.querySelectorAll('.cal-month-tab').forEach(function(t,i){ t.classList.toggle('active', i===slot); });
+  document.querySelectorAll('.cal-month-panel').forEach(function(p,i){ p.classList.toggle('active', i===slot); });
 }
+
+function toggleDark(){
+  const dark=document.body.classList.toggle('dark-mode');
+  document.getElementById('dark-toggle').textContent=dark?'☀️':'🌙';
+  localStorage.setItem('theme',dark?'dark':'light');
+}
+if(localStorage.getItem('theme')==='dark'){ document.body.classList.add('dark-mode'); document.getElementById('dark-toggle').textContent='☀️'; }
+
 function openFutureDRRModal(name,year,club,photo){
   document.getElementById('fm-year').textContent = year;
   document.getElementById('fm-name').textContent = name;
@@ -2739,13 +2748,10 @@ function openFutureDRRModal(name,year,club,photo){
   const wrap = document.getElementById('fm-photo-wrap');
   if(photo){
     const img = document.createElement('img');
-    img.className = 'om-photo';
-    img.src = photo;
-    img.alt = name;
+    img.className = 'om-photo'; img.src = photo; img.alt = name;
     img.style.objectPosition = 'center top';
-    img.onerror = function(){ this.outerHTML = '<div class="om-avatar">DRR</div>'; };
-    wrap.innerHTML = '';
-    wrap.appendChild(img);
+    img.onerror = function(){ this.outerHTML = '<div class="om-avatar">📷</div>'; };
+    wrap.innerHTML = ''; wrap.appendChild(img);
   } else {
     wrap.innerHTML = '<div class="om-avatar" style="font-size:14px;">📷</div>';
   }
@@ -2757,6 +2763,7 @@ function closeFutureDRRModal(e){
   document.getElementById('fdrr-modal-overlay').classList.remove('open');
   document.body.style.overflow = '';
 }
+
 function openGovModal(){
   const gov = CONFIG.officers.governor;
   document.getElementById('gm-name').textContent = gov.name;
@@ -2764,13 +2771,10 @@ function openGovModal(){
   const wrap = document.getElementById('gm-photo-wrap');
   if(gov.photo){
     const img = document.createElement('img');
-    img.className = 'om-photo';
-    img.src = gov.photo;
-    img.alt = gov.name;
+    img.className = 'om-photo'; img.src = gov.photo; img.alt = gov.name;
     img.style.objectPosition = 'center top';
     img.onerror = function(){ this.outerHTML = '<div class="om-avatar">GA</div>'; };
-    wrap.innerHTML = '';
-    wrap.appendChild(img);
+    wrap.innerHTML = ''; wrap.appendChild(img);
   } else {
     wrap.innerHTML = '<div class="om-avatar">GA</div>';
   }
@@ -2782,6 +2786,7 @@ function closeGovModal(e){
   document.getElementById('gov-modal-overlay').classList.remove('open');
   document.body.style.overflow = '';
 }
+
 function openOfficerModal(el){
   const name     = el.getAttribute('data-name');
   const role     = el.getAttribute('data-role');
@@ -2797,13 +2802,10 @@ function openOfficerModal(el){
   const wrap = document.getElementById('om-photo-wrap');
   if(photo){
     const img = document.createElement('img');
-    img.className = 'om-photo';
-    img.src = photo;
-    img.alt = name;
+    img.className = 'om-photo'; img.src = photo; img.alt = name;
     img.style.objectPosition = photoPos;
     img.onerror = function(){ this.outerHTML = '<div class="om-avatar">'+initials+'</div>'; };
-    wrap.innerHTML = '';
-    wrap.appendChild(img);
+    wrap.innerHTML = ''; wrap.appendChild(img);
   } else {
     wrap.innerHTML = '<div class="om-avatar">'+initials+'</div>';
   }
@@ -2811,79 +2813,9 @@ function openOfficerModal(el){
   document.body.style.overflow = 'hidden';
 }
 function closeOfficerModal(e){
-  if(e && e.target!==document.getElementById('officer-modal-overlay')) return;
+  if(e && e.target !== document.getElementById('officer-modal-overlay')) return;
   document.getElementById('officer-modal-overlay').classList.remove('open');
-  document.body.style.overflow='';
-}
-function toggleDark(){
-  const isDark = document.body.classList.toggle('dark-mode');
-  $('dark-toggle').textContent = isDark ? '☀️' : '🌙';
-  try{ localStorage.setItem('rotaract-dark', isDark?'1':'0'); }catch(e){}
-}
-(function initDark(){
-  try{ if(localStorage.getItem('rotaract-dark')==='1'){ document.body.classList.add('dark-mode'); const t=$('dark-toggle'); if(t) t.textContent='☀️'; }}catch(e){}
-})();
-
-function selectClubsTab(councilId){
-  const tabs   = document.querySelectorAll('.clubs-tab');
-  const panels = document.querySelectorAll('.clubs-panel');
-  panels.forEach(p=>p.classList.remove('active'));
-  tabs.forEach(t=>t.classList.remove('active'));
-  const targetPanel = document.getElementById('clubs-panel-'+councilId);
-  if(targetPanel){
-    targetPanel.classList.add('active');
-    const idx = Array.from(panels).indexOf(targetPanel);
-    if(idx>=0 && tabs[idx]) tabs[idx].classList.add('active');
-  }
-}
-
-const MAP_REGIONS=["Western_Visayas", "Central_Visayas", "Eastern_Visayas", "Davao", "SOCCSKSARGEN", "Caraga"];
-const COUNCIL_IDS=["bohol", "cebu", "davao", "tagum", "leyte", "negros", "samar", "gensan", "agusan_norte", "agusan_sur", "surigao_norte", "koronadal"];
-const COUNCIL_TO_REGION={"bohol": "Central_Visayas", "cebu": "Central_Visayas", "davao": "Davao", "tagum": "Davao", "leyte": "Eastern_Visayas", "negros": "Western_Visayas", "samar": "Eastern_Visayas", "gensan": "SOCCSKSARGEN", "agusan_norte": "Caraga", "agusan_sur": "Caraga", "surigao_norte": "Caraga", "koronadal": "SOCCSKSARGEN"};
-let mapCur=null;
-function mapTip(e,name){
-  const t=document.getElementById('maptip');
-  const r=document.getElementById('mapwrap').getBoundingClientRect();
-  t.textContent=name;t.style.opacity='1';
-  t.style.left=(e.clientX-r.left)+'px';
-  t.style.top=(e.clientY-r.top-46)+'px';
-}
-function mapUntip(){document.getElementById('maptip').style.opacity='0';}
-function councilPick(cid,rid){
-  if(mapCur){
-    document.getElementById('pin_'+mapCur)?.classList.remove('active');
-    document.getElementById('mp_'+mapCur)?.classList.remove('show');
-    document.getElementById('mleg_'+mapCur)?.classList.remove('active');
-    const oldRid=COUNCIL_TO_REGION[mapCur];
-    document.getElementById('rg_'+oldRid)?.classList.remove('active');
-    document.getElementById('rg_'+oldRid)?.classList.remove('dimmed');
-  }
-  mapCur=cid;
-  MAP_REGIONS.forEach(r=>{
-    const el=document.getElementById('rg_'+r);
-    if(el){el.classList.remove('active','dimmed');el.classList.add(r===rid?'active':'dimmed');}
-  });
-  COUNCIL_IDS.forEach(c=>{
-    const el=document.getElementById('pin_'+c);
-    if(el){el.classList.remove('active');if(c!==cid)el.style.opacity='.5'; else el.style.opacity='1';}
-  });
-  document.getElementById('pin_'+cid)?.classList.add('active');
-  document.getElementById('map-idle').style.display='none';
-  document.getElementById('mp_'+cid)?.classList.add('show');
-  document.getElementById('mleg_'+cid)?.classList.add('active');
-  document.getElementById('map-reset')?.classList.add('show');
-}
-function mapReset(){
-  if(mapCur){
-    document.getElementById('pin_'+mapCur)?.classList.remove('active');
-    document.getElementById('mp_'+mapCur)?.classList.remove('show');
-    document.getElementById('mleg_'+mapCur)?.classList.remove('active');
-  }
-  MAP_REGIONS.forEach(r=>document.getElementById('rg_'+r)?.classList.remove('active','dimmed'));
-  COUNCIL_IDS.forEach(c=>{const el=document.getElementById('pin_'+c);if(el)el.style.opacity='1';});
-  document.getElementById('map-idle').style.display='';
-  document.getElementById('map-reset')?.classList.remove('show');
-  mapCur=null;
+  document.body.style.overflow = '';
 }
 </script>
 </body>
