@@ -2269,10 +2269,9 @@ const CONFIG = {
       });
       fGrid.appendChild(fc);
     });
-    fd.appendChild(fGrid);
     fd.innerHTML = '<div class="section-kicker">'+fdrr.eyebrow+'</div>'+
-      '<h3 style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--heading-color);margin-top:8px;">'+fdrr.title+'</h3>'+
-      fGrid.outerHTML;
+      '<h3 style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--heading-color);margin-top:8px;">'+fdrr.title+'</h3>';
+    fd.appendChild(fGrid);
 
   /* Meet the DRR */
   const drr = C.drr;
