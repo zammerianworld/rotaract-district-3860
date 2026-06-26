@@ -135,7 +135,7 @@ body.loaded{opacity:1;}
 .gov-avatar{width:110px;height:110px;border-radius:50%;background:rgba(255,255,255,.15);border:3px solid rgba(255,255,255,.4);box-shadow:0 0 0 6px rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:700;color:#fff;flex-shrink:0;}
 .gov-avatar img{width:100%;height:100%;border-radius:50%;object-fit:cover;}
 .gov-label{font-size:12px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:8px;}
-.gov-name{font-family:var(--font-display);font-size:32px;font-weight:700;color:#fff;line-height:1.15;}
+.gov-name{font-family:var(--font-body);font-size:30px;font-weight:800;color:#fff;line-height:1.15;letter-spacing:-.3px;}
 .gov-sub{font-size:15px;color:rgba(255,255,255,.65);margin-top:6px;}
 .gov-badge{margin-left:auto;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;font-size:13px;font-weight:700;padding:10px 20px;border-radius:40px;white-space:nowrap;flex-shrink:0;align-self:flex-start;}
 
@@ -148,7 +148,7 @@ body.loaded{opacity:1;}
 .future-drr-photo-placeholder{width:100px;height:100px;border-radius:50%;background:var(--pink-light);border:2px dashed var(--pink);box-shadow:0 0 0 3px var(--pink-light);display:flex;align-items:center;justify-content:center;font-size:32px;flex-shrink:0;}
 .future-drr-year{background:var(--pink-light);color:var(--pink-dark);font-size:12px;font-weight:700;padding:5px 14px;border-radius:40px;white-space:nowrap;flex-shrink:0;}
 .future-drr-info{}
-.future-drr-name{font-size:18px;font-weight:800;color:var(--heading-color);margin-top:4px;}
+.future-drr-name{font-family:var(--font-body);font-size:18px;font-weight:800;color:var(--heading-color);margin-top:4px;}
 .future-drr-club{font-size:14px;color:var(--gray-500);margin-top:4px;}
 
 /* ── MEET THE DRR ── */
@@ -194,7 +194,7 @@ body.loaded{opacity:1;}
 .officer-photo{width:96px;height:96px;border-radius:50%;object-fit:cover;object-position:center top;margin:0 auto 16px;border:3px solid #fff;box-shadow:0 0 0 3px var(--pink);display:block;background:var(--pink-light);}
 .officer-avatar{width:96px;height:96px;border-radius:50%;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;font-family:var(--font-display);background:var(--pink-light);color:var(--pink);position:relative;}
 .officer-avatar::before{content:'';position:absolute;inset:-3px;border-radius:50%;border:2px dashed var(--pink-light);}
-.officer-name{font-size:16px;font-weight:800;color:var(--heading-color);margin-bottom:6px;letter-spacing:-.2px;}
+.officer-name{font-family:var(--font-body);font-size:16px;font-weight:800;color:var(--heading-color);margin-bottom:6px;letter-spacing:-.2px;}
 .officer-role{font-size:12px;font-weight:700;letter-spacing:.5px;color:var(--pink);text-transform:uppercase;margin-bottom:8px;}
 .officer-club{font-size:14px;color:var(--gray-400);line-height:1.4;}
 
@@ -339,7 +339,7 @@ body.dark-mode .membership-card{background:linear-gradient(135deg,#1a0510 0%,#2d
 .clubs-panel{display:none;}
 .clubs-panel.active{display:block;}
 .clubs-council-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;}
-.clubs-council-name{font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--heading-color);}
+.clubs-council-name{font-family:var(--font-body);font-size:22px;font-weight:800;color:var(--heading-color);}
 .clubs-council-count{font-size:12px;font-weight:700;background:var(--pink-light);color:var(--pink-dark);padding:4px 12px;border-radius:40px;}
 .clubs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;}
 /* Club cards */
@@ -358,7 +358,7 @@ body.dark-mode .membership-card{background:linear-gradient(135deg,#1a0510 0%,#2d
 .club-modal-overlay.open .club-modal{transform:translateY(0) scale(1);}
 .club-modal-header{background:var(--pink);padding:24px 28px;position:relative;}
 .club-modal-pill{font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:rgba(255,255,255,.9);margin-bottom:6px;background:rgba(255,255,255,.15);padding:3px 10px;border-radius:20px;display:inline-block;}
-.club-modal-name{font-family:var(--font-display);font-size:20px;font-weight:900;color:#fff;line-height:1.25;padding-right:32px;text-shadow:0 1px 4px rgba(0,0,0,.3);}
+.club-modal-name{font-family:var(--font-body);font-size:20px;font-weight:800;color:#fff;line-height:1.25;padding-right:32px;letter-spacing:-.2px;}
 .club-modal-close{position:absolute;top:20px;right:20px;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.15);border:none;color:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;line-height:1;}
 .club-modal-close:hover{background:rgba(255,255,255,.3);}
 .club-modal-body{padding:24px 28px;display:grid;grid-template-columns:1fr 1fr;gap:20px;}
@@ -436,7 +436,7 @@ body.dark-mode .qr-svg-wrap svg rect{fill:var(--dm-surface);}
 .map-panel-area{display:none;flex-direction:column;gap:14px;}
 .map-panel-area.show{display:flex;}
 .map-area-pill{display:inline-block;background:var(--pink-light);color:var(--pink-dark);font-size:11px;font-weight:700;letter-spacing:.7px;text-transform:uppercase;padding:4px 14px;border-radius:40px;width:fit-content;}
-.map-area-name{font-family:var(--font-display);font-size:20px;font-weight:700;color:var(--heading-color);line-height:1.2;}
+.map-area-name{font-family:var(--font-body);font-size:20px;font-weight:800;color:var(--heading-color);line-height:1.2;}
 .map-area-sub{font-size:13px;color:var(--gray-500);}
 .map-divider{height:1px;background:var(--gray-200);}
 .mclubs-label{font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--gray-400);}
