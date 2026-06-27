@@ -224,7 +224,8 @@ body.dark-mode .drr-stat-lbl{color:var(--dm-muted);}
 .event-card:hover{transform:translateX(4px);box-shadow:0 12px 36px rgba(212,19,103,.1);border-color:var(--pink-light);}
 .event-date-box{background:var(--pink);border-radius:var(--r-md);padding:0;text-align:center;width:88px;height:88px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
 .event-date-box .day{font-family:var(--font-display);font-size:20px;font-weight:900;line-height:1.1;color:#fff;letter-spacing:-.5px;}
-.event-date-box .mo{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.8);margin-top:4px;}
+.event-date-box .mo{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.8);margin-top:3px;}
+.event-date-box .yr{font-size:10px;font-weight:600;color:rgba(255,255,255,.65);margin-top:2px;letter-spacing:.5px;}
 .event-body h3{font-size:18px;font-weight:700;color:var(--heading-color);margin-bottom:6px;}
 .event-body p{font-size:15px;color:var(--gray-500);line-height:1.65;margin-bottom:12px;}
 .event-meta{display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
@@ -1321,9 +1322,9 @@ const CONFIG = {
        tag types: "tag-pink" (pink) or "tag-dark" (dark)
     */
     list: [
-      { day: "13–16", month: "MAY", title: "Asia-Pacific Regional Rotaract Conference", desc: "The Asia-Pacific Regional Rotaract Conference (APRRC) is an annual gathering of Rotaractors across the Asia-Pacific region that promotes leadership, fellowship, and international collaboration. It provides a platform for participants to exchange ideas, strengthen friendships, celebrate achievements, and work together to create meaningful service initiatives.", location: "JPark Island Resort, Cebu, Philippines", tag: { label: "International", type: "tag-pink" } },
-      { day: "TBA",    month: "TBA", title: "43rd District Conference 2027",             desc: "The annual gathering of Rotaractors which serves as a venue to celebrate the accomplishments of the Rotary year, strengthen fellowship, recognize outstanding clubs and members.", location: "Butuan City",                         tag: { label: "District",     type: "tag-dark" } },
-      { day: "26–30",  month: "JUN", title: "Rotary International Convention",           desc: "The Rotary International Convention is Rotary International's largest annual event, bringing together members from around the world to celebrate service, exchange ideas, and collaborate on global initiatives. It also provides opportunities for networking, professional development, and cultural exchange.", location: "Barcelona, Spain", tag: { label: "International", type: "tag-pink" } },
+      { day: "13–16", month: "MAY", year: "2027", title: "Asia-Pacific Regional Rotaract Conference", desc: "The Asia-Pacific Regional Rotaract Conference (APRRC) is an annual gathering of Rotaractors across the Asia-Pacific region that promotes leadership, fellowship, and international collaboration. It provides a platform for participants to exchange ideas, strengthen friendships, celebrate achievements, and work together to create meaningful service initiatives.", location: "JPark Island Resort, Cebu, Philippines", tag: { label: "International", type: "tag-pink" } },
+      { day: "TBA",    month: "TBA", year: "2027", title: "43rd District Conference 2027",             desc: "The annual gathering of Rotaractors which serves as a venue to celebrate the accomplishments of the Rotary year, strengthen fellowship, recognize outstanding clubs and members.", location: "Butuan City",                         tag: { label: "District",     type: "tag-dark" } },
+      { day: "26–30",  month: "JUN", year: "2027", title: "Rotary International Convention",           desc: "The Rotary International Convention is Rotary International's largest annual event, bringing together members from around the world to celebrate service, exchange ideas, and collaborate on global initiatives. It also provides opportunities for networking, professional development, and cultural exchange.", location: "Barcelona, Spain", tag: { label: "International", type: "tag-pink" } },
     ],
   },
 
@@ -2503,7 +2504,7 @@ const CONFIG = {
   setText('events-desc',    C.events.desc);
   const el=$('events-list');
   C.events.list.forEach(e=>{
-    el.innerHTML+='<div class="event-card"><div class="event-date-box"><div class="day">'+e.day+'</div><div class="mo">'+e.month+'</div></div><div class="event-body"><h3>'+e.title+'</h3><p>'+e.desc+'</p><div class="event-meta"><span class="tag '+e.tag.type+'">'+e.tag.label+'</span><span class="event-loc">'+e.location+'</span></div></div></div>';
+    el.innerHTML+='<div class="event-card"><div class="event-date-box"><div class="day">'+e.day+'</div><div class="mo">'+e.month+'</div>'+(e.year?'<div class="yr">'+e.year+'</div>':'')+' </div><div class="event-body"><h3>'+e.title+'</h3><p>'+e.desc+'</p><div class="event-meta"><span class="tag '+e.tag.type+'">'+e.tag.label+'</span><span class="event-loc">'+e.location+'</span></div></div></div>';
   });
 
   /* Calendar */
