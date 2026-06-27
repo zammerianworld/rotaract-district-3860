@@ -997,8 +997,11 @@ body.dark-mode .theme-song-desc{color:rgba(255,255,255,.65);}
   .officers-grid{grid-template-columns:repeat(2,1fr);gap:12px;}
 
   /* Future DRRs */
-  .future-drrs-grid{grid-template-columns:1fr;}
-  .future-drr-card{flex-direction:column;align-items:flex-start;gap:8px;}
+  .future-drrs-grid{grid-template-columns:repeat(2,1fr);gap:12px;}
+  .future-drr-card{flex-direction:column;align-items:center;padding:20px 14px;gap:10px;}
+  .future-drr-photo,.future-drr-photo-placeholder{width:72px;height:72px;}
+  .future-drr-name{font-size:15px;}
+  .future-drr-club{font-size:12px;}
 
   /* DRR section */
   .drr-layout{grid-template-columns:1fr;gap:24px;}
@@ -1007,8 +1010,11 @@ body.dark-mode .theme-song-desc{color:rgba(255,255,255,.65);}
   .drr-bio{font-size:15px;}
 
   /* Events */
-  .event-card{grid-template-columns:1fr;gap:12px;}
+  .event-card{grid-template-columns:auto 1fr;gap:16px;padding:20px 16px 20px 20px;}
   .event-date-box{width:72px;height:72px;}
+  .event-date-box .day{font-size:17px;}
+  .event-body h3{font-size:16px;}
+  .event-body p{font-size:14px;}
 
   /* Resources */
   .resources-header{grid-template-columns:1fr;gap:16px;}
