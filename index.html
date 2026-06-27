@@ -162,7 +162,7 @@ body.loaded{opacity:1;}
 .drr-photo-placeholder span{font-size:48px;}
 .drr-photo-placeholder p{font-size:13px;color:var(--pink-dark);font-weight:600;text-align:center;padding:0 16px;}
 .drr-content{}
-.drr-bio{font-size:16px;color:var(--gray-600,#4B5563);line-height:1.85;margin-bottom:36px;font-style:italic;border-left:3px solid var(--pink);padding-left:20px;}
+.drr-bio{font-size:15px;color:var(--gray-600,#4B5563);line-height:1.8;margin-bottom:28px;font-style:normal;border-left:3px solid var(--pink);padding-left:20px;}
 .drr-achievements-title{font-size:13px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--gray-400);margin-bottom:16px;}
 .drr-achievements{display:flex;flex-direction:column;gap:10px;}
 .drr-achievement{display:flex;align-items:flex-start;gap:12px;padding:12px 16px;background:#fff;border-radius:var(--r-md);border:1px solid var(--gray-100);}
@@ -218,9 +218,9 @@ body.dark-mode .drr-stat-lbl{color:var(--dm-muted);}
 .event-card{background:#fff;border-radius:var(--r-lg);padding:28px 28px 28px 32px;display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:start;border:1px solid var(--gray-100);transition:all .25s;position:relative;overflow:hidden;}
 .event-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--pink);border-radius:4px 0 0 4px;}
 .event-card:hover{transform:translateX(4px);box-shadow:0 12px 36px rgba(212,19,103,.1);border-color:var(--pink-light);}
-.event-date-box{background:var(--pink);border-radius:var(--r-md);padding:14px 18px;text-align:center;min-width:64px;flex-shrink:0;}
-.event-date-box .day{font-family:var(--font-display);font-size:30px;font-weight:900;line-height:1;color:#fff;}
-.event-date-box .mo{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.7);margin-top:3px;}
+.event-date-box{background:var(--pink);border-radius:var(--r-md);padding:0;text-align:center;width:88px;height:88px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.event-date-box .day{font-family:var(--font-display);font-size:20px;font-weight:900;line-height:1.1;color:#fff;letter-spacing:-.5px;}
+.event-date-box .mo{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.8);margin-top:4px;}
 .event-body h3{font-size:18px;font-weight:700;color:var(--heading-color);margin-bottom:6px;}
 .event-body p{font-size:15px;color:var(--gray-500);line-height:1.65;margin-bottom:12px;}
 .event-meta{display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
@@ -994,13 +994,14 @@ body.dark-mode .theme-song-desc{color:rgba(255,255,255,.65);}
   .future-drr-card{flex-direction:column;align-items:flex-start;gap:8px;}
 
   /* DRR section */
-  .drr-layout{grid-template-columns:1fr;}
-  .drr-photo-wrap{max-width:220px;margin:0 auto;}
+  .drr-layout{grid-template-columns:1fr;gap:24px;}
+  .drr-photo-wrap{max-width:200px;margin:0 auto;}
+  .drr-content{width:100%;}
   .drr-bio{font-size:14px;padding-left:14px;}
 
   /* Events */
   .event-card{grid-template-columns:1fr;gap:12px;}
-  .event-date-box{width:fit-content;}
+  .event-date-box{width:72px;height:72px;}
 
   /* Resources */
   .resources-header{grid-template-columns:1fr;gap:16px;}
@@ -1284,7 +1285,9 @@ const CONFIG = {
     title:     "Christian Jade G. Azura",
     subtitle:  "District Rotaract Representative · RY 2026–2027",
     photo:     null,
-    bionote:   "[Paste DRR bionote here. Include background, Rotaract journey, vision for the district, and advocacy for RY 2026–2027.]",
+    bionoteShort: "Christian Jade G. Azura began his leadership journey as the Supreme Student Government President in high school and later served in various University Student Government positions at Caraga State University. He graduated with a Bachelor of Secondary Education major in Biology from Caraga State University, where he was recognized as the Most Outstanding Graduate for Community Service and Social Engagements and received the Presidential Award for Leadership Excellence. He also completed the academic requirements for a Master of Arts in Education major in Educational Management. His Rotary and Rotaract journey began in 2016 as the Charter President of the Rotaract Club of Central Butuan–Caraga State University. Since then, he has served Rotary International District 3860 in various leadership roles, including Assistant District Rotaract Representative, District Internet and Communications Officer, Deputy District Rotaract Representative for Mindanao, and now as the District Rotaract Representative. A proud Paul Harris Fellow, Licensed Professional Teacher, and dedicated public servant, Christian Jade G. Azura, PHF continues to inspire others through his commitment to service above self.",
+    bionote:      "Christian Jade Azura’s leadership journey began as the Supreme Student Government President in high school. During his time at Caraga State University, he represented his program in several capacities, which led to various University Student Government positions, including USG Secretary and USG Senator. He graduated with a Bachelor of Secondary Education Major in Biology from Caraga State University. He was honored as the Most Outstanding Graduate for Community Service & Social Engagements and received the Presidential Award for Leadership Excellence for the class of 2018. He completed his academic requirements for Master of Arts in Education Major in Educational Management at Saint Joseph Institute of Technology. His passion for service led him to what he considers one of the best things that has happened in his life: his Rotary and Rotaract journey. In 2016, he was appointed as the Charter President of the Rotaract Club of Central Butuan - Caraga State University, successfully establishing the club for two consecutive years. Subsequently, he served the district for five terms as the Assistant District Rotaract Representative. During the Imaginative Year, he served as the Club Secretary of the Rotary Club of Central Butuan, becoming the youngest Club Secretary in RCCB’s history. During the Hope-Creating Year, he was appointed as the District Internet and Communications Officer. In the Irresistible Year, he served as the Deputy District Rotaract Representative for Mindanao and the District End Polio Now Chair for Game-Changer Year. His impact reached the international stage during the 22nd Asia-Pacific Regional Rotaract Conference in Chiang Mai, Thailand, where he won the Rotaractors’ Choice Award, proudly representing the Philippines among 15 candidates. A proud Paul Harris Fellow, Licensed Professional Teacher, and dedicated Public Servant. CHRISTIAN JADE G. AZURA, PHF.",
+    bionoteLink:  "https://docs.google.com/document/d/1IbsNRpiMc8dLWVTJTIbsL65hYS_htk7txrMnqyIf4eU/edit?usp=sharing",
     pastPositions: [
       "2016-2017 · Charter President, RAC Central Butuan-Caraga State University",
       "2016-2017 · Assistant District Rotaract Representative for CARAGA Council",
@@ -3085,5 +3088,4 @@ function closeOfficerModal(e){
 }
 </script>
 </body>
-</html>    bionoteShort: "Christian Jade G. Azura began his leadership journey as the Supreme Student Government President in high school and later served in various University Student Government positions at Caraga State University. He graduated with a Bachelor of Secondary Education major in Biology from Caraga State University, where he was recognized as the Most Outstanding Graduate for Community Service and Social Engagements and received the Presidential Award for Leadership Excellence. He also completed the academic requirements for a Master of Arts in Education major in Educational Management. His Rotary and Rotaract journey began in 2016 as the Charter President of the Rotaract Club of Central Butuan–Caraga State University. Since then, he has served Rotary International District 3860 in various leadership roles, including Assistant District Rotaract Representative, District Internet and Communications Officer, Deputy District Rotaract Representative for Mindanao, and now as the District Rotaract Representative. A proud Paul Harris Fellow, Licensed Professional Teacher, and dedicated public servant, Christian Jade G. Azura, PHF continues to inspire others through his commitment to service above self.",
-    bionote:      "Christian Jade Azura’s leadership journey began as the Supreme Student Government President in high school. During his time at Caraga State University, he represented his program in several capacities, which led to various University Student Government positions, including USG Secretary and USG Senator. He graduated with a Bachelor of Secondary Education Major in Biology from Caraga State University. He was honored as the Most Outstanding Graduate for Community Service & Social Engagements and received the Presidential Award for Leadership Excellence for the class of 2018. He completed his academic requirements for Master of Arts in Education Major in Educational Management at Saint Joseph Institute of Technology. His passion for service led him to what he considers one of the best things that has happened in his life: his Rotary and Rotaract journey. In 2016, he was appointed as the Charter President of the Rotaract Club of Central Butuan - Caraga State University, successfully establishing the club for two consecutive years under the guidance of its mother club, the Rotary Club of Central Butuan. Subsequently, he served the district for five terms as the Assistant District Rotaract Representative during the All Star, Great, Inspiring, Champion, and Hope-Creating Years. During the Imaginative Year, he was given the opportunity to serve as the Club Secretary of the Rotary Club of Central Butuan, becoming the youngest Club Secretary in RCCB’s history. During the Hope-Creating Year, his leadership expanded to Rotary International District 3860, where he was appointed as the District Internet and Communications Officer. In the Irresistible Year, he served as the Deputy District Rotaract Representative for Mindanao and the District End Polio Now Chair for Game-Changer Year. His impact reached the international stage during the 22nd Asia-Pacific Regional Rotaract Conference in Chiang Mai, Thailand, where he won the Rotaractors’ Choice Award, proudly representing the Philippines among 15 candidates from across the Asia-Pacific region. A proud Paul Harris Fellow and a dual member of the Rotaract Club of Central Butuan and the Rotary Club of Central Butuan, a Licensed Professional Teacher, and a dedicated Public Servant. CHRISTIAN JADE G. AZURA, PHF.",
+</html>
