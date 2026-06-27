@@ -108,8 +108,8 @@ body.loaded{opacity:1;}
 .advocacy-cta:hover{background:rgba(255,255,255,.2);}
 
 /* ── IMPACT STRIP ── */
-#impact{background:var(--gray-900);padding:0 28px;}
-.impact-grid{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);}
+#impact{background:var(--pink-deep);padding:56px 0;}
+.impact-grid{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:0 48px;}
 .impact-item{padding:40px 24px;text-align:center;border-right:1px solid rgba(255,255,255,.06);position:relative;}
 .impact-item:last-child{border-right:none;}
 .impact-item::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:40px;height:3px;background:var(--pink);}
@@ -124,7 +124,7 @@ body.loaded{opacity:1;}
 .section-heading{font-family:var(--font-display);font-size:clamp(26px,4vw,42px);font-weight:900;color:var(--heading-color);line-height:1.1;margin-bottom:16px;letter-spacing:-.3px;}
 .section-sub{font-size:16px;color:var(--gray-500);max-width:520px;line-height:1.75;margin-bottom:52px;}
 .about-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:24px;position:relative;z-index:1;}
-.about-card{background:#fff;border-radius:var(--r-lg);padding:32px 28px;border:1px solid var(--gray-100);transition:all .25s;position:relative;overflow:hidden;}
+.about-card{background:#fff;border-radius:var(--r-xl);padding:32px 28px;border:1.5px solid var(--gray-100);transition:all .3s ease;position:relative;overflow:hidden;cursor:default;}
 .about-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--pink);transform:scaleX(0);transform-origin:left;transition:transform .3s ease;}
 .about-card:hover{transform:translateY(-6px);box-shadow:0 20px 48px rgba(212,19,103,.12);border-color:var(--pink-light);}
 .about-card:hover::before{transform:scaleX(1);}
@@ -179,6 +179,17 @@ body.loaded{opacity:1;}
 .secretariat-label{font-size:15px;font-weight:700;color:var(--heading-color);margin-bottom:4px;}
 .secretariat-desc{font-size:13px;color:var(--gray-500);line-height:1.5;}
 .secretariat-arrow{margin-left:auto;font-size:18px;color:var(--pink);align-self:center;flex-shrink:0;}
+
+/* ── DRR STATS ── */
+.drr-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:24px 0;}
+.drr-stat-card{background:var(--pink-light);border:1px solid rgba(212,19,103,.15);border-radius:var(--r-lg);padding:18px 16px;text-align:center;transition:all .25s;}
+.drr-stat-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(212,19,103,.12);}
+.drr-stat-num{font-family:var(--font-display);font-size:32px;font-weight:900;color:var(--pink);line-height:1;letter-spacing:-1px;}
+.drr-stat-lbl{font-size:11px;font-weight:700;color:var(--gray-500);margin-top:6px;letter-spacing:.8px;text-transform:uppercase;}
+body.dark-mode .drr-stat-card{background:var(--dm-faint);border-color:rgba(212,19,103,.2);}
+body.dark-mode .drr-stat-num{color:var(--pink);}
+body.dark-mode .drr-stat-lbl{color:var(--dm-muted);}
+@media(max-width:480px){.drr-stats{grid-template-columns:repeat(3,1fr);gap:6px;}.drr-stat-num{font-size:22px;}}
 
 /* ── OFFICERS ── */
 #officers{background:var(--gray-50);padding:96px 0;}
@@ -1087,7 +1098,7 @@ const CONFIG = {
 
   stats: [
     { num: "88",   label: "Rotaract Clubs" },
-    { num: "12",   label: "Areas"          },
+    { num: "12",   label: "Councils"       },
     { num: "1,242",label: "Rotaractors"    },
   ],
 
@@ -1660,6 +1671,7 @@ const CONFIG = {
       <div class="drr-photo-wrap" id="drr-photo-wrap"></div>
       <div class="drr-content">
         <p class="drr-bio" id="drr-bio"></p>
+        <div class="drr-stats" id="drr-stats"></div>
         <div class="drr-achievements-title">Past District Positions</div>
         <div class="drr-achievements" id="drr-achievements"></div>
       </div>
@@ -2182,9 +2194,25 @@ const CONFIG = {
 
   /* Impact */
   const ig=$('impact-grid');
-  C.stats.forEach(s=>{
-    ig.innerHTML+='<div class="impact-item"><div class="impact-num">'+s.num+'</div><div class="impact-lbl">'+s.label+'</div></div>';
+  C.stats.forEach(function(s,idx){
+    var _ic=['','',''];
+    var div=document.createElement('div'); div.className='impact-item';
+    var numVal=parseInt(s.num.toString().replace(/,/g,''))||0;
+    var sfx=s.num.toString().replace(/[0-9,]/g,'');
+    div.innerHTML=
+      '<div class="impact-num" data-target="'+numVal+'" data-suffix="'+sfx+'">0'+sfx+'</div>'+
+      '<div class="impact-lbl">'+s.label+'</div>';
+    ig.appendChild(div);
   });
+  var _sObs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        e.target.querySelectorAll('.impact-num[data-target]').forEach(function(el){
+          var t=parseInt(el.getAttribute('data-target')),sf=el.getAttribute('data-suffix')||'',t0=performance.now();
+          (function step(now){var p=Math.min((now-t0)/1800,1),ease=1-Math.pow(1-p,3);
+            el.textContent=Math.round(ease*t).toLocaleString()+sf;if(p<1)requestAnimationFrame(step);})(t0);
+        });_sObs.unobserve(e.target);}});},{threshold:.3});
+  if(ig)_sObs.observe(ig);
 
   /* About */
   setText('about-eyebrow', C.about.eyebrow);
@@ -2229,7 +2257,17 @@ const CONFIG = {
   }
 
   /* Officers */
-  setText('officers-eyebrow', C.officers.eyebrow);
+  /* DRR stats */
+  var drrSt=$('drr-stats');
+  if(drrSt){
+    [{num:'10+',label:'Years in Rotaract'},{num:'11',label:'District Positions'},{num:'RY 26-27',label:'Term as DRR'}].forEach(function(s){
+      var c=document.createElement('div'); c.className='drr-stat-card';
+      c.innerHTML='<div class="drr-stat-num">'+s.num+'</div><div class="drr-stat-lbl">'+s.label+'</div>';
+      drrSt.appendChild(c);
+    });
+  }
+
+    setText('officers-eyebrow', C.officers.eyebrow);
   setText('officers-title',   C.officers.title);
   setText('officers-desc',    C.officers.desc);
   const og = $('officers-groups');
