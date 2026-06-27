@@ -917,6 +917,12 @@ body.dark-mode .theme-song-desc{color:rgba(255,255,255,.65);}
   
 }
 
+/* ── MOBILE MENU ── */
+#mobile-menu{display:none;position:fixed;inset:0;background:var(--pink);z-index:899;flex-direction:column;align-items:center;justify-content:center;gap:24px;}
+#mobile-menu.open{display:flex;}
+#mobile-menu a{font-size:22px;font-weight:700;color:#fff;text-decoration:none;padding:8px 24px;border-radius:40px;transition:background .2s;}
+#mobile-menu a:hover{background:rgba(255,255,255,.15);}
+
 /* Mobile — 640px */
 @media(max-width:640px){
   /* Nav */
