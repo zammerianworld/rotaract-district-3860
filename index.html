@@ -2439,17 +2439,18 @@ const CONFIG = {
     var fullTxt=drr.bionote||shortTxt;
     // Helper: split text into paragraph-spaced HTML
     function toBioParas(txt){
-      // Split at sentence boundaries roughly every 2 sentences
-      var sentences=txt.match(/[^.!?]+[.!?]+[\s]*/g)||[txt]; sentences=sentences.reduce(function(a,s){if(a.length&&s.match(/^[A-Z]\./)){a[a.length-1]+=s;}else{a.push(s);}return a;},[]);
+      // Split only on ". He/His/During/Subsequently/In/A/The" — sentence-starting words
+      var parts=txt.split(/\.\s+(?=[A-Z][a-z]{2,})/);
+      // Rejoin with period, group every 2 into a paragraph
       var paras=[]; var buf='';
-      sentences.forEach(function(s,i){
-        buf+=s;
-        if((i+1)%2===0||i===sentences.length-1){paras.push(buf.trim());buf='';}
+      parts.forEach(function(s,i){
+        buf+=(i>0?'. ':'')+s;
+        if((i+1)%2===0||i===parts.length-1){paras.push(buf.trim()+(buf.trim().slice(-1)==='.'?'':'.'));buf='';}
       });
       return paras.map(function(p){return '<p style="margin:0 0 14px 0;">'+p+'</p>';}).join('');
     }
     drrBioEl.innerHTML=
-      '<div style="margin-bottom:20px;">'+toBioParas(shortTxt)+'</div>'+
+      '<div style="margin-bottom:20px;">'+shortTxt+'</div>'+
       '<button onclick="openBionoteModal()" class="bio-read-btn">Read full bionote ↗</button>';
   }
   const dphoto = $('drr-photo-wrap');
@@ -3026,11 +3027,11 @@ function openBionoteModal(){
   var drr=CONFIG.drr;
   document.getElementById('bm-name').textContent=drr.title||'District Rotaract Representative';
   var fullTxt=drr.bionote||drr.bionoteShort||'';
-  var sentences=fullTxt.match(/[^.!?]+[.!?]+[\s]*/g)||[fullTxt];
+  var parts=fullTxt.split(/\.\s+(?=[A-Z][a-z]{2,})/);
   var paras=[]; var buf='';
-  sentences.forEach(function(s,i){
-    buf+=s;
-    if((i+1)%2===0||i===sentences.length-1){paras.push(buf.trim());buf='';}
+  parts.forEach(function(s,i){
+    buf+=(i>0?'. ':'')+s;
+    if((i+1)%2===0||i===parts.length-1){paras.push(buf.trim()+(buf.trim().slice(-1)==='.'?'':'.'));buf='';}
   });
   document.getElementById('bm-body').innerHTML=paras.map(function(p){
     return '<p style="margin:0 0 16px 0;">'+p+'</p>';
