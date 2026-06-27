@@ -949,12 +949,6 @@ body.dark-mode .theme-song-desc{color:rgba(255,255,255,.65);}
 #mobile-menu a{font-size:22px;font-weight:700;color:#fff;text-decoration:none;padding:8px 24px;border-radius:40px;transition:background .2s;}
 #mobile-menu a:hover{background:rgba(255,255,255,.15);}
 
-/* ── MOBILE MENU ── */
-#mobile-menu{display:none;position:fixed;inset:0;background:var(--pink);z-index:899;flex-direction:column;align-items:center;justify-content:center;gap:24px;}
-#mobile-menu.open{display:flex;}
-#mobile-menu a{font-size:22px;font-weight:700;color:#fff;text-decoration:none;padding:8px 24px;border-radius:40px;transition:background .2s;}
-#mobile-menu a:hover{background:rgba(255,255,255,.15);}
-
 /* Mobile — 640px */
 @media(max-width:640px){
   /* Nav */
@@ -1621,6 +1615,7 @@ const CONFIG = {
     <button class="nav-ham" id="ham" aria-label="Menu" aria-expanded="false">&#9776;</button>
   </div>
   <div id="mobile-menu">
+    <button onclick="document.getElementById('mobile-menu').classList.remove('open')" style="position:absolute;top:20px;right:20px;background:rgba(255,255,255,.15);border:none;color:#fff;width:44px;height:44px;border-radius:50%;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;">✕</button>
     <a href="#about">About Rotaract</a>
     <a href="#theme-song" id="mob-theme" style="display:none;">Theme Song</a>
     <a href="#drr">Meet the DRR</a>
