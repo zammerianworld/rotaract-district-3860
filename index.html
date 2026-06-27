@@ -189,7 +189,7 @@ body.loaded{opacity:1;}
 body.dark-mode .drr-stat-card{background:var(--dm-faint);border-color:rgba(212,19,103,.2);}
 body.dark-mode .drr-stat-num{color:var(--pink);}
 body.dark-mode .drr-stat-lbl{color:var(--dm-muted);}
-@media(max-width:480px){.drr-stats{grid-template-columns:repeat(3,1fr);gap:6px;}.drr-stat-num{font-size:22px;}}
+@media(max-width:480px){.drr-stats{gap:6px;}.drr-stat-num{font-size:22px;}}
 
 /* ── OFFICERS ── */
 #officers{background:var(--gray-50);padding:96px 0;}
@@ -851,6 +851,14 @@ body.dark-mode .om-avatar{background:var(--dm-faint);color:var(--pink);}
 .officer-card{transform-style:preserve-3d;}
 .future-drr-card{transform-style:preserve-3d;}
 
+/* ── TILT CARD EFFECT ── */
+.tilt-card{transform-style:preserve-3d;transition:transform .15s ease,box-shadow .15s ease;will-change:transform;}
+.tilt-card:hover{box-shadow:0 20px 60px rgba(212,19,103,.18),0 8px 24px rgba(0,0,0,.08);}
+.tilt-shine{position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .2s ease;background:radial-gradient(circle at 50% 50%, rgba(255,255,255,.18) 0%, transparent 65%);z-index:10;}
+.tilt-card:hover .tilt-shine{opacity:1;}
+.officer-card{transform-style:preserve-3d;}
+.future-drr-card{transform-style:preserve-3d;}
+
 /* Dark mode toggle button */
 #dark-toggle{position:fixed;bottom:80px;right:28px;width:44px;height:44px;border-radius:50%;background:var(--gray-900);color:#fff;font-size:18px;display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;box-shadow:0 4px 16px rgba(0,0,0,.2);z-index:50;transition:all .25s;}
 #dark-toggle:hover{transform:translateY(-2px);}
@@ -927,6 +935,12 @@ body.dark-mode .theme-song-desc{color:rgba(255,255,255,.65);}
   .footer-top{grid-template-columns:1fr 1fr;}
   
 }
+
+/* ── MOBILE MENU ── */
+#mobile-menu{display:none;position:fixed;inset:0;background:var(--pink);z-index:899;flex-direction:column;align-items:center;justify-content:center;gap:24px;}
+#mobile-menu.open{display:flex;}
+#mobile-menu a{font-size:22px;font-weight:700;color:#fff;text-decoration:none;padding:8px 24px;border-radius:40px;transition:background .2s;}
+#mobile-menu a:hover{background:rgba(255,255,255,.15);}
 
 /* ── MOBILE MENU ── */
 #mobile-menu{display:none;position:fixed;inset:0;background:var(--pink);z-index:899;flex-direction:column;align-items:center;justify-content:center;gap:24px;}
@@ -1146,7 +1160,7 @@ const CONFIG = {
         group: "Area Management Committee — Visayas",
         list: [
           { initials: "A1B",  name: "Joshua Pasa", photo: "https://drive.google.com/thumbnail?id=1SPraRrD40XFduqYFnT7sUZmTywCmLiWk&sz=w300",                  role: "Assistant District Rotaract Representative — Area 1 Bohol",   club: "RAC Panglao Island"   },
-          { initials: "A1C",  name: "Lordhan C. Labora", photo: "https://drive.google.com/thumbnail?id=1-4wsQih4kHplmH-uigLKDljBb6sl8vvq&sz=w300",            role: "Assistant District Rotaract Representative — Area 1 Cebu",    club: "RAC Metro Cebu"       },
+          { initials: "A1C",  name: "Lordhan C. Labora", photo: "https://drive.google.com/thumbnail?id=1-4wsQih4kHplmH-uigLKDljBb6sl8vvq&sz=w300", photoPosition: "center center",            role: "Assistant District Rotaract Representative — Area 1 Cebu",    club: "RAC Metro Cebu"       },
           { initials: "A1L",  name: "Larry S. Esperas", photo: "https://drive.google.com/thumbnail?id=11-qUH1RKKT88HcdHU0bAwHk6E_7YtzMR&sz=w300",             role: "Assistant District Rotaract Representative — Area 1 Leyte",   club: "RAC Tacloban"         },
           { initials: "A1N",  name: "Patrick Jude I. Espina", photo: null,       role: "Assistant District Rotaract Representative — Area 1 Negros",  club: "RAC Dumaguete"        },
           { initials: "A1S",  name: "Frederick S. Jalvez", photo: "https://drive.google.com/thumbnail?id=1tadYYr0i5tBeiQmRDBQoTxdznjDPA79I&sz=w300",          role: "Assistant District Rotaract Representative — Area 1 Samar",   club: "RAC Greater Calbayog" },
@@ -1157,7 +1171,7 @@ const CONFIG = {
         list: [
           { initials: "A2D",  name: "Eileene Lois C. Rojo",         role: "Assistant District Rotaract Representative — Area 2 Davao",           club: "RAC Davao 2000"                   },
           { initials: "A2G",  name: "Jomar L. Rivera", photo: "https://drive.google.com/thumbnail?id=1eRIu5igB0mzUMcHxI_7cDWtb32Fp2Cv9&sz=w300",              role: "Assistant District Rotaract Representative — Area 2 General Santos",  club: "RAC Metro Dadiangas"              },
-          { initials: "A2K",  name: "Ronnie B. San Pedro", photo: "https://drive.google.com/thumbnail?id=1bquteoj3GGJ-yExPxfpXL_zJBFI0CipN&sz=w300",          role: "Assistant District Rotaract Representative — Area 2 Koronadal",       club: "RAC Metro Koronadal"              },
+          { initials: "A2K",  name: "Ronnie B. San Pedro", photo: "https://drive.google.com/thumbnail?id=1h7fIpGmShTogwHCpKbtSpUUloiPcEd_j&sz=w300",          role: "Assistant District Rotaract Representative — Area 2 Koronadal",       club: "RAC Metro Koronadal"              },
           { initials: "A2T",  name: "Normae Jane B. Caballero", photo: "https://drive.google.com/thumbnail?id=1-VLXGNL3UExhCqnB0YKRcYeCRp9D_sXk&sz=w300",     role: "Assistant District Rotaract Representative — Area 2 Tagum",           club: "RAC Tagum North-Palm City Chapter"},
           { initials: "A3AN", name: "Cris Jay Angulo",              role: "Assistant District Rotaract Representative — Area 3 Agusan Norte",    club: "RAC Butuan North Hiraya"          },
           { initials: "A3AS", name: "Charlotte J. Pelayo", photo: "https://drive.google.com/thumbnail?id=1fm3YQONGRpWTkYK0gMXZU1PaVIRZJJ1f&sz=w300",          role: "Assistant District Rotaract Representative — Area 3 Agusan Sur & Surigao Sur", club: "RAC Central San Francisco"        },
@@ -1169,7 +1183,7 @@ const CONFIG = {
         list: [
           { initials: "RFC",  name: "Anna Suzzane P. Miscala",      photo: "https://drive.google.com/thumbnail?id=1fVs-s1rxFbfv0UBvuCRLnjIb5gkSxKEq&sz=w300", role: "District Rotary Foundation Committee Chair",            club: "RAC Cebu"          },
           { initials: "GGC",  name: "June Anthony Doble", photo: "https://drive.google.com/thumbnail?id=1P6d6KV6Cx0-JweqYiZQ2dsQJUTAA6GNk&sz=w300",           role: "District and Global Grants Chair",club: "RAC Cebu"          },
-          { initials: "EPN",  name: "Klyde Louise Jarabelo II", photo: "https://drive.google.com/thumbnail?id=1uvVZuUZl8AnX66GFmrNP10OO1yjb9g_F&sz=w300",     role: "District End Polio Now Chair",           club: "RAC San Francisco" },
+          { initials: "EPN",  name: "Klyde Louise Jarabelo II", photo: "https://drive.google.com/thumbnail?id=1uvVZuUZl8AnX66GFmrNP10OO1yjb9g_F&sz=w300", photoPosition: "center top",     role: "District End Polio Now Chair",           club: "RAC San Francisco" },
           { initials: "RFA",  name: "Griffins C. Malazarte",        role: "District Rotary Foundation Committee Advisor",          club: "RAC Cebu South"    },
         ],
       },
@@ -1195,8 +1209,8 @@ const CONFIG = {
       {
         group: "District Public Image & Communications Committee",
         list: [
-          { initials: "PIC",  name: "Donmaclyn A. Lagapa", photo: "https://drive.google.com/thumbnail?id=1I9hCh3sQ1vUhNccyrtwvB8F12euF0uwP&sz=w300",              role: "District Public Image Chair",                  club: "RAC Central Butuan"           },
-          { initials: "ICO",  name: "Joelie Mae B. Montesclaros", photo: "https://drive.google.com/thumbnail?id=1PYcd09hYL7MNCgScJMbaaPxDWTjWr5V3&sz=w300",       role: "District Internet and Communications Officer",   club: "RAC Dadiangas-CB"             },
+          { initials: "PIC",  name: "Donmaclyn A. Lagapa", photo: "https://drive.google.com/thumbnail?id=1I9hCh3sQ1vUhNccyrtwvB8F12euF0uwP&sz=w300", photoPosition: "center top",              role: "District Public Image Chair",                  club: "RAC Central Butuan"           },
+          { initials: "ICO",  name: "Joelie Mae B. Montesclaros", photo: "https://drive.google.com/thumbnail?id=1PYcd09hYL7MNCgScJMbaaPxDWTjWr5V3&sz=w300", photoPosition: "center top",       role: "District Internet and Communications Officer",   club: "RAC Dadiangas-CB"             },
           { initials: "WS",   name: "Kenneth Nomar Melliza", photo: "https://drive.google.com/thumbnail?id=1e1iueG58uDSJHhr86XmPZtjAO024PhYI&sz=w300",            role: "District Website Specialist",         club: "RAC Downtown Davao Poblacion" },
           { initials: "GLS",  name: "Christian V. Enario", photo: "https://drive.google.com/thumbnail?id=1dtd6bFoRWS813D4s_ELvjoF3AK17Rw6N&sz=w300",              role: "District Graphics and Layout Specialist",        club: "RAC Metro Cebu-CIT Chapter"   },
           { initials: "GLA",  name: "Guadalupe Niña Marie L. Obando", photo: "https://drive.google.com/thumbnail?id=1bsEi5827Adfuzx1Vbt-0muKyfsB4l4Rg&sz=w300",   role: "District Graphics and Layout Associate",         club: "RAC Metro Cebu"               },
@@ -1211,7 +1225,7 @@ const CONFIG = {
       {
         group: "District Finance Committee",
         list: [
-          { initials: "FCC",  name: "Almar E. Dela Cerna", photo: "https://drive.google.com/thumbnail?id=1OVH1QEnI2t8g726V_lttsISiSPUVE7H1&sz=w300",   role: "District Finance Committee Chair",   club: "RAC Central Butuan"        },
+          { initials: "FCC",  name: "Almar E. Dela Cerna", photo: "https://drive.google.com/thumbnail?id=1OVH1QEnI2t8g726V_lttsISiSPUVE7H1&sz=w300", photoPosition: "center top",   role: "District Finance Committee Chair",   club: "RAC Central Butuan"        },
           { initials: "DT",   name: "Charlotte J. Pelayo",   photo: "https://drive.google.com/thumbnail?id=1fm3YQONGRpWTkYK0gMXZU1PaVIRZJJ1f&sz=w300", role: "District Treasurer",        club: "RAC Central San Francisco" },
           { initials: "DA",   name: "Albert M. Dalusa", photo: "https://drive.google.com/thumbnail?id=1tV6PH6T-l35JZh491bbBGsWYcjxLA_sX&sz=w300",      role: "District Auditor",          club: "RAC Bislig"                },
           { initials: "FA",   name: "—",                     role: "District Finance Committee Advisor", club: "—"                         },
@@ -1270,9 +1284,7 @@ const CONFIG = {
     title:     "Christian Jade G. Azura",
     subtitle:  "District Rotaract Representative · RY 2026–2027",
     photo:     null,
-    bionoteShort: "Rtn. Christian Jade G. Azura is a dedicated Rotaractor and servant-leader from the Rotaract Club of Central Butuan, with over 10 years of active service in Rotaract District 3860.",
-    bionote:      "Rtn. Christian Jade G. Azura is a dedicated Rotaractor and servant-leader from the Rotaract Club of Central Butuan, with over 10 years of active service in Rotaract District 3860. His journey in Rotaract began in 2016 as Charter President and has since grown through numerous district leadership roles — from ADRRR to Deputy DRR — embodying the spirit of service above self in every capacity.",
-    bionoteLink:  "https://docs.google.com/document/d/1IbsNRpiMc8dLWVTJTIbsL65hYS_htk7txrMnqyIf4eU/edit?usp=sharing",
+    bionote:   "[Paste DRR bionote here. Include background, Rotaract journey, vision for the district, and advocacy for RY 2026–2027.]",
     pastPositions: [
       "2016-2017 · Charter President, RAC Central Butuan-Caraga State University",
       "2016-2017 · Assistant District Rotaract Representative for CARAGA Council",
@@ -1300,9 +1312,9 @@ const CONFIG = {
        tag types: "tag-pink" (pink) or "tag-dark" (dark)
     */
     list: [
-      { day: "13-16", month: "MAY", title: "Asia-Pacific Regional Rotaract Conference", desc: "Annual gathering of Rotaractors across the Asia-Pacific region promoting leadership, fellowship, and international collaboration.", location: "JPark Island Resort, Cebu, Philippines", tag: { label: "International", type: "tag-pink" } },
-      { day: "TBA",   month: "TBA", title: "43rd District Conference 2027",             desc: "Annual gathering of Rotaractors to celebrate accomplishments, strengthen fellowship, and recognize outstanding clubs and members.", location: "Butuan City",                         tag: { label: "District",     type: "tag-dark" } },
-      { day: "26-30", month: "JUN", title: "Rotary International Convention",           desc: "Rotary International's largest annual event bringing members worldwide to celebrate service, exchange ideas, and collaborate on global initiatives.", location: "Barcelona, Spain",  tag: { label: "International", type: "tag-pink" } },
+      { day: "13–16", month: "MAY", title: "Asia-Pacific Regional Rotaract Conference", desc: "Annual gathering of Rotaractors across the Asia-Pacific region promoting leadership, fellowship, and international collaboration.", location: "JPark Island Resort, Cebu, Philippines", tag: { label: "International", type: "tag-pink" } },
+      { day: "TBA",    month: "TBA", title: "43rd District Conference 2027",             desc: "Annual gathering of Rotaractors to celebrate accomplishments, strengthen fellowship, and recognize outstanding clubs and members.", location: "Butuan City",                         tag: { label: "District",     type: "tag-dark" } },
+      { day: "26–30",  month: "JUN", title: "Rotary International Convention",           desc: "Rotary International's largest annual event bringing members worldwide to celebrate service, exchange ideas, and collaborate on global initiatives.", location: "Barcelona, Spain", tag: { label: "International", type: "tag-pink" } },
     ],
   },
 
@@ -1418,7 +1430,7 @@ const CONFIG = {
       "Rotaract Club of Butuan North Hiraya": { president: "Francis John Doria", sponsoredBy: "Rotary Club of Butuan North" },
       "Rotaract Club of Butuan North-SJIT Chapter": { president: "Rose Angel R. Lumbay", sponsoredBy: "Rotary Club of Butuan North" },
       "Rotaract Club of Central Butuan": { president: "Estefano Adrianne H. Salinana", sponsoredBy: "Rotary Club of Central Butuan", schedule: "Friday, 7:00 PM", venue: "Plated Cafe & Bistro", email: "rotaractcentralbutuan@gmail.com" },
-      "Rotaract Club of Central Butuan-Caraga State University": { president: "Jenny D. Lamadora", sponsoredBy: "Rotary Club of Cental Butuan", schedule: "Friday, 7:00 PM", venue: "Plated Cafe & Bistro", email: "" },
+      "Rotaract Club of Central Butuan-Caraga State University": { president: "Jenny D. Lamadora", sponsoredBy: "Rotary Club of Cental Butuan" },
       "Rotaract Club of Central Cabadbaran-Northern Mindanao Colleges": { president: "", sponsoredBy: "Rotary Club of Central Cabadbaran" },
       "Rotaract Club of Central Cabadbaran Sidlak": { president: "", sponsoredBy: "Rotary Club of Central Cabadbaran" },
       "Rotaract Club of Downtown Butuan": { president: "", sponsoredBy: "Rotary Club of Downtown Butuan" },
@@ -1543,7 +1555,7 @@ const CONFIG = {
     title:   "Contact Us",
     desc:    "Reach out to the District Rotaract Secretariat for inquiries, reports, or membership information.",
     details: [
-      { icon: "✉️", label: "Email",        value: "[district.email@rotaract3860.org]"              },
+      { icon: "✉️", label: "Email",        value: "impactbuilding3860@gmail.com"              },
       { icon: "📱", label: "Mobile",       value: "[+63 9XX XXX XXXX]"                             },
     ],
     socials: [
@@ -2197,12 +2209,10 @@ const CONFIG = {
   /* Impact */
   const ig=$('impact-grid');
   C.stats.forEach(function(s,idx){
-    var _ic=['','',''];
     var div=document.createElement('div'); div.className='impact-item';
     var numVal=parseInt(s.num.toString().replace(/,/g,''))||0;
     var sfx=s.num.toString().replace(/[0-9,]/g,'');
-    div.innerHTML=
-      '<div class="impact-num" data-target="'+numVal+'" data-suffix="'+sfx+'">0'+sfx+'</div>'+
+    div.innerHTML='<div class="impact-num" data-target="'+numVal+'" data-suffix="'+sfx+'">0'+sfx+'</div>'+
       '<div class="impact-lbl">'+s.label+'</div>';
     ig.appendChild(div);
   });
@@ -2391,6 +2401,7 @@ const CONFIG = {
       '<h3 style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--heading-color);margin-top:8px;">'+fdrr.title+'</h3>';
     fd.appendChild(fGrid);
     if(window.initTilt) window.initTilt();
+    if(window.initTilt) window.initTilt();
 
   /* Meet the DRR */
   const drr = C.drr;
@@ -2404,14 +2415,14 @@ const CONFIG = {
     var fullTxt=(drr.bionote||'').replace(shortTxt,'').trim();
     var bioLink=drr.bionoteLink||'';
     drrBioEl.innerHTML=shortTxt+
-      ' <a href="#" id="drr-bio-toggle" style="color:var(--pink);font-weight:700;font-size:13px;">Read full bionote \u2192</a>'+
+      ' <a href="#" id="drr-bio-toggle" style="color:var(--pink);font-weight:700;font-size:13px;">Read full bionote →</a>'+
       '<span id="drr-bio-full" style="display:none;"> '+fullTxt+'</span>'+
-      (bioLink?'<a href="'+bioLink+'" target="_blank" rel="noopener" style="color:var(--pink);font-size:12px;font-weight:600;display:block;margin-top:8px;">\u2197 View full bionote document</a>':'');
+      (bioLink?'<a href="'+bioLink+'" target="_blank" rel="noopener" style="color:var(--pink);font-size:12px;font-weight:600;display:block;margin-top:8px;">↗ View full bionote document</a>':'');
     var togBtn=document.getElementById('drr-bio-toggle');
     if(togBtn){togBtn.onclick=function(e){e.preventDefault();
       var f=document.getElementById('drr-bio-full');
       if(f.style.display==='none'){f.style.display='inline';this.textContent='Read less';}
-      else{f.style.display='none';this.textContent='Read full bionote \u2192';}
+      else{f.style.display='none';this.textContent='Read full bionote →';}
     };}
   }
   const dphoto = $('drr-photo-wrap');
@@ -2942,6 +2953,46 @@ document.addEventListener('keydown',e=>{
     if(checkCount > 20) clearInterval(interval);
   }, 500);
   window.initTilt = initTilt;
+})();
+
+/* Tilt card effect */
+(function(){
+  var FACTOR=10;
+  function onMove(e){
+    var card=e.currentTarget,rect=card.getBoundingClientRect();
+    var dx=(e.clientX-(rect.left+rect.width/2))/(rect.width/2);
+    var dy=(e.clientY-(rect.top+rect.height/2))/(rect.height/2);
+    card.style.transform='perspective(800px) rotateX('+(-dy*FACTOR)+'deg) rotateY('+(dx*FACTOR)+'deg) scale3d(1.04,1.04,1.04)';
+    var sh=card.querySelector('.tilt-shine');
+    if(sh){sh.style.background='radial-gradient(circle at '+((e.clientX-rect.left)/rect.width*100)+'% '+((e.clientY-rect.top)/rect.height*100)+'%, rgba(255,255,255,.22) 0%, transparent 60%)';}
+  }
+  function onLeave(e){e.currentTarget.style.transform='perspective(800px) rotateX(0deg) rotateY(0deg) scale3d(1,1,1)';}
+  function onTouchMove(e){
+    if(!e.touches||!e.touches[0])return;
+    var card=e.currentTarget,rect=card.getBoundingClientRect(),t=e.touches[0];
+    var dx=Math.max(-1,Math.min(1,(t.clientX-(rect.left+rect.width/2))/(rect.width/2)));
+    var dy=Math.max(-1,Math.min(1,(t.clientY-(rect.top+rect.height/2))/(rect.height/2)));
+    card.style.transition='transform .05s ease';
+    card.style.transform='perspective(600px) rotateX('+(-dy*FACTOR*.6)+'deg) rotateY('+(dx*FACTOR*.6)+'deg) scale3d(1.03,1.03,1.03)';
+    var sh=card.querySelector('.tilt-shine');
+    if(sh){sh.style.opacity='1';sh.style.background='radial-gradient(circle at '+((t.clientX-rect.left)/rect.width*100)+'% '+((t.clientY-rect.top)/rect.height*100)+'%, rgba(255,255,255,.18) 0%, transparent 60%)';}
+  }
+  function onTouchStart(e){var card=e.currentTarget;card.style.transition='transform .05s ease,box-shadow .15s ease';card.style.transform='perspective(600px) scale3d(1.03,1.03,1.03)';var sh=card.querySelector('.tilt-shine');if(sh)sh.style.opacity='1';}
+  function onTouchEnd(e){var card=e.currentTarget;card.style.transition='transform .3s ease,box-shadow .3s ease';card.style.transform='perspective(600px) rotateX(0deg) rotateY(0deg) scale3d(1,1,1)';var sh=card.querySelector('.tilt-shine');if(sh)sh.style.opacity='0';}
+  function initTilt(){
+    document.querySelectorAll('.tilt-card').forEach(function(card){
+      if(card._tiltInit)return; card._tiltInit=true;
+      card.addEventListener('mousemove',onMove);
+      card.addEventListener('mouseleave',onLeave);
+      card.addEventListener('touchstart',onTouchStart,{passive:true});
+      card.addEventListener('touchmove',onTouchMove,{passive:true});
+      card.addEventListener('touchend',onTouchEnd,{passive:true});
+      card.addEventListener('touchcancel',onTouchEnd,{passive:true});
+    });
+  }
+  window.addEventListener('load',initTilt);
+  var cc=0,iv=setInterval(function(){initTilt();if(++cc>20)clearInterval(iv);},500);
+  window.initTilt=initTilt;
 })();
 
 function calSelectSlot(slot){
