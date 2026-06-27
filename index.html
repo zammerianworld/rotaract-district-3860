@@ -162,7 +162,11 @@ body.loaded{opacity:1;}
 .drr-photo-placeholder span{font-size:48px;}
 .drr-photo-placeholder p{font-size:13px;color:var(--pink-dark);font-weight:600;text-align:center;padding:0 16px;}
 .drr-content{}
-.drr-bio{font-size:15px;color:var(--gray-600,#4B5563);line-height:1.8;margin-bottom:28px;font-style:normal;border-left:3px solid var(--pink);padding-left:20px;}
+.drr-bio{font-size:16px;color:var(--gray-700);line-height:1.9;margin-bottom:28px;font-style:normal;}
+.bio-read-btn{background:none;border:1.5px solid var(--pink);border-radius:40px;padding:7px 20px;color:var(--pink);font-weight:700;font-size:13px;cursor:pointer;font-family:var(--font-body);transition:all .2s;}
+.bio-read-btn:hover{background:var(--pink);color:#fff;}
+body.dark-mode .bio-read-btn{border-color:var(--pink);color:var(--pink);}
+body.dark-mode .bio-read-btn:hover{background:var(--pink);color:#fff;}
 .drr-achievements-title{font-size:13px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--gray-400);margin-bottom:16px;}
 .drr-achievements{display:flex;flex-direction:column;gap:10px;}
 .drr-achievement{display:flex;align-items:flex-start;gap:12px;padding:12px 16px;background:#fff;border-radius:var(--r-md);border:1px solid var(--gray-100);}
@@ -563,6 +567,7 @@ body.dark-mode .future-drr-name{color:var(--dm-text);}
 body.dark-mode .future-drr-club{color:var(--dm-muted);}
 body.dark-mode #drr{background:var(--dm-bg);}
 body.dark-mode .drr-bio{color:var(--dm-muted);}
+body.dark-mode #bm-body{color:var(--dm-muted);background:var(--dm-surface);}
 body.dark-mode .drr-achievement{background:var(--dm-surface2);border-color:var(--dm-border);}
 body.dark-mode .drr-achievement span{color:var(--dm-text);}
 body.dark-mode .drr-achievements-title{color:var(--dm-muted);}
@@ -665,7 +670,8 @@ body.dark-mode h3{color:var(--dm-text);}
 
 /* Meet the DRR */
 body.dark-mode #drr{background:var(--dm-bg);}
-body.dark-mode .drr-bio{color:var(--dm-muted);border-left-color:var(--pink);}
+body.dark-mode .drr-bio{color:var(--dm-muted);}
+body.dark-mode #bm-body{color:var(--dm-muted);background:var(--dm-surface);}
 body.dark-mode .drr-achievements-title{color:var(--dm-muted);}
 body.dark-mode .drr-achievement{background:var(--dm-surface2);border-color:var(--dm-border);}
 body.dark-mode .drr-achievement span{color:var(--dm-text);}
@@ -997,7 +1003,7 @@ body.dark-mode .theme-song-desc{color:rgba(255,255,255,.65);}
   .drr-layout{grid-template-columns:1fr;gap:24px;}
   .drr-photo-wrap{max-width:200px;margin:0 auto;}
   .drr-content{width:100%;}
-  .drr-bio{font-size:14px;padding-left:14px;}
+  .drr-bio{font-size:15px;}
 
   /* Events */
   .event-card{grid-template-columns:1fr;gap:12px;}
@@ -2093,6 +2099,21 @@ const CONFIG = {
   </div>
 </footer>
 
+<!-- BIONOTE MODAL -->
+<div class="club-modal-overlay" id="bionote-modal-overlay" onclick="closeBionoteModal(event)">
+  <div class="club-modal" id="bionote-modal" style="max-width:600px;max-height:85vh;display:flex;flex-direction:column;">
+    <div class="club-modal-header" style="flex-shrink:0;">
+      <div class="club-modal-pill">Meet the DRR</div>
+      <div class="club-modal-name" id="bm-name"></div>
+      <button class="club-modal-close" onclick="closeBionoteModal()" aria-label="Close">✕</button>
+    </div>
+    <div id="bm-body" style="padding:28px;overflow-y:auto;flex:1;font-size:15px;color:var(--gray-700);line-height:1.85;"></div>
+    <div class="club-modal-footer" style="flex-shrink:0;">
+      <button class="club-modal-dismiss" onclick="closeBionoteModal()">Close</button>
+    </div>
+  </div>
+</div>
+
 <!-- FUTURE DRR MODAL -->
 <div class="club-modal-overlay" id="fdrr-modal-overlay" onclick="closeFutureDRRModal(event)">
   <div class="club-modal" id="fdrr-modal">
@@ -2411,22 +2432,25 @@ const CONFIG = {
   setText('drr-eyebrow',  drr.eyebrow);
   setText('drr-title',    drr.title);
   setText('drr-subtitle', drr.subtitle);
-  // DRR bionote — short + expandable
+  // DRR bionote — short as paragraphs, full in modal card
   var drrBioEl=$('drr-bio');
   if(drrBioEl){
     var shortTxt=drr.bionoteShort||drr.bionote||'Bionote coming soon.';
-    var fullTxt=(drr.bionote||'').replace(shortTxt,'').trim();
-    var bioLink=drr.bionoteLink||'';
-    drrBioEl.innerHTML=shortTxt+
-      ' <a href="#" id="drr-bio-toggle" style="color:var(--pink);font-weight:700;font-size:13px;">Read full bionote →</a>'+
-      '<span id="drr-bio-full" style="display:none;"> '+fullTxt+'</span>'+
-      (bioLink?'<a href="'+bioLink+'" target="_blank" rel="noopener" style="color:var(--pink);font-size:12px;font-weight:600;display:block;margin-top:8px;">↗ View full bionote document</a>':'');
-    var togBtn=document.getElementById('drr-bio-toggle');
-    if(togBtn){togBtn.onclick=function(e){e.preventDefault();
-      var f=document.getElementById('drr-bio-full');
-      if(f.style.display==='none'){f.style.display='inline';this.textContent='Read less';}
-      else{f.style.display='none';this.textContent='Read full bionote →';}
-    };}
+    var fullTxt=drr.bionote||shortTxt;
+    // Helper: split text into paragraph-spaced HTML
+    function toBioParas(txt){
+      // Split at sentence boundaries roughly every 2 sentences
+      var sentences=txt.match(/[^.!?]+[.!?]+[\s]*/g)||[txt]; sentences=sentences.reduce(function(a,s){if(a.length&&s.match(/^[A-Z]\./)){a[a.length-1]+=s;}else{a.push(s);}return a;},[]);
+      var paras=[]; var buf='';
+      sentences.forEach(function(s,i){
+        buf+=s;
+        if((i+1)%2===0||i===sentences.length-1){paras.push(buf.trim());buf='';}
+      });
+      return paras.map(function(p){return '<p style="margin:0 0 14px 0;">'+p+'</p>';}).join('');
+    }
+    drrBioEl.innerHTML=
+      '<div style="margin-bottom:20px;">'+toBioParas(shortTxt)+'</div>'+
+      '<button onclick="openBionoteModal()" class="bio-read-btn">Read full bionote ↗</button>';
   }
   const dphoto = $('drr-photo-wrap');
   if(drr.photo){
@@ -2730,7 +2754,7 @@ const CONFIG = {
   }
 
   /* ESC key */
-  document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeClubModal();closeOfficerModal();closeGovModal();closeFutureDRRModal();}});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeClubModal();closeOfficerModal();closeGovModal();closeFutureDRRModal();closeBionoteModal();}});
 
 })();
 
@@ -2997,6 +3021,28 @@ document.addEventListener('keydown',e=>{
   var cc=0,iv=setInterval(function(){initTilt();if(++cc>20)clearInterval(iv);},500);
   window.initTilt=initTilt;
 })();
+
+function openBionoteModal(){
+  var drr=CONFIG.drr;
+  document.getElementById('bm-name').textContent=drr.title||'District Rotaract Representative';
+  var fullTxt=drr.bionote||drr.bionoteShort||'';
+  var sentences=fullTxt.match(/[^.!?]+[.!?]+[\s]*/g)||[fullTxt];
+  var paras=[]; var buf='';
+  sentences.forEach(function(s,i){
+    buf+=s;
+    if((i+1)%2===0||i===sentences.length-1){paras.push(buf.trim());buf='';}
+  });
+  document.getElementById('bm-body').innerHTML=paras.map(function(p){
+    return '<p style="margin:0 0 16px 0;">'+p+'</p>';
+  }).join('');
+  document.getElementById('bionote-modal-overlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeBionoteModal(e){
+  if(e&&e.target!==document.getElementById('bionote-modal-overlay'))return;
+  document.getElementById('bionote-modal-overlay').classList.remove('open');
+  document.body.style.overflow='';
+}
 
 function calSelectSlot(slot){
   document.querySelectorAll('.cal-month-tab').forEach(function(t,i){ t.classList.toggle('active', i===slot); });
