@@ -2108,7 +2108,8 @@ const CONFIG = {
       <button class="club-modal-close" onclick="closeBionoteModal()" aria-label="Close">✕</button>
     </div>
     <div id="bm-body" style="padding:28px;overflow-y:auto;flex:1;font-size:15px;color:var(--gray-700);line-height:1.85;"></div>
-    <div class="club-modal-footer" style="flex-shrink:0;">
+    <div class="club-modal-footer" style="flex-shrink:0;display:flex;justify-content:space-between;align-items:center;">
+      <button id="bm-copy-btn" onclick="copyBionote()" style="background:none;border:1.5px solid var(--pink);border-radius:40px;padding:7px 18px;color:var(--pink);font-weight:700;font-size:12px;cursor:pointer;font-family:var(--font-body);transition:all .2s;">📋 Copy bionote</button>
       <button class="club-modal-dismiss" onclick="closeBionoteModal()">Close</button>
     </div>
   </div>
@@ -2438,19 +2439,29 @@ const CONFIG = {
     var shortTxt=drr.bionoteShort||drr.bionote||'Bionote coming soon.';
     var fullTxt=drr.bionote||shortTxt;
     // Helper: split text into paragraph-spaced HTML
-    function toBioParas(txt){
-      // Split only on ". He/His/During/Subsequently/In/A/The" — sentence-starting words
-      var parts=txt.split(/\.\s+(?=[A-Z][a-z]{2,})/);
-      // Rejoin with period, group every 2 into a paragraph
-      var paras=[]; var buf='';
-      parts.forEach(function(s,i){
-        buf+=(i>0?'. ':'')+s;
-        if((i+1)%2===0||i===parts.length-1){paras.push(buf.trim()+(buf.trim().slice(-1)==='.'?'':'.'));buf='';}
-      });
+        function toBioParas(txt){
+      var splitRe=/\.\s+(?=He\b|His\b|During\b|Subsequently\b|In\s+20|In\s+the|The\b|Christian\b)/g;
+      var parts=txt.split(splitRe);
+      var paras=[];
+      for(var i=0;i<parts.length;i+=2){
+        var p=parts[i].trim();
+        if(!p.endsWith('.'))p+='.';
+        if(i+1<parts.length){p+=' '+parts[i+1].trim();if(!p.endsWith('.'))p+='.';}
+        paras.push(p);
+      }
       return paras.map(function(p){return '<p style="margin:0 0 14px 0;">'+p+'</p>';}).join('');
     }
+    // Short version: insert line break every 2 sentences
+    var shortParts=shortTxt.split(/\.\s+(?=He\b|His\b|During\b|Subsequently\b|In\s+20|In\s+the|The\b|A\s+proud)/);
+    var shortHtml='';
+    for(var i=0;i<shortParts.length;i+=2){
+      var p=shortParts[i].trim();
+      if(!p.endsWith('.'))p+='.';
+      if(i+1<shortParts.length){p+=' '+shortParts[i+1].trim();if(!p.endsWith('.'))p+='.';}
+      shortHtml+='<p style="margin:0 0 14px 0;">'+p+'</p>';
+    }
     drrBioEl.innerHTML=
-      '<div style="margin-bottom:20px;">'+shortTxt+'</div>'+
+      '<div style="margin-bottom:20px;">'+shortHtml+'</div>'+
       '<button onclick="openBionoteModal()" class="bio-read-btn">Read full bionote ↗</button>';
   }
   const dphoto = $('drr-photo-wrap');
@@ -3027,17 +3038,40 @@ function openBionoteModal(){
   var drr=CONFIG.drr;
   document.getElementById('bm-name').textContent=drr.title||'District Rotaract Representative';
   var fullTxt=drr.bionote||drr.bionoteShort||'';
-  var parts=fullTxt.split(/\.\s+(?=[A-Z][a-z]{2,})/);
-  var paras=[]; var buf='';
-  parts.forEach(function(s,i){
-    buf+=(i>0?'. ':'')+s;
-    if((i+1)%2===0||i===parts.length-1){paras.push(buf.trim()+(buf.trim().slice(-1)==='.'?'':'.'));buf='';}
-  });
+  var splitRe=/\.\s+(?=He\b|His\b|During\b|Subsequently\b|In\s+20|In\s+the|The\b|Christian\b)/g;
+  var parts=fullTxt.split(splitRe);
+  var paras=[];
+  for(var i=0;i<parts.length;i+=2){
+    var p=parts[i].trim();
+    if(!p.endsWith('.'))p+='.';
+    if(i+1<parts.length){p+=' '+parts[i+1].trim();if(!p.endsWith('.'))p+='.';}
+    paras.push(p);
+  }
   document.getElementById('bm-body').innerHTML=paras.map(function(p){
     return '<p style="margin:0 0 16px 0;">'+p+'</p>';
   }).join('');
   document.getElementById('bionote-modal-overlay').classList.add('open');
   document.body.style.overflow='hidden';
+}
+function copyBionote(){
+  var txt=CONFIG.drr.bionote||'';
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(txt).then(function(){
+      var btn=document.getElementById('bm-copy-btn');
+      btn.textContent='✓ Copied!';
+      btn.style.background='var(--pink)';
+      btn.style.color='#fff';
+      setTimeout(function(){btn.textContent='📋 Copy bionote';btn.style.background='none';btn.style.color='var(--pink)';},2000);
+    });
+  } else {
+    var ta=document.createElement('textarea');
+    ta.value=txt; ta.style.position='fixed'; ta.style.opacity='0';
+    document.body.appendChild(ta); ta.select();
+    document.execCommand('copy'); document.body.removeChild(ta);
+    var btn=document.getElementById('bm-copy-btn');
+    btn.textContent='✓ Copied!';
+    setTimeout(function(){btn.textContent='📋 Copy bionote';},2000);
+  }
 }
 function closeBionoteModal(e){
   if(e&&e.target!==document.getElementById('bionote-modal-overlay'))return;
