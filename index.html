@@ -2139,7 +2139,7 @@ const CONFIG = {
         <div class="contact-card-title">District Secretariat</div>
         <div class="contact-rows" id="contact-details"></div>
         <div class="socials" id="contact-socials"></div>
-        <div class="qr-strip">
+        <div class="qr-strip" onclick="openQRModal()" style="cursor:pointer;transition:box-shadow .2s;" onmouseover="this.style.boxShadow='0 4px 20px rgba(212,19,103,.15)'" onmouseout="this.style.boxShadow=''">
           <div class="qr-svg-wrap">
             <img src="https://api.qrserver.com/v1/create-qr-code/?size=96x96&data=https://rotaract-district-3860.vercel.app&bgcolor=ffffff&color=000000&margin=4" 
                  width="96" height="96" alt="QR Code" 
@@ -2151,11 +2151,7 @@ const CONFIG = {
             <div class="qr-url">rotaract-district-3860.vercel.app</div>
           </div>
         </div>
-          <div class="qr-info">
-            <div class="qr-label">Scan to visit</div>
-            <div class="qr-title">Rotaract District 3860</div>
-            <div class="qr-url">rotaract-district-3860.vercel.app</div>
-          </div>
+          
         </div>
       </div>
       <div class="contact-card">
@@ -2202,6 +2198,30 @@ const CONFIG = {
     <div class="club-modal-footer" style="flex-shrink:0;display:flex;justify-content:space-between;align-items:center;">
       <button id="bm-copy-btn" onclick="copyBionote()" style="background:none;border:1.5px solid var(--pink);border-radius:40px;padding:7px 18px;color:var(--pink);font-weight:700;font-size:12px;cursor:pointer;font-family:var(--font-body);transition:all .2s;">📋 Copy bionote</button>
       <button class="club-modal-dismiss" onclick="closeBionoteModal()">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- QR MODAL -->
+<div class="club-modal-overlay" id="qr-modal-overlay" onclick="closeQRModal(event)">
+  <div class="club-modal" style="max-width:360px;text-align:center;">
+    <div class="club-modal-header" style="justify-content:center;padding-bottom:16px;">
+      <div class="club-modal-name" style="font-size:18px;">Scan to Visit</div>
+      <button class="club-modal-close" onclick="closeQRModal()" aria-label="Close">✕</button>
+    </div>
+    <div style="padding:0 28px 8px;display:flex;flex-direction:column;align-items:center;gap:20px;">
+      <div style="background:#fff;border-radius:16px;padding:16px;display:inline-block;">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https://rotaract-district-3860.vercel.app&bgcolor=ffffff&color=000000&margin=4"
+             width="220" height="220" alt="QR Code" style="display:block;border-radius:8px;"/>
+      </div>
+      <div>
+        <div style="font-size:13px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--gray-400);margin-bottom:6px;">SCAN QR CODE TO VISIT</div>
+        <div style="font-size:17px;font-weight:800;color:var(--heading-color);font-family:var(--font-body);margin-bottom:4px;">Rotaract District 3860</div>
+        <div style="font-size:13px;color:var(--pink);">rotaract-district-3860.vercel.app</div>
+      </div>
+    </div>
+    <div class="club-modal-footer">
+      <button class="club-modal-dismiss" onclick="closeQRModal()">Close</button>
     </div>
   </div>
 </div>
@@ -2857,7 +2877,7 @@ const CONFIG = {
   }
 
   /* ESC key */
-  document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeClubModal();closeOfficerModal();closeGovModal();closeFutureDRRModal();closeBionoteModal();}});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeClubModal();closeOfficerModal();closeGovModal();closeFutureDRRModal();closeBionoteModal();closeQRModal();}});
 
 })();
 
@@ -3167,6 +3187,16 @@ function copyBionote(){
 function closeBionoteModal(e){
   if(e&&e.target!==document.getElementById('bionote-modal-overlay'))return;
   document.getElementById('bionote-modal-overlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+function openQRModal(){
+  document.getElementById('qr-modal-overlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeQRModal(e){
+  if(e&&e.target!==document.getElementById('qr-modal-overlay'))return;
+  document.getElementById('qr-modal-overlay').classList.remove('open');
   document.body.style.overflow='';
 }
 
