@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rotaract-district-3860.vercel.app/sitemap.xml
