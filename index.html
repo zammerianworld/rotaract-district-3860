@@ -801,6 +801,7 @@ body.dark-mode .map-view-btn{color:var(--pink);border-color:var(--pink);}
 body.dark-mode .map-view-btn:hover{background:var(--pink);color:#fff;}
 
 /* Contact */
+body.dark-mode #facebook-feed{background:var(--dm-surface);}
 body.dark-mode #contact{background:var(--dm-bg);}
 body.dark-mode .contact-card{background:var(--dm-surface2);border-color:var(--dm-border);}
 body.dark-mode .contact-card h3{color:var(--dm-text);}
@@ -1011,7 +1012,10 @@ body.dark-mode .theme-song-desc{color:rgba(255,255,255,.65);}
   .impact-lbl{font-size:12px;}
 
   /* Sections padding */
-  #about,#officers,#events,#resources,#clubs,#contact,#map,#drr{padding:56px 0;}
+  #facebook-feed .section-heading{font-size:clamp(28px,6vw,36px);}
+  #facebook-feed [style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important;gap:32px!important;}
+  #facebook-feed .fb-page{max-width:100%;}
+  
 
   /* About cards */
   .about-grid{grid-template-columns:1fr;gap:16px;}
@@ -1657,6 +1661,7 @@ const CONFIG = {
     <a href="#calendar" id="mob-cal" style="display:none;">Calendar</a>
     <a href="#clubs">Clubs</a>
     <a href="#map">Map</a>
+    <a href="#facebook-feed">Facebook</a>
     <a href="#resources">Resources</a>
     <a href="#contact">Contact Us</a>
   </div>
@@ -2079,6 +2084,42 @@ const CONFIG = {
     </div>
   </div>
 </section>
+
+<!-- FACEBOOK FEED -->
+<section id="facebook-feed" style="padding:80px 0;background:var(--gray-50);">
+  <div class="container">
+    <div class="section-kicker">STAY CONNECTED</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;margin-top:32px;">
+      <div>
+        <h2 class="section-heading">Follow Us on Facebook</h2>
+        <p class="section-sub" style="margin-bottom:28px;">Stay updated with the latest news, events, and highlights from Rotaract District 3860. Like our official page to never miss an update.</p>
+        <a href="https://www.facebook.com/rotaractdistrict3860" target="_blank" rel="noopener"
+           style="display:inline-flex;align-items:center;gap:10px;background:var(--pink);color:#fff;font-weight:700;font-size:15px;padding:12px 24px;border-radius:40px;text-decoration:none;transition:background .2s;"
+           onmouseover="this.style.background='#a50e50'" onmouseout="this.style.background='var(--pink)'">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          Like Our Page
+        </a>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;">
+        <!-- Facebook Page Plugin — paste your Page URL below -->
+        <!-- UPDATE: change data-href to your final domain page URL if needed -->
+        <div id="fb-root"></div>
+        <div class="fb-page"
+          data-href="https://www.facebook.com/rotaractdistrict3860"
+          data-tabs="timeline"
+          data-width="400"
+          data-height="500"
+          data-small-header="true"
+          data-adapt-container-width="true"
+          data-hide-cover="false"
+          data-show-facepile="false">
+        </div>
+        <p style="font-size:12px;color:var(--gray-400);margin-top:12px;text-align:center;">Powered by Facebook Page Plugin · <a href="https://www.facebook.com/rotaractdistrict3860" target="_blank" style="color:var(--pink);">Open in Facebook ↗</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0"></script>
 
 <!-- CONTACT -->
 <section id="contact">
