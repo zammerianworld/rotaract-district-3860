@@ -2258,7 +2258,7 @@ const CONFIG = {
     if(drcEl){
       /* Wrap DRC + DDRC in a 2-col grid */
       var drcGrid=document.createElement('div');
-      drcGrid.style.cssText='display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:0;';
+      drcGrid.style.cssText='display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:52px;';
       /* Responsive: stack on mobile */
       var drcMq=window.matchMedia('(max-width:640px)');
       function drcRespond(e){ drcGrid.style.gridTemplateColumns=e.matches?'1fr':'1fr 1fr'; }
@@ -2298,7 +2298,7 @@ const CONFIG = {
       : '<span>'+gov.name.split(' ').map(function(w){return w[0];}).join('').slice(0,2)+'</span>';
 if(window.initTilt) window.initTilt();
 
-    var gb=document.createElement("div"); gb.className="gov-banner tilt-card"; gb.style.cursor="pointer"; gb.onclick=openGovModal;
+    var gb=document.createElement("div"); gb.className="gov-banner tilt-card"; gb.style.cssText="cursor:pointer;margin-bottom:20px;"; gb.onclick=openGovModal;
     var govShine=document.createElement("div"); govShine.className="tilt-shine"; gb.appendChild(govShine);
     var ga=document.createElement("div"); ga.className="gov-avatar";
     if(gov.photo){
