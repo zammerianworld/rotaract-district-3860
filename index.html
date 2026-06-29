@@ -219,7 +219,7 @@ body.dark-mode .bio-read-btn:hover{background:var(--pink);color:#fff;}
 .secretariat-arrow{margin-left:auto;font-size:18px;color:var(--pink);align-self:center;flex-shrink:0;}
 
 /* ── DRR STATS ── */
-.drr-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:24px 0;}
+.drr-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0 0;}
 .drr-stat-card{background:var(--pink-light);border:1px solid rgba(212,19,103,.15);border-radius:var(--r-lg);padding:18px 16px;text-align:center;transition:all .25s;}
 .drr-stat-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(212,19,103,.12);}
 .drr-stat-num{font-family:var(--font-display);font-size:32px;font-weight:900;color:var(--pink);line-height:1;letter-spacing:-1px;}
@@ -1148,13 +1148,13 @@ const CONFIG = {
     drc: {
       name:  "Remuel M. Coles",
       role:  "District Rotaract Chair",
-      club:  "RAC Metro Surigao",
+      club:  "RC Metro Surigao",
       photo: "https://drive.google.com/thumbnail?id=1fBwJw87L7wUsDyFazYfkCG-Cz8GjC_NG&sz=w300",
     },
     ddrc: {
       name:  "Ryan Jae G. Yap",
       role:  "Deputy District Rotaract Chair",
-      club:  "RAC Central Butuan",
+      club:  "RC Central Butuan",
       photo: "https://drive.google.com/thumbnail?id=1SrfMWRPmW7pVq8HKNP5hSZdQpPilj3BF&sz=w300",
     },
     governor: {
@@ -1658,10 +1658,11 @@ const CONFIG = {
     <h2 class="section-heading" id="drr-title"></h2>
     <p style="font-size:15px;color:var(--gray-500);margin-bottom:48px;" id="drr-subtitle"></p>
     <div class="drr-layout">
-      <div class="drr-photo-wrap" id="drr-photo-wrap"></div>
+      <div class="drr-photo-wrap" id="drr-photo-wrap">
+        <div class="drr-stats" id="drr-stats"></div>
+      </div>
       <div class="drr-content">
         <p class="drr-bio" id="drr-bio"></p>
-        <div class="drr-stats" id="drr-stats"></div>
         <div class="drr-achievements-title">Past District Positions</div>
         <div class="drr-achievements" id="drr-achievements"></div>
       </div>
@@ -2325,16 +2326,6 @@ if(window.initTilt) window.initTilt();
   }
 
   /* Officers */
-  /* DRR stats */
-  var drrSt=$('drr-stats');
-  if(drrSt){
-    [{num:'10+',label:'Years in Rotaract'},{num:'11',label:'District Positions'},{num:'RY 26-27',label:'Term as DRR'}].forEach(function(s){
-      var c=document.createElement('div'); c.className='drr-stat-card';
-      c.innerHTML='<div class="drr-stat-num">'+s.num+'</div><div class="drr-stat-lbl">'+s.label+'</div>';
-      drrSt.appendChild(c);
-    });
-  }
-
     setText('officers-eyebrow', C.officers.eyebrow);
   setText('officers-title',   C.officers.title);
   setText('officers-desc',    C.officers.desc);
@@ -2484,6 +2475,15 @@ if(window.initTilt) window.initTilt();
     dphoto.appendChild(dimg);
   } else {
     dphoto.innerHTML = '<div class="drr-photo-placeholder"><span>📷</span><p>Official photo coming soon</p></div>';
+  }
+  /* DRR stats — rendered after photo so element exists */
+  var drrSt=$('drr-stats');
+  if(drrSt){
+    [{num:'10+',label:'Years in Rotaract'},{num:'11',label:'District Positions'},{num:'RY 26-27',label:'Term as DRR'}].forEach(function(s){
+      var c=document.createElement('div'); c.className='drr-stat-card';
+      c.innerHTML='<div class="drr-stat-num">'+s.num+'</div><div class="drr-stat-lbl">'+s.label+'</div>';
+      drrSt.appendChild(c);
+    });
   }
   const dach = $('drr-achievements');
   (drr.pastPositions||drr.achievements||[]).forEach(function(a){
