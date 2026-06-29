@@ -295,42 +295,6 @@ body.dark-mode .drr-stat-lbl{color:var(--dm-muted);}
 
 /* ── CALENDAR ── */
 #calendar{padding:96px 0;background:var(--gray-50);}
-.calendar-embed{width:100%;height:600px;border-radius:var(--r-lg);border:1px solid var(--gray-200);overflow:hidden;margin-top:48px;}
-.calendar-embed iframe{width:100%;height:100%;border:none;}
-.calendar-placeholder{margin-top:48px;background:#fff;border:1.5px dashed var(--gray-200);border-radius:var(--r-lg);padding:52px 24px;text-align:center;}
-.calendar-placeholder-icon{font-size:44px;margin-bottom:16px;}
-.calendar-placeholder p{font-size:15px;color:var(--gray-500);margin-bottom:6px;}
-.calendar-placeholder span{font-size:13px;color:var(--gray-300);}
-.calendar-list{display:flex;flex-direction:column;gap:14px;margin-top:48px;}
-.cal-item{background:#fff;border:1px solid var(--gray-100);border-radius:var(--r-lg);padding:20px 24px 20px 28px;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:start;position:relative;overflow:hidden;}
-.cal-item::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--pink);}
-.cal-date{background:var(--pink-light);border-radius:var(--r-md);padding:10px 14px;text-align:center;min-width:58px;}
-.cal-date .day{font-family:var(--font-display);font-size:24px;font-weight:900;color:var(--pink);line-height:1;}
-.cal-date .mo{font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--pink-dark);margin-top:2px;}
-.cal-info h3{font-size:15px;font-weight:700;color:var(--heading-color);margin-bottom:4px;}
-.cal-info p{font-size:13px;color:var(--gray-500);line-height:1.6;margin-bottom:6px;}
-.cal-loc{font-size:12px;color:var(--gray-400);}
-.cal-loc::before{content:'📍';font-size:11px;margin-right:3px;}
-
-/* ── CALENDAR ── */
-#calendar{padding:96px 0;background:var(--gray-50);}
-.cal-embed{width:100%;height:600px;border:none;border-radius:var(--r-lg);margin-top:48px;}
-.cal-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-top:48px;}
-.cal-card{background:#fff;border:1px solid var(--gray-100);border-radius:var(--r-lg);padding:16px 20px;display:flex;gap:16px;align-items:center;transition:all .2s;}
-.cal-card:hover{box-shadow:0 8px 24px rgba(212,19,103,.08);border-color:var(--pink-light);}
-.cal-month{background:var(--pink);color:#fff;border-radius:var(--r-md);padding:8px 12px;text-align:center;min-width:52px;flex-shrink:0;}
-.cal-month .day{font-family:var(--font-display);font-size:22px;font-weight:900;line-height:1;color:#fff;}
-.cal-month .mo{font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:rgba(255,255,255,.7);margin-top:2px;}
-.cal-info{flex:1;}
-.cal-title{font-size:14px;font-weight:700;color:var(--heading-color);margin-bottom:4px;}
-.cal-loc{font-size:12px;color:var(--gray-500);}
-.cal-type{font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:2px 8px;border-radius:20px;background:var(--pink-light);color:var(--pink-dark);margin-bottom:4px;display:inline-block;}
-.cal-placeholder{background:rgba(255,255,255,.04);border:1.5px dashed rgba(212,19,103,.3);border-radius:var(--r-xl);padding:52px 24px;text-align:center;margin-top:48px;}
-.cal-placeholder p{font-size:15px;color:var(--gray-500);margin-bottom:6px;}
-.cal-placeholder span{font-size:13px;color:var(--gray-400);}
-
-/* ── CALENDAR ── */
-#calendar{padding:96px 0;background:var(--gray-50);}
 .calendar-embed{width:100%;height:600px;border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--gray-200);margin-top:48px;}
 /* Month tabs */
 .cal-month-tabs{display:flex;flex-wrap:wrap;gap:6px;margin-top:36px;margin-bottom:24px;}
@@ -901,14 +865,6 @@ body.dark-mode .om-avatar{background:var(--dm-faint);color:var(--pink);}
 .officer-card{transform-style:preserve-3d;}
 .future-drr-card{transform-style:preserve-3d;}
 
-/* ── TILT CARD EFFECT ── */
-.tilt-card{transform-style:preserve-3d;transition:transform .15s ease,box-shadow .15s ease;will-change:transform;}
-.tilt-card:hover{box-shadow:0 20px 60px rgba(212,19,103,.18),0 8px 24px rgba(0,0,0,.08);}
-.tilt-shine{position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .2s ease;background:radial-gradient(circle at 50% 50%, rgba(255,255,255,.18) 0%, transparent 65%);z-index:10;}
-.tilt-card:hover .tilt-shine{opacity:1;}
-.officer-card{transform-style:preserve-3d;}
-.future-drr-card{transform-style:preserve-3d;}
-
 /* Dark mode toggle button */
 #dark-toggle{position:fixed;bottom:80px;right:28px;width:44px;height:44px;border-radius:50%;background:var(--gray-900);color:#fff;font-size:18px;display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;box-shadow:0 4px 16px rgba(0,0,0,.2);z-index:50;transition:all .25s;}
 #dark-toggle:hover{transform:translateY(-2px);}
@@ -1227,7 +1183,7 @@ const CONFIG = {
           { initials: "A1B",  name: "Joshua Pasa", photo: "https://drive.google.com/thumbnail?id=1SPraRrD40XFduqYFnT7sUZmTywCmLiWk&sz=w300",                  role: "Assistant District Rotaract Representative — Area 1 Bohol",   club: "RAC Panglao Island"   },
           { initials: "A1C",  name: "Lordhan C. Labora", photo: "https://drive.google.com/thumbnail?id=1-4wsQih4kHplmH-uigLKDljBb6sl8vvq&sz=w300", photoPosition: "center center",            role: "Assistant District Rotaract Representative — Area 1 Cebu",    club: "RAC Metro Cebu"       },
           { initials: "A1L",  name: "Larry S. Esperas", photo: "https://drive.google.com/thumbnail?id=17vajx3lwEjVfHmTu_rDdFpVT3pnGH2kL&sz=w300",             role: "Assistant District Rotaract Representative — Area 1 Leyte",   club: "RAC Tacloban"         },
-          { initials: "A1N",  name: "Patrick Jude I. Espina", photo: "https://drive.google.com/thumbnail?id=11-qUH1RKKT88HcdHU0bAwHk6E_7YtzMR&sz=w300", photo: null,       role: "Assistant District Rotaract Representative — Area 1 Negros",  club: "RAC Dumaguete"        },
+          { initials: "A1N",  name: "Patrick Jude I. Espina", photo: null, role: "Assistant District Rotaract Representative — Area 1 Negros",  club: "RAC Dumaguete"        },
           { initials: "A1S",  name: "Frederick S. Jalvez", photo: "https://drive.google.com/thumbnail?id=1tadYYr0i5tBeiQmRDBQoTxdznjDPA79I&sz=w300",          role: "Assistant District Rotaract Representative — Area 1 Samar",   club: "RAC Greater Calbayog" },
         ],
       },
@@ -1392,55 +1348,6 @@ const CONFIG = {
      Set show: false to hide until ready.
   ---------------------------------------- */
   /* --- Calendar of Activities ---
-     STEP 1: In Google Calendar → Settings → Integrate Calendar → copy the URL inside src="..."
-     STEP 2: Paste it below in embedUrl
-     STEP 3: Change type from "list" to "google"
-     That's it! The full calendar grid will appear automatically.
-  ---------------------------------------- */
-  calendar: {
-    show:     true,
-    eyebrow:  "Schedule",
-    title:    "Calendar of Activities",
-    desc:     "Stay updated on all district activities, deadlines, and club events for RY 2026–2027.",
-    type:     "list",       /* CHANGE TO "google" once embedUrl is set */
-    embedUrl: "[PASTE GOOGLE CALENDAR EMBED URL HERE]",  /* ← paste URL here */
-    list: [
-      { date: "—", month: "—", title: "[Activity Name]", desc: "[Description]", location: "[Venue, City]" },
-      { date: "—", month: "—", title: "[Activity Name]", desc: "[Description]", location: "[Venue, City]" },
-      { date: "—", month: "—", title: "[Activity Name]", desc: "[Description]", location: "[Venue, City]" },
-    ],
-  },
-
-  /* --- Calendar of Activities ---
-     Two modes:
-     mode: "embed"  → paste a Google Calendar embed URL in embedUrl
-     mode: "list"   → list activities manually in the items array
-     Set show: false to hide until ready.
-  ---------------------------------------- */
-  calendar: {
-    show:     true,
-    eyebrow:  "Schedule",
-    title:    "Calendar of Activities",
-    desc:     "Stay updated on all district-wide events, deadlines, and activities for Rotary Year 2026–2027.",
-    mode:     "list",   /* "embed" or "list" */
-    embedUrl: "[PASTE GOOGLE CALENDAR EMBED URL HERE]",
-    items: [
-      { month: "JUL", day: "—", title: "[Activity Title]",   type: "District",  location: "[Venue, City]" },
-      { month: "AUG", day: "—", title: "[Activity Title]",   type: "Training",  location: "[Venue, City]" },
-      { month: "SEP", day: "—", title: "[Activity Title]",   type: "Service",   location: "[Venue, City]" },
-      { month: "OCT", day: "—", title: "[Activity Title]",   type: "District",  location: "[Venue, City]" },
-      { month: "NOV", day: "—", title: "[Activity Title]",   type: "Conference",location: "[Venue, City]" },
-      { month: "DEC", day: "—", title: "[Activity Title]",   type: "Service",   location: "[Venue, City]" },
-      { month: "JAN", day: "—", title: "[Activity Title]",   type: "Training",  location: "[Venue, City]" },
-      { month: "FEB", day: "—", title: "[Activity Title]",   type: "District",  location: "[Venue, City]" },
-      { month: "MAR", day: "—", title: "[Activity Title]",   type: "Service",   location: "[Venue, City]" },
-      { month: "APR", day: "—", title: "[Activity Title]",   type: "District",  location: "[Venue, City]" },
-      { month: "MAY", day: "—", title: "[Activity Title]",   type: "Conference",location: "[Venue, City]" },
-      { month: "JUN", day: "—", title: "[Activity Title]",   type: "District",  location: "[Venue, City]" },
-    ],
-  },
-
-  /* --- Calendar of Activities ---
      Options when ready:
      type: "google"  → paste Google Calendar embed URL in embedUrl
      type: "list"    → add activities to the list array manually
@@ -1491,8 +1398,8 @@ const CONFIG = {
       "Rotaract Club of Andres Soriano Colleges of Bislig": { president: "Joy C. Serrano", sponsoredBy: "Rotary Club of Bislig", email: "ascbrotaract@gmail.com" },
       "Rotaract Club of Bislig": { president: "Reshelle Mae V. Logronio", sponsoredBy: "Rotary Club of Bislig" },
       "Rotaract Club of Central Tandag": { president: "", sponsoredBy: "Rotary Club of Central Tandag" },
-      "Rotaract Club of Central San Franciso": { president: "Sheena Krista L. Rufila", sponsoredBy: "Rotary Club of Central San Francisco" },
-      "Rotaract Club of San Franciso": { president: "Rex Belli O. Peji", sponsoredBy: "Rotary Club of San Francisco" },
+      "Rotaract Club of Central San Francisco": { president: "Sheena Krista L. Rufila", sponsoredBy: "Rotary Club of Central San Francisco" },
+      "Rotaract Club of San Francisco": { president: "Rex Belli O. Peji", sponsoredBy: "Rotary Club of San Francisco" },
       "Rotaract Club of Butuan Highlands": { president: "Juniel Rey B. Gigaquit", sponsoredBy: "Rotary Club of Butuan Highlands" },
       "Rotaract Club of Butuan North Hiraya": { president: "Francis John Doria", sponsoredBy: "Rotary Club of Butuan North" },
       "Rotaract Club of Butuan North-SJIT Chapter": { president: "Rose Angel R. Lumbay", sponsoredBy: "Rotary Club of Butuan North" },
@@ -1522,7 +1429,7 @@ const CONFIG = {
       "Rotaract Club of Cebu South": { president: "Raye Christoper Taton", sponsoredBy: "Rotary Club of Cebu-South", email: "rotaractclubofcebusouth@gmail.com" },
       "Rotaract Club of Cebu West": { president: "", sponsoredBy: "Rotary Club of Cebu West" },
       "Rotaract Club of Mandaue": { president: "Angel Mae Lonzaga", sponsoredBy: "Rotary Club of Mandaue", email: "rotaractclubofmandaue2025@gmail.com" },
-      "Rotaract Club of Madaue East": { president: "Lourdes Bernadette N. Buante", sponsoredBy: "Rotary Club of Mandaue East" },
+      "Rotaract Club of Mandaue East": { president: "Lourdes Bernadette N. Buante", sponsoredBy: "Rotary Club of Mandaue East" },
       "Rotaract Club of Metro Cebu": { president: "Eva Marie T. Alcansado", sponsoredBy: "Rotary Club of Metro Cebu", email: "rc.metrocebu2024@gmail.com" },
       "Rotaract Club of Metro Cebu-CIT Chapter": { president: "Christian Enario", sponsoredBy: "Rotary Club of Metro Cebu", email: "racmccitchapter@gmail.com" },
       "Rotaract Club of Mandaue Trailblazers": { president: "", sponsoredBy: "Rotary Club of Metro Mandaue 2006" },
@@ -1563,7 +1470,7 @@ const CONFIG = {
       "Rotaract Club of Tacloban": { president: "Samantha Janikka B. Gosyco", sponsoredBy: "Rotary Club of Tacloban" },
       "Rotaract Club of Dumaguete": { president: "Reymart R. Ansag", sponsoredBy: "Rotary Club of Dumaguete" },
       "Rotaract Club of Tolong": { president: "", sponsoredBy: "Rotary Club of Tolong" },
-      "Rotaract Club of Siliman University": { president: "Christine Joyce Y. Gravador", sponsoredBy: "Rotary Club of Dumaguete East" },
+      "Rotaract Club of Silliman University": { president: "Christine Joyce Y. Gravador", sponsoredBy: "Rotary Club of Dumaguete East" },
       "Rotaract Club of Ibatan-Calbayog": { president: "Rigel Kent Y. Diomangay", sponsoredBy: "Rotary Club of Calbayog City" },
       "Rotaract Club of Catbalogan": { president: "", sponsoredBy: "Rotary Club of Catbalogan City" },
       "Rotaract Club of Greater Calbayog": { president: "John Paul V. Balane", sponsoredBy: "Rotary Club of Greater Calbayog" },
@@ -1790,46 +1697,6 @@ const CONFIG = {
       <p style="font-size:15px;color:var(--gray-500);line-height:1.75;align-self:end;" id="events-desc"></p>
     </div>
     <div class="events-stack" id="events-list"></div>
-  </div>
-</section>
-
-<!-- DISTRICT ACHIEVEMENTS -->
-<section id="district-achievements" style="display:none;">
-  <div class="container">
-    <div class="section-kicker" id="ach-eyebrow"></div>
-    <h2 class="section-heading" id="ach-title"></h2>
-    <p class="section-sub" id="ach-desc"></p>
-    <div class="achievements-grid" id="ach-grid"></div>
-  </div>
-</section>
-
-<!-- CALENDAR -->
-<section id="calendar" style="display:none;">
-  <div class="container">
-    <div class="section-kicker" id="cal-eyebrow"></div>
-    <h2 class="section-heading" id="cal-title"></h2>
-    <p class="section-sub" id="cal-desc"></p>
-    <div id="cal-body"></div>
-  </div>
-</section>
-
-<!-- DISTRICT ACHIEVEMENTS -->
-<section id="district-achievements" style="display:none;">
-  <div class="container">
-    <div class="section-kicker" id="ach-eyebrow"></div>
-    <h2 class="section-heading" id="ach-title"></h2>
-    <p class="section-sub" id="ach-desc"></p>
-    <div class="achievements-grid" id="ach-grid"></div>
-  </div>
-</section>
-
-<!-- CALENDAR -->
-<section id="calendar" style="display:none;">
-  <div class="container">
-    <div class="section-kicker" id="cal-eyebrow"></div>
-    <h2 class="section-heading" id="cal-title"></h2>
-    <p class="section-sub" id="cal-desc"></p>
-    <div id="cal-body"></div>
   </div>
 </section>
 
@@ -2501,27 +2368,6 @@ if(window.initTilt) window.initTilt();
         card.insertBefore(av, card.firstChild);
       }
       return card;
-    // Insert photo separately to avoid template literal issues
-      if(o.photo){
-        const img = document.createElement('img');
-        img.className = 'officer-photo';
-        img.src = o.photo;
-        img.alt = o.name;
-        img.style.objectPosition = o.photoPosition||'center top';
-        const av = document.createElement('div');
-        av.className = 'officer-avatar';
-        av.style.display = 'none';
-        av.textContent = o.initials;
-        img.onerror = function(){ this.style.display='none'; av.style.display='flex'; };
-        card.insertBefore(av, card.firstChild);
-        card.insertBefore(img, card.firstChild);
-      } else {
-        const av = document.createElement('div');
-        av.className = 'officer-avatar';
-        av.textContent = o.initials;
-        card.insertBefore(av, card.firstChild);
-      }
-      return card;
     });
 
     const groupDiv = document.createElement('div');
@@ -2831,9 +2677,6 @@ if(window.initTilt) window.initTilt();
     fc.innerHTML+='<div class="footer-col"><div class="footer-col-title">'+col.title+'</div>'+links+'</div>';
   });
   setText('footer-copy', '© '+new Date().getFullYear()+' Rotaract Clubs of Rotary International District 3860. All rights reserved.');
-
-  /* Dev credit */
-  const devEl=$('credit-bar');
 
   /* Theme Song */
   const ts = C.themeSong;
@@ -3150,45 +2993,6 @@ document.addEventListener('keydown',e=>{
   window.initTilt = initTilt;
 })();
 
-/* Tilt card effect */
-(function(){
-  var FACTOR=10;
-  function onMove(e){
-    var card=e.currentTarget,rect=card.getBoundingClientRect();
-    var dx=(e.clientX-(rect.left+rect.width/2))/(rect.width/2);
-    var dy=(e.clientY-(rect.top+rect.height/2))/(rect.height/2);
-    card.style.transform='perspective(800px) rotateX('+(-dy*FACTOR)+'deg) rotateY('+(dx*FACTOR)+'deg) scale3d(1.04,1.04,1.04)';
-    var sh=card.querySelector('.tilt-shine');
-    if(sh){sh.style.background='radial-gradient(circle at '+((e.clientX-rect.left)/rect.width*100)+'% '+((e.clientY-rect.top)/rect.height*100)+'%, rgba(255,255,255,.22) 0%, transparent 60%)';}
-  }
-  function onLeave(e){e.currentTarget.style.transform='perspective(800px) rotateX(0deg) rotateY(0deg) scale3d(1,1,1)';}
-  function onTouchMove(e){
-    if(!e.touches||!e.touches[0])return;
-    var card=e.currentTarget,rect=card.getBoundingClientRect(),t=e.touches[0];
-    var dx=Math.max(-1,Math.min(1,(t.clientX-(rect.left+rect.width/2))/(rect.width/2)));
-    var dy=Math.max(-1,Math.min(1,(t.clientY-(rect.top+rect.height/2))/(rect.height/2)));
-    card.style.transition='transform .05s ease';
-    card.style.transform='perspective(600px) rotateX('+(-dy*FACTOR*.6)+'deg) rotateY('+(dx*FACTOR*.6)+'deg) scale3d(1.03,1.03,1.03)';
-    var sh=card.querySelector('.tilt-shine');
-    if(sh){sh.style.opacity='1';sh.style.background='radial-gradient(circle at '+((t.clientX-rect.left)/rect.width*100)+'% '+((t.clientY-rect.top)/rect.height*100)+'%, rgba(255,255,255,.18) 0%, transparent 60%)';}
-  }
-  function onTouchStart(e){var card=e.currentTarget;card.style.transition='transform .05s ease,box-shadow .15s ease';card.style.transform='perspective(600px) scale3d(1.03,1.03,1.03)';var sh=card.querySelector('.tilt-shine');if(sh)sh.style.opacity='1';}
-  function onTouchEnd(e){var card=e.currentTarget;card.style.transition='transform .3s ease,box-shadow .3s ease';card.style.transform='perspective(600px) rotateX(0deg) rotateY(0deg) scale3d(1,1,1)';var sh=card.querySelector('.tilt-shine');if(sh)sh.style.opacity='0';}
-  function initTilt(){
-    document.querySelectorAll('.tilt-card').forEach(function(card){
-      if(card._tiltInit)return; card._tiltInit=true;
-      card.addEventListener('mousemove',onMove);
-      card.addEventListener('mouseleave',onLeave);
-      card.addEventListener('touchstart',onTouchStart,{passive:true});
-      card.addEventListener('touchmove',onTouchMove,{passive:true});
-      card.addEventListener('touchend',onTouchEnd,{passive:true});
-      card.addEventListener('touchcancel',onTouchEnd,{passive:true});
-    });
-  }
-  window.addEventListener('load',initTilt);
-  var cc=0,iv=setInterval(function(){initTilt();if(++cc>20)clearInterval(iv);},500);
-  window.initTilt=initTilt;
-})();
 
 function openBionoteModal(){
   var drr=CONFIG.drr;
