@@ -2408,11 +2408,11 @@ const CONFIG = {
           document.getElementById('officer-modal-overlay').classList.add('open');
           document.body.style.overflow='hidden';
         };})(p);
-        var pw=document.createElement("div"); pw.className="gov-photo-wrap";
-        if(p.photo){ var pi=document.createElement("img"); pi.className="gov-photo"; pi.src=p.photo; pi.alt=p.name; pi.style.objectPosition="center top"; pw.appendChild(pi); }
-        else { pw.innerHTML='<div class="gov-photo-placeholder">'+p.name.charAt(0)+'</div>'; }
-        var iw=document.createElement("div"); iw.className="gov-info";
-        iw.innerHTML='<div class="gov-label">'+p.role+'</div><div class="gov-name">'+p.name+'</div><div class="gov-district">'+p.club+'</div>';
+        var pw=document.createElement("div"); pw.className="gov-avatar";
+        if(p.photo){ var pi=document.createElement("img"); pi.src=p.photo; pi.alt=p.name; pi.style.cssText="width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:center top;"; pi.onerror=function(){pw.innerHTML='<span style="font-size:22px;font-weight:700;color:#fff;">'+p.name.charAt(0)+'</span>'; this.remove();}; pw.appendChild(pi); }
+        else { pw.innerHTML='<span style="font-size:22px;font-weight:700;color:#fff;">'+p.name.charAt(0)+'</span>'; }
+        var iw=document.createElement("div");
+        iw.innerHTML='<div class="gov-label">'+p.role+'</div><div class="gov-name">'+p.name+'</div><div class="gov-sub">'+p.club+'</div>';
         bb.appendChild(pw); bb.appendChild(iw);
         drcEl.appendChild(bb);
       });
