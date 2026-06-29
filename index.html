@@ -1203,10 +1203,7 @@ const CONFIG = {
           { initials: "DRR",  name: "Christian Jade G. Azura",      photo: "https://drive.google.com/thumbnail?id=1sNiplbnXUzVLzmUu2GJ8NjNcAD0x_GdO&sz=w300", photoPosition: "center top", role: "District Rotaract Representative",              club: "RAC Central Butuan"                  },
           { initials: "DRRe", name: "Jan Dale Carlo T. Catalonia", photo: "https://drive.google.com/thumbnail?id=1a6sGSoFWj5CGzqsMV8S2lAEiakDE3g3n&sz=w300",  role: "District Rotaract Representative-elect",        club: "RAC Metro Cebu"                      },
           { initials: "RRM",  name: "Christine Joy T. Balobalo", photo: "https://drive.google.com/thumbnail?id=1FTUgokKXVWH142-YonXR_c-xB9ksn75C&sz=w300",   role: "District Rotaract Representative-Nominee / Deputy District Rotaract Representative for Mindanao", club: "RAC Tagum North-Palm City Chapter"   },
-      { initials: "DRC",  name: "Remuel M. Coles", photo: "https://drive.google.com/thumbnail?id=1fBwJw87L7wUsDyFazYfkCG-Cz8GjC_NG&sz=w300",              role: "District Rotaract Chair",                       club: "RAC Metro Surigao"                   },
-          { initials: "DDRC", name: "Ryan Jae G. Yap", photo: "https://drive.google.com/thumbnail?id=1SrfMWRPmW7pVq8HKNP5hSZdQpPilj3BF&sz=w300",             role: "Deputy District Rotaract Chair",                club: "RAC Central Butuan"                  },
           { initials: "RRV",  name: "Anna Suzzane P. Miscala", photo: "https://drive.google.com/thumbnail?id=1fVs-s1rxFbfv0UBvuCRLnjIb5gkSxKEq&sz=w300",      role: "Deputy District Rotaract Representative for Visayas",                       club: "RAC Cebu"                            },
-    
           { initials: "ES",   name: "Shekinah Marie M. Eupeña", photo: "https://drive.google.com/thumbnail?id=1SYsw07OrWzwZtS9D9ROmhynrXqkkGodn&sz=w300",     role: "District Executive Secretary",                  club: "RAC Central Butuan"                  },
           { initials: "CS",   name: "Mark A. Valencia", photo: "https://drive.google.com/thumbnail?id=1C8Cea4ydnSIyLKBWIidMC3vALeY-OZ1Y&sz=w300", photoPosition: "center center",             role: "District Chief of Staff",                       club: "RAC Cebu South"                      },
           { initials: "LF",   name: "Kenneth D. Banluta", photo: "https://drive.google.com/thumbnail?id=1Wnie3VQuZ5c9bnZuTFgTHGleoRMsWNmF&sz=w300",           role: "District Learning Facilitator",                 club: "RAC Central Butuan"                  },
@@ -2379,6 +2376,36 @@ const CONFIG = {
     const photoHTML = gov.photo
       ? '<img src="'+gov.photo+'" alt="'+gov.name+'" style="width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:center top;"/>'
       : '<span>'+gov.name.split(' ').map(function(w){return w[0];}).join('').slice(0,2)+'</span>';
+    // DRC + DDRC banners before Gov
+    ['drc','ddrc'].forEach(function(key){
+      var p=C.officers[key]; if(!p) return;
+      var bb=document.createElement("div"); bb.className="gov-banner tilt-card"; bb.style.cursor="pointer";
+      var bs=document.createElement("div"); bs.className="tilt-shine"; bb.appendChild(bs);
+      bb.onclick=(function(person){return function(){
+        document.getElementById('om-group').textContent='District Leadership';
+        document.getElementById('om-name').textContent=person.name;
+        document.getElementById('om-role').textContent=person.role;
+        document.getElementById('om-club').textContent=person.club;
+        var wrap=document.getElementById('om-photo-wrap');
+        if(person.photo){
+          var img=document.createElement('img'); img.className='om-photo'; img.src=person.photo; img.alt=person.name;
+          img.style.objectPosition='center top';
+          img.onerror=function(){this.outerHTML='<div class="om-avatar">'+person.name.charAt(0)+'</div>';};
+          wrap.innerHTML=''; wrap.appendChild(img);
+        } else { wrap.innerHTML='<div class="om-avatar">'+person.name.charAt(0)+'</div>'; }
+        document.getElementById('officer-modal-overlay').classList.add('open');
+        document.body.style.overflow='hidden';
+      };})(p);
+      var pw=document.createElement("div"); pw.className="gov-photo-wrap";
+      if(p.photo){ var pi=document.createElement("img"); pi.className="gov-photo"; pi.src=p.photo; pi.alt=p.name; pi.style.objectPosition="center top"; pw.appendChild(pi); }
+      else { pw.innerHTML='<div class="gov-photo-placeholder">'+p.name.charAt(0)+'</div>'; }
+      var iw=document.createElement("div"); iw.className="gov-info";
+      iw.innerHTML='<div class="gov-label">'+p.role+'</div><div class="gov-name">'+p.name+'</div><div class="gov-district">'+p.club+'</div>';
+      bb.appendChild(pw); bb.appendChild(iw);
+      og.appendChild(bb);
+    });
+    if(window.initTilt) window.initTilt();
+
     var gb=document.createElement("div"); gb.className="gov-banner tilt-card"; gb.style.cursor="pointer"; gb.onclick=openGovModal;
     var govShine=document.createElement("div"); govShine.className="tilt-shine"; gb.appendChild(govShine);
     var ga=document.createElement("div"); ga.className="gov-avatar";
