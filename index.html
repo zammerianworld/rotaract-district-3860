@@ -1183,7 +1183,7 @@ const CONFIG = {
           { initials: "A1B",  name: "Joshua Pasa", photo: "https://drive.google.com/thumbnail?id=1SPraRrD40XFduqYFnT7sUZmTywCmLiWk&sz=w300",                  role: "Assistant District Rotaract Representative — Area 1 Bohol",   club: "RAC Panglao Island"   },
           { initials: "A1C",  name: "Lordhan C. Labora", photo: "https://drive.google.com/thumbnail?id=1-4wsQih4kHplmH-uigLKDljBb6sl8vvq&sz=w300", photoPosition: "center center",            role: "Assistant District Rotaract Representative — Area 1 Cebu",    club: "RAC Metro Cebu"       },
           { initials: "A1L",  name: "Larry S. Esperas", photo: "https://drive.google.com/thumbnail?id=17vajx3lwEjVfHmTu_rDdFpVT3pnGH2kL&sz=w300",             role: "Assistant District Rotaract Representative — Area 1 Leyte",   club: "RAC Tacloban"         },
-          { initials: "A1N",  name: "Patrick Jude I. Espina", photo: null, role: "Assistant District Rotaract Representative — Area 1 Negros",  club: "RAC Dumaguete"        },
+          { initials: "A1N",  name: "Patrick Jude I. Espina", photo: "https://drive.google.com/thumbnail?id=11-qUH1RKKT88HcdHU0bAwHk6E_7YtzMR&sz=w300", role: "Assistant District Rotaract Representative — Area 1 Negros",  club: "RAC Dumaguete"        },
           { initials: "A1S",  name: "Frederick S. Jalvez", photo: "https://drive.google.com/thumbnail?id=1tadYYr0i5tBeiQmRDBQoTxdznjDPA79I&sz=w300",          role: "Assistant District Rotaract Representative — Area 1 Samar",   club: "RAC Greater Calbayog" },
         ],
       },
@@ -2256,10 +2256,17 @@ const CONFIG = {
     // DRC + DDRC banners after Gov Arlene
     var drcEl=$('drc-banners');
     if(drcEl){
+      /* Wrap DRC + DDRC in a 2-col grid */
+      var drcGrid=document.createElement('div');
+      drcGrid.style.cssText='display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:0;';
+      /* Responsive: stack on mobile */
+      var drcMq=window.matchMedia('(max-width:640px)');
+      function drcRespond(e){ drcGrid.style.gridTemplateColumns=e.matches?'1fr':'1fr 1fr'; }
+      drcMq.addEventListener('change',drcRespond); drcRespond(drcMq);
       ['drc','ddrc'].forEach(function(key){
         var p=C.officers[key]; if(!p) return;
-        var bb=document.createElement("div"); bb.className="gov-banner tilt-card"; bb.style.cursor="pointer";
-        var bs=document.createElement("div"); bs.className="tilt-shine"; bb.appendChild(bs);
+        var bb=document.createElement('div'); bb.className='gov-banner tilt-card'; bb.style.cssText='cursor:pointer;margin-bottom:0;';
+        var bs=document.createElement('div'); bs.className='tilt-shine'; bb.appendChild(bs);
         bb.onclick=(function(person){return function(){
           document.getElementById('om-group').textContent='District Leadership';
           document.getElementById('om-name').textContent=person.name;
@@ -2275,14 +2282,15 @@ const CONFIG = {
           document.getElementById('officer-modal-overlay').classList.add('open');
           document.body.style.overflow='hidden';
         };})(p);
-        var pw=document.createElement("div"); pw.className="gov-avatar";
-        if(p.photo){ var pi=document.createElement("img"); pi.src=p.photo; pi.alt=p.name; pi.style.cssText="width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:center top;"; pi.onerror=function(){pw.innerHTML='<span style="font-size:22px;font-weight:700;color:#fff;">'+p.name.charAt(0)+'</span>'; this.remove();}; pw.appendChild(pi); }
+        var pw=document.createElement('div'); pw.className='gov-avatar';
+        if(p.photo){ var pi=document.createElement('img'); pi.src=p.photo; pi.alt=p.name; pi.style.cssText='width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:center top;'; pi.onerror=function(){pw.innerHTML='<span style="font-size:22px;font-weight:700;color:#fff;">'+p.name.charAt(0)+'</span>'; this.remove();}; pw.appendChild(pi); }
         else { pw.innerHTML='<span style="font-size:22px;font-weight:700;color:#fff;">'+p.name.charAt(0)+'</span>'; }
-        var iw=document.createElement("div");
+        var iw=document.createElement('div');
         iw.innerHTML='<div class="gov-label">'+p.role+'</div><div class="gov-name">'+p.name+'</div><div class="gov-sub">'+p.club+'</div>';
         bb.appendChild(pw); bb.appendChild(iw);
-        drcEl.appendChild(bb);
+        drcGrid.appendChild(bb);
       });
+      drcEl.appendChild(drcGrid);
       if(window.initTilt) window.initTilt();
     }
     const photoHTML = gov.photo
