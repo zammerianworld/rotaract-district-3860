@@ -450,8 +450,8 @@ body.dark-mode .qr-svg-wrap svg rect{fill:var(--dm-surface);}
 
 /* ── CONTACT ── */
 #contact{padding:96px 0;background:var(--gray-50);}
-.contact-wrap{display:grid;grid-template-columns:1.2fr 1fr;gap:24px;margin-top:52px;align-items:start;}
-@media(min-width:641px){.contact-wrap{grid-template-columns:1.2fr 1fr!important;}}
+.contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:52px;align-items:start;}
+@media(min-width:641px){.contact-wrap{grid-template-columns:1fr 1fr!important;}}
 .contact-card{background:#fff;border-radius:var(--r-lg);padding:36px;border:1px solid var(--gray-100);}
 .contact-card-title{font-size:18px;font-weight:700;color:var(--heading-color);margin-bottom:6px;padding-bottom:20px;border-bottom:2px solid var(--pink);display:inline-block;}
 .contact-rows{margin-top:24px;}
@@ -1021,7 +1021,9 @@ body.dark-mode .theme-song-desc{color:rgba(255,255,255,.65);}
 
   /* Sections padding */
   #facebook-feed .section-heading{font-size:clamp(28px,6vw,36px);}
-  #facebook-feed [style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important;gap:32px!important;}
+  #facebook-feed [style*="grid-template-columns:1fr 2fr"]{grid-template-columns:1fr!important;gap:28px!important;}
+  #facebook-feed .fb-page iframe{max-width:100%!important;}
+  #facebook-feed>div>div:last-child{overflow:hidden;max-width:100%;}
   #facebook-feed .fb-page{max-width:100%;}
   
 
@@ -1077,7 +1079,7 @@ body.dark-mode .theme-song-desc{color:rgba(255,255,255,.65);}
   .council-pin .pin-dot{r:6;}
 
   /* Contact */
-  .contact-wrap{grid-template-columns:1fr;gap:16px;}
+  .contact-wrap{grid-template-columns:1fr!important;gap:16px;}
 
   /* Footer */
   .footer-top{grid-template-columns:1fr;gap:24px;}
@@ -2108,14 +2110,14 @@ const CONFIG = {
           Like Our Page
         </a>
       </div>
-      <div style="display:flex;flex-direction:column;align-items:center;">
+      <div style="display:flex;flex-direction:column;align-items:center;overflow:hidden;max-width:100%;">
         <!-- Facebook Page Plugin — paste your Page URL below -->
         <!-- UPDATE: change data-href to your final domain page URL if needed -->
         <div id="fb-root"></div>
         <div class="fb-page"
           data-href="https://www.facebook.com/rotaractdistrict3860"
           data-tabs="timeline"
-          data-width="600"
+          data-width="500"
           data-height="600"
           data-small-header="true"
           data-adapt-container-width="true"
@@ -2135,7 +2137,7 @@ const CONFIG = {
     <div class="section-kicker" id="contact-eyebrow"></div>
     <h2 class="section-heading" id="contact-title"></h2>
     <p class="section-sub"      id="contact-desc"></p>
-    <div class="contact-wrap" style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:52px;align-items:start;">
+    <div class="contact-wrap">
       <div class="contact-card">
         <div class="contact-card-title">District Secretariat</div>
         <div class="contact-rows" id="contact-details"></div>
