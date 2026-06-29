@@ -930,7 +930,7 @@ body.dark-mode .theme-song-desc{color:rgba(255,255,255,.65);}
   .impact-item{padding:24px 8px;}
 
   /* Officers / Events intros */
-  .officers-intro,.events-intro{grid-template-columns:1fr;gap:12px;}
+  .officers-intro,.events-intro{grid-template-columns:1fr;gap:12px;margin-bottom:24px;}
 
   /* DRR layout */
   .drr-layout{grid-template-columns:200px 1fr;gap:32px;}
@@ -2471,10 +2471,12 @@ if(window.initTilt) window.initTilt();
     dimg.className = 'drr-photo';
     dimg.src = drr.photo;
     dimg.alt = drr.title;
-    dphoto.innerHTML = '';
-    dphoto.appendChild(dimg);
+    dphoto.insertBefore(dimg, dphoto.firstChild);
   } else {
-    dphoto.innerHTML = '<div class="drr-photo-placeholder"><span>📷</span><p>Official photo coming soon</p></div>';
+    const dph = document.createElement('div');
+    dph.className = 'drr-photo-placeholder';
+    dph.innerHTML = '<span>📷</span><p>Official photo coming soon</p>';
+    dphoto.insertBefore(dph, dphoto.firstChild);
   }
   /* DRR stats — rendered after photo so element exists */
   var drrSt=$('drr-stats');
