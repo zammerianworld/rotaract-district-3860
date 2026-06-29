@@ -2402,7 +2402,7 @@ const CONFIG = {
       var iw=document.createElement("div"); iw.className="gov-info";
       iw.innerHTML='<div class="gov-label">'+p.role+'</div><div class="gov-name">'+p.name+'</div><div class="gov-district">'+p.club+'</div>';
       bb.appendChild(pw); bb.appendChild(iw);
-      og.appendChild(bb);
+      govEl.parentNode.insertBefore(bb, govEl);
     });
     if(window.initTilt) window.initTilt();
 
