@@ -167,15 +167,13 @@ body.loaded{opacity:1;}
 .about-card p{font-size:15px;color:var(--gray-500);line-height:1.7;}
 
 /* ── GOVERNOR ── */
-.gov-banner{background:#fff;border:1.5px solid var(--gray-200);box-shadow:0 4px 20px rgba(0,0,0,.05);border-radius:var(--r-lg);padding:44px 48px;display:flex;align-items:center;gap:32px;margin-bottom:52px;position:relative;overflow:hidden;transition:all .25s;}
-.gov-banner::after{content:'';position:absolute;inset:0;border-radius:var(--r-lg);border:2px solid var(--pink);opacity:0;transition:opacity .25s;pointer-events:none;}
-.gov-banner:hover::after{opacity:1;}
-.gov-avatar{width:110px;height:110px;border-radius:50%;background:var(--pink-light);border:3px solid #fff;box-shadow:0 0 0 3px var(--pink);display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:700;color:var(--pink);flex-shrink:0;}
+.gov-banner{background:linear-gradient(135deg,var(--pink-deep) 0%,var(--pink-dark) 100%);border-radius:var(--r-lg);padding:44px 48px;display:flex;align-items:center;gap:32px;margin-bottom:52px;position:relative;overflow:hidden;}
+.gov-avatar{width:110px;height:110px;border-radius:50%;background:rgba(255,255,255,.15);border:3px solid rgba(255,255,255,.4);box-shadow:0 0 0 6px rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:700;color:#fff;flex-shrink:0;}
 .gov-avatar img{width:100%;height:100%;border-radius:50%;object-fit:cover;}
-.gov-label{font-size:12px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--pink);margin-bottom:8px;}
-.gov-name{font-family:var(--font-body);font-size:30px;font-weight:800;color:var(--heading-color);line-height:1.15;letter-spacing:-.3px;}
-.gov-sub{font-size:15px;color:var(--gray-500);margin-top:6px;}
-.gov-badge{margin-left:auto;background:var(--pink-light);border:1px solid rgba(212,19,103,.2);color:var(--pink-dark);font-size:13px;font-weight:700;padding:10px 20px;border-radius:40px;white-space:nowrap;flex-shrink:0;align-self:flex-start;}
+.gov-label{font-size:12px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:8px;}
+.gov-name{font-family:var(--font-body);font-size:30px;font-weight:800;color:#fff;line-height:1.15;letter-spacing:-.3px;}
+.gov-sub{font-size:15px;color:rgba(255,255,255,.65);margin-top:6px;}
+.gov-badge{margin-left:auto;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;font-size:13px;font-weight:700;padding:10px 20px;border-radius:40px;white-space:nowrap;flex-shrink:0;align-self:flex-start;}
 
 /* ── FUTURE DRRs ── */
 .future-drrs{margin-top:52px;padding-top:48px;border-top:1px solid var(--gray-100);}
@@ -651,10 +649,10 @@ body.dark-mode .about-card p{color:var(--dm-muted);}
 body.dark-mode .about-icon{background:var(--dm-faint);}
 
 /* Governor banner — already dark, just ensure text */
-body.dark-mode .gov-banner{background:var(--dm-surface2);border-color:var(--dm-border);}
-body.dark-mode .gov-label{color:var(--pink);}
-body.dark-mode .gov-name{color:var(--dm-text);}
-body.dark-mode .gov-sub{color:var(--dm-muted);}
+body.dark-mode .gov-banner{background:linear-gradient(135deg,#3d0a24 0%,#5a0f33 100%);}
+body.dark-mode .gov-label{color:rgba(255,255,255,.5);}
+body.dark-mode .gov-name{color:#fff;}
+body.dark-mode .gov-sub{color:rgba(255,255,255,.55);}
 
 /* Officers */
 body.dark-mode #officers{background:var(--dm-surface);}
@@ -843,7 +841,7 @@ body.dark-mode .clubs-council-count{background:var(--dm-faint);color:var(--pink)
 body.dark-mode .future-drr-year{background:var(--dm-faint);color:var(--pink);}
 body.dark-mode .map-area-pill{background:var(--dm-faint);color:var(--pink);}
 body.dark-mode .mclubs-label{color:var(--dm-muted);}
-body.dark-mode .gov-badge{background:var(--dm-faint);color:var(--pink);}
+body.dark-mode .gov-badge{background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);}
 body.dark-mode .drr-achievements-title{color:var(--dm-muted);}
 body.dark-mode #online-tools-section .secretariat-label{color:var(--dm-text);}
 body.dark-mode #online-tools-section .secretariat-desc{color:var(--dm-muted);}
@@ -2286,8 +2284,8 @@ const CONFIG = {
           document.body.style.overflow='hidden';
         };})(p);
         var pw=document.createElement('div'); pw.className='gov-avatar';
-        if(p.photo){ var pi=document.createElement('img'); pi.src=p.photo; pi.alt=p.name; pi.style.cssText='width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:center top;'; pi.onerror=function(){pw.innerHTML='<span style="font-size:22px;font-weight:700;color:var(--pink);">'+p.name.charAt(0)+'</span>'; this.remove();}; pw.appendChild(pi); }
-        else { pw.innerHTML='<span style="font-size:22px;font-weight:700;color:var(--pink);">'+p.name.charAt(0)+'</span>'; }
+        if(p.photo){ var pi=document.createElement('img'); pi.src=p.photo; pi.alt=p.name; pi.style.cssText='width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:center top;'; pi.onerror=function(){pw.innerHTML='<span style="font-size:22px;font-weight:700;color:#fff;">'+p.name.charAt(0)+'</span>'; this.remove();}; pw.appendChild(pi); }
+        else { pw.innerHTML='<span style="font-size:22px;font-weight:700;color:#fff;">'+p.name.charAt(0)+'</span>'; }
         var iw=document.createElement('div');
         iw.innerHTML='<div class="gov-label">'+p.role+'</div><div class="gov-name">'+p.name+'</div><div class="gov-sub">'+p.club+'</div>';
         bb.appendChild(pw); bb.appendChild(iw);
@@ -2309,12 +2307,12 @@ if(window.initTilt) window.initTilt();
       gimg.src=gov.photo; gimg.alt=gov.name;
       gimg.style.cssText="width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:center top;";
       gimg.onerror=function(){
-        ga.innerHTML='<span style="font-size:22px;font-weight:700;color:var(--pink);">DG</span>';
+        ga.innerHTML='<span style="font-size:22px;font-weight:700;color:#fff;">DG</span>';
         this.remove();
       };
       ga.appendChild(gimg);
     } else {
-      ga.innerHTML='<span style="font-size:22px;font-weight:700;color:var(--pink);">DG</span>';
+      ga.innerHTML='<span style="font-size:22px;font-weight:700;color:#fff;">DG</span>';
     }
     gb.appendChild(ga);
     var ginfo=document.createElement("div");
