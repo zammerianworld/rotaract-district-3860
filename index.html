@@ -980,9 +980,8 @@ body.dark-mode .theme-song-desc{color:rgba(255,255,255,.65);}
   /* Sections padding */
   #facebook-feed .section-heading{font-size:clamp(28px,6vw,36px);}
   #facebook-feed [style*="grid-template-columns:1fr 2fr"]{grid-template-columns:1fr!important;gap:28px!important;}
-  #facebook-feed .fb-page iframe{max-width:100%!important;}
-  #facebook-feed>div>div:last-child{overflow:hidden;max-width:100%;}
-  #facebook-feed .fb-page{max-width:100%;}
+  #fb-wrap{max-width:100%!important;}
+  #fb-wrap .fb-page,#fb-wrap .fb-page span,#fb-wrap .fb-page iframe{width:100%!important;max-width:100%!important;}
   
 
   /* About cards */
@@ -1989,7 +1988,7 @@ const CONFIG = {
           Like Our Page
         </a>
       </div>
-      <div style="display:flex;flex-direction:column;align-items:center;overflow:hidden;max-width:100%;">
+      <div id="fb-wrap" style="display:flex;flex-direction:column;align-items:center;width:100%;max-width:500px;">
         <!-- Facebook Page Plugin — paste your Page URL below -->
         <!-- UPDATE: change data-href to your final domain page URL if needed -->
         <div id="fb-root"></div>
