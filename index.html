@@ -2644,18 +2644,24 @@ if(window.initTilt) window.initTilt();
   if(rb){ rb.href = C.resources.driveLink; rb.textContent = C.resources.driveBtnLabel+' ↗'; }
   const rg=$('resources-grid');
   C.resources.items.forEach(r=>{
+    var rcard;
     if(r.pdfPreview){
-      var rcard=document.createElement('div');
+      rcard=document.createElement('div');
       rcard.className='resource-card resource-card-link';
       rcard.style.cursor='pointer';
       rcard.innerHTML='<div class="resource-icon">'+r.icon+'</div><div class="resource-text"><h3>'+r.title+'</h3><p>'+r.desc+'</p></div><span class="resource-link-arrow">👁</span>';
       rcard.addEventListener('click', function(){ openPdfModal(r.title, r.href); });
-      rg.appendChild(rcard);
     } else if(r.href){
-      rg.innerHTML+='<a class="resource-card resource-card-link" href="'+r.href+'" target="_blank" rel="noopener"><div class="resource-icon">'+r.icon+'</div><div class="resource-text"><h3>'+r.title+'</h3><p>'+r.desc+'</p></div><span class="resource-link-arrow">↗</span></a>';
+      rcard=document.createElement('a');
+      rcard.className='resource-card resource-card-link';
+      rcard.href=r.href; rcard.target='_blank'; rcard.rel='noopener';
+      rcard.innerHTML='<div class="resource-icon">'+r.icon+'</div><div class="resource-text"><h3>'+r.title+'</h3><p>'+r.desc+'</p></div><span class="resource-link-arrow">↗</span>';
     } else {
-      rg.innerHTML+='<div class="resource-card"><div class="resource-icon">'+r.icon+'</div><div class="resource-text"><h3>'+r.title+'</h3><p>'+r.desc+'</p></div></div>';
+      rcard=document.createElement('div');
+      rcard.className='resource-card';
+      rcard.innerHTML='<div class="resource-icon">'+r.icon+'</div><div class="resource-text"><h3>'+r.title+'</h3><p>'+r.desc+'</p></div>';
     }
+    rg.appendChild(rcard);
   });
 
   /* Clubs */
