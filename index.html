@@ -2645,7 +2645,12 @@ if(window.initTilt) window.initTilt();
   const rg=$('resources-grid');
   C.resources.items.forEach(r=>{
     if(r.pdfPreview){
-      rg.innerHTML+='<div class="resource-card resource-card-link" style="cursor:pointer;" onclick="openPdfModal('+JSON.stringify(r.title)+','+JSON.stringify(r.href)+')"><div class="resource-icon">'+r.icon+'</div><div class="resource-text"><h3>'+r.title+'</h3><p>'+r.desc+'</p></div><span class="resource-link-arrow">👁</span></div>';
+      var rcard=document.createElement('div');
+      rcard.className='resource-card resource-card-link';
+      rcard.style.cursor='pointer';
+      rcard.innerHTML='<div class="resource-icon">'+r.icon+'</div><div class="resource-text"><h3>'+r.title+'</h3><p>'+r.desc+'</p></div><span class="resource-link-arrow">👁</span>';
+      rcard.addEventListener('click', function(){ openPdfModal(r.title, r.href); });
+      rg.appendChild(rcard);
     } else if(r.href){
       rg.innerHTML+='<a class="resource-card resource-card-link" href="'+r.href+'" target="_blank" rel="noopener"><div class="resource-icon">'+r.icon+'</div><div class="resource-text"><h3>'+r.title+'</h3><p>'+r.desc+'</p></div><span class="resource-link-arrow">↗</span></a>';
     } else {
