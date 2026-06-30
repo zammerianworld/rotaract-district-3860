@@ -162,6 +162,9 @@ body.loaded{opacity:1;}
 .section-heading{font-family:var(--font-display);font-size:clamp(26px,4vw,42px);font-weight:900;color:var(--heading-color);line-height:1.1;margin-bottom:16px;letter-spacing:-.3px;}
 .section-sub{font-size:16px;color:var(--gray-500);max-width:520px;line-height:1.75;margin-bottom:52px;}
 .about-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:24px;position:relative;z-index:1;}
+.about-learn-link{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:700;color:var(--pink);text-decoration:none;margin-bottom:36px;transition:gap .2s;}
+.about-learn-link:hover{gap:10px;color:var(--pink-dark);}
+.about-learn-link::after{content:'↗';font-size:13px;}
 .about-card{background:#fff;border-radius:var(--r-xl);padding:32px 28px;border:1.5px solid var(--gray-100);transition:all .3s ease;position:relative;overflow:hidden;cursor:default;}
 .about-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--pink);transform:scaleX(0);transform-origin:left;transition:transform .3s ease;}
 .about-card:hover{transform:translateY(-6px);box-shadow:0 20px 48px rgba(212,19,103,.12);border-color:var(--pink-light);}
@@ -495,7 +498,7 @@ body.dark-mode .qr-svg-wrap svg rect{fill:var(--dm-surface);}
 
 /* ── CREDIT BAR ── */
 #credit-bar{background:var(--gray-900);padding:10px 28px;display:flex;justify-content:center;align-items:center;}
-#credit-bar p{font-size:12px;color:rgba(255,255,255,.35);letter-spacing:.3px;}
+#credit-bar p{font-size:13px;color:rgba(255,255,255,.35);letter-spacing:.3px;}
 #credit-bar span{color:rgba(255,255,255,.6);font-weight:600;}
 
 /* ── FOOTER ── */
@@ -1162,6 +1165,8 @@ const CONFIG = {
     eyebrow: "Who We Are",
     title:   "About Rotaract",
     desc:    "Rotaract is a Rotary International program that brings together young men and women ages 18 and older to develop leadership skills, connect with professionals, and take action to make a lasting difference.",
+    learnMoreLink: "https://www.rotary.org/en/get-involved/rotaract-clubs",
+    learnMoreLabel: "Learn more about Rotaract on Rotary.org",
     cards: [
       { icon: "🤝", title: "Community Service",        body: "We tackle local needs through hands-on projects in education, health, environment, and livelihood." },
       { icon: "🌐", title: "Fellowship",               body: "Build lasting friendships and networks with like-minded young leaders across the district." },
@@ -1559,7 +1564,7 @@ const CONFIG = {
     quickLinks: [
       { label: "Find a Rotaract Club",    href: "#clubs" },
       { label: "Submit Monthly Report",   href: "https://rotaract.rotarydistrict3860.org/reports/dashboard?qBfx=uHKdkW4W" },
-            { label: "Documents & Guidelines",  href: "#"      },
+      { label: "Documents & Guidelines",  href: "#resources"      },
       { label: "Rotary International",    href: "https://www.rotary.org"              },
       { label: "District 3860 Main Site", href: "https://www.rotarydistrict3860.org" },
     ],
@@ -1666,6 +1671,7 @@ const CONFIG = {
   <div class="section-kicker" id="about-eyebrow"></div>
   <h2 class="section-heading" id="about-title"></h2>
   <p class="section-sub"      id="about-desc"></p>
+  <a id="about-link" href="#" target="_blank" rel="noopener" class="about-learn-link" style="display:none;"></a>
   <div class="about-grid"     id="about-grid"></div>
 </section>
 
@@ -2302,6 +2308,12 @@ const CONFIG = {
   setText('about-eyebrow', C.about.eyebrow);
   setText('about-title',   C.about.title);
   setText('about-desc',    C.about.desc);
+  const aboutLink = $('about-link');
+  if(aboutLink && C.about.learnMoreLink){
+    aboutLink.href = C.about.learnMoreLink;
+    aboutLink.textContent = C.about.learnMoreLabel || 'Learn more';
+    aboutLink.style.display = 'inline-flex';
+  }
   const ag=$('about-grid');
   C.about.cards.forEach(c=>{
     ag.innerHTML+='<div class="about-card"><div class="about-icon">'+c.icon+'</div><h3>'+c.title+'</h3><p>'+c.body+'</p></div>';
