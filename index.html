@@ -874,26 +874,27 @@ body.dark-mode #dark-toggle{background:var(--pink);color:#fff;}
 /* ── THEME SONG ── */
 #theme-song{padding:72px 0;background:linear-gradient(135deg,var(--pink-deep) 0%,var(--pink-dark) 60%,#9d0a44 100%);position:relative;overflow:hidden;}
 #theme-song::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.06) 1px,transparent 1px);background-size:24px 24px;pointer-events:none;}
-.theme-song-inner{position:relative;z-index:1;display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center;}
-.theme-song-eyebrow{font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+#theme-song .container{position:relative;z-index:1;}
+.theme-song-eyebrow{font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:10px;display:flex;align-items:center;gap:8px;justify-content:center;text-align:center;}
 .theme-song-eyebrow::before{content:'🎵';font-size:14px;}
-.theme-song-title{font-family:var(--font-display);font-size:clamp(28px,4vw,44px);font-weight:900;color:#fff;line-height:1.1;margin-bottom:8px;}
-.theme-song-sub{font-size:13px;font-weight:600;color:rgba(255,255,255,.5);letter-spacing:.5px;margin-bottom:14px;}
-.theme-song-desc{font-size:15px;color:rgba(255,255,255,.7);line-height:1.7;max-width:520px;margin-bottom:28px;}
-.theme-song-btns{display:flex;gap:12px;flex-wrap:wrap;}
+.theme-song-title{font-family:var(--font-display);font-size:clamp(28px,4vw,44px);font-weight:900;color:#fff;line-height:1.1;margin-bottom:8px;text-align:center;}
+.theme-song-sub{font-size:13px;font-weight:600;color:rgba(255,255,255,.5);letter-spacing:.5px;margin-bottom:14px;text-align:center;}
+.theme-song-desc{font-size:15px;color:rgba(255,255,255,.7);line-height:1.7;max-width:520px;margin:0 auto 32px;text-align:center;}
+.theme-song-player-wrap{max-width:780px;margin:0 auto 28px;}
+.theme-song-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:16px;}
+.theme-song-tab{font-size:13px;font-weight:700;padding:9px 20px;border-radius:30px;background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.2);color:rgba(255,255,255,.75);cursor:pointer;transition:all .2s;}
+.theme-song-tab:hover{background:rgba(255,255,255,.18);color:#fff;}
+.theme-song-tab.active{background:#fff;color:var(--pink-deep);border-color:#fff;}
+.theme-song-player{position:relative;width:100%;aspect-ratio:16/9;border-radius:var(--r-lg);overflow:hidden;background:#000;box-shadow:0 24px 60px rgba(0,0,0,.35);}
+.theme-song-player iframe{width:100%;height:100%;border:none;display:block;}
+.theme-song-btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;}
 .theme-song-btn{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;padding:11px 22px;border-radius:40px;text-decoration:none;transition:all .2s;cursor:pointer;}
 .theme-song-btn-primary{background:#fff;color:var(--pink-deep);}
 .theme-song-btn-primary:hover{background:var(--pink-light);transform:translateY(-2px);}
 .theme-song-btn-secondary{background:rgba(255,255,255,.12);color:#fff;border:1.5px solid rgba(255,255,255,.25);}
 .theme-song-btn-secondary:hover{background:rgba(255,255,255,.22);transform:translateY(-2px);}
-.theme-song-visual{flex-shrink:0;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,.08);border:2px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;position:relative;}
-.theme-song-visual::before{content:'';position:absolute;inset:-8px;border-radius:50%;border:1.5px dashed rgba(255,255,255,.2);animation:spin 20s linear infinite;}
-.theme-song-note{font-size:72px;line-height:1;}
-@keyframes spin{to{transform:rotate(360deg);}}
-@media(prefers-reduced-motion:reduce){.theme-song-visual::before{animation:none;}}
 @media(max-width:640px){
-  .theme-song-inner{grid-template-columns:1fr;}
-  .theme-song-visual{display:none;}
+  .theme-song-tab{font-size:12px;padding:8px 16px;}
 }
 body.dark-mode #theme-song{background:linear-gradient(135deg,#1a0510 0%,#2d0920 60%,#1f0515 100%);}
 body.dark-mode .theme-song-title{color:#fff;}
@@ -1103,8 +1104,12 @@ const CONFIG = {
     show:    true,
     title:   "Create Lasting Impact",
     subtitle: "Official District Theme Song · RY 2026–2027",
-    desc:    "Listen to the official theme song of Rotaract District 3860 for Rotary Year 2026–2027, available in audio and video versions.",
+    desc:    "Watch the official theme song of Rotaract District 3860 for Rotary Year 2026–2027 — with vocals or instrumental.",
     driveFolder: "https://drive.google.com/drive/folders/185Ocjpx5ZzqQhitaaF4yfcObxAll66yz",
+    videos: {
+      vocal:       { id: "1PI1B0FzjleSyTpTwrgl8xKLTnGS4MKfJ", label: "With Vocals" },
+      instrumental:{ id: "14l6TGVjIK-EFgeoM6wXJZYjdDe-Jrk2t", label: "Instrumental" },
+    },
   },
 
   /* --- Advocacy / Theme Banner ---
@@ -1624,18 +1629,16 @@ const CONFIG = {
 <!-- THEME SONG -->
 <section id="theme-song" style="display:none;">
   <div class="container">
-    <div class="theme-song-inner">
-      <div>
-        <div class="theme-song-eyebrow" id="ts-eyebrow">District Theme Song</div>
-        <div class="theme-song-title" id="ts-title"></div>
-        <div class="theme-song-sub" id="ts-sub"></div>
-        <p class="theme-song-desc" id="ts-desc"></p>
-        <div class="theme-song-btns">
-          <a class="theme-song-btn theme-song-btn-primary" id="ts-btn" href="#" target="_blank" rel="noopener">🎵 Listen &amp; Watch</a>
-          <a class="theme-song-btn theme-song-btn-secondary" href="#" id="ts-btn2" target="_blank" rel="noopener">📂 All Versions</a>
-        </div>
-      </div>
-      <div class="theme-song-visual"><span class="theme-song-note">🎶</span></div>
+    <div class="theme-song-eyebrow" id="ts-eyebrow">District Theme Song</div>
+    <div class="theme-song-title" id="ts-title"></div>
+    <div class="theme-song-sub" id="ts-sub"></div>
+    <p class="theme-song-desc" id="ts-desc"></p>
+    <div class="theme-song-player-wrap">
+      <div class="theme-song-tabs" id="ts-tabs"></div>
+      <div class="theme-song-player" id="ts-player"></div>
+    </div>
+    <div class="theme-song-btns">
+      <a class="theme-song-btn theme-song-btn-secondary" href="#" id="ts-btn2" target="_blank" rel="noopener">📂 All Versions on Drive</a>
     </div>
   </div>
 </section>
@@ -2696,10 +2699,31 @@ if(window.initTilt) window.initTilt();
     setText('ts-title', ts.title);
     setText('ts-sub',   ts.subtitle);
     setText('ts-desc',  ts.desc);
-    const btn = $('ts-btn');
     const btn2 = $('ts-btn2');
-    if(btn)  btn.href  = ts.driveFolder;
     if(btn2) btn2.href = ts.driveFolder;
+
+    var tabsEl = $('ts-tabs'), playerEl = $('ts-player');
+    var vids = ts.videos || {};
+    var keys = Object.keys(vids).filter(function(k){ return vids[k] && vids[k].id; });
+    function showVideo(key){
+      var v = vids[key]; if(!v) return;
+      playerEl.innerHTML = '<iframe src="https://drive.google.com/file/d/'+v.id+'/preview" allow="autoplay" allowfullscreen></iframe>';
+      if(tabsEl){
+        Array.prototype.forEach.call(tabsEl.children, function(t){
+          t.classList.toggle('active', t.dataset.key === key);
+        });
+      }
+    }
+    if(tabsEl && keys.length){
+      tabsEl.innerHTML = keys.map(function(k){
+        return '<button class="theme-song-tab" data-key="'+k+'">'+vids[k].label+'</button>';
+      }).join('');
+      Array.prototype.forEach.call(tabsEl.children, function(t){
+        t.onclick = function(){ showVideo(t.dataset.key); };
+      });
+      showVideo(keys[0]);
+    }
+    if(keys.length <= 1 && tabsEl) tabsEl.style.display = 'none';
   }
 
   /* Announcements */
