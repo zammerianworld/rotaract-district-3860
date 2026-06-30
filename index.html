@@ -395,6 +395,10 @@ body.dark-mode .membership-sub{color:rgba(255,255,255,.6);}
   .club-modal{border-radius:var(--r-lg);}
 }
 @media(max-width:640px){
+  .club-modal-overlay{padding:12px;}
+  #pdf-modal-overlay .club-modal,#folder-modal-overlay .club-modal{max-height:92vh;max-height:92dvh;display:flex;flex-direction:column;}
+}
+@media(max-width:640px){
   .clubs-tabs{gap:6px;}
   .clubs-tab{font-size:11px;padding:5px 12px;}
   .clubs-grid{grid-template-columns:1fr;}
@@ -886,10 +890,6 @@ body.dark-mode #dark-toggle{background:var(--pink);color:#fff;}
 .theme-song-tab:hover{background:rgba(255,255,255,.18);color:#fff;}
 .theme-song-tab.active{background:#fff;color:var(--pink-deep);border-color:#fff;}
 .theme-song-player{position:relative;width:100%;aspect-ratio:16/9;border-radius:var(--r-lg);overflow:hidden;background:#000;box-shadow:0 24px 60px rgba(0,0,0,.35);}
-.theme-song-mobile-fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;width:100%;height:100%;background:linear-gradient(135deg,rgba(255,255,255,.06) 0%,rgba(255,255,255,.02) 100%);text-decoration:none;cursor:pointer;}
-.theme-song-play-btn{width:64px;height:64px;border-radius:50%;background:#fff;color:var(--pink-deep);display:flex;align-items:center;justify-content:center;font-size:24px;box-shadow:0 8px 24px rgba(0,0,0,.3);transition:transform .2s;}
-.theme-song-mobile-fallback:hover .theme-song-play-btn{transform:scale(1.08);}
-.theme-song-mobile-label{font-size:14px;font-weight:600;color:rgba(255,255,255,.85);}
 .theme-song-player iframe{width:100%;height:100%;border:none;display:block;}
 .theme-song-btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;}
 .theme-song-btn{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;padding:11px 22px;border-radius:40px;text-decoration:none;transition:all .2s;cursor:pointer;}
@@ -2115,8 +2115,8 @@ const CONFIG = {
       <button class="club-modal-close" onclick="closePdfModal()" aria-label="Close">✕</button>
     </div>
     <div style="padding:0 8px 8px;">
-      <div style="position:relative;width:100%;aspect-ratio:8.5/11;max-height:75vh;border-radius:var(--r-md);overflow:hidden;background:var(--gray-50);">
-        <iframe id="pdf-modal-frame" src="" style="width:100%;height:100%;border:none;display:block;" allow="autoplay"></iframe>
+      <div style="position:relative;width:100%;height:0;padding-bottom:129%;max-height:75vh;border-radius:var(--r-md);overflow:hidden;background:var(--gray-50);">
+        <iframe id="pdf-modal-frame" src="" style="position:absolute;inset:0;width:100%;height:100%;border:none;display:block;" allow="autoplay"></iframe>
       </div>
     </div>
     <div class="club-modal-footer">
@@ -2134,8 +2134,8 @@ const CONFIG = {
       <button class="club-modal-close" onclick="closeFolderModal()" aria-label="Close">✕</button>
     </div>
     <div style="padding:0 8px 8px;">
-      <div style="position:relative;width:100%;height:70vh;border-radius:var(--r-md);overflow:hidden;background:var(--gray-50);">
-        <iframe id="folder-modal-frame" src="" style="width:100%;height:100%;border:none;display:block;" allow="autoplay"></iframe>
+      <div style="position:relative;width:100%;height:60vh;height:60dvh;min-height:320px;border-radius:var(--r-md);overflow:hidden;background:var(--gray-50);">
+        <iframe id="folder-modal-frame" src="" style="position:absolute;inset:0;width:100%;height:100%;border:none;display:block;" allow="autoplay"></iframe>
       </div>
     </div>
     <div class="club-modal-footer">
@@ -2763,14 +2763,7 @@ if(window.initTilt) window.initTilt();
     var keys = Object.keys(vids).filter(function(k){ return vids[k] && vids[k].id; });
     function showVideo(key){
       var v = vids[key]; if(!v) return;
-      if(isMobileDevice()){
-        playerEl.innerHTML = '<a href="https://drive.google.com/file/d/'+v.id+'/view" target="_blank" rel="noopener" class="theme-song-mobile-fallback">'+
-          '<span class="theme-song-play-btn">▶</span>'+
-          '<span class="theme-song-mobile-label">Tap to watch on Google Drive</span>'+
-          '</a>';
-      } else {
-        playerEl.innerHTML = '<iframe src="https://drive.google.com/file/d/'+v.id+'/preview" allow="autoplay" allowfullscreen></iframe>';
-      }
+      playerEl.innerHTML = '<iframe src="https://drive.google.com/file/d/'+v.id+'/preview" allow="autoplay" allowfullscreen></iframe>';
       if(tabsEl){
         Array.prototype.forEach.call(tabsEl.children, function(t){
           t.classList.toggle('active', t.dataset.key === key);
@@ -3144,17 +3137,9 @@ function closeQRModal(e){
   document.body.style.overflow='';
 }
 
-function isMobileDevice(){
-  return /Android|iPhone|iPad|iPod|Mobile|webOS|BlackBerry|Windows Phone/i.test(navigator.userAgent) || window.innerWidth <= 768;
-}
-
 function openPdfModal(title, viewUrl){
   var fileId = (viewUrl.match(/\/d\/([a-zA-Z0-9_-]+)/) || [])[1];
   if(!fileId) return;
-  if(isMobileDevice()){
-    window.open('https://drive.google.com/file/d/'+fileId+'/view', '_blank', 'noopener');
-    return;
-  }
   document.getElementById('pdf-modal-title').textContent = title;
   document.getElementById('pdf-modal-frame').src = 'https://drive.google.com/file/d/'+fileId+'/preview';
   document.getElementById('pdf-modal-open').href = 'https://drive.google.com/file/d/'+fileId+'/view';
@@ -3171,10 +3156,6 @@ function closePdfModal(e){
 function openFolderModal(title, folderUrl){
   var folderId = (folderUrl.match(/\/folders\/([a-zA-Z0-9_-]+)/) || [])[1];
   if(!folderId) return;
-  if(isMobileDevice()){
-    window.open('https://drive.google.com/drive/folders/'+folderId, '_blank', 'noopener');
-    return;
-  }
   document.getElementById('folder-modal-title').textContent = title;
   document.getElementById('folder-modal-frame').src = 'https://drive.google.com/embeddedfolderview?id='+folderId+'#grid';
   document.getElementById('folder-modal-open').href = 'https://drive.google.com/drive/folders/'+folderId;
