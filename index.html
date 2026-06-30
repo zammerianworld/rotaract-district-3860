@@ -191,6 +191,7 @@ body.loaded{opacity:1;}
 #drr{padding:96px 0;background:var(--gray-50);}
 .drr-layout{display:grid;grid-template-columns:300px 1fr;gap:52px;align-items:start;}
 .drr-photo-wrap{position:relative;}
+.drr-photo-col{display:flex;flex-direction:column;gap:20px;}
 .drr-photo{width:100%;aspect-ratio:3/4;border-radius:var(--r-lg);object-fit:cover;background:var(--gray-100);display:flex;align-items:center;justify-content:center;border:3px solid #fff;box-shadow:0 0 0 3px var(--pink),0 8px 32px rgba(212,19,103,.15);}
 .drr-photo-placeholder{width:100%;aspect-ratio:3/4;border-radius:var(--r-lg);background:var(--pink-light);border:2px dashed var(--pink);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;}
 .drr-photo-placeholder span{font-size:48px;}
@@ -219,15 +220,15 @@ body.dark-mode .bio-read-btn:hover{background:var(--pink);color:#fff;}
 .secretariat-arrow{margin-left:auto;font-size:18px;color:var(--pink);align-self:center;flex-shrink:0;}
 
 /* ── DRR STATS ── */
-.drr-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:0 0 28px;}
-.drr-stat-card{background:var(--pink-light);border:1px solid rgba(212,19,103,.15);border-radius:var(--r-lg);padding:18px 16px;text-align:center;transition:all .25s;}
+.drr-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:0;}
+.drr-stat-card{background:var(--pink-light);border:1px solid rgba(212,19,103,.15);border-radius:var(--r-lg);padding:12px 6px;text-align:center;transition:all .25s;}
 .drr-stat-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(212,19,103,.12);}
-.drr-stat-num{font-family:var(--font-display);font-size:32px;font-weight:900;color:var(--pink);line-height:1;letter-spacing:-1px;}
-.drr-stat-lbl{font-size:11px;font-weight:700;color:var(--gray-500);margin-top:6px;letter-spacing:.8px;text-transform:uppercase;}
+.drr-stat-num{font-family:var(--font-display);font-size:22px;font-weight:900;color:var(--pink);line-height:1;letter-spacing:-1px;}
+.drr-stat-lbl{font-size:9px;font-weight:700;color:var(--gray-500);margin-top:4px;letter-spacing:.4px;text-transform:uppercase;line-height:1.3;}
 body.dark-mode .drr-stat-card{background:var(--dm-faint);border-color:rgba(212,19,103,.2);}
 body.dark-mode .drr-stat-num{color:var(--pink);}
 body.dark-mode .drr-stat-lbl{color:var(--dm-muted);}
-@media(max-width:480px){.drr-stats{gap:6px;}.drr-stat-num{font-size:22px;}}
+@media(max-width:480px){.drr-stats{gap:6px;}.drr-stat-num{font-size:18px;}.drr-stat-card{padding:10px 4px;}}
 
 /* ── OFFICERS ── */
 #officers{background:var(--gray-50);padding:96px 0;}
@@ -1006,7 +1007,7 @@ body.dark-mode .theme-song-desc{color:rgba(255,255,255,.65);}
 
   /* DRR section */
   .drr-layout{grid-template-columns:1fr;gap:24px;}
-  .drr-photo-wrap{max-width:200px;margin:0 auto;}
+  .drr-photo-col{max-width:220px;margin:0 auto;width:100%;}
   .drr-content{width:100%;}
   .drr-bio{font-size:15px;}
 
@@ -1654,10 +1655,12 @@ const CONFIG = {
     <h2 class="section-heading" id="drr-title"></h2>
     <p style="font-size:15px;color:var(--gray-500);margin-bottom:48px;" id="drr-subtitle"></p>
     <div class="drr-layout">
-      <div class="drr-photo-wrap" id="drr-photo-wrap"></div>
+      <div class="drr-photo-col">
+        <div class="drr-photo-wrap" id="drr-photo-wrap"></div>
+        <div class="drr-stats" id="drr-stats"></div>
+      </div>
       <div class="drr-content">
         <p class="drr-bio" id="drr-bio"></p>
-        <div class="drr-stats" id="drr-stats"></div>
         <div class="drr-achievements-title">Past District Positions</div>
         <div class="drr-achievements" id="drr-achievements"></div>
       </div>
