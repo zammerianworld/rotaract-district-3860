@@ -1499,7 +1499,7 @@ const CONFIG = {
     driveLink:   "[PASTE YOUR GOOGLE DRIVE FOLDER LINK HERE]",
     driveBtnLabel: "Open Resources Folder",
     items: [
-      { icon: "🎯", title: "DRR's Thrust",            desc: "The official thrust and direction set by the District Rotaract Representative for RY 2026–2027.", href: "https://drive.google.com/file/d/1wINQ-JcrJMJvTgYamqwT27FJ7y7z7Oky/preview" },
+      { icon: "🎯", title: "DRR's Thrust",            desc: "The official thrust and direction set by the District Rotaract Representative for RY 2026–2027.", href: "https://drive.google.com/file/d/1wINQ-JcrJMJvTgYamqwT27FJ7y7z7Oky/view", pdfPreview: true },
       { icon: "📘", title: "President's Guide",       desc: "Step-by-step manual for managing your Rotaract club effectively." },
       { icon: "📂", title: "Induction Materials",     desc: "Official documents and templates for club induction ceremonies.", href: "https://drive.google.com/drive/folders/1xCgSdNZ-uHlzF5VjaS4ht-SRsggGJxXr" },
       { icon: "💰", title: "Financial Guidelines",    desc: "Budget templates and financial reporting standards for clubs." },
@@ -2104,6 +2104,25 @@ const CONFIG = {
   </div>
 </div>
 
+<!-- PDF PREVIEW MODAL -->
+<div class="club-modal-overlay" id="pdf-modal-overlay" onclick="closePdfModal(event)">
+  <div class="club-modal" style="max-width:800px;width:92vw;">
+    <div class="club-modal-header">
+      <div class="club-modal-name" id="pdf-modal-title" style="font-size:18px;">Document Preview</div>
+      <button class="club-modal-close" onclick="closePdfModal()" aria-label="Close">✕</button>
+    </div>
+    <div style="padding:0 8px 8px;">
+      <div style="position:relative;width:100%;aspect-ratio:8.5/11;max-height:75vh;border-radius:var(--r-md);overflow:hidden;background:var(--gray-50);">
+        <iframe id="pdf-modal-frame" src="" style="width:100%;height:100%;border:none;display:block;" allow="autoplay"></iframe>
+      </div>
+    </div>
+    <div class="club-modal-footer">
+      <a id="pdf-modal-open" href="#" target="_blank" rel="noopener" class="club-modal-dismiss" style="text-decoration:none;display:inline-flex;align-items:center;gap:6px;">Open in Drive ↗</a>
+      <button class="club-modal-dismiss" onclick="closePdfModal()">Close</button>
+    </div>
+  </div>
+</div>
+
 <!-- FUTURE DRR MODAL -->
 <div class="club-modal-overlay" id="fdrr-modal-overlay" onclick="closeFutureDRRModal(event)">
   <div class="club-modal" id="fdrr-modal">
@@ -2625,7 +2644,9 @@ if(window.initTilt) window.initTilt();
   if(rb){ rb.href = C.resources.driveLink; rb.textContent = C.resources.driveBtnLabel+' ↗'; }
   const rg=$('resources-grid');
   C.resources.items.forEach(r=>{
-    if(r.href){
+    if(r.pdfPreview){
+      rg.innerHTML+='<div class="resource-card resource-card-link" style="cursor:pointer;" onclick="openPdfModal('+JSON.stringify(r.title)+','+JSON.stringify(r.href)+')"><div class="resource-icon">'+r.icon+'</div><div class="resource-text"><h3>'+r.title+'</h3><p>'+r.desc+'</p></div><span class="resource-link-arrow">👁</span></div>';
+    } else if(r.href){
       rg.innerHTML+='<a class="resource-card resource-card-link" href="'+r.href+'" target="_blank" rel="noopener"><div class="resource-icon">'+r.icon+'</div><div class="resource-text"><h3>'+r.title+'</h3><p>'+r.desc+'</p></div><span class="resource-link-arrow">↗</span></a>';
     } else {
       rg.innerHTML+='<div class="resource-card"><div class="resource-icon">'+r.icon+'</div><div class="resource-text"><h3>'+r.title+'</h3><p>'+r.desc+'</p></div></div>';
@@ -2793,7 +2814,7 @@ if(window.initTilt) window.initTilt();
   }
 
   /* ESC key */
-  document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeClubModal();closeOfficerModal();closeGovModal();closeFutureDRRModal();closeBionoteModal();closeQRModal();}});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeClubModal();closeOfficerModal();closeGovModal();closeFutureDRRModal();closeBionoteModal();closeQRModal();closePdfModal();}});
 
 })();
 
@@ -3075,6 +3096,22 @@ function closeQRModal(e){
   if(e&&e.target!==document.getElementById('qr-modal-overlay'))return;
   document.getElementById('qr-modal-overlay').classList.remove('open');
   document.body.style.overflow='';
+}
+
+function openPdfModal(title, viewUrl){
+  var fileId = (viewUrl.match(/\/d\/([a-zA-Z0-9_-]+)/) || [])[1];
+  if(!fileId) return;
+  document.getElementById('pdf-modal-title').textContent = title;
+  document.getElementById('pdf-modal-frame').src = 'https://drive.google.com/file/d/'+fileId+'/preview';
+  document.getElementById('pdf-modal-open').href = 'https://drive.google.com/file/d/'+fileId+'/view';
+  document.getElementById('pdf-modal-overlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closePdfModal(e){
+  if(e&&e.target!==document.getElementById('pdf-modal-overlay'))return;
+  document.getElementById('pdf-modal-overlay').classList.remove('open');
+  document.body.style.overflow='';
+  document.getElementById('pdf-modal-frame').src = '';
 }
 
 function calSelectSlot(slot){
