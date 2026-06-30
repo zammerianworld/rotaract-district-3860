@@ -1170,7 +1170,7 @@ const CONFIG = {
       name:    "Arlene J. Adlawan",
       title:   "District Governor",
       district: "RC Tagum Golden L.A.C.E.S",
-      photo:   "https://drive.google.com/thumbnail?id=1jsLBlPBCaexZ_1mGn5kD8Lo_pAWayR50&sz=w300",
+      photo:   "https://drive.google.com/thumbnail?id=1VWWTsiIGkRAvMWjEDgtOy6diHk8vM8NY&sz=w300",
     },
 
     groups: [
@@ -1266,7 +1266,6 @@ const CONFIG = {
         list: [
           { initials: "ENC",  name: "Remuel M. Coles", photo: "https://drive.google.com/thumbnail?id=1Fzqc6bfwkSI-qJ0aKCuFPt3pIxOq74YT&sz=w300",       role: "District Elections and Nominating Chair",          club: "RAC Metro Surigao" },
           { initials: "AC",   name: "Kenneth D. Banluta", photo: "https://drive.google.com/thumbnail?id=1Wnie3VQuZ5c9bnZuTFgTHGleoRMsWNmF&sz=w300",    role: "District Awards Chair",                          club: "RAC Central Butuan"},
-          { initials: "LO",   name: "—",                     role: "District Legal Officer",                club: "—"                  },
           { initials: "PC27", name: "—",                     role: "District Promotions Chair for PROCON 2027",      club: "—"                  },
           { initials: "AP27", name: "Griffins C. Malazarte", photo: "https://drive.google.com/thumbnail?id=1IjC134jH0FNNnd3rhpfTaz0Owg8GVwN6&sz=w300", role: "District Promotions Chair for APRRC 2027, Philippines",       club: "RAC Cebu South"    },
         ],
@@ -1501,9 +1500,9 @@ const CONFIG = {
     items: [
       { icon: "🎯", title: "DRR's Thrust",            desc: "The official thrust and direction set by the District Rotaract Representative for RY 2026–2027.", href: "https://drive.google.com/file/d/1wINQ-JcrJMJvTgYamqwT27FJ7y7z7Oky/view", pdfPreview: true },
       { icon: "📘", title: "President's Guide",       desc: "Step-by-step manual for managing your Rotaract club effectively." },
-      { icon: "📂", title: "Induction Materials",     desc: "Official documents and templates for club induction ceremonies.", href: "https://drive.google.com/drive/folders/1xCgSdNZ-uHlzF5VjaS4ht-SRsggGJxXr" },
+      { icon: "📂", title: "Induction Materials",     desc: "Official documents and templates for club induction ceremonies.", href: "https://drive.google.com/drive/folders/1xCgSdNZ-uHlzF5VjaS4ht-SRsggGJxXr", folderPreview: true },
       { icon: "💰", title: "Financial Guidelines",    desc: "Budget templates and financial reporting standards for clubs." },
-      { icon: "🎨", title: "Rotary/Rotaract Branding Guidelines", desc: "District 3860\u2019s own logo files, posters, and ready-to-use design templates.", href: "https://drive.google.com/drive/folders/1XiRoDnC1Bq6iRNF22btZBKgpuRILwrvQ" },
+      { icon: "🎨", title: "Rotary/Rotaract Branding Guidelines", desc: "District 3860\u2019s own logo files, posters, and ready-to-use design templates.", href: "https://drive.google.com/drive/folders/1XiRoDnC1Bq6iRNF22btZBKgpuRILwrvQ", folderPreview: true },
       { icon: "🎨", title: "Rotary Brand Center",     desc: "Rotary International\u2019s global hub for official fonts, color palettes, and brand standards.",   href: "https://brandcenter.rotary.org/en-us/" },
       { icon: "🏷️", title: "District 3860 Logo Maker",desc: "Create official District 3860 branded logos and materials.",     href: "https://logo.rotarydistrict3860.org/" },
     ],
@@ -2123,6 +2122,25 @@ const CONFIG = {
   </div>
 </div>
 
+<!-- FOLDER PREVIEW MODAL -->
+<div class="club-modal-overlay" id="folder-modal-overlay" onclick="closeFolderModal(event)">
+  <div class="club-modal" style="max-width:800px;width:92vw;">
+    <div class="club-modal-header">
+      <div class="club-modal-name" id="folder-modal-title" style="font-size:18px;">Folder Preview</div>
+      <button class="club-modal-close" onclick="closeFolderModal()" aria-label="Close">✕</button>
+    </div>
+    <div style="padding:0 8px 8px;">
+      <div style="position:relative;width:100%;height:70vh;border-radius:var(--r-md);overflow:hidden;background:var(--gray-50);">
+        <iframe id="folder-modal-frame" src="" style="width:100%;height:100%;border:none;display:block;" allow="autoplay"></iframe>
+      </div>
+    </div>
+    <div class="club-modal-footer">
+      <a id="folder-modal-open" href="#" target="_blank" rel="noopener" class="club-modal-dismiss" style="text-decoration:none;display:inline-flex;align-items:center;gap:6px;">Open in Drive ↗</a>
+      <button class="club-modal-dismiss" onclick="closeFolderModal()">Close</button>
+    </div>
+  </div>
+</div>
+
 <!-- FUTURE DRR MODAL -->
 <div class="club-modal-overlay" id="fdrr-modal-overlay" onclick="closeFutureDRRModal(event)">
   <div class="club-modal" id="fdrr-modal">
@@ -2651,6 +2669,12 @@ if(window.initTilt) window.initTilt();
       rcard.style.cursor='pointer';
       rcard.innerHTML='<div class="resource-icon">'+r.icon+'</div><div class="resource-text"><h3>'+r.title+'</h3><p>'+r.desc+'</p></div><span class="resource-link-arrow">👁</span>';
       rcard.addEventListener('click', function(){ openPdfModal(r.title, r.href); });
+    } else if(r.folderPreview){
+      rcard=document.createElement('div');
+      rcard.className='resource-card resource-card-link';
+      rcard.style.cursor='pointer';
+      rcard.innerHTML='<div class="resource-icon">'+r.icon+'</div><div class="resource-text"><h3>'+r.title+'</h3><p>'+r.desc+'</p></div><span class="resource-link-arrow">👁</span>';
+      rcard.addEventListener('click', function(){ openFolderModal(r.title, r.href); });
     } else if(r.href){
       rcard=document.createElement('a');
       rcard.className='resource-card resource-card-link';
@@ -2825,7 +2849,7 @@ if(window.initTilt) window.initTilt();
   }
 
   /* ESC key */
-  document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeClubModal();closeOfficerModal();closeGovModal();closeFutureDRRModal();closeBionoteModal();closeQRModal();closePdfModal();}});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeClubModal();closeOfficerModal();closeGovModal();closeFutureDRRModal();closeBionoteModal();closeQRModal();closePdfModal();closeFolderModal();}});
 
 })();
 
@@ -3123,6 +3147,22 @@ function closePdfModal(e){
   document.getElementById('pdf-modal-overlay').classList.remove('open');
   document.body.style.overflow='';
   document.getElementById('pdf-modal-frame').src = '';
+}
+
+function openFolderModal(title, folderUrl){
+  var folderId = (folderUrl.match(/\/folders\/([a-zA-Z0-9_-]+)/) || [])[1];
+  if(!folderId) return;
+  document.getElementById('folder-modal-title').textContent = title;
+  document.getElementById('folder-modal-frame').src = 'https://drive.google.com/embeddedfolderview?id='+folderId+'#grid';
+  document.getElementById('folder-modal-open').href = 'https://drive.google.com/drive/folders/'+folderId;
+  document.getElementById('folder-modal-overlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeFolderModal(e){
+  if(e&&e.target!==document.getElementById('folder-modal-overlay'))return;
+  document.getElementById('folder-modal-overlay').classList.remove('open');
+  document.body.style.overflow='';
+  document.getElementById('folder-modal-frame').src = '';
 }
 
 function calSelectSlot(slot){
