@@ -2113,13 +2113,13 @@ const CONFIG = {
 
 <!-- PDF PREVIEW MODAL -->
 <div class="club-modal-overlay" id="pdf-modal-overlay" onclick="closePdfModal(event)">
-  <div class="club-modal" style="max-width:800px;width:92vw;">
+  <div class="club-modal" style="max-width:600px;width:92vw;">
     <div class="club-modal-header">
       <div class="club-modal-name" id="pdf-modal-title" style="font-size:18px;">Document Preview</div>
       <button class="club-modal-close" onclick="closePdfModal()" aria-label="Close">✕</button>
     </div>
     <div style="padding:0 8px 8px;">
-      <div style="position:relative;width:100%;height:0;padding-bottom:129%;max-height:75vh;border-radius:var(--r-md);overflow:hidden;background:var(--gray-50);">
+      <div style="position:relative;width:100%;height:min(75vh,77dvh);max-height:680px;border-radius:var(--r-md);overflow:hidden;background:var(--gray-50);">
         <iframe id="pdf-modal-frame" src="" style="position:absolute;inset:0;width:100%;height:100%;border:none;display:block;" allow="autoplay"></iframe>
       </div>
     </div>
