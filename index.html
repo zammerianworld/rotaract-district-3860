@@ -89,6 +89,8 @@ body{font-family:var(--font-body);opacity:0;transition:opacity .4s ease;}
 body.loaded{opacity:1;}
 .no-fouc{font-size:16px;line-height:1.7;color:var(--heading-color);background:var(--white);overflow-x:hidden;}
 .container{max-width:1280px;margin:0 auto;padding:0 48px;}
+@media(max-width:1024px){.container{padding:0 32px;}}
+@media(max-width:640px){.container{padding:0 24px;}}
 
 /* ── NAV ── */
 #nav{position:sticky;top:0;z-index:900;background:var(--pink);box-shadow:0 2px 12px rgba(212,19,103,.15);}
@@ -124,9 +126,11 @@ body.loaded{opacity:1;}
 .hero-btns{display:flex;gap:14px;flex-wrap:wrap;}
 .btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-body);font-size:14px;font-weight:700;padding:13px 28px;border-radius:40px;cursor:pointer;border:none;transition:all .2s;letter-spacing:.2px;}
 .btn-pink{background:var(--pink);color:#fff;box-shadow:0 4px 20px rgba(212,19,103,.35);}
+.btn-pink:active{transform:scale(.97);}
 .btn-pink:hover{background:var(--pink-dark);transform:translateY(-2px);box-shadow:0 8px 28px rgba(212,19,103,.4);}
 .btn-outline{background:transparent;color:var(--pink);border:2px solid var(--pink);}
 .btn-outline:hover{background:var(--pink-light);transform:translateY(-2px);}
+.btn-outline:active{transform:scale(.97);}
 .hero-scroll{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--gray-400);font-size:12px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;}
 .hero-scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,var(--gray-300),transparent);animation:scrollpulse 2s ease-in-out infinite;}
 @keyframes scrollpulse{0%,100%{opacity:.4;transform:scaleY(.8);}50%{opacity:1;transform:scaleY(1);}}
@@ -168,6 +172,7 @@ body.loaded{opacity:1;}
 
 /* ── GOVERNOR ── */
 .gov-banner{background:linear-gradient(135deg,var(--pink-deep) 0%,var(--pink-dark) 100%);border-radius:var(--r-lg);padding:44px 48px;display:flex;align-items:center;gap:32px;margin-bottom:52px;position:relative;overflow:hidden;}
+.gov-banner:active{transform:scale(.98);}
 .gov-avatar{width:110px;height:110px;border-radius:50%;background:rgba(255,255,255,.15);border:3px solid rgba(255,255,255,.4);box-shadow:0 0 0 6px rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:700;color:#fff;flex-shrink:0;}
 .gov-avatar img{width:100%;height:100%;border-radius:50%;object-fit:cover;}
 .gov-label{font-size:12px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:8px;}
@@ -239,6 +244,7 @@ body.dark-mode .drr-stat-lbl{color:var(--dm-muted);}
 .officers-group-title::before{content:'';display:block;width:3px;height:14px;background:var(--pink);border-radius:2px;flex-shrink:0;}
 .officers-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:20px;}
 .officer-card{background:#fff;border-radius:var(--r-lg);padding:36px 28px;text-align:center;border:1.5px solid var(--gray-200);transition:all .25s;position:relative;overflow:hidden;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.04);}
+.officer-card:active{transform:scale(.97);}
 .officer-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(212,19,103,.12);border-color:var(--pink-light);}
 .officer-card::after{content:'';position:absolute;inset:0;border-radius:var(--r-lg);border:2px solid var(--pink);opacity:0;transition:opacity .25s;}
 .officer-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(212,19,103,.1);}
@@ -255,6 +261,7 @@ body.dark-mode .drr-stat-lbl{color:var(--dm-muted);}
 .events-intro{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end;margin-bottom:52px;}
 .events-stack{display:flex;flex-direction:column;gap:20px;}
 .event-card{background:#fff;border-radius:var(--r-lg);padding:28px 28px 28px 32px;display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:start;border:1px solid var(--gray-100);transition:all .25s;position:relative;overflow:hidden;}
+.event-card:active{transform:scale(.98);}
 .event-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--pink);border-radius:4px 0 0 4px;}
 .event-card:hover{transform:translateX(4px);box-shadow:0 12px 36px rgba(212,19,103,.1);border-color:var(--pink-light);}
 .event-date-box{background:var(--pink);border-radius:var(--r-md);padding:0;text-align:center;width:88px;height:88px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
@@ -286,6 +293,7 @@ body.dark-mode .drr-stat-lbl{color:var(--dm-muted);}
 .resources-btn::after{content:'↗';font-size:16px;}
 .resources-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;}
 .resource-card{background:#fff;border-radius:var(--r-lg);padding:28px;border:1px solid var(--gray-100);display:flex;gap:18px;align-items:flex-start;transition:all .25s;}
+.resource-card-link:active{transform:scale(.98);}
 .resource-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(212,19,103,.09);border-color:var(--pink-light);}
 .resource-card-link{text-decoration:none;cursor:pointer;position:relative;}
 .resource-link-arrow{position:absolute;top:14px;right:14px;font-size:14px;color:var(--pink);opacity:.6;}
@@ -341,6 +349,7 @@ body.dark-mode .cal-day-num{color:var(--dm-muted);}
 .membership-sub{font-size:14px;color:rgba(255,255,255,.7);line-height:1.6;max-width:480px;}
 .membership-btn{display:inline-flex;align-items:center;background:#fff;color:var(--pink-deep);font-size:13px;font-weight:700;padding:12px 24px;border-radius:40px;white-space:nowrap;flex-shrink:0;text-decoration:none;transition:all .2s;}
 .membership-btn:hover{background:var(--pink-light);transform:translateY(-2px);}
+.membership-btn:active{transform:scale(.96);}
 @media(max-width:640px){
   .membership-card{flex-direction:column;align-items:flex-start;gap:20px;}
   .membership-btn{width:100%;justify-content:center;}
@@ -363,6 +372,7 @@ body.dark-mode .membership-sub{color:rgba(255,255,255,.6);}
 .clubs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;}
 /* Club cards */
 .club-card{background:var(--gray-50);border:1px solid var(--gray-100);border-radius:var(--r-md);padding:14px 16px;display:flex;align-items:center;gap:12px;transition:all .2s;cursor:pointer;}
+.club-card:active{transform:scale(.97);}
 .club-card:hover{background:#fff;border-color:var(--pink-light);box-shadow:0 4px 16px rgba(212,19,103,.08);transform:translateY(-1px);}
 .club-card.active{border-color:var(--pink);background:#fff;box-shadow:0 4px 16px rgba(212,19,103,.12);}
 .club-card-dot{width:8px;height:8px;border-radius:50%;background:var(--pink);flex-shrink:0;transition:transform .2s;}
@@ -388,6 +398,7 @@ body.dark-mode .membership-sub{color:rgba(255,255,255,.6);}
 .club-detail-value.placeholder{color:var(--gray-300);font-style:italic;font-weight:400;}
 .club-modal-footer{padding:16px 28px;border-top:1px solid var(--gray-100);display:flex;justify-content:flex-end;}
 .club-modal-dismiss{font-size:13px;font-weight:700;color:var(--pink);background:var(--pink-light);border:none;padding:9px 20px;border-radius:40px;cursor:pointer;transition:all .2s;}
+.club-modal-dismiss:active{transform:scale(.95);}
 .club-modal-dismiss:hover{background:var(--pink);color:#fff;}
 @media(max-width:480px){
   .club-modal-body{grid-template-columns:1fr;}
@@ -888,6 +899,7 @@ body.dark-mode #dark-toggle{background:var(--pink);color:#fff;}
 .theme-song-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:16px;}
 .theme-song-tab{font-size:13px;font-weight:700;padding:9px 20px;border-radius:30px;background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.2);color:rgba(255,255,255,.75);cursor:pointer;transition:all .2s;}
 .theme-song-tab:hover{background:rgba(255,255,255,.18);color:#fff;}
+.theme-song-tab:active{transform:scale(.95);}
 .theme-song-tab.active{background:#fff;color:var(--pink-deep);border-color:#fff;}
 .theme-song-player{position:relative;width:100%;aspect-ratio:16/9;border-radius:var(--r-lg);overflow:hidden;background:#000;box-shadow:0 24px 60px rgba(0,0,0,.35);}
 .theme-song-mobile-fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;width:100%;height:100%;background:linear-gradient(135deg,rgba(255,255,255,.06) 0%,rgba(255,255,255,.02) 100%);text-decoration:none;cursor:pointer;}
@@ -897,6 +909,7 @@ body.dark-mode #dark-toggle{background:var(--pink);color:#fff;}
 .theme-song-player iframe{width:100%;height:100%;border:none;display:block;}
 .theme-song-btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;}
 .theme-song-btn{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;padding:11px 22px;border-radius:40px;text-decoration:none;transition:all .2s;cursor:pointer;}
+.theme-song-btn:active{transform:scale(.96);}
 .theme-song-btn-primary{background:#fff;color:var(--pink-deep);}
 .theme-song-btn-primary:hover{background:var(--pink-light);transform:translateY(-2px);}
 .theme-song-btn-secondary{background:rgba(255,255,255,.12);color:#fff;border:1.5px solid rgba(255,255,255,.25);}
@@ -2008,7 +2021,7 @@ const CONFIG = {
           data-hide-cover="false"
           data-show-facepile="false">
         </div>
-        <p style="font-size:12px;color:var(--gray-400);margin-top:12px;text-align:center;">Powered by Facebook Page Plugin · <a href="https://www.facebook.com/rotaractdistrict3860" target="_blank" style="color:var(--pink);">Open in Facebook ↗</a></p>
+        <p style="font-size:12px;color:var(--gray-400);margin-top:12px;text-align:center;">Powered by Facebook Page Plugin · <a href="https://www.facebook.com/rotaractdistrict3860" target="_blank" rel="noopener" style="color:var(--pink);">Open in Facebook ↗</a></p>
       </div>
     </div>
   </div>
@@ -2394,6 +2407,7 @@ if(window.initTilt) window.initTilt();
         img.className = 'officer-photo';
         img.src = o.photo;
         img.alt = o.name;
+        img.loading = 'lazy';
         img.style.objectPosition = o.photoPosition||'center top';
         const av = document.createElement('div');
         av.className = 'officer-avatar';
@@ -2445,6 +2459,7 @@ if(window.initTilt) window.initTilt();
         img.className = 'future-drr-photo';
         img.src = f.photo;
         img.alt = f.name;
+        img.loading = 'lazy';
         fc.appendChild(img);
       } else {
         const ph = document.createElement('div');
