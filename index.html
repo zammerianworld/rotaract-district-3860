@@ -205,7 +205,7 @@ body.loaded{opacity:1;}
 .drr-photo-placeholder span{font-size:48px;}
 .drr-photo-placeholder p{font-size:13px;color:var(--pink-dark);font-weight:600;text-align:center;padding:0 16px;}
 .drr-content{}
-.drr-bio{font-size:16px;color:var(--gray-700);line-height:1.9;margin-bottom:28px;font-style:normal;}
+.drr-bio{font-size:16px;color:var(--gray-700);line-height:1.9;margin-bottom:28px;font-style:normal;text-align:justify;text-justify:inter-word;}
 .bio-read-btn{background:none;border:1.5px solid var(--pink);border-radius:40px;padding:7px 20px;color:var(--pink);font-weight:700;font-size:13px;cursor:pointer;font-family:var(--font-body);transition:all .2s;}
 .bio-read-btn:hover{background:var(--pink);color:#fff;}
 body.dark-mode .bio-read-btn{border-color:var(--pink);color:var(--pink);}
@@ -2100,7 +2100,7 @@ const CONFIG = {
       <div class="club-modal-name" id="bm-name"></div>
       <button class="club-modal-close" onclick="closeBionoteModal()" aria-label="Close">✕</button>
     </div>
-    <div id="bm-body" style="padding:28px;overflow-y:auto;flex:1;font-size:15px;color:var(--gray-700);line-height:1.85;"></div>
+    <div id="bm-body" style="padding:28px;overflow-y:auto;flex:1;font-size:15px;color:var(--gray-700);line-height:1.85;text-align:justify;text-justify:inter-word;"></div>
     <div class="club-modal-footer" style="flex-shrink:0;display:flex;justify-content:space-between;align-items:center;">
       <button id="bm-copy-btn" onclick="copyBionote()" style="background:none;border:1.5px solid var(--pink);border-radius:40px;padding:7px 18px;color:var(--pink);font-weight:700;font-size:12px;cursor:pointer;font-family:var(--font-body);transition:all .2s;">📋 Copy bionote</button>
       <button class="club-modal-dismiss" onclick="closeBionoteModal()">Close</button>
