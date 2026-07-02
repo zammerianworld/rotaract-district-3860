@@ -302,6 +302,8 @@ body.dark-mode .drr-stat-lbl{color:var(--dm-muted);}
 .resource-card-link:active{transform:scale(.98);}
 .resource-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(212,19,103,.09);border-color:var(--pink-light);}
 .resource-card-link{text-decoration:none;cursor:pointer;position:relative;}
+.resource-card-soon{opacity:.75;cursor:default;}
+.resource-soon-badge{flex-shrink:0;font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--gray-400);border:1.5px solid var(--gray-200);border-radius:20px;padding:3px 10px;white-space:nowrap;align-self:center;}
 .resource-link-arrow{position:absolute;top:14px;right:14px;font-size:14px;color:var(--pink);opacity:.6;}
 .resource-card-link:hover .resource-link-arrow{opacity:1;}
 .resource-icon{width:48px;height:48px;border-radius:14px;background:var(--pink-light);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;}
@@ -1529,9 +1531,11 @@ const CONFIG = {
     driveBtnLabel: "Open Resources Folder",
     items: [
       { icon: "🎯", title: "DRR's Thrust",            desc: "The official thrust and direction set by the District Rotaract Representative for RY 2026–2027.", href: "https://drive.google.com/file/d/1wINQ-JcrJMJvTgYamqwT27FJ7y7z7Oky/view", pdfPreview: true },
-      { icon: "📘", title: "President's Guide",       desc: "Step-by-step manual for managing your Rotaract club effectively." },
+      { icon: "📊", title: "DRR's Thrust Tracker",    desc: "Monitor your club's progress on the DRR's thrust deliverables for RY 2026–2027.", comingSoon: true },
+      { icon: "📘", title: "President's Guide",       desc: "Step-by-step manual for managing your Rotaract club effectively.", comingSoon: true },
       { icon: "📂", title: "Induction Materials",     desc: "Official documents and templates for club induction ceremonies.", href: "https://drive.google.com/drive/folders/1xCgSdNZ-uHlzF5VjaS4ht-SRsggGJxXr", folderPreview: true },
-      { icon: "💰", title: "Financial Guidelines",    desc: "Budget templates and financial reporting standards for clubs." },
+      { icon: "💰", title: "Financial Guidelines",    desc: "Budget templates and financial reporting standards for clubs.", comingSoon: true },
+      { icon: "🏆", title: "Awards & Recognition Guidelines", desc: "Criteria and guidelines for district awards and club recognition for RY 2026–2027.", comingSoon: true },
       { icon: "🎨", title: "Rotary/Rotaract Branding Guidelines", desc: "District 3860\u2019s own logo files, posters, and ready-to-use design templates.", href: "https://drive.google.com/drive/folders/1XiRoDnC1Bq6iRNF22btZBKgpuRILwrvQ", folderPreview: true },
       { icon: "🎨", title: "Rotary Brand Center",     desc: "Rotary International\u2019s global hub for official fonts, color palettes, and brand standards.",   href: "https://brandcenter.rotary.org/en-us/" },
       { icon: "🏷️", title: "District 3860 Logo Maker",desc: "Create official District 3860 branded logos and materials.",     href: "https://logo.rotarydistrict3860.org/" },
@@ -1559,7 +1563,6 @@ const CONFIG = {
     desc:    "Reach out to the District Rotaract Secretariat for inquiries, reports, or membership information.",
     details: [
       { icon: "✉️", label: "Email",        value: "impactbuilding3860@gmail.com"              },
-      { icon: "📱", label: "Mobile",       value: "[+63 9XX XXX XXXX]"                             },
     ],
     socials: [
       { label: "Facebook",  href: "https://www.facebook.com/rotaractdistrict3860" },
@@ -2719,6 +2722,10 @@ if(window.initTilt) window.initTilt();
       rcard.style.cursor='pointer';
       rcard.innerHTML='<div class="resource-icon">'+r.icon+'</div><div class="resource-text"><h3>'+r.title+'</h3><p>'+r.desc+'</p></div><span class="resource-link-arrow">👁</span>';
       rcard.addEventListener('click', function(){ openFolderModal(r.title, r.href); });
+    } else if(r.comingSoon){
+      rcard=document.createElement('div');
+      rcard.className='resource-card resource-card-soon';
+      rcard.innerHTML='<div class="resource-icon" style="opacity:.55;">'+r.icon+'</div><div class="resource-text"><h3>'+r.title+'</h3><p>'+r.desc+'</p></div><span class="resource-soon-badge">Link Coming Soon</span>';
     } else if(r.href){
       rcard=document.createElement('a');
       rcard.className='resource-card resource-card-link';
