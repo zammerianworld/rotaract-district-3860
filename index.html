@@ -104,7 +104,6 @@ a{text-decoration:none;color:inherit;}
 }
 body{font-family:var(--font-body);opacity:0;transition:opacity .4s ease;}
 body.loaded{opacity:1;}
-.no-fouc{font-size:16px;line-height:1.7;color:var(--heading-color);background:var(--white);overflow-x:hidden;}
 .container{max-width:1280px;margin:0 auto;padding:0 48px;}
 @media(max-width:1024px){.container{padding:0 32px;}}
 @media(max-width:640px){.container{padding:0 24px;}}
@@ -198,7 +197,6 @@ body.loaded{opacity:1;}
 .gov-label{font-size:12px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:8px;}
 .gov-name{font-family:var(--font-body);font-size:30px;font-weight:800;color:#fff;line-height:1.15;letter-spacing:-.3px;}
 .gov-sub{font-size:15px;color:rgba(255,255,255,.65);margin-top:6px;}
-.gov-badge{margin-left:auto;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;font-size:13px;font-weight:700;padding:10px 20px;border-radius:40px;white-space:nowrap;flex-shrink:0;align-self:flex-start;}
 
 /* ── FUTURE DRRs ── */
 .future-drrs{margin-top:52px;padding-top:48px;border-top:1px solid var(--gray-100);}
@@ -357,8 +355,6 @@ body.dark-mode .drr-stat-lbl{color:var(--dm-muted);}
 .cal-day-cell.today .cal-day-num{color:var(--pink);font-weight:800;}
 .cal-event-pill{background:var(--pink);color:#fff;font-size:10px;font-weight:700;border-radius:4px;padding:2px 5px;margin-top:2px;line-height:1.3;cursor:pointer;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 .cal-event-pill.tba{background:var(--gray-300);color:var(--gray-700);}
-/* No events */
-.cal-no-events{text-align:center;padding:48px 24px;color:var(--gray-400);font-size:14px;}
 body.dark-mode .cal-month-tab{background:var(--dm-surface2);border-color:var(--dm-border);color:var(--dm-muted);}
 body.dark-mode .cal-month-tab.active{background:var(--pink);border-color:var(--pink);color:#fff;}
 body.dark-mode .cal-day-cell{background:var(--dm-surface2);border-color:var(--dm-border);}
@@ -542,9 +538,6 @@ body.dark-mode .qr-svg-wrap svg rect{fill:var(--dm-surface);}
 .footer-col a:hover{color:#fff;}
 .footer-bottom{max-width:1280px;margin:28px auto 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;}
 .footer-copy{font-size:12px;color:rgba(255,255,255,.2);}
-.footer-dev{font-size:12px;color:rgba(255,255,255,.2);}
-.footer-dev a{color:rgba(255,255,255,.5);text-decoration:underline;text-underline-offset:3px;transition:color .15s;}
-.footer-dev a:hover{color:#fff;}
 
 /* ── BACK TO TOP ── */
 #btt{position:fixed;bottom:28px;right:28px;width:44px;height:44px;border-radius:50%;background:var(--pink);color:#fff;font-size:18px;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;pointer-events:none;transition:all .25s;border:none;box-shadow:0 4px 20px rgba(212,19,103,.4);z-index:50;}
@@ -626,9 +619,6 @@ body.dark-mode .event-card{background:var(--dm-surface2);border-color:var(--dm-b
 body.dark-mode .event-body h3{color:var(--dm-text);}
 body.dark-mode .event-body p{color:var(--dm-muted);}
 body.dark-mode #calendar{background:var(--dm-surface);}
-body.dark-mode .cal-item{background:var(--dm-surface2);border-color:var(--dm-border);}
-body.dark-mode .cal-title{color:var(--dm-text);}
-body.dark-mode .cal-loc{color:var(--dm-muted);}
 body.dark-mode #resources{background:var(--dm-bg);}
 body.dark-mode .resources-header p{color:var(--dm-muted);}
 body.dark-mode .resource-card{background:var(--dm-surface);border-color:var(--dm-border);}
@@ -743,9 +733,6 @@ body.dark-mode .achievement-desc{color:var(--dm-muted);}
 
 /* Calendar */
 body.dark-mode #calendar{background:var(--dm-bg);}
-body.dark-mode .cal-item{background:var(--dm-surface2);border-color:var(--dm-border);}
-body.dark-mode .cal-title{color:var(--dm-text);}
-body.dark-mode .cal-loc{color:var(--dm-muted);}
 /* Calendar grid dark mode */
 body.dark-mode .cal-month-tab{background:var(--dm-surface2);border-color:var(--dm-border);color:var(--dm-muted);}
 body.dark-mode .cal-month-tab:hover{border-color:var(--pink);color:var(--pink);}
@@ -886,7 +873,6 @@ body.dark-mode .clubs-council-count{background:var(--dm-faint);color:var(--pink)
 body.dark-mode .future-drr-year{background:rgba(255,255,255,.1);color:#fff;}
 body.dark-mode .map-area-pill{background:var(--dm-faint);color:var(--pink);}
 body.dark-mode .mclubs-label{color:var(--dm-muted);}
-body.dark-mode .gov-badge{background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);}
 body.dark-mode .drr-achievements-title{color:var(--dm-muted);}
 body.dark-mode #online-tools-section .secretariat-label{color:var(--dm-text);}
 body.dark-mode #online-tools-section .secretariat-desc{color:var(--dm-muted);}
@@ -941,8 +927,6 @@ body.dark-mode #dark-toggle{background:var(--pink);color:#fff;}
 .theme-song-btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;}
 .theme-song-btn{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;padding:11px 22px;border-radius:40px;text-decoration:none;transition:all .2s;cursor:pointer;}
 .theme-song-btn:active{transform:scale(.96);}
-.theme-song-btn-primary{background:#fff;color:var(--pink-deep);}
-.theme-song-btn-primary:hover{background:var(--pink-light);transform:translateY(-2px);}
 .theme-song-btn-secondary{background:rgba(255,255,255,.12);color:#fff;border:1.5px solid rgba(255,255,255,.25);}
 .theme-song-btn-secondary:hover{background:rgba(255,255,255,.22);transform:translateY(-2px);}
 @media(max-width:640px){
@@ -1045,7 +1029,6 @@ body.dark-mode .theme-song-desc{color:rgba(255,255,255,.65);}
   .gov-name{font-size:20px;}
   .gov-label{font-size:10px;}
   .gov-sub{font-size:13px;}
-  .gov-badge{margin-left:auto;font-size:11px;padding:6px 12px;align-self:flex-start;}
 
   /* Officers grid */
   .officers-grid{grid-template-columns:repeat(2,1fr);gap:12px;}
@@ -2284,7 +2267,6 @@ const CONFIG = {
   const C = CONFIG;
   const $ = id => document.getElementById(id);
   const setText = (id,v) => { const e=$(id); if(e) e.textContent=v; };
-  const setHTML = (id,v) => { const e=$(id); if(e) e.innerHTML=v;   };
 
   document.title = 'Rotaract 3860';
 
@@ -2393,10 +2375,6 @@ const CONFIG = {
       drcEl.appendChild(drcGrid);
       if(window.initTilt) window.initTilt();
     }
-    const photoHTML = gov.photo
-      ? '<img src="'+gov.photo+'" alt="'+gov.name+'" style="width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:center top;"/>'
-      : '<span>'+gov.name.split(' ').map(function(w){return w[0];}).join('').slice(0,2)+'</span>';
-if(window.initTilt) window.initTilt();
 
     var gb=document.createElement("div"); gb.className="gov-banner tilt-card"; gb.style.cssText="cursor:pointer;margin-bottom:20px;"; gb.onclick=openGovModal;
     var govShine=document.createElement("div"); govShine.className="tilt-shine"; gb.appendChild(govShine);
@@ -2537,20 +2515,6 @@ if(window.initTilt) window.initTilt();
   var drrBioEl=$('drr-bio');
   if(drrBioEl){
     var shortTxt=drr.bionoteShort||drr.bionote||'Bionote coming soon.';
-    var fullTxt=drr.bionote||shortTxt;
-    // Helper: split text into paragraph-spaced HTML
-        function toBioParas(txt){
-      var splitRe=/\.\s+(?=He\b|His\b|During\b|Subsequently\b|In\s+20|In\s+the|The\b|Christian\b)/g;
-      var parts=txt.split(splitRe);
-      var paras=[];
-      for(var i=0;i<parts.length;i+=2){
-        var p=parts[i].trim();
-        if(!p.endsWith('.'))p+='.';
-        if(i+1<parts.length){p+=' '+parts[i+1].trim();if(!p.endsWith('.'))p+='.';}
-        paras.push(p);
-      }
-      return paras.map(function(p){return '<p style="margin:0 0 14px 0;">'+p+'</p>';}).join('');
-    }
     // Short version: insert line break every 2 sentences
     var shortParts=shortTxt.split(/\.\s+(?=He\b|His\b|During\b|Subsequently\b|In\s+20|In\s+the|The\b|A\s+proud)/);
     var shortHtml='';
@@ -2777,7 +2741,6 @@ if(window.initTilt) window.initTilt();
     panel.className = 'clubs-panel'+(ci===0?' active':'');
     panel.id = 'panel_'+c.id;
     const cards = c.clubs.map((name,i)=>{
-      var esc = name.replace(/'/g,"\\'");
       return '<div class="club-card" data-council="'+c.label+'" onclick="openClubModal(this)">'+
         '<div class="club-card-dot"></div>'+
         '<div class="club-card-name">'+name+'</div>'+
@@ -2907,8 +2870,8 @@ if(window.initTilt) window.initTilt();
   const observer = new IntersectionObserver(entries=>{
     entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); observer.unobserve(e.target); } });
   },{threshold:.1,rootMargin:'0px 0px -40px 0px'});
-  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
-  document.querySelectorAll('.reveal').forEach((el,i)=>{
+  reveals.forEach(el=>observer.observe(el));
+  reveals.forEach((el,i)=>{
     if(i>0 && i<=6) el.classList.add('reveal-delay-'+i);
   });
 
