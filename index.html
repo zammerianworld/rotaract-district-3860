@@ -39,7 +39,7 @@
 <meta property="og:site_name"   content="Rotaract District 3860"/>
 <meta property="og:title"       content="Rotaract Clubs of Rotary International District 3860"/>
 <meta property="og:description" content="Official website of Rotaract District 3860 — 88 clubs, 12 councils, 1,205 Rotaractors across Visayas and Mindanao. Service Above Self."/>
-<meta property="og:image"       content="https://rotaract-district-3860.vercel.app/logo.png"/>
+<meta property="og:image"       content="https://rotaract-district-3860.vercel.app/logo.png?v=1"/>
 <meta property="og:image:width" content="512"/>
 <meta property="og:image:height"content="512"/>
 <meta property="og:image:alt"   content="Rotaract District 3860 Logo"/>
@@ -49,7 +49,7 @@
 <meta name="twitter:card"        content="summary"/>
 <meta name="twitter:title"       content="Rotaract Clubs of Rotary International District 3860"/>
 <meta name="twitter:description" content="Official website of Rotaract District 3860 — 88 clubs, 12 councils, 1,205 Rotaractors across Visayas and Mindanao."/>
-<meta name="twitter:image"       content="https://rotaract-district-3860.vercel.app/logo.png"/>
+<meta name="twitter:image"       content="https://rotaract-district-3860.vercel.app/logo.png?v=1"/>
 <meta name="twitter:image:alt"   content="Rotaract District 3860 Logo"/>
 
 <!-- Structured Data — JSON-LD -->
@@ -60,7 +60,7 @@
   "name": "Rotaract Clubs of Rotary International District 3860",
   "alternateName": "Rotaract District 3860",
   "url": "https://rotaract-district-3860.vercel.app",
-  "logo": "https://rotaract-district-3860.vercel.app/logo.png",
+  "logo": "https://rotaract-district-3860.vercel.app/logo.png?v=1",
   "description": "Official district organization of Rotaract Clubs under Rotary International District 3860, serving Visayas and Mindanao, Philippines.",
   "areaServed": ["Visayas", "Mindanao", "Philippines"],
   "email": "impactbuilding3860@gmail.com",
@@ -1123,6 +1123,13 @@ body.dark-mode .theme-song-desc{color:rgba(255,255,255,.65);}
 ============================================================ */
 const CONFIG = {
 
+  /* --- Asset Version ---
+     Bump this number by +1 every time you upload a NEW logo.png or logo-white.png.
+     This forces every browser to load the fresh file instantly — no cache waiting,
+     no hard-refresh needed by anyone, anywhere. Just change the number, save, push.
+  ---------------------------------------- */
+  assetVersion: 1,
+
   siteName:   "Rotaract Clubs of Rotary International District 3860",
   region:     "Visayas & Mindanao",
   rotaryYear: "2026 – 2027",
@@ -1602,7 +1609,7 @@ const CONFIG = {
       links: [
         { icon: "📊", label: "Reporting Dashboard",         desc: "View real-time club reporting status and compliance.", href: "https://rotaract.rotarydistrict3860.org/reports/dashboard?qBfx=uHKdkW4W" },
         { icon: "📄", label: "Reporting Summary",           desc: "Access the consolidated summary of all club reports.",  href: "https://www.rotarydistrict3860.org/district/rotaract-reports/" },
-        { icon: "📬", label: "Centralized Submission Form", desc: "Submit club reports, projects, and documents here.",    href: "[PASTE SUBMISSION FORM LINK HERE]"   },
+        { icon: "📬", label: "Centralized Submission Form", desc: "Submit club reports, projects, and documents here.",    href: "https://forms.gle/TQ1YVhvuwU5PyRvA8"   },
       ],
     },
   },
@@ -1643,7 +1650,7 @@ const CONFIG = {
 <nav id="nav">
   <div class="nav-inner">
     <a class="nav-logo" href="#" aria-label="Home" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">
-      <img src="logo-white.png" alt="Rotaract Clubs of Rotary International District 3860"/>
+      <img id="nav-logo-img" src="logo-white.png" alt="Rotaract Clubs of Rotary International District 3860"/>
     </a>
     <div class="nav-links" id="nav-links">
       <a href="#about">About</a>
@@ -1701,7 +1708,7 @@ const CONFIG = {
     <div class="hero-banner-wave" aria-hidden="true"></div>
     <div class="hero-banner-inner">
       <div class="hero-banner-brand">
-        <img src="logo.png" alt="Rotaract District 3860 - Create Lasting Impact" class="hero-banner-logo"/>
+        <img id="hero-banner-logo-img" src="logo.png" alt="Rotaract District 3860 - Create Lasting Impact" class="hero-banner-logo"/>
       </div>
       <img src="district-3860-wordmark.png" alt="District 3860" class="hero-banner-title-img"/>
       <div class="hero-banner-councils" id="hero-banner-councils"></div>
@@ -2147,7 +2154,7 @@ const CONFIG = {
 <footer id="footer">
   <div class="footer-top">
     <div class="footer-brand">
-      <img src="logo-white.png" alt="Rotaract District 3860"/>
+      <img id="footer-logo-img" src="logo-white.png" alt="Rotaract District 3860"/>
       <div class="footer-brand-name" id="footer-name"></div>
       <div class="footer-brand-sub">
   Visayas &amp; Mindanao<br/>
@@ -2328,6 +2335,14 @@ const CONFIG = {
   const setText = (id,v) => { const e=$(id); if(e) e.textContent=v; };
 
   document.title = 'Rotaract 3860';
+
+  /* Logo cache-busting: append ?v=N so every browser/CDN treats a bumped
+     assetVersion as a brand-new file, no hard-refresh or cache wait needed. */
+  var logoV = '?v=' + (C.assetVersion || 1);
+  ['nav-logo-img','hero-logo','hero-banner-logo-img','footer-logo-img'].forEach(function(id){
+    var el = $(id);
+    if(el) el.src = el.getAttribute('src').split('?')[0] + logoV;
+  });
 
   /* Advocacy banner */
   const adv = C.advocacy;
