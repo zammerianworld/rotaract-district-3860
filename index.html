@@ -420,7 +420,7 @@ body.dark-mode .membership-sub{color:rgba(255,255,255,.6);}
 .clubs-panel{display:none;}
 .clubs-panel.active{display:block;}
 .clubs-council-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;}
-.clubs-council-name{font-family:var(--font-body);font-size:22px;font-weight:800;color:var(--heading-color);}
+.clubs-council-name{font-family:var(--font-body);font-size:22px;font-weight:800;color:var(--heading-color);display:flex;align-items:center;}
 .clubs-council-count{font-size:12px;font-weight:700;background:var(--pink-light);color:var(--pink-dark);padding:4px 12px;border-radius:40px;}
 .clubs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;}
 /* Club cards */
@@ -448,6 +448,10 @@ body.dark-mode .membership-sub{color:rgba(255,255,255,.6);}
 .club-detail-item.full{grid-column:1/-1;}
 .club-detail-label{font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--gray-400);}
 .club-detail-value{font-size:14px;color:var(--heading-color);font-weight:500;line-height:1.5;}
+.club-fb-link{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:#1877F2;color:#fff;margin-left:6px;vertical-align:middle;flex-shrink:0;}
+.club-fb-link:hover{opacity:.85;}
+.club-fb-link svg{width:11px;height:11px;}
+.club-modal-name-row{display:flex;align-items:center;gap:2px;}
 .club-detail-value.placeholder{color:var(--gray-300);font-style:italic;font-weight:400;}
 .club-modal-footer{padding:16px 28px;border-top:1px solid var(--gray-100);display:flex;justify-content:flex-end;}
 .club-modal-dismiss{font-size:13px;font-weight:700;color:var(--pink);background:var(--pink-light);border:none;padding:9px 20px;border-radius:40px;cursor:pointer;transition:all .2s;}
@@ -526,7 +530,7 @@ body.dark-mode .qr-svg-wrap svg rect{fill:var(--dm-surface);}
 .map-panel-area{display:none;flex-direction:column;gap:14px;}
 .map-panel-area.show{display:flex;}
 .map-area-pill{display:inline-block;background:var(--pink-light);color:var(--pink-dark);font-size:11px;font-weight:700;letter-spacing:.7px;text-transform:uppercase;padding:4px 14px;border-radius:40px;width:fit-content;}
-.map-area-name{font-family:var(--font-body);font-size:20px;font-weight:800;color:var(--heading-color);line-height:1.2;}
+.map-area-name{font-family:var(--font-body);font-size:20px;font-weight:800;color:var(--heading-color);line-height:1.2;display:flex;align-items:center;}
 .map-area-sub{font-size:13px;color:var(--gray-500);}
 .map-divider{height:1px;background:var(--gray-200);}
 .mclubs-label{font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--gray-400);}
@@ -1479,11 +1483,29 @@ const CONFIG = {
        chartered clubs — they stay browsable in the directory but are excluded
        from all club-count totals (district-wide 88, and per-council counts). */
     satelliteClubs: ["Rotaract Satellite Club of Metro Cebu South Coast"],
+    /* Council Facebook pages (optional). Key = council id (matches the id used
+       in the councils array above). Add links as the team supplies them —
+       a small FB icon appears next to the council name in both the Clubs
+       Directory tab header and the Map's council info panel automatically. */
+    councilFacebook: {
+      davao: "https://www.facebook.com/share/1WaK69U5gd/",
+      // bohol: "https://facebook.com/...",
+      // cebu:  "https://facebook.com/...",
+    },
 
     /* --- Club Details ---
        Add details per club when available.
        Key = exact club name as listed above.
        Leave as null to show "Coming soon" placeholders.
+
+       Optional Facebook fields (add when the team supplies links):
+       facebook:          the CLUB's own Facebook page — shows a small FB icon
+                           next to the club name at the top of its modal.
+       presidentFacebook: the current PRESIDENT's Facebook profile/page —
+                           shows a small FB icon next to their name inside the modal.
+       Both are entirely optional — the icon simply doesn't render if omitted.
+       Example: { president: "Juan Dela Cruz", facebook: "https://facebook.com/racXYZ",
+                  presidentFacebook: "https://facebook.com/juan.delacruz" }
     ---------------------------------------- */
     clubDetails: {
       "Rotaract Club of Andres Soriano Colleges of Bislig": { president: "Joy C. Serrano", sponsoredBy: "Rotary Club of Bislig", email: "ascbrotaract@gmail.com" },
@@ -2900,7 +2922,14 @@ const CONFIG = {
     }).join('');
     var satList = C.clubs.satelliteClubs || [];
     var realCount = c.clubs.filter(function(n){ return satList.indexOf(n) === -1; }).length;
-    panel.innerHTML = '<div class="clubs-council-header"><div class="clubs-council-name">'+c.label+'</div><span class="clubs-council-count">'+realCount+' clubs</span></div><div class="clubs-grid">'+cards+'</div>';
+    var councilFbUrl = (C.clubs.councilFacebook || {})[c.id];
+    var councilFbHtml = councilFbUrl ? '<a class="club-fb-link" href="'+councilFbUrl+'" target="_blank" rel="noopener" onclick="event.stopPropagation();" aria-label="'+c.label+' on Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 10-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.7-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0022 12z"/></svg></a>' : '';
+    panel.innerHTML = '<div class="clubs-council-header"><div class="clubs-council-name">'+c.label+councilFbHtml+'</div><span class="clubs-council-count">'+realCount+' clubs</span></div><div class="clubs-grid">'+cards+'</div>';
+    /* Also inject the same council FB icon into the Map's static council panel */
+    if(councilFbHtml){
+      var mapAreaEl = document.querySelector('#mp_'+c.id+' .map-area-name');
+      if(mapAreaEl) mapAreaEl.insertAdjacentHTML('beforeend', councilFbHtml);
+    }
     clubsPanels.appendChild(panel);
   });
 
@@ -3124,11 +3153,14 @@ function openClubModal(el, council){
   }
   council = council2;
   document.getElementById('modal-council').textContent = council2;
-  document.getElementById('modal-name').textContent = name;
   const det = CONFIG.clubs.clubDetails[name];
+  var fbSvg = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 10-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.7-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0022 12z"/></svg>';
+  var clubFbHtml = (det && det.facebook) ? '<a class="club-fb-link" href="'+det.facebook+'" target="_blank" rel="noopener" onclick="event.stopPropagation();" aria-label="'+name+' on Facebook">'+fbSvg+'</a>' : '';
+  document.getElementById('modal-name').innerHTML = name + clubFbHtml;
   const ph = function(v){ return v ? '<span class="club-detail-value">'+v+'</span>' : '<span class="club-detail-value placeholder">Coming soon</span>'; };
+  var presFbHtml = (det && det.presidentFacebook) ? '<a class="club-fb-link" href="'+det.presidentFacebook+'" target="_blank" rel="noopener" aria-label="President on Facebook">'+fbSvg+'</a>' : '';
   document.getElementById('modal-body').innerHTML =
-    '<div class="club-detail-item full"><span class="club-detail-label">Impact-Building President</span>'+ph(det?det.president:null)+'</div>'+
+    '<div class="club-detail-item full"><span class="club-detail-label">Impact-Building President</span>'+ph(det?det.president:null)+presFbHtml+'</div>'+
     '<div class="club-detail-item full"><span class="club-detail-label">Club Email</span>'+ph(det?det.email:null)+'</div>'+
     '<div class="club-detail-item full"><span class="club-detail-label">Meeting Schedule</span>'+ph(det&&det.schedule?det.schedule+(det.venue?' — '+det.venue:''):null)+'</div>'+
     '<div class="club-detail-item full"><span class="club-detail-label">Sponsoring Rotary Club</span>'+ph(det?det.sponsoredBy:null)+'</div>';
