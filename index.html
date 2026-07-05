@@ -77,7 +77,7 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,400;0,6..12,600;0,6..12,700;0,6..12,800;0,6..12,900;1,6..12,400;1,6..12,700&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
@@ -97,8 +97,8 @@ a{text-decoration:none;color:inherit;}
   --gray-500:   #6B7280;
   --gray-700:   #374151;
   --gray-900:   #111827;
-  --font-display:'Playfair Display',Georgia,serif;
-  --font-body:'Nunito Sans',system-ui,sans-serif;
+  --font-display:'Montserrat',system-ui,sans-serif;
+  --font-body:'Montserrat',system-ui,sans-serif;
   --nav-h:68px;
   --r-sm:6px;--r-md:12px;--r-lg:20px;--r-xl:28px;
 }
@@ -126,7 +126,36 @@ body.loaded{opacity:1;}
 }
 
 /* ── HERO ── */
-#hero{position:relative;overflow:hidden;min-height:calc(100vh - var(--nav-h));display:flex;align-items:stretch;}
+#hero{position:relative;overflow:hidden;min-height:calc(100vh - var(--nav-h));}
+.hero-slide{position:absolute;inset:0;display:flex;align-items:stretch;opacity:0;visibility:hidden;transition:opacity .8s ease;}
+.hero-slide.active{opacity:1;visibility:visible;z-index:1;}
+.hero-slide-banner{background:#fff;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:64px 32px;}
+.hero-banner-wave{position:absolute;inset:0;background-image:repeating-linear-gradient(115deg,rgba(56,145,222,.05) 0px,rgba(56,145,222,.05) 2px,transparent 2px,transparent 40px);pointer-events:none;}
+.hero-banner-inner{position:relative;z-index:1;max-width:900px;display:flex;flex-direction:column;align-items:center;gap:28px;}
+.hero-banner-brand{display:flex;align-items:center;gap:18px;}
+.hero-banner-logo{height:56px;width:auto;}
+.hero-banner-divider{width:2px;height:44px;background:var(--gray-200);}
+.hero-banner-slogan{font-size:12px;font-weight:800;letter-spacing:.5px;line-height:1.35;color:var(--pink);text-align:left;font-style:italic;}
+.hero-banner-title{font-family:var(--font-display);font-size:clamp(48px,9vw,110px);font-weight:900;color:#3891DE;line-height:1;letter-spacing:-2px;}
+.hero-banner-title span{color:#3891DE;opacity:.55;}
+.hero-banner-councils{font-size:16px;color:var(--gray-700);line-height:1.9;max-width:820px;}
+.hero-banner-councils b{font-weight:700;}
+.hero-banner-socials{display:flex;align-items:center;gap:28px;flex-wrap:wrap;justify-content:center;margin-top:8px;}
+.hero-banner-social{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--gray-600);text-decoration:none;}
+.hero-banner-social-icon{width:28px;height:28px;border-radius:50%;background:var(--heading-color);color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+@media(prefers-reduced-motion:reduce){.hero-slide{transition:none;}}
+body.dark-mode .hero-slide-banner{background:var(--dm-surface);}
+body.dark-mode .hero-banner-title,body.dark-mode .hero-banner-title span{color:#5AAAE8;}
+body.dark-mode .hero-banner-councils{color:var(--dm-muted);}
+body.dark-mode .hero-banner-social{color:var(--dm-muted);}
+body.dark-mode .hero-banner-divider{background:var(--dm-border);}
+@media(max-width:768px){
+  .hero-banner-brand{flex-direction:column;gap:10px;}
+  .hero-banner-divider{width:44px;height:2px;}
+  .hero-banner-slogan{text-align:center;}
+  .hero-banner-councils{font-size:14px;}
+  .hero-banner-socials{gap:16px;font-size:12px;}
+}
 .hero-left{background:var(--pink);flex:0 0 42%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:64px 48px;position:relative;overflow:hidden;}
 .hero-left::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.12) 1px,transparent 1px);background-size:22px 22px;}
 .hero-left-logo{position:relative;z-index:1;width:100%;max-width:420px;}
@@ -214,24 +243,24 @@ body.loaded{opacity:1;}
 
 /* ── MEET THE DRR ── */
 #drr{padding:96px 0;background:var(--gray-50);}
-.drr-layout{display:grid;grid-template-columns:300px 1fr;gap:52px;align-items:start;}
+.drr-layout{display:grid;grid-template-columns:300px 1fr;gap:52px;align-items:start;background:linear-gradient(135deg,var(--pink-deep) 0%,var(--pink-dark) 100%);border-radius:var(--r-lg);padding:44px 48px;box-shadow:0 4px 20px rgba(212,19,103,.2);}
 .drr-photo-wrap{position:relative;}
 .drr-photo-col{display:flex;flex-direction:column;gap:20px;}
-.drr-photo{width:100%;aspect-ratio:3/4;border-radius:var(--r-lg);object-fit:cover;background:var(--gray-100);display:flex;align-items:center;justify-content:center;border:3px solid #fff;box-shadow:0 0 0 3px var(--pink),0 8px 32px rgba(212,19,103,.15);}
-.drr-photo-placeholder{width:100%;aspect-ratio:3/4;border-radius:var(--r-lg);background:var(--pink-light);border:2px dashed var(--pink);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;}
+.drr-photo{width:100%;aspect-ratio:3/4;border-radius:var(--r-lg);object-fit:cover;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;border:3px solid rgba(255,255,255,.5);box-shadow:0 8px 32px rgba(0,0,0,.25);}
+.drr-photo-placeholder{width:100%;aspect-ratio:3/4;border-radius:var(--r-lg);background:rgba(255,255,255,.1);border:2px dashed rgba(255,255,255,.4);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;}
 .drr-photo-placeholder span{font-size:48px;}
-.drr-photo-placeholder p{font-size:13px;color:var(--pink-dark);font-weight:600;text-align:center;padding:0 16px;}
+.drr-photo-placeholder p{font-size:13px;color:rgba(255,255,255,.85);font-weight:600;text-align:center;padding:0 16px;}
 .drr-content{}
-.drr-bio{font-size:16px;color:var(--gray-700);line-height:1.9;margin-bottom:28px;font-style:normal;text-align:justify;text-justify:inter-word;}
-.bio-read-btn{background:none;border:1.5px solid var(--pink);border-radius:40px;padding:7px 20px;color:var(--pink);font-weight:700;font-size:13px;cursor:pointer;font-family:var(--font-body);transition:all .2s;}
+.drr-bio{font-size:16px;color:rgba(255,255,255,.85);line-height:1.9;margin-bottom:28px;font-style:normal;text-align:justify;text-justify:inter-word;}
+.bio-read-btn{background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.35);border-radius:40px;padding:7px 20px;color:#fff;font-weight:700;font-size:13px;cursor:pointer;font-family:var(--font-body);transition:all .2s;}
+.bio-read-btn:hover{background:rgba(255,255,255,.22);}
 .bio-read-btn:hover{background:var(--pink);color:#fff;}
-body.dark-mode .bio-read-btn{border-color:var(--pink);color:var(--pink);}
 body.dark-mode .bio-read-btn:hover{background:var(--pink);color:#fff;}
-.drr-achievements-title{font-size:13px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--gray-400);margin-bottom:16px;}
+.drr-achievements-title{font-size:13px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:16px;}
 .drr-achievements{display:flex;flex-direction:column;gap:10px;}
-.drr-achievement{display:flex;align-items:flex-start;gap:12px;padding:12px 16px;background:#fff;border-radius:var(--r-md);border:1px solid var(--gray-100);}
-.drr-achievement-dot{width:8px;height:8px;border-radius:50%;background:var(--pink);flex-shrink:0;margin-top:5px;}
-.drr-achievement span{font-size:14px;color:var(--gray-700);line-height:1.5;}
+.drr-achievement{display:flex;align-items:flex-start;gap:12px;padding:12px 16px;background:rgba(255,255,255,.1);border-radius:var(--r-md);border:1px solid rgba(255,255,255,.15);}
+.drr-achievement-dot{width:8px;height:8px;border-radius:50%;background:#fff;flex-shrink:0;margin-top:5px;}
+.drr-achievement span{font-size:14px;color:rgba(255,255,255,.85);line-height:1.5;}
 
 /* ── SECRETARIAT LINKS ── */
 .secretariat-section{margin-top:52px;padding-top:48px;border-top:1px solid var(--gray-200);}
@@ -246,13 +275,10 @@ body.dark-mode .bio-read-btn:hover{background:var(--pink);color:#fff;}
 
 /* ── DRR STATS ── */
 .drr-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:0;}
-.drr-stat-card{background:var(--pink-light);border:1px solid rgba(212,19,103,.15);border-radius:var(--r-lg);padding:12px 6px;text-align:center;transition:all .25s;}
+.drr-stat-card{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:var(--r-lg);padding:12px 6px;text-align:center;transition:all .25s;}
 .drr-stat-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(212,19,103,.12);}
-.drr-stat-num{font-family:var(--font-display);font-size:22px;font-weight:900;color:var(--pink);line-height:1;letter-spacing:-1px;}
-.drr-stat-lbl{font-size:9px;font-weight:700;color:var(--gray-500);margin-top:4px;letter-spacing:.4px;text-transform:uppercase;line-height:1.3;}
-body.dark-mode .drr-stat-card{background:var(--dm-faint);border-color:rgba(212,19,103,.2);}
-body.dark-mode .drr-stat-num{color:var(--pink);}
-body.dark-mode .drr-stat-lbl{color:var(--dm-muted);}
+.drr-stat-num{font-family:var(--font-display);font-size:22px;font-weight:900;color:#fff;line-height:1;letter-spacing:-1px;}
+.drr-stat-lbl{font-size:9px;font-weight:700;color:rgba(255,255,255,.65);margin-top:4px;letter-spacing:.4px;text-transform:uppercase;line-height:1.3;}
 @media(max-width:480px){.drr-stats{gap:6px;}.drr-stat-num{font-size:18px;}.drr-stat-card{padding:10px 4px;}}
 
 /* ── OFFICERS ── */
@@ -607,12 +633,7 @@ body.dark-mode .officer-name{color:var(--dm-text);}
 body.dark-mode .officer-club{color:var(--dm-muted);}
 
 body.dark-mode #drr{background:var(--dm-bg);}
-body.dark-mode .drr-bio{color:var(--dm-muted);}
 body.dark-mode #bm-body{color:var(--dm-muted);background:var(--dm-surface);}
-body.dark-mode .drr-achievement{background:var(--dm-surface2);border-color:var(--dm-border);}
-body.dark-mode .drr-achievement span{color:var(--dm-text);}
-body.dark-mode .drr-achievements-title{color:var(--dm-muted);}
-body.dark-mode .drr-photo-placeholder{background:var(--dm-surface2);border-color:var(--dm-border);}
 body.dark-mode #events{background:var(--dm-surface);}
 body.dark-mode .events-intro p{color:var(--dm-muted);}
 body.dark-mode .event-card{background:var(--dm-surface2);border-color:var(--dm-border);}
@@ -685,6 +706,7 @@ body.dark-mode .about-icon{background:var(--dm-faint);}
 
 /* Governor banner — already dark, just ensure text */
 body.dark-mode .gov-banner{background:linear-gradient(135deg,#3d0a24 0%,#5a0f33 100%);}
+body.dark-mode .drr-layout{background:linear-gradient(135deg,#3d0a24 0%,#5a0f33 100%);}
 body.dark-mode .gov-label{color:rgba(255,255,255,.5);}
 body.dark-mode .gov-name{color:#fff;}
 body.dark-mode .gov-sub{color:rgba(255,255,255,.55);}
@@ -708,12 +730,7 @@ body.dark-mode h3{color:var(--dm-text);}
 
 /* Meet the DRR */
 body.dark-mode #drr{background:var(--dm-bg);}
-body.dark-mode .drr-bio{color:var(--dm-muted);}
 body.dark-mode #bm-body{color:var(--dm-muted);background:var(--dm-surface);}
-body.dark-mode .drr-achievements-title{color:var(--dm-muted);}
-body.dark-mode .drr-achievement{background:var(--dm-surface2);border-color:var(--dm-border);}
-body.dark-mode .drr-achievement span{color:var(--dm-text);}
-body.dark-mode .drr-photo-placeholder{background:var(--dm-surface2);border-color:var(--dm-border);}
 body.dark-mode #drr-title{color:var(--dm-text);}
 body.dark-mode #drr-subtitle{color:var(--dm-muted);}
 
@@ -873,7 +890,6 @@ body.dark-mode .clubs-council-count{background:var(--dm-faint);color:var(--pink)
 body.dark-mode .future-drr-year{background:rgba(255,255,255,.1);color:#fff;}
 body.dark-mode .map-area-pill{background:var(--dm-faint);color:var(--pink);}
 body.dark-mode .mclubs-label{color:var(--dm-muted);}
-body.dark-mode .drr-achievements-title{color:var(--dm-muted);}
 body.dark-mode #online-tools-section .secretariat-label{color:var(--dm-text);}
 body.dark-mode #online-tools-section .secretariat-desc{color:var(--dm-muted);}
 body.dark-mode #online-tools-section h3{color:var(--dm-text);}
@@ -1041,7 +1057,7 @@ body.dark-mode .theme-song-desc{color:rgba(255,255,255,.65);}
   .future-drr-club{font-size:12px;}
 
   /* DRR section */
-  .drr-layout{grid-template-columns:1fr;gap:24px;}
+  .drr-layout{grid-template-columns:1fr;gap:24px;padding:28px 24px;}
   .drr-photo-col{max-width:220px;margin:0 auto;width:100%;}
   .drr-content{width:100%;}
   .drr-bio{font-size:15px;}
@@ -1164,6 +1180,20 @@ const CONFIG = {
     subtext:  "A community of young leaders across Visayas and Mindanao committed to fellowship, professional growth, and service above self.",
     btn1: { label: "Find a Club", href: "#clubs"  },
     btn2: { label: "Learn More",  href: "#about"  },
+    /* --- Rotating banner slide ---
+       Crossfades with the main hero above on a timer. Set rotateSeconds to control speed.
+       Set banner.show: false to disable rotation and keep only the main hero.
+    ---------------------------------------- */
+    banner: {
+      show: true,
+      rotateSeconds: 8,
+      councils: ["Bohol Council","Cebu Council","Davao Council","Tagum Council","Leyte Council","Negros Council","Samar Council","Gensan Council","Agusan Norte Council","Agusan Sur - Surigao Sur Council","Surigao Norte Council","Koronadal Council"],
+      socials: [
+        { icon:"f",  label:"rotaractdistrict3860", href:"https://www.facebook.com/rotaractdistrict3860" },
+        { icon:"ig", label:"rotaract3860",          href:"https://www.instagram.com/rotaract3860" },
+        { icon:"@",  label:"impactbuilding3860@gmail.com", href:"mailto:impactbuilding3860@gmail.com" },
+      ],
+    },
   },
 
   stats: [
@@ -1635,19 +1665,34 @@ const CONFIG = {
 
 <!-- HERO -->
 <header id="hero">
-  <div class="hero-left">
-    <div class="hero-left-logo">
-      <img id="hero-logo" src="logo-white.png" alt="Rotaract District 3860"/>
+  <div class="hero-slide hero-slide-main active" id="hero-slide-main">
+    <div class="hero-left">
+      <div class="hero-left-logo">
+        <img id="hero-logo" src="logo-white.png" alt="Rotaract District 3860"/>
+      </div>
+      <div class="hero-left-tagline" id="hero-tagline"></div>
     </div>
-    <div class="hero-left-tagline" id="hero-tagline"></div>
+    <div class="hero-right">
+      <div class="hero-eyebrow"><span class="hero-eyebrow-dot"></span><span id="hero-eyebrow-el"></span></div>
+      <h1 id="hero-h1"></h1>
+      <p class="hero-sub" id="hero-sub"></p>
+      <div class="hero-btns">
+        <a class="btn btn-pink"    id="hero-btn1" href="#clubs">—</a>
+        <a class="btn btn-outline" id="hero-btn2" href="#drr">—</a>
+      </div>
+    </div>
   </div>
-  <div class="hero-right">
-    <div class="hero-eyebrow"><span class="hero-eyebrow-dot"></span><span id="hero-eyebrow-el"></span></div>
-    <h1 id="hero-h1"></h1>
-    <p class="hero-sub" id="hero-sub"></p>
-    <div class="hero-btns">
-      <a class="btn btn-pink"    id="hero-btn1" href="#clubs">—</a>
-      <a class="btn btn-outline" id="hero-btn2" href="#drr">—</a>
+  <div class="hero-slide hero-slide-banner" id="hero-slide-banner">
+    <div class="hero-banner-wave" aria-hidden="true"></div>
+    <div class="hero-banner-inner">
+      <div class="hero-banner-brand">
+        <img src="logo.png" alt="Rotaract District 3860" class="hero-banner-logo"/>
+        <div class="hero-banner-divider"></div>
+        <div class="hero-banner-slogan">CREATE<br/>LASTING<br/>IMPACT</div>
+      </div>
+      <div class="hero-banner-title">DISTRICT <span>3860</span></div>
+      <div class="hero-banner-councils" id="hero-banner-councils"></div>
+      <div class="hero-banner-socials" id="hero-banner-socials"></div>
     </div>
   </div>
   <div class="hero-scroll" aria-hidden="true"><div class="hero-scroll-line"></div></div>
@@ -2295,6 +2340,37 @@ const CONFIG = {
   setText('hero-sub', C.hero.subtext);
   const b1=$('hero-btn1'); b1.textContent=C.hero.btn1.label; b1.href=C.hero.btn1.href;
   const b2=$('hero-btn2'); b2.textContent=C.hero.btn2.label; b2.href=C.hero.btn2.href;
+
+  /* Hero rotating banner slide */
+  const heroBanner = C.hero.banner;
+  if(heroBanner && heroBanner.show){
+    const councilsEl = $('hero-banner-councils');
+    if(councilsEl && heroBanner.councils){
+      councilsEl.innerHTML = heroBanner.councils.map(function(c){ return '<b>'+c+'</b>'; }).join(' <span style="opacity:.4;">|</span> ');
+    }
+    const socialsEl = $('hero-banner-socials');
+    if(socialsEl && heroBanner.socials){
+      var svgMap = {
+        f:  '<svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M22 12a10 10 0 10-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.7-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0022 12z"/></svg>',
+        ig: '<svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.9.2 2.3.4.6.2 1 .5 1.5.9.4.4.7.9.9 1.5.2.4.3 1.1.4 2.3.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.2 1.9-.4 2.3-.2.6-.5 1-.9 1.5-.4.4-.9.7-1.5.9-.4.2-1.1.3-2.3.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.9-.2-2.3-.4-.6-.2-1-.5-1.5-.9-.4-.4-.7-.9-.9-1.5-.2-.4-.3-1.1-.4-2.3C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.2-1.9.4-2.3.2-.6.5-1 .9-1.5.4-.4.9-.7 1.5-.9.4-.2 1.1-.3 2.3-.4C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.7.1-1 0-1.6.2-1.9.3-.5.2-.8.4-1.2.8-.4.4-.6.7-.8 1.2-.1.3-.3.9-.3 1.9C3 9.5 3 9.9 3 12s0 3.5.1 4.7c0 1 .2 1.6.3 1.9.2.5.4.8.8 1.2.4.4.7.6 1.2.8.3.1.9.3 1.9.3C8.5 21 8.9 21 12 21s3.5 0 4.7-.1c1 0 1.6-.2 1.9-.3.5-.2.8-.4 1.2-.8.4-.4.6-.7.8-1.2.1-.3.3-.9.3-1.9.1-1.2.1-1.6.1-4.7s0-3.5-.1-4.7c0-1-.2-1.6-.3-1.9-.2-.5-.4-.8-.8-1.2-.4-.4-.7-.6-1.2-.8-.3-.1-.9-.3-1.9-.3C15.5 4 15.1 4 12 4zm0 3.4a4.6 4.6 0 110 9.2 4.6 4.6 0 010-9.2zm0 1.8a2.8 2.8 0 100 5.6 2.8 2.8 0 000-5.6zm5.9-3.5a1.1 1.1 0 110 2.2 1.1 1.1 0 010-2.2z"/></svg>',
+        '@':'<svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M2 5.5C2 4.7 2.7 4 3.5 4h17c.8 0 1.5.7 1.5 1.5v13c0 .8-.7 1.5-1.5 1.5h-17c-.8 0-1.5-.7-1.5-1.5v-13zm2 .5v.4l8 6 8-6V6H4zm16 2.4l-7.5 5.6a1 1 0 01-1 0L4 8.4V18h16V8.4z"/></svg>',
+      };
+      socialsEl.innerHTML = heroBanner.socials.map(function(s){
+        return '<a class="hero-banner-social" href="'+s.href+'" target="_blank" rel="noopener">'+
+          '<span class="hero-banner-social-icon">'+(svgMap[s.icon]||s.icon)+'</span>'+s.label+'</a>';
+      }).join('');
+    }
+    var heroSlides = [$('hero-slide-main'), $('hero-slide-banner')];
+    var heroIdx = 0;
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(!reduceMotion && heroSlides[0] && heroSlides[1]){
+      setInterval(function(){
+        heroSlides[heroIdx].classList.remove('active');
+        heroIdx = (heroIdx + 1) % heroSlides.length;
+        heroSlides[heroIdx].classList.add('active');
+      }, (heroBanner.rotateSeconds||8) * 1000);
+    }
+  }
 
   /* Impact */
   const ig=$('impact-grid');
