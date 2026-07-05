@@ -136,7 +136,8 @@ body.loaded{opacity:1;}
 .hero-banner-logo{height:88px;width:auto;}
 .hero-banner-title-img{width:100%;max-width:640px;height:auto;}
 .hero-banner-councils{font-size:16px;color:var(--gray-700);line-height:1.9;max-width:820px;}
-.hero-banner-councils b{font-weight:700;}
+.hero-banner-council{font-weight:700;cursor:pointer;transition:color .2s;border-bottom:1.5px solid transparent;}
+.hero-banner-council:hover{color:var(--pink);border-bottom-color:var(--pink);}
 .hero-banner-socials{display:flex;align-items:center;gap:28px;flex-wrap:wrap;justify-content:center;margin-top:8px;}
 .hero-banner-social{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--gray-600);text-decoration:none;}
 .hero-banner-social-icon{width:28px;height:28px;border-radius:50%;background:var(--heading-color);color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
@@ -168,6 +169,9 @@ body.dark-mode .hero-banner-social{color:var(--dm-muted);}
 .btn-outline{background:transparent;color:var(--pink);border:2px solid var(--pink);}
 .btn-outline:hover{background:var(--pink-light);transform:translateY(-2px);}
 .btn-outline:active{transform:scale(.97);}
+.hero-dots{position:absolute;bottom:88px;left:50%;transform:translateX(-50%);display:flex;gap:10px;z-index:5;}
+.hero-dot{width:9px;height:9px;border-radius:50%;background:rgba(0,0,0,.15);border:none;padding:0;cursor:pointer;transition:all .25s;}
+.hero-dot.active{background:var(--pink);width:24px;border-radius:5px;}
 .hero-scroll{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--gray-400);font-size:12px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;}
 .hero-scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,var(--gray-300),transparent);animation:scrollpulse 2s ease-in-out infinite;}
 @keyframes scrollpulse{0%,100%{opacity:.4;transform:scaleY(.8);}50%{opacity:1;transform:scaleY(1);}}
@@ -679,6 +683,7 @@ body.dark-mode .hero-sub{color:var(--dm-muted);}
 body.dark-mode .hero-eyebrow{background:var(--dm-faint);color:var(--pink);}
 body.dark-mode .hero-right::before{background:var(--pink);}
 body.dark-mode .hero-scroll{color:var(--dm-muted);}
+body.dark-mode .hero-dot{background:rgba(255,255,255,.2);}
 
 /* Impact strip */
 body.dark-mode #impact{background:var(--dm-surface);}
@@ -1015,6 +1020,7 @@ body.dark-mode .theme-song-desc{color:rgba(255,255,255,.65);}
   .btn{width:100%;justify-content:center;}
   .hero-right{padding:32px 20px 48px;}
   .hero-scroll{display:none;}
+  .hero-dots{bottom:16px;}
 
   /* Impact — single row, smaller */
   .impact-grid{grid-template-columns:1fr;gap:10px;padding:0 20px;}
@@ -1180,7 +1186,20 @@ const CONFIG = {
     banner: {
       show: true,
       rotateSeconds: 8,
-      councils: ["Bohol Council","Cebu Council","Davao Council","Tagum Council","Leyte Council","Negros Council","Samar Council","Gensan Council","Agusan Norte Council","Agusan Sur - Surigao Sur Council","Surigao Norte Council","Koronadal Council"],
+      councils: [
+        { label:"Bohol Council",                    id:"bohol",         region:"Central_Visayas" },
+        { label:"Cebu Council",                     id:"cebu",          region:"Central_Visayas" },
+        { label:"Davao Council",                     id:"davao",         region:"Davao" },
+        { label:"Tagum Council",                     id:"tagum",         region:"Davao" },
+        { label:"Leyte Council",                     id:"leyte",         region:"Eastern_Visayas" },
+        { label:"Negros Council",                    id:"negros",        region:"Western_Visayas" },
+        { label:"Samar Council",                     id:"samar",         region:"Eastern_Visayas" },
+        { label:"Gensan Council",                    id:"gensan",        region:"SOCCSKSARGEN" },
+        { label:"Agusan Norte Council",              id:"agusan_norte",  region:"Caraga" },
+        { label:"Agusan Sur - Surigao Sur Council",  id:"agusan_sur",    region:"Caraga" },
+        { label:"Surigao Norte Council",             id:"surigao_norte", region:"Caraga" },
+        { label:"Koronadal Council",                 id:"koronadal",     region:"SOCCSKSARGEN" },
+      ],
       socials: [
         { icon:"f",  label:"rotaractdistrict3860", href:"https://www.facebook.com/rotaractdistrict3860" },
         { icon:"ig", label:"rotaract3860",          href:"https://www.instagram.com/rotaract3860" },
@@ -1686,6 +1705,7 @@ const CONFIG = {
       <div class="hero-banner-socials" id="hero-banner-socials"></div>
     </div>
   </div>
+  <div class="hero-dots" id="hero-dots" role="tablist" aria-label="Hero slide selector"></div>
   <div class="hero-scroll" aria-hidden="true"><div class="hero-scroll-line"></div></div>
 </header>
 
@@ -2337,7 +2357,20 @@ const CONFIG = {
   if(heroBanner && heroBanner.show){
     const councilsEl = $('hero-banner-councils');
     if(councilsEl && heroBanner.councils){
-      councilsEl.innerHTML = heroBanner.councils.map(function(c){ return '<b>'+c+'</b>'; }).join(' <span style="opacity:.4;">|</span> ');
+      councilsEl.innerHTML = '';
+      heroBanner.councils.forEach(function(c, i){
+        var b = document.createElement('b');
+        b.className = 'hero-banner-council';
+        b.textContent = c.label;
+        b.addEventListener('click', function(){ goToCouncil(c.id, c.region); });
+        councilsEl.appendChild(b);
+        if(i < heroBanner.councils.length - 1){
+          var sep = document.createElement('span');
+          sep.style.opacity = '.4';
+          sep.textContent = ' | ';
+          councilsEl.appendChild(sep);
+        }
+      });
     }
     const socialsEl = $('hero-banner-socials');
     if(socialsEl && heroBanner.socials){
@@ -2355,11 +2388,37 @@ const CONFIG = {
     var heroIdx = 0;
     var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if(!reduceMotion && heroSlides[0] && heroSlides[1]){
-      setInterval(function(){
+      var heroPaused = false;
+      var heroDotsEl = $('hero-dots');
+      function heroGoTo(idx){
+        if(idx === heroIdx) return;
         heroSlides[heroIdx].classList.remove('active');
-        heroIdx = (heroIdx + 1) % heroSlides.length;
+        heroIdx = idx;
         heroSlides[heroIdx].classList.add('active');
+        if(heroDotsEl){
+          Array.prototype.forEach.call(heroDotsEl.children, function(d,i){
+            d.classList.toggle('active', i === heroIdx);
+          });
+        }
+      }
+      var heroTimer = setInterval(function(){
+        if(heroPaused) return;
+        heroGoTo((heroIdx + 1) % heroSlides.length);
       }, (heroBanner.rotateSeconds||8) * 1000);
+      var heroEl = $('hero');
+      if(heroEl){
+        heroEl.addEventListener('mouseenter', function(){ heroPaused = true; });
+        heroEl.addEventListener('mouseleave', function(){ heroPaused = false; });
+      }
+      if(heroDotsEl){
+        heroSlides.forEach(function(_, i){
+          var dot = document.createElement('button');
+          dot.className = 'hero-dot' + (i === 0 ? ' active' : '');
+          dot.setAttribute('aria-label', 'Show hero slide ' + (i+1));
+          dot.addEventListener('click', function(){ heroGoTo(i); });
+          heroDotsEl.appendChild(dot);
+        });
+      }
     }
   }
 
@@ -2964,6 +3023,11 @@ const CONFIG = {
 })();
 
 /* Map */
+function goToCouncil(id, region){
+  var mapSection = document.getElementById('map');
+  if(mapSection) mapSection.scrollIntoView({ behavior:'smooth', block:'start' });
+  setTimeout(function(){ councilPick(id, region); }, 500);
+}
 function councilPick(id, region){
   document.querySelectorAll('.map-region').forEach(r=>r.classList.remove('active','dimmed'));
   const rg = document.getElementById('rg_'+region);
