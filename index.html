@@ -1658,7 +1658,6 @@ const CONFIG = {
     </a>
     <div class="nav-links" id="nav-links">
       <a href="#about">About</a>
-      <a href="#theme-song" id="nav-theme" style="display:none;">Theme Song</a>
       <a href="#drr">Meet the DRR</a>
       <a href="#officers">Leadership</a>
       <a href="#events">Events</a>
@@ -1674,7 +1673,6 @@ const CONFIG = {
   <div id="mobile-menu">
     <button onclick="document.getElementById('mobile-menu').classList.remove('open')" style="position:absolute;top:20px;right:20px;background:rgba(255,255,255,.15);border:none;color:#fff;width:44px;height:44px;border-radius:50%;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;">✕</button>
     <a href="#about">About Rotaract</a>
-    <a href="#theme-song" id="mob-theme" style="display:none;">Theme Song</a>
     <a href="#drr">Meet the DRR</a>
     <a href="#officers">Leadership</a>
     <a href="#events">Events</a>
@@ -2937,8 +2935,6 @@ const CONFIG = {
   const tsEl = $('theme-song');
   if(ts && ts.show && tsEl){
     tsEl.style.display = '';
-    if($('nav-theme')) $('nav-theme').style.display = '';
-    if($('mob-theme')) $('mob-theme').style.display = '';
     setText('ts-title', ts.title);
     setText('ts-sub',   ts.subtitle);
     setText('ts-desc',  ts.desc);
