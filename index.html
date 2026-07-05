@@ -449,10 +449,11 @@ body.dark-mode .membership-sub{color:rgba(255,255,255,.6);}
 .club-detail-label{font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--gray-400);}
 .club-detail-value{font-size:14px;color:var(--heading-color);font-weight:500;line-height:1.5;}
 .club-fb-link{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:#fff;color:#1877F2;margin-left:6px;vertical-align:middle;flex-shrink:0;box-shadow:0 0 0 1px rgba(0,0,0,.06);}
-.club-fb-cutout{background:transparent;box-shadow:none;}
+.club-fb-cutout,.club-fb-adaptive{background:transparent;box-shadow:none;}
 .club-fb-link:hover{opacity:.8;}
+body.dark-mode .club-fb-adaptive{color:#fff;}
 .club-fb-link svg{width:11px;height:11px;}
-.club-fb-cutout svg{width:20px;height:20px;}
+.club-fb-cutout svg,.club-fb-adaptive svg{width:20px;height:20px;}
 .club-modal-name-row{display:flex;align-items:center;gap:2px;}
 .club-detail-value.placeholder{color:var(--gray-300);font-style:italic;font-weight:400;}
 .club-modal-footer{padding:16px 28px;border-top:1px solid var(--gray-100);display:flex;justify-content:flex-end;}
@@ -2925,12 +2926,16 @@ const CONFIG = {
     var satList = C.clubs.satelliteClubs || [];
     var realCount = c.clubs.filter(function(n){ return satList.indexOf(n) === -1; }).length;
     var councilFbUrl = (C.clubs.councilFacebook || {})[c.id];
-    var councilFbHtml = councilFbUrl ? '<a class="club-fb-link" href="'+councilFbUrl+'" target="_blank" rel="noopener" onclick="event.stopPropagation();" aria-label="'+c.label+' on Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17 2h-3a5 5 0 00-5 5v3H6v4h3v8h4v-8h3.1l.9-4H13V7a1 1 0 011-1h3z"/></svg></a>' : '';
+    function buildCouncilFbHtml(maskSuffix){
+      var mid = 'fbm_'+Math.random().toString(36).slice(2)+'_'+ci+'_'+maskSuffix;
+      return councilFbUrl ? '<a class="club-fb-link club-fb-adaptive" href="'+councilFbUrl+'" target="_blank" rel="noopener" onclick="event.stopPropagation();" aria-label="'+c.label+' on Facebook"><svg viewBox="0 0 24 24"><mask id="'+mid+'"><rect width="24" height="24" fill="#fff"/><path d="M17 2h-3a5 5 0 00-5 5v3H6v4h3v8h4v-8h3.1l.9-4H13V7a1 1 0 011-1h3z" fill="#000"/></mask><circle cx="12" cy="12" r="12" fill="currentColor" mask="url(#'+mid+')"/></svg></a>' : '';
+    }
+    var councilFbHtml = buildCouncilFbHtml('tab');
     panel.innerHTML = '<div class="clubs-council-header"><div class="clubs-council-name">'+c.label+councilFbHtml+'</div><span class="clubs-council-count">'+realCount+' clubs</span></div><div class="clubs-grid">'+cards+'</div>';
-    /* Also inject the same council FB icon into the Map's static council panel */
-    if(councilFbHtml){
+    /* Also inject the council FB icon into the Map's static council panel (separate mask id) */
+    if(councilFbUrl){
       var mapAreaEl = document.querySelector('#mp_'+c.id+' .map-area-name');
-      if(mapAreaEl) mapAreaEl.insertAdjacentHTML('beforeend', councilFbHtml);
+      if(mapAreaEl) mapAreaEl.insertAdjacentHTML('beforeend', buildCouncilFbHtml('map'));
     }
     clubsPanels.appendChild(panel);
   });
@@ -3157,12 +3162,13 @@ function openClubModal(el, council){
   document.getElementById('modal-council').textContent = council2;
   const det = CONFIG.clubs.clubDetails[name];
   var fbMaskId = 'fbm_'+Math.random().toString(36).slice(2);
+  var fbMaskId2 = 'fbm_'+Math.random().toString(36).slice(2);
   var fbCutoutSvg = '<svg viewBox="0 0 24 24"><mask id="'+fbMaskId+'"><rect width="24" height="24" fill="#fff"/><path d="M17 2h-3a5 5 0 00-5 5v3H6v4h3v8h4v-8h3.1l.9-4H13V7a1 1 0 011-1h3z" fill="#000"/></mask><circle cx="12" cy="12" r="12" fill="#fff" mask="url(#'+fbMaskId+')"/></svg>';
-  var fbSolidSvg = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M17 2h-3a5 5 0 00-5 5v3H6v4h3v8h4v-8h3.1l.9-4H13V7a1 1 0 011-1h3z"/></svg>';
+  var fbAdaptiveSvg = '<svg viewBox="0 0 24 24"><mask id="'+fbMaskId2+'"><rect width="24" height="24" fill="#fff"/><path d="M17 2h-3a5 5 0 00-5 5v3H6v4h3v8h4v-8h3.1l.9-4H13V7a1 1 0 011-1h3z" fill="#000"/></mask><circle cx="12" cy="12" r="12" fill="currentColor" mask="url(#'+fbMaskId2+')"/></svg>';
   var clubFbHtml = (det && det.facebook) ? '<a class="club-fb-link club-fb-cutout" href="'+det.facebook+'" target="_blank" rel="noopener" onclick="event.stopPropagation();" aria-label="'+name+' on Facebook">'+fbCutoutSvg+'</a>' : '';
   document.getElementById('modal-name').innerHTML = name + clubFbHtml;
   const ph = function(v){ return v ? '<span class="club-detail-value">'+v+'</span>' : '<span class="club-detail-value placeholder">Coming soon</span>'; };
-  var presFbHtml = (det && det.presidentFacebook) ? '<a class="club-fb-link" href="'+det.presidentFacebook+'" target="_blank" rel="noopener" aria-label="President on Facebook">'+fbSolidSvg+'</a>' : '';
+  var presFbHtml = (det && det.presidentFacebook) ? '<a class="club-fb-link club-fb-adaptive" href="'+det.presidentFacebook+'" target="_blank" rel="noopener" aria-label="President on Facebook">'+fbAdaptiveSvg+'</a>' : '';
   document.getElementById('modal-body').innerHTML =
     '<div class="club-detail-item full"><span class="club-detail-label">Impact-Building President</span>'+ph(det?det.president:null)+presFbHtml+'</div>'+
     '<div class="club-detail-item full"><span class="club-detail-label">Club Email</span>'+ph(det?det.email:null)+'</div>'+
