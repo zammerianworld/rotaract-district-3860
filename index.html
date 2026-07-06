@@ -242,8 +242,9 @@ body.dark-mode .hero-banner-social{color:var(--gray-500);}
 
 /* ── MEET THE DRR ── */
 #drr{padding:96px 0;background:var(--gray-50);}
-.drr-layout{display:grid;grid-template-columns:300px 1fr;gap:52px;align-items:start;background:linear-gradient(135deg,var(--pink-deep) 0%,var(--pink-dark) 100%);border-radius:var(--r-lg);padding:44px 48px;box-shadow:0 4px 20px rgba(212,19,103,.2);transition:box-shadow .25s ease;}
-.drr-layout:hover{box-shadow:0 20px 60px rgba(212,19,103,.18),0 8px 24px rgba(0,0,0,.08);}
+.drr-layout{display:grid;grid-template-columns:300px 1fr;gap:52px;align-items:start;background:linear-gradient(135deg,var(--pink-deep) 0%,var(--pink-dark) 100%);border-radius:var(--r-lg);padding:44px 48px;box-shadow:0 4px 20px rgba(212,19,103,.2);border:3px solid transparent;cursor:pointer;position:relative;overflow:hidden;transition:box-shadow .3s ease,border-color .3s ease,transform .3s ease;}
+.drr-layout:hover .tilt-shine{opacity:1;}
+.drr-layout:hover{box-shadow:0 0 0 3px rgba(212,19,103,.35),0 24px 70px rgba(212,19,103,.55),0 10px 30px rgba(0,0,0,.15);border-color:#ff6fa8;transform:translateY(-4px);}
 .drr-photo-wrap{position:relative;}
 .drr-photo-col{display:flex;flex-direction:column;gap:20px;}
 .drr-photo{width:100%;aspect-ratio:3/4;border-radius:var(--r-lg);object-fit:cover;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;border:3px solid rgba(255,255,255,.5);box-shadow:0 8px 32px rgba(0,0,0,.25);}
@@ -1799,7 +1800,8 @@ const CONFIG = {
     <div class="section-kicker" id="drr-eyebrow"></div>
     <h2 class="section-heading" id="drr-title"></h2>
     <p style="font-size:15px;color:var(--gray-500);margin-bottom:48px;" id="drr-subtitle"></p>
-    <div class="drr-layout">
+    <div class="drr-layout glow-only">
+      <div class="tilt-shine"></div>
       <div class="drr-photo-col">
         <div class="drr-photo-wrap" id="drr-photo-wrap"></div>
         <div class="drr-stats" id="drr-stats"></div>
@@ -3327,6 +3329,27 @@ console.log('%c🔗 Reach out: impactbuilding3860@gmail.com', 'color:#9ca3af;fon
     });
   }
   window.addEventListener('load', initTilt);
+
+  /* Glow-only cursor tracking (no tilt/rotation) — used for the DRR card */
+  function onGlowMove(e){
+    var card = e.currentTarget;
+    var rect = card.getBoundingClientRect();
+    var shine = card.querySelector('.tilt-shine');
+    if(shine){
+      var px = ((e.clientX - rect.left)/rect.width)*100;
+      var py = ((e.clientY - rect.top )/rect.height)*100;
+      shine.style.background = 'radial-gradient(circle at '+px+'% '+py+'%, rgba(255,255,255,.12) 0%, transparent 55%)';
+    }
+  }
+  function initGlow(){
+    document.querySelectorAll('.glow-only').forEach(function(card){
+      if(card._glowInit) return;
+      card._glowInit = true;
+      card.addEventListener('mousemove', onGlowMove);
+    });
+  }
+  window.addEventListener('load', initGlow);
+  var glowCheck = 0, glowIv = setInterval(function(){ initGlow(); if(++glowCheck > 20) clearInterval(glowIv); }, 500);
   var checkCount = 0;
   var interval = setInterval(function(){
     initTilt();
