@@ -289,7 +289,8 @@ body.dark-mode .bio-read-btn:hover{background:var(--pink);color:#fff;}
 .officers-group:last-child{margin-bottom:0;}
 .officers-group-title{font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--pink);margin-bottom:20px;padding-bottom:12px;border-bottom:2px solid var(--pink-light);display:flex;align-items:center;gap:8px;}
 .officers-group-title::before{content:'';display:block;width:3px;height:14px;background:var(--pink);border-radius:2px;flex-shrink:0;}
-.officers-grid{display:grid;grid-template-columns:repeat(auto-fill,200px);justify-content:center;gap:20px;}
+.officers-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:20px;}
+.officers-grid > .officer-card{flex:0 0 200px;}
 .officer-card{background:#fff;border-radius:var(--r-lg);padding:36px 28px;text-align:center;border:1.5px solid var(--gray-200);transition:all .25s;position:relative;overflow:hidden;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.04);}
 .officer-card:active{transform:scale(.97);}
 .officer-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(212,19,103,.12);border-color:var(--pink-light);}
@@ -1069,7 +1070,8 @@ body.dark-mode .theme-song-desc{color:rgba(255,255,255,.65);}
   .gov-sub{font-size:13px;}
 
   /* Officers grid */
-  .officers-grid{grid-template-columns:repeat(2,160px);justify-content:center;gap:12px;}
+  .officers-grid{gap:12px;}
+  .officers-grid > .officer-card{flex:0 0 160px;}
 
   /* Future DRRs */
   .future-drrs-grid{grid-template-columns:1fr;gap:12px;}
@@ -1126,7 +1128,7 @@ body.dark-mode .theme-song-desc{color:rgba(255,255,255,.65);}
 @media(max-width:400px){
   .container{padding:0 20px;}
   #about.container{padding-left:20px;padding-right:20px;padding-top:56px!important;padding-bottom:56px!important;}
-  .officers-grid{grid-template-columns:1fr;}
+  .officers-grid > .officer-card{flex:1 1 100%;}
   .impact-grid{grid-template-columns:1fr;}
   .impact-item{border-right:none !important;border-bottom:1px solid rgba(255,255,255,.06);}
   .impact-item:last-child{border-bottom:none;}
