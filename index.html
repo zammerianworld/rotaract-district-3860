@@ -206,6 +206,7 @@ body.dark-mode .hero-banner-social{color:var(--gray-500);}
 .section-heading{font-family:var(--font-display);font-size:clamp(26px,4vw,42px);font-weight:900;color:var(--heading-color);line-height:1.1;margin-bottom:16px;letter-spacing:-.3px;}
 .section-sub{font-size:16px;color:var(--gray-500);max-width:520px;line-height:1.75;margin-bottom:52px;}
 .about-top{display:grid;grid-template-columns:1.1fr 0.9fr;gap:56px;align-items:center;margin-bottom:56px;}
+.about-gallery-col{display:flex;flex-direction:column;}
 .about-gallery{position:relative;aspect-ratio:4/3;min-height:280px;border-radius:var(--r-lg);overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,.12);}
 .gallery-placeholder-tile{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;font-family:var(--font-display);font-size:22px;font-weight:800;opacity:0;transition:opacity 1s ease;will-change:opacity;backface-visibility:hidden;}
 .gallery-placeholder-tile.active{opacity:1;}
@@ -286,6 +287,14 @@ body.dark-mode .bio-read-btn:hover{background:var(--pink);color:#fff;}
 .drr-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:0;}
 .drr-mini-galleries{display:flex;flex-direction:column;gap:14px;margin-top:20px;}
 .drr-mini-gallery-stage{position:relative;aspect-ratio:1/1;min-height:120px;border-radius:var(--r-md);overflow:hidden;box-shadow:inset 0 0 0 2px rgba(255,255,255,.25);isolation:isolate;}
+.gallery-dots{display:flex;justify-content:center;gap:8px;margin-top:12px;}
+.gallery-dot{width:7px;height:7px;border-radius:50%;border:none;padding:0;cursor:pointer;transition:all .25s;background:rgba(0,0,0,.15);}
+.gallery-dot.active{width:18px;border-radius:4px;}
+.gallery-dots-light .gallery-dot{background:var(--gray-200);}
+.gallery-dots-light .gallery-dot.active{background:var(--pink);}
+body.dark-mode .gallery-dots-light .gallery-dot{background:var(--dm-border);}
+.gallery-dots-dark .gallery-dot{background:rgba(255,255,255,.3);}
+.gallery-dots-dark .gallery-dot.active{background:#fff;}
 .drr-stat-card{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:var(--r-lg);padding:12px 6px;text-align:center;transition:all .25s;}
 .drr-stat-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(212,19,103,.12);}
 .drr-stat-num{font-family:var(--font-display);font-size:22px;font-weight:900;color:#fff;line-height:1;letter-spacing:-1px;}
@@ -1834,12 +1843,14 @@ const CONFIG = {
       <p class="section-sub"      id="about-desc"></p>
       <a id="about-link" href="#" target="_blank" rel="noopener" class="about-learn-link" style="display:none;"></a>
     </div>
-    <div class="about-gallery" id="about-gallery">
-      <!-- PLACEHOLDER: swap for real cycling photos once team sends links -->
-      <div class="gallery-placeholder-tile active" style="background:linear-gradient(135deg,#f9a8d4,#f472b6);">Photo 1</div>
-      <div class="gallery-placeholder-tile" style="background:linear-gradient(135deg,#fbbf24,#f59e0b);">Photo 2</div>
-      <div class="gallery-placeholder-tile" style="background:linear-gradient(135deg,#60a5fa,#3b82f6);">Photo 3</div>
-      <div class="gallery-placeholder-tile" style="background:linear-gradient(135deg,#34d399,#10b981);">Photo 4</div>
+    <div class="about-gallery-col">
+      <div class="about-gallery" id="about-gallery">
+        <!-- PLACEHOLDER: swap for real cycling photos once team sends links -->
+        <div class="gallery-placeholder-tile active" style="background:linear-gradient(135deg,#f9a8d4,#f472b6);">Photo 1</div>
+        <div class="gallery-placeholder-tile" style="background:linear-gradient(135deg,#fbbf24,#f59e0b);">Photo 2</div>
+        <div class="gallery-placeholder-tile" style="background:linear-gradient(135deg,#60a5fa,#3b82f6);">Photo 3</div>
+        <div class="gallery-placeholder-tile" style="background:linear-gradient(135deg,#34d399,#10b981);">Photo 4</div>
+      </div>
     </div>
   </div>
   <div class="about-grid"     id="about-grid"></div>
@@ -3595,13 +3606,30 @@ console.log('%c🔗 Reach out: impactbuilding3860@gmail.com', 'color:#9ca3af;fon
       if(tiles.length < 2) return;
       stage._galleryInit = true;
       var idx = 0;
+
+      var dotsWrap = document.createElement('div');
+      dotsWrap.className = 'gallery-dots' + (stage.classList.contains('about-gallery') ? ' gallery-dots-light' : ' gallery-dots-dark');
+      tiles.forEach(function(_, i){
+        var dot = document.createElement('button');
+        dot.className = 'gallery-dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', 'Show photo ' + (i+1));
+        dot.addEventListener('click', function(){ goToTile(i); });
+        dotsWrap.appendChild(dot);
+      });
+      stage.parentNode.insertBefore(dotsWrap, stage.nextSibling);
+
+      function goToTile(i){
+        if(i === idx) return;
+        tiles[idx].classList.remove('active');
+        dotsWrap.children[idx].classList.remove('active');
+        idx = i;
+        tiles[idx].classList.add('active');
+        dotsWrap.children[idx].classList.add('active');
+      }
+
       var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       if(reduceMotion) return;
-      setInterval(function(){
-        tiles[idx].classList.remove('active');
-        idx = (idx + 1) % tiles.length;
-        tiles[idx].classList.add('active');
-      }, 4000);
+      setInterval(function(){ goToTile((idx + 1) % tiles.length); }, 4000);
     });
   }
   window.addEventListener('load', initGalleryCycles);
