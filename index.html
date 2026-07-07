@@ -341,9 +341,14 @@ body.dark-mode .bio-read-btn:hover{background:var(--pink);color:#fff;}
 .council-pin{cursor:pointer;}
 .pin-circle{fill:var(--white);stroke:var(--pink);stroke-width:2;transition:all .2s;r:8;}
 .pin-dot{fill:var(--pink);transition:all .2s;r:4;}
+.pin-pulse-ring{fill:none;stroke:var(--pink);stroke-width:2;opacity:.8;pointer-events:none;animation:pinPulse 1.6s ease-out infinite;}
+@keyframes pinPulse{0%{r:8;opacity:.8;}100%{r:26;opacity:0;}}
+@media(prefers-reduced-motion:reduce){.pin-pulse-ring{animation:none;opacity:0;}}
 .council-pin:hover .pin-circle,.council-pin.active .pin-circle{fill:var(--pink);r:10;}
 .council-pin:hover .pin-dot,.council-pin.active .pin-dot{fill:var(--white);r:5;}
 .council-pin.active .pin-circle{stroke-width:3;}
+.council-pin.sibling .pin-circle{fill:var(--pink-light);stroke:var(--pink);r:9;}
+.council-pin.sibling .pin-dot{fill:var(--pink);r:4;}
 
 /* ── RESOURCES ── */
 #resources{padding:96px 0;background:var(--gray-50);}
@@ -529,9 +534,9 @@ body.dark-mode .qr-svg-wrap svg rect{fill:var(--dm-surface);}
 .map-svg-wrap{position:relative;}
 .map-svg-wrap svg{width:100%;height:auto;display:block;}
 .map-region{fill:var(--pink-light);stroke:#fff;stroke-width:2;cursor:pointer;transition:fill .25s,opacity .25s;opacity:.4;}
-.map-region:hover{fill:var(--pink);opacity:.7;}
 .map-region.active{fill:var(--pink);opacity:1;}
 .map-region.dimmed{fill:var(--pink-light);opacity:.4;}
+.map-region:hover{fill:var(--pink);opacity:.7;}
 .map-reset{display:none;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--pink);cursor:pointer;padding:5px 14px;border-radius:40px;border:1.5px solid var(--pink);transition:all .2s;margin-left:auto;}
 .map-reset:hover{background:var(--pink);color:#fff;}
 .map-reset.show{display:flex;}
@@ -3291,16 +3296,51 @@ function goToCouncil(id, region){
   if(mapSection) mapSection.scrollIntoView({ behavior:'smooth', block:'start' });
   setTimeout(function(){ councilPick(id, region); }, 500);
 }
+
 function councilPick(id, region){
+  /* Region shape = the real, accurate broader area (e.g. "Davao Region").
+     Several councils share one region shape since they're genuinely within
+     the same real geographic region — that part is 100% accurate.
+     The pin + pulse ring then points to the specific council's exact location
+     within that region, so nothing false is implied about precise sub-boundaries.
+     Sibling councils in the same region get a distinct "also here" pin style,
+     separate from both the fully-selected pin and unrelated regions' pins. */
+  const REGION_COUNCILS = {
+    'Central_Visayas': ['bohol','cebu'],
+    'Davao': ['davao','tagum'],
+    'Eastern_Visayas': ['leyte','samar'],
+    'Caraga': ['agusan_norte','agusan_sur','surigao_norte'],
+    'SOCCSKSARGEN': ['gensan','koronadal'],
+    'Western_Visayas': ['negros'],
+  };
   document.querySelectorAll('.map-region').forEach(r=>r.classList.remove('active','dimmed'));
   const rg = document.getElementById('rg_'+region);
   if(rg){
     rg.classList.add('active');
     document.querySelectorAll('.map-region').forEach(r=>{ if(r!==rg) r.classList.add('dimmed'); });
   }
-  document.querySelectorAll('.council-pin').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.council-pin').forEach(p=>p.classList.remove('active','sibling'));
+  const siblings = REGION_COUNCILS[region] || [];
+  siblings.forEach(function(sid){
+    if(sid === id) return;
+    const sp = document.getElementById('pin_'+sid);
+    if(sp) sp.classList.add('sibling');
+  });
   const pin = document.getElementById('pin_'+id);
-  if(pin) pin.classList.add('active');
+  if(pin){
+    pin.classList.add('active');
+    const dot = pin.querySelector('.pin-dot');
+    const cx = dot.getAttribute('cx'), cy = dot.getAttribute('cy');
+    const oldRing = document.getElementById('pin-pulse-ring');
+    if(oldRing) oldRing.remove();
+    const ring = document.createElementNS('http://www.w3.org/2000/svg','circle');
+    ring.setAttribute('id','pin-pulse-ring');
+    ring.setAttribute('cx', cx);
+    ring.setAttribute('cy', cy);
+    ring.setAttribute('r', '8');
+    ring.setAttribute('class','pin-pulse-ring');
+    pin.parentNode.insertBefore(ring, pin);
+  }
   document.querySelectorAll('.map-panel-area').forEach(p=>p.classList.remove('show'));
   const panel = document.getElementById('mp_'+id);
   if(panel) panel.classList.add('show');
@@ -3313,6 +3353,8 @@ function councilPick(id, region){
 function mapReset(){
   document.querySelectorAll('.map-region').forEach(r=>r.classList.remove('active','dimmed'));
   document.querySelectorAll('.council-pin').forEach(p=>p.classList.remove('active'));
+  const ring = document.getElementById('pin-pulse-ring');
+  if(ring) ring.remove();
   document.querySelectorAll('.map-panel-area').forEach(p=>p.classList.remove('show'));
   document.querySelectorAll('.mleg-item').forEach(l=>l.classList.remove('active'));
   document.getElementById('map-idle').style.display='';
