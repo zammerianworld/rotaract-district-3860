@@ -2636,10 +2636,10 @@ function fbIconHtml(fbUrl, label, cssClass, fallbackSvg){
           pageDiv.className = 'fb-page';
           pageDiv.setAttribute('data-href', href);
           pageDiv.setAttribute('data-tabs', 'timeline');
-          pageDiv.setAttribute('data-width', '260');
+          var measuredWidth = Math.max(180, Math.floor(body.getBoundingClientRect().width));
+          pageDiv.setAttribute('data-width', String(measuredWidth));
           pageDiv.setAttribute('data-height', '220');
           pageDiv.setAttribute('data-small-header', 'true');
-          pageDiv.setAttribute('data-adapt-container-width', 'true');
           pageDiv.setAttribute('data-hide-cover', 'true');
           pageDiv.setAttribute('data-show-facepile', 'false');
           body.appendChild(pageDiv);
