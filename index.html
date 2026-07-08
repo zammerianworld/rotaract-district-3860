@@ -1268,6 +1268,46 @@ const CONFIG = {
     { num: "1,200+",label: "Rotaractors"    },
   ],
 
+  /* --- Photo Galleries ---
+     File IDs only (from Drive share links: .../file/d/FILE_ID/view).
+     To update: add/remove/reorder IDs in these arrays — the site rebuilds
+     each gallery automatically, cycling + dots included.
+  ---------------------------------------- */
+  galleries: {
+    about: [
+      "16-9ZI_b7UGHOvn0eVmxqPEbMPtvp0Y9g",
+      "1Ae4UlHSrTEQ1S_bIXoAE96RLz_rYySOZ",
+      "1EQotDLfZ0j2fHU43qutGH9Krn_aL40WH",
+      "10KNyB8UP9DxAnM_cq61gLDzMxkPSBhmj",
+      "1NcDynj1ruwA5Z7w-cSc6StHqjASM7I94",
+      "1zjVTQa49LWmucAONm63NjrpndQK942wT",
+    ],
+    drrAction: [
+      "1mPlu0K7jbh3gRuG5_ozbUa2KvF1MN6CT",
+      "1extae_V3mQvNu3hIQEfhzpOx_fDfhRDs",
+      "1lIuSZiyw1ljVJPbn2b38xgqML00D4MCl",
+      "1EVhkhnVFr442_emsd7ITsQu5718MYd3u",
+      "1nBQjGjV4NPbzRZtRNvC3MFOtqiF6v73g",
+      "1BQwhJSPunx_kdJmoeKWDIcwH6x9KczwO",
+      "151xZCR1f3dqSIkoPsjRhqoWGgQManMnV",
+      "1nemAVnz6vO0zp9nzf2e3g3cKuWeeO4E7",
+      "1X24OSY7wCol_kyJWgCc4ehsh5wq2RrTw",
+      "1V36f8nDRHGNnDxMD-0xBvCwduzSiVG9c",
+    ],
+    drrFormal: [
+      "1SwiGB9bcZbpBMyMMsJaFXt9p25_lixnN",
+      "1SjLXAvLQECCKf5mgt9u6FNpWz9k682gR",
+      "1YObySxi3VSAgM-PT-ZW5aX7gr_3OXizu",
+      "1dTlCnZBnzfms5bnwj4Yuq1btdrGlRL9p",
+      "10YLHpPqqp7kfQnTlo7Y4ZtXX6mvlKqWw",
+      "1dxiaaLdQYGfR56cDZadX4X0_h4Rdqu3J",
+      "14LAlFoHkG6T_67iUUBntsyoxf4jmO00K",
+      "1_d8t790ew7yao-SYJJeL5HLfmY0QDR3Z",
+      "1YIJgef_lAq1OmPONse9i18m4KZl2mCcN",
+      "16F3XI07f4PtQqOFSg38FWH2kpv4O1bOA",
+    ],
+  },
+
   about: {
     eyebrow: "Who We Are",
     title:   "About Rotaract",
@@ -1844,13 +1884,7 @@ const CONFIG = {
       <a id="about-link" href="#" target="_blank" rel="noopener" class="about-learn-link" style="display:none;"></a>
     </div>
     <div class="about-gallery-col">
-      <div class="about-gallery" id="about-gallery">
-        <!-- PLACEHOLDER: swap for real cycling photos once team sends links -->
-        <div class="gallery-placeholder-tile active" style="background:linear-gradient(135deg,#f9a8d4,#f472b6);">Photo 1</div>
-        <div class="gallery-placeholder-tile" style="background:linear-gradient(135deg,#fbbf24,#f59e0b);">Photo 2</div>
-        <div class="gallery-placeholder-tile" style="background:linear-gradient(135deg,#60a5fa,#3b82f6);">Photo 3</div>
-        <div class="gallery-placeholder-tile" style="background:linear-gradient(135deg,#34d399,#10b981);">Photo 4</div>
-      </div>
+      <div class="about-gallery" id="about-gallery"></div>
     </div>
   </div>
   <div class="about-grid"     id="about-grid"></div>
@@ -1869,18 +1903,10 @@ const CONFIG = {
         <div class="drr-stats" id="drr-stats"></div>
         <div class="drr-mini-galleries">
           <div class="drr-mini-gallery">
-            <div class="drr-mini-gallery-stage">
-              <!-- PLACEHOLDER: swap for real cycling photos once team sends links -->
-              <div class="gallery-placeholder-tile active" style="background:linear-gradient(135deg,#fb923c,#f97316);">1</div>
-              <div class="gallery-placeholder-tile" style="background:linear-gradient(135deg,#a78bfa,#8b5cf6);">2</div>
-              <div class="gallery-placeholder-tile" style="background:linear-gradient(135deg,#4ade80,#22c55e);">3</div>
-            </div>
+            <div class="drr-mini-gallery-stage" id="drr-gallery-action"></div>
           </div>
           <div class="drr-mini-gallery">
-            <div class="drr-mini-gallery-stage">
-              <div class="gallery-placeholder-tile active" style="background:linear-gradient(135deg,#38bdf8,#0ea5e9);">1</div>
-              <div class="gallery-placeholder-tile" style="background:linear-gradient(135deg,#f472b6,#ec4899);">2</div>
-            </div>
+            <div class="drr-mini-gallery-stage" id="drr-gallery-formal"></div>
           </div>
         </div>
       </div>
@@ -3595,6 +3621,34 @@ console.log('%c🔗 Reach out: impactbuilding3860@gmail.com', 'color:#9ca3af;fon
   }
   window.addEventListener('load', initGlow);
   var glowCheck = 0, glowIv = setInterval(function(){ initGlow(); if(++glowCheck > 20) clearInterval(glowIv); }, 500);
+
+  /* Populate the 3 photo galleries from CONFIG.galleries (real Drive photos).
+     Runs before initGalleryCycles so there are real tiles to cycle through. */
+  function renderGalleryPhotos(){
+    var galConfig = (typeof CONFIG !== 'undefined' && CONFIG.galleries) ? CONFIG.galleries : {};
+    var targets = [
+      { id: 'about-gallery',        ids: galConfig.about },
+      { id: 'drr-gallery-action',   ids: galConfig.drrAction },
+      { id: 'drr-gallery-formal',   ids: galConfig.drrFormal },
+    ];
+    targets.forEach(function(t){
+      var el = document.getElementById(t.id);
+      if(!el || !t.ids || !t.ids.length || el._photosRendered) return;
+      el._photosRendered = true;
+      t.ids.forEach(function(fileId, i){
+        var tile = document.createElement('div');
+        tile.className = 'gallery-placeholder-tile' + (i === 0 ? ' active' : '');
+        var img = document.createElement('img');
+        img.src = 'https://drive.google.com/thumbnail?id='+fileId+'&sz=w800';
+        img.loading = 'lazy';
+        img.alt = '';
+        img.style.cssText = 'width:100%;height:100%;object-fit:cover;';
+        tile.appendChild(img);
+        el.appendChild(tile);
+      });
+    });
+  }
+  renderGalleryPhotos();
 
   /* Generic cycling gallery — crossfades between .gallery-placeholder-tile
      (or later, real photo) children within any container, on a timer.
