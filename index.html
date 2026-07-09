@@ -724,6 +724,8 @@ body.dark-mode .hero-eyebrow{background:var(--dm-faint);color:var(--pink);}
 body.dark-mode .hero-right::before{background:var(--pink);}
 body.dark-mode .hero-scroll{color:var(--dm-muted);}
 body.dark-mode .hero-dot{background:rgba(255,255,255,.2);}
+/* Banner slide (slide 2) stays light in dark mode too — dots need the light-mode dark dot color there, or they vanish on the white background. */
+body.dark-mode .hero-dots.on-light-slide .hero-dot{background:rgba(0,0,0,.15);}
 
 /* Impact strip */
 body.dark-mode #impact{background:var(--dm-surface);}
@@ -2626,6 +2628,7 @@ function fbIconHtml(fbUrl, label, cssClass, fallbackSvg){
           Array.prototype.forEach.call(heroDotsEl.children, function(d,i){
             d.classList.toggle('active', i === heroIdx);
           });
+          heroDotsEl.classList.toggle('on-light-slide', heroSlides[heroIdx].classList.contains('hero-slide-banner'));
         }
       }
       var heroTimer = setInterval(function(){
