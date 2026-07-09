@@ -93,6 +93,7 @@ a{text-decoration:none;color:inherit;}
   --gray-50:    #F9FAFB;
   --gray-100:   #F3F4F6;
   --gray-200:   #E5E7EB;
+  --gray-300:   #D1D5DB;
   --gray-400:   #9CA3AF;
   --gray-500:   #6B7280;
   --gray-700:   #374151;
@@ -1456,8 +1457,8 @@ const CONFIG = {
       eyebrow: "Succession",
       title:   "Future District Rotaract Representatives",
       list: [
-        { year: "RY 2027–2028", name: "Jan Dale Carlo T. Catalonia", photo: "https://drive.google.com/thumbnail?id=1a6sGSoFWj5CGzqsMV8S2lAEiakDE3g3n&sz=w300", club: "RAC Metro Cebu" },
-        { year: "RY 2028–2029", name: "Christine Joy T. Balobalo",   club: "RAC Tagum North-Palm City Chapter", photo: "https://drive.google.com/thumbnail?id=1FTUgokKXVWH142-YonXR_c-xB9ksn75C&sz=w300" },
+        { year: "RY 2027–2028", name: "Jan Dale Carlo T. Catalonia", photo: "https://drive.google.com/thumbnail?id=1a6sGSoFWj5CGzqsMV8S2lAEiakDE3g3n&sz=w300", club: "RAC Metro Cebu", role: "District Rotaract Representative-Elect" },
+        { year: "RY 2028–2029", name: "Christine Joy T. Balobalo",   club: "RAC Tagum North-Palm City Chapter", photo: "https://drive.google.com/thumbnail?id=1FTUgokKXVWH142-YonXR_c-xB9ksn75C&sz=w300", role: "District Rotaract Representative-Nominee" },
       ],
     },
   },
@@ -2424,7 +2425,7 @@ const CONFIG = {
     <div style="display:flex;flex-direction:column;align-items:center;padding:28px 28px 0;">
       <div id="fm-photo-wrap" style="margin-bottom:16px;"></div>
       <div style="text-align:center;">
-        <div style="font-size:12px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--pink);margin-bottom:6px;">Future District Rotaract Representative</div>
+        <div id="fm-role" style="font-size:12px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--pink);margin-bottom:6px;">Future District Rotaract Representative</div>
         <div id="fm-club" style="font-size:14px;color:var(--gray-500);"></div>
       </div>
     </div>
@@ -2893,7 +2894,7 @@ function fbIconHtml(fbUrl, label, cssClass, fallbackSvg){
       fc.appendChild(info);
       // Click → open modal
       fc.addEventListener('click', function(){
-        openFutureDRRModal(f.name, f.year, f.club, f.photo||'');
+        openFutureDRRModal(f.name, f.year, f.club, f.photo||'', f.role||'Future District Rotaract Representative');
       });
       fGrid.appendChild(fc);
     });
@@ -3809,10 +3810,11 @@ function toggleDark(){
 }
 if(localStorage.getItem('theme')==='dark'){ document.body.classList.add('dark-mode'); document.getElementById('dark-toggle').textContent='☀️'; }
 
-function openFutureDRRModal(name,year,club,photo){
+function openFutureDRRModal(name,year,club,photo,role){
   document.getElementById('fm-year').textContent = year;
   document.getElementById('fm-name').textContent = name;
   document.getElementById('fm-club').textContent = club;
+  document.getElementById('fm-role').textContent = role || 'Future District Rotaract Representative';
   const wrap = document.getElementById('fm-photo-wrap');
   if(photo){
     const img = document.createElement('img');
