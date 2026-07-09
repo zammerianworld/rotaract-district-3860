@@ -383,6 +383,9 @@ body.dark-mode .gallery-dots-light .gallery-dot{background:var(--dm-border);}
 .resource-text{flex:1;}
 .resource-text h3{font-size:16px;font-weight:700;color:var(--heading-color);margin-bottom:6px;}
 .resource-text p{font-size:14px;color:var(--gray-500);line-height:1.65;}
+.resource-sublinks{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;position:relative;z-index:1;}
+.resource-sublink{font-size:12px;font-weight:600;color:var(--pink);background:var(--pink-light);padding:6px 12px;border-radius:20px;text-decoration:none;display:inline-flex;align-items:center;gap:4px;transition:all .2s;}
+.resource-sublink:hover{background:var(--pink);color:#fff;}
 
 /* ── CALENDAR ── */
 #calendar{padding:96px 0;background:var(--gray-50);}
@@ -1720,7 +1723,10 @@ const CONFIG = {
       { icon: "📊", title: "DRR's Thrust Tracker",    desc: "Monitor your club's progress on the DRR's thrust deliverables for RY 2026–2027.", comingSoon: true },
       { icon: "📘", title: "President's Guide",       desc: "Step-by-step manual for managing your Rotaract club effectively.", href: "https://drive.google.com/drive/folders/1sUHYhID7RjGwkqc4NuFgse38fjHlae-z?usp=drive_link", folderPreview: true },
       { icon: "📂", title: "Induction Materials",     desc: "Official documents and templates for club induction ceremonies.", href: "https://drive.google.com/drive/folders/1xCgSdNZ-uHlzF5VjaS4ht-SRsggGJxXr", folderPreview: true },
-      { icon: "🤝", title: "Membership and Club Development", desc: "Guidelines and strategies for growing and strengthening Rotaract clubs.", href: "https://drive.google.com/drive/folders/1CAgwvIMkMHpGdZHM8tsqm-Z1qcJzLjZj?usp=drive_link", folderPreview: true },
+      { icon: "🤝", title: "Membership and Club Development", desc: "Guidelines and strategies for growing and strengthening Rotaract clubs.", href: "https://drive.google.com/drive/folders/1CAgwvIMkMHpGdZHM8tsqm-Z1qcJzLjZj?usp=drive_link", folderPreview: true, links: [
+        { label: "Club Health Check Form", href: "https://forms.gle/ma5LDxPv2khEYJWUA" },
+        { label: "Club 3-Year Action Plan", href: "https://docs.google.com/spreadsheets/d/1QR454f3kY74TUdIv7TDAJeONABvcDP4h/copy" },
+      ] },
       { icon: "💰", title: "Financial Guidelines",    desc: "Budget templates and financial reporting standards for clubs.", href: "https://drive.google.com/drive/folders/1dbXOvrjLJLNU3Zhtkb2Psi2abfn1HsW7?usp=drive_link", folderPreview: true },
       { icon: "🏆", title: "Awards & Recognition Guidelines", desc: "Criteria and guidelines for district awards and club recognition for RY 2026–2027.", comingSoon: true },
       { icon: "🎨", title: "Rotary/Rotaract Branding Guidelines", desc: "District 3860\u2019s own logo files, posters, and ready-to-use design templates.", href: "https://drive.google.com/drive/folders/1XiRoDnC1Bq6iRNF22btZBKgpuRILwrvQ", folderPreview: true },
@@ -2407,6 +2413,7 @@ const CONFIG = {
         <iframe id="folder-modal-frame" src="" style="position:absolute;inset:0;width:100%;height:100%;border:none;display:block;" allow="autoplay"></iframe>
       </div>
     </div>
+    <div id="folder-modal-links" class="resource-sublinks" style="padding:12px 20px 0;margin-top:0;display:none;"></div>
     <div class="club-modal-footer">
       <a id="folder-modal-open" href="#" target="_blank" rel="noopener" class="club-modal-dismiss" style="text-decoration:none;display:inline-flex;align-items:center;gap:6px;">Open in Drive ↗</a>
       <button class="club-modal-dismiss" onclick="closeFolderModal()">Close</button>
@@ -3125,7 +3132,7 @@ function fbIconHtml(fbUrl, label, cssClass, fallbackSvg){
       rcard.className='resource-card resource-card-link';
       rcard.style.cursor='pointer';
       rcard.innerHTML='<div class="resource-card-inner"><div class="resource-icon">'+r.icon+'</div><div class="resource-text"><h3>'+r.title+'</h3><p>'+r.desc+'</p></div><span class="resource-link-arrow">👁</span></div>';
-      rcard.addEventListener('click', function(){ openFolderModal(r.title, r.href); });
+      rcard.addEventListener('click', function(){ openFolderModal(r.title, r.href, r.links); });
     } else if(r.comingSoon){
       rcard=document.createElement('div');
       rcard.className='resource-card resource-card-soon';
@@ -3139,6 +3146,19 @@ function fbIconHtml(fbUrl, label, cssClass, fallbackSvg){
       rcard=document.createElement('div');
       rcard.className='resource-card';
       rcard.innerHTML='<div class="resource-card-inner"><div class="resource-icon">'+r.icon+'</div><div class="resource-text"><h3>'+r.title+'</h3><p>'+r.desc+'</p></div></div>';
+    }
+    if(r.links && r.links.length && !r.folderPreview){
+      const sl = document.createElement('div');
+      sl.className = 'resource-sublinks';
+      r.links.forEach(function(lk){
+        const a = document.createElement('a');
+        a.className = 'resource-sublink';
+        a.href = lk.href; a.target = '_blank'; a.rel = 'noopener';
+        a.textContent = lk.label + ' ↗';
+        a.addEventListener('click', function(e){ e.stopPropagation(); });
+        sl.appendChild(a);
+      });
+      rcard.appendChild(sl);
     }
     rg.appendChild(rcard);
   });
@@ -3778,7 +3798,7 @@ function closePdfModal(e){
   document.getElementById('pdf-modal-frame').src = '';
 }
 
-function openFolderModal(title, folderUrl){
+function openFolderModal(title, folderUrl, links){
   var folderId = (folderUrl.match(/\/folders\/([a-zA-Z0-9_-]+)/) || [])[1];
   if(!folderId) return;
   if(isMobileDevice()){
@@ -3788,6 +3808,20 @@ function openFolderModal(title, folderUrl){
   document.getElementById('folder-modal-title').textContent = title;
   document.getElementById('folder-modal-frame').src = 'https://drive.google.com/embeddedfolderview?id='+folderId+'#grid';
   document.getElementById('folder-modal-open').href = 'https://drive.google.com/drive/folders/'+folderId;
+  var linksEl = document.getElementById('folder-modal-links');
+  linksEl.innerHTML = '';
+  if(links && links.length){
+    links.forEach(function(lk){
+      var a = document.createElement('a');
+      a.className = 'resource-sublink';
+      a.href = lk.href; a.target = '_blank'; a.rel = 'noopener';
+      a.textContent = lk.label + ' ↗';
+      linksEl.appendChild(a);
+    });
+    linksEl.style.display = 'flex';
+  } else {
+    linksEl.style.display = 'none';
+  }
   document.getElementById('folder-modal-overlay').classList.add('open');
   document.body.style.overflow='hidden';
 }
