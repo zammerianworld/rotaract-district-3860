@@ -2867,8 +2867,6 @@ function fbIconHtml(fbUrl, label, cssClass, fallbackSvg){
   /* Future DRRs */
   const fd = $('future-drrs');
   const fdrr = C.officers.futureDRRs;
-  fd.innerHTML = '<div class="section-kicker">'+fdrr.eyebrow+'</div>'+
-    '<h3 style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--heading-color);margin-top:8px;">'+fdrr.title+'</h3>'
     const fGrid = document.createElement('div');
     fGrid.className = 'future-drrs-grid';
     fdrr.list.forEach(function(f){
@@ -2908,7 +2906,6 @@ function fbIconHtml(fbUrl, label, cssClass, fallbackSvg){
     fd.innerHTML = '<div class="section-kicker">'+fdrr.eyebrow+'</div>'+
       '<h3 style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--heading-color);margin-top:8px;">'+fdrr.title+'</h3>';
     fd.appendChild(fGrid);
-    if(window.initTilt) window.initTilt();
     if(window.initTilt) window.initTilt();
 
   /* Meet the DRR */
