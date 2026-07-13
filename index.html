@@ -27,21 +27,23 @@
 <meta name="author"             content="Rotaract District 3860"/>
 <meta name="robots"             content="index, follow"/>
 <meta name="theme-color"        content="#D41367"/>
-<link rel="canonical"           href="https://rotaract-district-3860.vercel.app"/>
-
-<!-- Favicon -->
-<link rel="icon" type="image/png" href="favicon.png"/>
-<link rel="apple-touch-icon"    href="favicon.png"/>
-
-<!-- Open Graph — Facebook, Messenger, Viber, LinkedIn -->
-<meta property="og:type"        content="website"/>
-<meta property="og:url"         content="https://rotaract-district-3860.vercel.app"/>
-<meta property="og:site_name"   content="Rotaract District 3860"/>
-<meta property="og:title"       content="Rotaract Clubs of Rotary International District 3860"/>
-<meta property="og:description" content="Official website of Rotaract District 3860 — 88 clubs, 12 councils, 1,200+ Rotaractors across Visayas and Mindanao. Service Above Self."/>
-<meta property="og:image"       content="https://rotaract-district-3860.vercel.app/logo.png?v=1"/>
-<meta property="og:image:width" content="512"/>
-<meta property="og:image:height"content="512"/>
+	<!-- Update the domain below once your custom domain is live -->
+	<link rel="canonical"           href="https://rotaract-district-3860.vercel.app"/>
+	
+	<!-- Favicon -->
+	<link rel="icon" type="image/png" href="favicon.png"/>
+	<link rel="apple-touch-icon"    href="favicon.png"/>
+	
+	<!-- Open Graph — Facebook, Messenger, Viber, LinkedIn -->
+	<meta property="og:type"        content="website"/>
+	<meta property="og:url"         content="https://rotaract-district-3860.vercel.app"/>
+	<meta property="og:site_name"   content="Rotaract District 3860"/>
+	<meta property="og:title"       content="Rotaract Clubs of Rotary International District 3860"/>
+	<meta property="og:description" content="Official website of Rotaract District 3860 — 88 clubs, 12 councils, 1,200+ Rotaractors across Visayas and Mindanao. Service Above Self."/>
+	<!-- Suggested: Use a 1200x630px themed banner for social sharing once the domain is live -->
+	<meta property="og:image"       content="https://rotaract-district-3860.vercel.app/logo.png?v=1"/>
+	<meta property="og:image:width" content="1200"/>
+	<meta property="og:image:height"content="630"/>
 <meta property="og:image:alt"   content="Rotaract District 3860 Logo"/>
 <meta property="og:locale"      content="en_PH"/>
 
@@ -488,6 +490,10 @@ body.dark-mode .club-fb-adaptive{color:#fff;}
 .club-fb-cutout svg,.club-fb-adaptive svg{width:22px;height:22px;}
 .club-modal-name-row{display:flex;align-items:center;gap:2px;}
 .club-detail-value.placeholder{color:var(--gray-300);font-style:italic;font-weight:400;}
+.club-contact-btn{display:inline-block;margin-top:4px;padding:6px 12px;background:var(--pink-light);color:var(--pink);border-radius:20px;font-size:12px;font-weight:700;text-decoration:none;transition:all .2s;}
+.club-contact-btn:hover{background:var(--pink);color:#fff;transform:translateY(-1px);}
+.last-updated{font-size:11px;color:var(--gray-400);margin-top:12px;text-align:center;letter-spacing:.5px;text-transform:uppercase;font-weight:600;}
+body.dark-mode .last-updated{color:var(--dm-muted);}
 .club-modal-footer{padding:16px 28px;border-top:1px solid var(--gray-100);display:flex;justify-content:flex-end;}
 .club-modal-dismiss{font-size:13px;font-weight:700;color:var(--pink);background:var(--pink-light);border:none;padding:9px 20px;border-radius:40px;cursor:pointer;transition:all .2s;}
 .club-modal-dismiss:active{transform:scale(.95);}
@@ -546,6 +552,24 @@ body.dark-mode .qr-svg-wrap svg rect{fill:var(--dm-surface);}
 /* ── MAP ── */
 #map{padding:96px 0;background:rgba(255,255,255,.93);position:relative;z-index:1;}
 .map-layout{display:grid;grid-template-columns:1fr 420px;gap:36px;align-items:start;}
+.map-search-wrap{grid-column:1 / -1;margin-bottom:24px;max-width:600px;margin-left:auto;margin-right:auto;width:100%;}
+.map-search-box{position:relative;display:flex;align-items:center;background:#fff;border:2px solid var(--gray-100);border-radius:40px;padding:4px 24px;transition:all .3s;box-shadow:0 4px 12px rgba(0,0,0,.05);}
+.map-search-box:focus-within{border-color:var(--pink);box-shadow:0 8px 24px rgba(212,19,103,.1);}
+.map-search-icon{font-size:18px;margin-right:12px;opacity:.4;}
+#map-search-input{flex:1;border:none;outline:none;padding:12px 0;font-size:15px;font-family:var(--font-body);font-weight:600;color:var(--heading-color);}
+#map-search-input::placeholder{color:var(--gray-400);font-weight:500;}
+.map-search-dropdown{position:absolute;top:calc(100% + 8px);left:0;right:0;background:#fff;border-radius:16px;box-shadow:0 12px 40px rgba(0,0,0,.15);border:1px solid var(--gray-100);z-index:100;overflow:hidden;display:none;}
+.map-search-item{padding:12px 20px;cursor:pointer;transition:all .2s;border-bottom:1px solid var(--gray-50);font-size:14px;text-align:left;}
+.map-search-item:last-child{border-bottom:none;}
+.map-search-item:hover{background:var(--pink-light);color:var(--pink);}
+.map-search-item strong{color:var(--pink);}
+.map-search-item span{color:var(--gray-400);font-size:12px;margin-left:4px;}
+.map-search-empty{padding:16px;text-align:center;color:var(--gray-400);font-size:14px;font-style:italic;}
+.map-search-hint{font-size:12px;color:var(--gray-400);text-align:center;margin-top:10px;font-weight:500;}
+body.dark-mode .map-search-box{background:var(--dm-surface);border-color:var(--dm-border);}
+body.dark-mode #map-search-input{background:transparent;color:var(--dm-text);}
+body.dark-mode .map-search-dropdown{background:var(--dm-surface);border-color:var(--dm-border);}
+body.dark-mode .map-search-item:hover{background:rgba(212,19,103,.15);}
 .map-svg-wrap{position:relative;}
 .map-svg-wrap svg{width:100%;height:auto;display:block;}
 .map-region{fill:var(--pink-light);stroke:#fff;stroke-width:2;cursor:pointer;transition:fill .25s,opacity .25s;opacity:.4;}
@@ -2052,6 +2076,15 @@ const CONFIG = {
     <h2 class="section-heading">District 3860 Coverage Map</h2>
     <p class="section-sub" style="margin-bottom:48px;">Hover over a region to explore, click to see Rotaract clubs in that area.</p>
     <div class="map-layout">
+      <!-- Map Search Filter -->
+      <div class="map-search-wrap">
+        <div class="map-search-box">
+          <span class="map-search-icon">🔍</span>
+          <input type="text" id="map-search-input" placeholder="Search by city or province (e.g. Davao, Cebu, Tacloban...)" onkeyup="searchMap(this.value)">
+          <div id="map-search-results" class="map-search-dropdown"></div>
+        </div>
+        <div class="map-search-hint">Search for a city or province to highlight its council.</div>
+      </div>
       <div class="map-svg-wrap" id="mapwrap">
         <div class="map-tip" id="maptip"></div>
         <svg viewBox="270 50 420 490" xmlns="http://www.w3.org/2000/svg">
@@ -3232,6 +3265,11 @@ function fbIconHtml(fbUrl, label, cssClass, fallbackSvg){
     fc.innerHTML+='<div class="footer-col"><div class="footer-col-title">'+col.title+'</div>'+links+'</div>';
   });
   setText('footer-copy', '© '+new Date().getFullYear()+' Rotaract Clubs of Rotary International District 3860. All rights reserved.');
+  const lu = document.createElement('div');
+  lu.className = 'last-updated';
+  lu.textContent = 'Data last updated: July 13, 2026';
+  const fcopy = $('footer-copy');
+  if(fcopy) fcopy.parentNode.insertBefore(lu, fcopy.nextSibling);
 
   /* Theme Song */
   const ts = C.themeSong;
@@ -3350,7 +3388,39 @@ function fbIconHtml(fbUrl, label, cssClass, fallbackSvg){
 
 })();
 
-/* Map */
+/* Map Search & Navigation */
+const MAP_DATA = [
+  { id: 'bohol', region: 'Central_Visayas', labels: ['Bohol', 'Tagbilaran', 'Panglao', 'Ubay', 'Talibon'] },
+  { id: 'cebu', region: 'Central_Visayas', labels: ['Cebu', 'Mandaue', 'Lapu-Lapu', 'Banilad', 'Talamban', 'Cebu City'] },
+  { id: 'davao', region: 'Davao', labels: ['Davao', 'Davao City', 'Digos', 'Calinan', 'Toril'] },
+  { id: 'tagum', region: 'Davao', labels: ['Tagum', 'Tagum City', 'Panabo', 'Davao del Norte'] },
+  { id: 'leyte', region: 'Eastern_Visayas', labels: ['Leyte', 'Tacloban', 'Maasin', 'Ormoc', 'Biliran', 'Southern Leyte'] },
+  { id: 'samar', region: 'Eastern_Visayas', labels: ['Samar', 'Calbayog', 'Catbalogan', 'Northern Samar', 'Western Samar'] },
+  { id: 'agusan_norte', region: 'Caraga', labels: ['Agusan del Norte', 'Butuan', 'Butuan City', 'Cabadbaran'] },
+  { id: 'agusan_sur', region: 'Caraga', labels: ['Agusan del Sur', 'San Francisco', 'Bislig', 'Surigao del Sur'] },
+  { id: 'surigao_norte', region: 'Caraga', labels: ['Surigao del Norte', 'Surigao City', 'Siargao'] },
+  { id: 'gensan', region: 'SOCCSKSARGEN', labels: ['General Santos', 'GenSan', 'GSC', 'South Cotabato'] },
+  { id: 'koronadal', region: 'SOCCSKSARGEN', labels: ['Koronadal', 'Marbel', 'Polomolok', 'Matutum'] },
+  { id: 'negros', region: 'Western_Visayas', labels: ['Negros', 'Dumaguete', 'Tolong', 'Bayawan', 'Negros Oriental'] }
+];
+
+function searchMap(q){
+  const res = document.getElementById('map-search-results');
+  if(!q.trim()){ res.style.display='none'; return; }
+  const matches = [];
+  MAP_DATA.forEach(m => {
+    const matchedLabel = m.labels.find(l => l.toLowerCase().includes(q.toLowerCase()));
+    if(matchedLabel) matches.push({ id: m.id, region: m.region, label: matchedLabel, council: m.id.replace('_',' ').replace(/\b\w/g, l => l.toUpperCase()) + ' Council' });
+  });
+  if(!matches.length){ res.innerHTML = '<div class="map-search-empty">No locations found</div>'; res.style.display='block'; return; }
+  res.innerHTML = matches.slice(0, 5).map(m => 
+    '<div class="map-search-item" onclick="goToCouncil(\''+m.id+'\', \''+m.region+'\'); document.getElementById(\'map-search-results\').style.display=\'none\'; document.getElementById(\'map-search-input\').value=\'\';">'+
+    '<strong>'+m.label+'</strong> <span>('+m.council+')</span></div>'
+  ).join('');
+  res.style.display = 'block';
+}
+document.addEventListener('click', e => { if(!e.target.closest('.map-search-wrap')) document.getElementById('map-search-results').style.display='none'; });
+
 function goToCouncil(id, region){
   var mapSection = document.getElementById('map');
   if(mapSection) mapSection.scrollIntoView({ behavior:'smooth', block:'start' });
@@ -3474,13 +3544,21 @@ function openClubModal(el, council){
   var fbAdaptiveSvg = '<svg viewBox="0 0 24 24"><mask id="'+fbMaskId2+'"><rect width="24" height="24" fill="#fff"/><path d="M17 2h-3a5 5 0 00-5 5v3H6v4h3v8h4v-8h3.1l.9-4H13V7a1 1 0 011-1h3z" fill="#000"/></mask><circle cx="12" cy="12" r="12" fill="currentColor" mask="url(#'+fbMaskId2+')"/></svg>';
   var clubFbHtml = (det && det.facebook) ? fbIconHtml(det.facebook, name, 'club-fb-cutout', fbCutoutSvg) : '';
   document.getElementById('modal-name').innerHTML = name + clubFbHtml;
-  const ph = function(v){ return v ? '<span class="club-detail-value">'+v+'</span>' : '<span class="club-detail-value placeholder">Coming soon</span>'; };
+  const ph = function(v, type, clubName){ 
+    if(v) return '<span class="club-detail-value">'+v+'</span>';
+    if(type === 'schedule' || type === 'email'){
+      var email = (det && det.email) ? det.email : 'impactbuilding3860@gmail.com';
+      var subject = encodeURIComponent('Inquiry: ' + clubName + ' Schedule/Information');
+      return '<a href="mailto:'+email+'?subject='+subject+'" class="club-contact-btn">Contact for Details</a>';
+    }
+    return '<span class="club-detail-value placeholder">Coming soon</span>'; 
+  };
   var presFbHtml = (det && det.presidentFacebook) ? fbIconHtml(det.presidentFacebook, 'President', 'club-fb-adaptive', fbAdaptiveSvg) : '';
   document.getElementById('modal-body').innerHTML =
-    '<div class="club-detail-item full"><span class="club-detail-label">Impact-Building President</span>'+ph(det?det.president:null)+presFbHtml+'</div>'+
-    '<div class="club-detail-item full"><span class="club-detail-label">Club Email</span>'+ph(det?det.email:null)+'</div>'+
-    '<div class="club-detail-item full"><span class="club-detail-label">Meeting Schedule</span>'+ph(det&&det.schedule?det.schedule+(det.venue?' — '+det.venue:''):null)+'</div>'+
-    '<div class="club-detail-item full"><span class="club-detail-label">Sponsoring Rotary Club</span>'+ph(det?det.sponsoredBy:null)+'</div>';
+    '<div class="club-detail-item full"><span class="club-detail-label">Impact-Building President</span>'+ph(det?det.president:null, 'president', name)+presFbHtml+'</div>'+
+    '<div class="club-detail-item full"><span class="club-detail-label">Club Email</span>'+ph(det?det.email:null, 'email', name)+'</div>'+
+    '<div class="club-detail-item full"><span class="club-detail-label">Meeting Schedule</span>'+ph(det&&det.schedule?det.schedule+(det.venue?' — '+det.venue:''):null, 'schedule', name)+'</div>'+
+    '<div class="club-detail-item full"><span class="club-detail-label">Sponsoring Rotary Club</span>'+ph(det?det.sponsoredBy:null, 'sponsor', name)+'</div>';
   document.getElementById('club-modal-overlay').classList.add('open');
   document.body.style.overflow='hidden';
 }
