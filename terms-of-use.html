@@ -33,6 +33,13 @@ a:hover{text-decoration:underline;}
 .back{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:var(--pink);text-decoration:none;margin-bottom:28px;}
 footer{background:#7a0a38;padding:18px 28px;text-align:center;font-size:12px;color:rgba(255,255,255,.5);}
 footer a{color:rgba(255,255,255,.75);}
+
+body.dark-mode{background:#0f0a0d;color:#f0e8ec;}
+body.dark-mode h1,body.dark-mode h2{color:#f0e8ec;}
+body.dark-mode p,body.dark-mode li{color:#9b8a92;}
+body.dark-mode .callout{background:#1a1018;}
+body.dark-mode .callout p{color:#f0e8ec;}
+body.dark-mode .updated{color:rgba(255,255,255,.3);}
 </style>
 </head>
 <body>
@@ -85,5 +92,8 @@ footer a{color:rgba(255,255,255,.75);}
   <p>Questions about these terms? Reach out via the <a href="index.html#contact">Contact section</a> of this site.</p>
 </div>
 <footer>© 2026 Rotaract Clubs of Rotary International District 3860 · <a href="privacy-policy.html">Privacy Policy</a></footer>
+<script>
+if(localStorage.getItem('theme')==='dark'){ document.body.classList.add('dark-mode'); }
+</script>
 </body>
 </html>
