@@ -205,6 +205,7 @@ body.dark-mode .hero-banner-social{color:var(--gray-500);}
 .wm-3860-fixed{position:fixed;right:-40px;bottom:-60px;font-family:var(--font-display);font-weight:900;font-size:320px;line-height:1;color:var(--pink);opacity:.05;letter-spacing:-10px;pointer-events:none;z-index:0;user-select:none;}
 body.dark-mode .wm-3860-fixed{opacity:.09;}
 #about{padding:96px 0;position:relative;z-index:1;}
+#district-history{position:relative;z-index:1;}
 #about::after{content:'';position:absolute;bottom:0;left:0;right:0;height:120px;background:var(--gray-50);clip-path:polygon(0 100%,100% 100%,100% 0);pointer-events:none;}
 .section-kicker{display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--pink);margin-bottom:14px;}
 .section-kicker::before{content:'';width:28px;height:2px;background:var(--pink);border-radius:2px;}
@@ -308,6 +309,7 @@ body.dark-mode .gallery-dots-light .gallery-dot{background:var(--dm-border);}
 
 /* ── OFFICERS ── */
 #officers{background:rgba(249,250,251,.93);padding:96px 0;position:relative;z-index:1;}
+#past-drrs{padding:96px 0;background:rgba(255,255,255,.93);position:relative;z-index:1;}
 .officers-intro{display:grid;grid-template-columns:1fr 1.2fr;gap:48px;align-items:start;margin-bottom:52px;}
 .officers-group{margin-bottom:52px;}
 .officers-group:last-child{margin-bottom:0;}
@@ -762,6 +764,7 @@ body.dark-mode .impact-lbl{color:var(--dm-muted);}
 
 /* About — fix diagonal white shape */
 body.dark-mode #about{background:rgba(15,10,13,.93);}
+body.dark-mode #district-history{background:rgba(15,10,13,.93);}
 body.dark-mode #about::after{background:var(--dm-surface);}
 body.dark-mode .about-card{background:var(--dm-surface2);border-color:var(--dm-border);}
 body.dark-mode .about-card::before{background:var(--pink);}
@@ -778,6 +781,7 @@ body.dark-mode .gov-sub{color:rgba(255,255,255,.55);}
 
 /* Officers */
 body.dark-mode #officers{background:rgba(26,16,24,.93);}
+body.dark-mode #past-drrs{background:rgba(26,16,24,.93);}
 body.dark-mode .officers-intro p{color:var(--dm-muted);}
 body.dark-mode .section-heading{color:var(--dm-text);}
 body.dark-mode .section-sub{color:var(--dm-muted);}
@@ -979,6 +983,11 @@ body.dark-mode .contact-wrap h2{color:var(--dm-text);}
 /* Officer modal photo */
 .om-photo{width:140px;height:140px;border-radius:50%;object-fit:cover;object-position:center top;border:3px solid #fff;box-shadow:0 0 0 3px var(--pink);}
 .om-avatar{width:140px;height:140px;border-radius:50%;background:var(--pink-light);display:flex;align-items:center;justify-content:center;font-size:40px;font-weight:700;color:var(--pink-dark);border:3px solid #fff;box-shadow:0 0 0 3px var(--pink);}
+.pdrr-theme-row{display:flex;align-items:center;gap:14px;margin-top:20px;padding:16px 20px;background:var(--gray-50);border-radius:var(--r-md);width:100%;}
+body.dark-mode .pdrr-theme-row{background:var(--dm-surface2);}
+.pdrr-card-media{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:16px;}
+.pdrr-card-media .officer-photo,.pdrr-card-media .officer-avatar{margin:0;}
+.pdrr-card-theme{width:56px;height:56px;border-radius:12px;object-fit:cover;box-shadow:0 2px 8px rgba(0,0,0,.1);flex-shrink:0;}
 body.dark-mode .om-avatar{background:var(--dm-faint);color:var(--pink);}
 
 /* ── TILT CARD EFFECT ── */
@@ -1495,6 +1504,31 @@ const CONFIG = {
     },
   },
 
+  pastDRRs: {
+    eyebrow: "Our Legacy",
+    title:   "Past District Rotaract Representatives",
+    subtitle: "Honoring the leaders who have guided District 3860 through the years.",
+    list: [
+      { name: "Don Jade Canama",              year: "RY 2015–2016", club: "Cebu Fuente",                                              initials: "DC", photo: "https://drive.google.com/thumbnail?id=1D43Db0-SxTKaW_cHDi9AGi9hg3qJT9wJ&sz=w300", theme: "https://drive.google.com/thumbnail?id=17KGlkUlxG9oXCKyTcGUOJypU0U0fyk39&sz=w300", dg: "PDG Salvador G. Estudillo" },
+      { name: "Stephen Bryan Y. Bongcaras",   year: "RY 2016–2017", club: "Tagbilaran",                                               initials: "SB", photo: "https://drive.google.com/thumbnail?id=17rR0CbKFJdKYcctfXp2NQDdIRaHm3Ekn&sz=w300", theme: "https://drive.google.com/thumbnail?id=1fA-fZxycLhEKYrUumRiDLcFNNqQZChS8&sz=w300", dg: "PDG Mary Anne A. Solomon" },
+      { name: "Alstair Rey L. Tecarro",       year: "RY 2017–2018", club: "Downtown Davao - Tecarro College Foundation Inc.",         initials: "AT", photo: "https://drive.google.com/thumbnail?id=1mjS9JWJGEU-FM1QlFCf4JNuUHhOWolL6&sz=w300", theme: "https://drive.google.com/thumbnail?id=1LY1yxKDSTBxPoFsMgS3Aaq9rs9kccNha&sz=w300", dg: "PDG Art O. Tan" },
+      { name: "Aiza Marie Moraña",            year: "RY 2018–2019", club: "Kandaya-Tacloban",                                         initials: "AM", photo: "https://drive.google.com/thumbnail?id=1Sa7Wzx-3w-5rw6hmdGN08hvE7f81mfBL&sz=w300", theme: "https://drive.google.com/thumbnail?id=1NvXhDwl0CecHiQFouDqYZTky7hWkaUpk&sz=w300", dg: "PDG Benjamin M. Garcia" },
+      { name: "Prince Priam Gaudan",          year: "RY 2019–2020", club: "Cebu Port Center",                                         initials: "PG", photo: "", theme: "https://drive.google.com/thumbnail?id=1zCEhHSzbSSHG3OSMlVBYUNckJW_d_rv-&sz=w300", dg: "PDG Philip N. Tan" },
+      { name: "Acejustin Resare",             year: "RY 2020–2021", club: "Metro Surigao",                                            initials: "AR", photo: "https://drive.google.com/thumbnail?id=1hFBIYzTkFy-BgV7V0EMpgagfqyj9KDU_&sz=w300", theme: "https://drive.google.com/thumbnail?id=1rk3Sc5QjNI_adXideCMxEbwf_RHs1xxz&sz=w300", dg: "PDG Rodel Rizel S. Reyes" },
+      { name: "Griffins C. Malazarte",        year: "RY 2021–2022", club: "Cebu South",                                               initials: "GM", photo: "https://drive.google.com/thumbnail?id=1IjC134jH0FNNnd3rhpfTaz0Owg8GVwN6&sz=w300", theme: "https://drive.google.com/thumbnail?id=1Xq8dmIWeIBjEAhobO0LHX6eWOod7Wink&sz=w300", dg: "PDG Anna Bumagat" },
+      { name: "Shevee R. Resolado-Cañete",    year: "RY 2022–2023", club: "Cebu Fuente",                                              initials: "SR", photo: "https://drive.google.com/thumbnail?id=1tH0jeGTpEVObofrAq1_JToyPgGzcq9Nd&sz=w300", theme: "https://drive.google.com/thumbnail?id=1bL0X9bjhFxlJo0hiPrWNlsPX7TqS2wfI&sz=w300", dg: "PDG Lilo Aliño" },
+      { name: "Remuel M. Coles",              year: "RY 2023–2024", club: "Metro Surigao",                                            initials: "RC", photo: "https://drive.google.com/thumbnail?id=1Fzqc6bfwkSI-qJ0aKCuFPt3pIxOq74YT&sz=w300", theme: "https://drive.google.com/thumbnail?id=1HpJ_B_OMmRAHIiQLrqP1pin0uQGeAdFB&sz=w300", dg: "PDG Rozanne C. Gamboa" },
+      { name: "Mark Glen G. Baldo",           year: "RY 2024–2025", club: "Panglao Island",                                           initials: "MB", photo: "https://drive.google.com/thumbnail?id=1465-AbqeAG7b0GQOehA6ZxrLqCt2Z9u0&sz=w300", theme: "https://drive.google.com/thumbnail?id=1DYYJ4iud53LzU7LHQGpuVk95gfVHmW6-&sz=w300", dg: "PDG Caroline L. Andrade" },
+      { name: "Jacob Erm Jericho A. Dolino",  year: "RY 2025–2026", club: "Cebu Fuente",                                              initials: "JD", photo: "https://drive.google.com/thumbnail?id=1tuJvj6lSm1GvxCCvNwj7ctN1lBl0xdzt&sz=w300", theme: "https://drive.google.com/thumbnail?id=1n8o_AzUXP62yzYMYF-tGOVU7d_wjFPeY&sz=w300", dg: "PDG Angel Fernandez Jr." },
+    ],
+  },
+
+  districtHistory: {
+    eyebrow: "Our Story",
+    title:   "District History",
+    desc:    "Our story is still being written. We're gathering the milestones, memories, and moments that shaped District 3860 — check back soon for the full history.",
+  },
+
   /* --- District Achievements ---
      Highlight district awards and recognitions for RY 2026–2027.
      Set show: true when ready.
@@ -1926,6 +1960,15 @@ const CONFIG = {
   <div class="about-grid"     id="about-grid"></div>
 </section>
 
+<!-- DISTRICT HISTORY -->
+<section id="district-history">
+  <div class="container" style="text-align:center;padding:64px 48px;">
+    <div class="section-kicker" id="dh-eyebrow"></div>
+    <h2 class="section-heading" style="margin-bottom:16px;" id="dh-title"></h2>
+    <p style="font-size:15px;color:var(--gray-500);max-width:560px;margin:0 auto;line-height:1.7;" id="dh-desc"></p>
+  </div>
+</section>
+
 <!-- MEET THE DRR -->
 <section id="drr">
   <div class="container">
@@ -1969,6 +2012,16 @@ const CONFIG = {
     <div id="drc-banners"></div>
     <div id="officers-groups"></div>
     <div class="future-drrs" id="future-drrs"></div>
+  </div>
+</section>
+
+<!-- PAST DRRs -->
+<section id="past-drrs">
+  <div class="container">
+    <div class="section-kicker" id="pastdrrs-eyebrow"></div>
+    <h2 class="section-heading" id="pastdrrs-title"></h2>
+    <p style="font-size:15px;color:var(--gray-500);margin-bottom:48px;" id="pastdrrs-subtitle"></p>
+    <div class="officers-grid" id="pastdrrs-grid"></div>
   </div>
 </section>
 
@@ -2480,6 +2533,33 @@ const CONFIG = {
   </div>
 </div>
 
+<!-- PAST DRR MODAL -->
+<div class="club-modal-overlay" id="pdrr-modal-overlay" onclick="closePastDRRModal(event)">
+  <div class="club-modal" id="pdrr-modal">
+    <div class="club-modal-header">
+      <div class="club-modal-name" id="pdrr-name"></div>
+      <button class="club-modal-close" onclick="closePastDRRModal()" aria-label="Close">✕</button>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;padding:28px 28px 0;">
+      <div id="pdrr-photo-wrap" style="margin-bottom:16px;"></div>
+      <div style="text-align:center;">
+        <div id="pdrr-role" style="font-size:12px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--pink);margin-bottom:6px;">District Rotaract Representative</div>
+        <div id="pdrr-club" style="font-size:14px;color:var(--gray-500);"></div>
+      </div>
+      <div class="pdrr-theme-row">
+        <div id="pdrr-theme-wrap"></div>
+        <div style="text-align:left;">
+          <div style="font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--gray-400);margin-bottom:2px;">District Governor</div>
+          <div id="pdrr-dg" style="font-size:14px;font-weight:600;color:var(--heading-color);"></div>
+        </div>
+      </div>
+    </div>
+    <div class="club-modal-footer">
+      <button class="club-modal-dismiss" onclick="closePastDRRModal()">Close</button>
+    </div>
+  </div>
+</div>
+
 <!-- GOVERNOR MODAL -->
 <div class="club-modal-overlay" id="gov-modal-overlay" onclick="closeGovModal(event)">
   <div class="club-modal" id="gov-modal">
@@ -2775,6 +2855,11 @@ function fbIconHtml(fbUrl, label, cssClass, fallbackSvg){
     ag.innerHTML+='<div class="about-card"><div class="about-icon">'+c.icon+'</div><h3>'+c.title+'</h3><p>'+c.body+'</p></div>';
   });
 
+  /* District History */
+  setText('dh-eyebrow', C.districtHistory.eyebrow);
+  setText('dh-title',   C.districtHistory.title);
+  setText('dh-desc',    C.districtHistory.desc);
+
   /* Governor banner */
   const gov = C.officers.governor;
   const govEl = $('gov-banner');
@@ -2946,6 +3031,60 @@ function fbIconHtml(fbUrl, label, cssClass, fallbackSvg){
       '<h3 style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--heading-color);margin-top:8px;">'+fdrr.title+'</h3>';
     fd.appendChild(fGrid);
     if(window.initTilt) window.initTilt();
+
+  /* Past DRRs */
+  setText('pastdrrs-eyebrow',  C.pastDRRs.eyebrow);
+  setText('pastdrrs-title',    C.pastDRRs.title);
+  setText('pastdrrs-subtitle', C.pastDRRs.subtitle);
+  const pdGrid = $('pastdrrs-grid');
+  C.pastDRRs.list.forEach(function(p){
+    const card = document.createElement('div');
+    card.className = 'officer-card tilt-card';
+    card.style.cursor = 'pointer';
+    var pShine = document.createElement('div');
+    pShine.className = 'tilt-shine';
+    card.appendChild(pShine);
+    card.innerHTML = '<div class="officer-name">'+p.name+'</div>'+
+      '<div class="officer-role">'+p.year+'</div>'+
+      '<div class="officer-club">'+p.club+'</div>';
+    const media = document.createElement('div');
+    media.className = 'pdrr-card-media';
+    if(p.photo){
+      const img = document.createElement('img');
+      img.className = 'officer-photo';
+      img.src = p.photo;
+      img.alt = p.name;
+      img.loading = 'lazy';
+      img.style.objectPosition = 'center top';
+      const av = document.createElement('div');
+      av.className = 'officer-avatar';
+      av.style.display = 'none';
+      av.textContent = p.initials;
+      img.onerror = function(){ this.style.display='none'; av.style.display='flex'; };
+      media.appendChild(img);
+      media.appendChild(av);
+    } else {
+      const av = document.createElement('div');
+      av.className = 'officer-avatar';
+      av.textContent = p.initials;
+      media.appendChild(av);
+    }
+    if(p.theme){
+      const timg = document.createElement('img');
+      timg.className = 'pdrr-card-theme';
+      timg.src = p.theme;
+      timg.alt = p.year+' Theme';
+      timg.loading = 'lazy';
+      timg.onerror = function(){ this.remove(); };
+      media.appendChild(timg);
+    }
+    card.insertBefore(media, card.firstChild);
+    card.addEventListener('click', function(){
+      openPastDRRModal(p.name, p.year, p.club, p.photo||'', p.theme||'', p.dg, p.initials);
+    });
+    pdGrid.appendChild(card);
+  });
+  if(window.initTilt) window.initTilt();
 
   /* Meet the DRR */
   const drr = C.drr;
@@ -3946,6 +4085,40 @@ function openFutureDRRModal(name,year,club,photo,role){
 function closeFutureDRRModal(e){
   if(e && e.target !== document.getElementById('fdrr-modal-overlay')) return;
   document.getElementById('fdrr-modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function openPastDRRModal(name,year,club,photo,theme,dg,initials){
+  document.getElementById('pdrr-name').textContent = name;
+  document.getElementById('pdrr-role').textContent = 'District Rotaract Representative, '+year;
+  document.getElementById('pdrr-club').textContent = club;
+  document.getElementById('pdrr-dg').textContent = dg || '';
+  const wrap = document.getElementById('pdrr-photo-wrap');
+  if(photo){
+    const img = document.createElement('img');
+    img.className = 'om-photo'; img.src = photo; img.alt = name;
+    img.style.objectPosition = 'center top';
+    img.onerror = function(){ this.outerHTML = '<div class="om-avatar">'+(initials||'📷')+'</div>'; };
+    wrap.innerHTML = ''; wrap.appendChild(img);
+  } else {
+    wrap.innerHTML = '<div class="om-avatar">'+(initials||'📷')+'</div>';
+  }
+  const themeWrap = document.getElementById('pdrr-theme-wrap');
+  themeWrap.innerHTML = '';
+  if(theme){
+    const timg = document.createElement('img');
+    timg.src = theme;
+    timg.alt = year+' Theme';
+    timg.style.cssText = 'width:56px;height:56px;border-radius:10px;object-fit:cover;box-shadow:0 2px 8px rgba(0,0,0,.1);flex-shrink:0;';
+    timg.onerror = function(){ this.remove(); };
+    themeWrap.appendChild(timg);
+  }
+  document.getElementById('pdrr-modal-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closePastDRRModal(e){
+  if(e && e.target !== document.getElementById('pdrr-modal-overlay')) return;
+  document.getElementById('pdrr-modal-overlay').classList.remove('open');
   document.body.style.overflow = '';
 }
 
