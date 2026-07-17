@@ -4217,7 +4217,7 @@ function openCreditOfficerCard(){
   document.querySelectorAll('.officer-card.active').forEach(c => c.classList.remove('active'));
   card.classList.add('active');
   card.scrollIntoView({behavior:'smooth', block:'center'});
-  openOfficerModal(card);
+  setTimeout(function(){ openOfficerModal(card); }, 500);
 }
 </script>
 
