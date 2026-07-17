@@ -281,10 +281,14 @@ body.dark-mode .bio-read-btn:hover{background:var(--pink);color:#fff;}
 /* ── SECRETARIAT LINKS ── */
 .secretariat-section{margin-top:52px;padding-top:48px;border-top:1px solid var(--gray-200);}
 .secretariat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:24px;}
-.secretariat-card{background:#fff;border:1px solid var(--gray-100);border-radius:var(--r-lg);padding:24px;display:flex;gap:16px;align-items:flex-start;transition:all .25s;text-decoration:none;border-left:4px solid var(--pink);}
+.secretariat-card{background:#fff;border:1px solid var(--gray-100);border-radius:var(--r-lg);padding:20px 24px;display:flex;gap:16px;align-items:center;transition:all .25s;text-decoration:none;border-left:4px solid var(--pink);}
+.secretariat-card-soon{border-left-color:var(--gray-200);position:relative;flex-direction:column;align-items:flex-start;gap:12px;}
+.secretariat-soon-row{display:flex;align-items:center;gap:16px;width:100%;}
+.secretariat-soon-badge{flex-shrink:0;font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--gray-400);border:1.5px solid var(--gray-200);border-radius:20px;padding:3px 10px;white-space:nowrap;}
+body.dark-mode .secretariat-soon-badge{color:var(--dm-muted);border-color:var(--dm-border);}
 .secretariat-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(212,19,103,.1);border-color:var(--pink);}
 .secretariat-icon{width:44px;height:44px;border-radius:12px;background:var(--pink-light);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
-.secretariat-text{}
+.secretariat-text{flex:1;min-width:0;}
 .secretariat-label{font-size:15px;font-weight:700;color:var(--heading-color);margin-bottom:4px;}
 .secretariat-desc{font-size:13px;color:var(--gray-500);line-height:1.5;}
 .secretariat-arrow{margin-left:auto;font-size:18px;color:var(--pink);align-self:center;flex-shrink:0;}
@@ -1819,6 +1823,7 @@ const CONFIG = {
         { icon: "📊", label: "Reporting Dashboard",         desc: "View real-time club reporting status and compliance.", href: "https://rotaract.rotarydistrict3860.org/reports/dashboard?qBfx=uHKdkW4W" },
         { icon: "📄", label: "Reporting Summary",           desc: "Access the consolidated summary of all club reports.",  href: "https://www.rotarydistrict3860.org/district/rotaract-reports/" },
         { icon: "📬", label: "Centralized Submission Form", desc: "Submit club reports, projects, and documents here.",    href: "https://forms.gle/TQ1YVhvuwU5PyRvA8"   },
+        { icon: "📰", label: "Newsletter Submission",       desc: "Submit your club's newsletter for district compilation.", comingSoon: true },
       ],
     },
   },
@@ -3163,9 +3168,17 @@ function fbIconHtml(fbUrl, label, cssClass, fallbackSvg){
     '<p style="font-size:14px;color:var(--gray-500);margin-bottom:0;">Quick access links for club presidents and officers.</p>'+
     '<div class="secretariat-grid">'+
     sec.links.map(function(l){
+      if(l.comingSoon){
+        return '<div class="secretariat-card secretariat-card-soon">'+
+          '<div class="secretariat-soon-row">'+
+          '<div class="secretariat-icon" style="opacity:.55;">'+l.icon+'</div>'+
+          '<div class="secretariat-text"><div class="secretariat-label">'+l.label+'</div></div>'+
+          '</div>'+
+          '<span class="secretariat-soon-badge">Coming Soon</span></div>';
+      }
       return '<a class="secretariat-card" href="'+l.href+'" target="_blank" rel="noopener">'+
         '<div class="secretariat-icon">'+l.icon+'</div>'+
-        '<div class="secretariat-text"><div class="secretariat-label">'+l.label+'</div><div class="secretariat-desc">'+l.desc+'</div></div>'+
+        '<div class="secretariat-text"><div class="secretariat-label">'+l.label+'</div></div>'+
         '<div class="secretariat-arrow">↗</div></a>';
     }).join('')+'</div>';
 
@@ -3420,7 +3433,7 @@ function fbIconHtml(fbUrl, label, cssClass, fallbackSvg){
   setText('footer-copy', '© '+new Date().getFullYear()+' Rotaract Clubs of Rotary International District 3860. All rights reserved.');
   const lu = document.createElement('div');
   lu.className = 'last-updated';
-  lu.textContent = 'Data last updated: July 13, 2026';
+  lu.textContent = 'Data last updated: July 18, 2026';
   const fcopy = $('footer-copy');
   if(fcopy) fcopy.parentNode.insertBefore(lu, fcopy.nextSibling);
 
