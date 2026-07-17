@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://rotaract-district-3860.vercel.app/sitemap.xml
+Sitemap: https://rotaract3860.org/sitemap.xml
