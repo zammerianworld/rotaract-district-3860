@@ -281,8 +281,8 @@ body.dark-mode .bio-read-btn:hover{background:var(--pink);color:#fff;}
 /* ── SECRETARIAT LINKS ── */
 .secretariat-section{margin-top:52px;padding-top:48px;border-top:1px solid var(--gray-200);}
 .secretariat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:24px;}
-.secretariat-card{background:#fff;border:1px solid var(--gray-100);border-radius:var(--r-lg);padding:20px 24px;display:flex;gap:16px;align-items:center;transition:all .25s;text-decoration:none;border-left:4px solid var(--pink);}
-.secretariat-card-soon{border-left-color:var(--gray-200);position:relative;flex-direction:column;align-items:flex-start;gap:12px;}
+.secretariat-card{background:#fff;border:1.5px solid var(--gray-200);border-radius:var(--r-lg);padding:20px 24px;display:flex;gap:16px;align-items:center;transition:all .25s;text-decoration:none;box-shadow:0 2px 8px rgba(0,0,0,.04);}
+.secretariat-card-soon{position:relative;flex-direction:column;align-items:flex-start;gap:12px;}
 .secretariat-soon-row{display:flex;align-items:center;gap:16px;width:100%;}
 .secretariat-soon-badge{flex-shrink:0;font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--gray-400);border:1.5px solid var(--gray-200);border-radius:20px;padding:3px 10px;white-space:nowrap;}
 body.dark-mode .secretariat-soon-badge{color:var(--dm-muted);border-color:var(--dm-border);}
@@ -323,9 +323,8 @@ body.dark-mode .gallery-dots-light .gallery-dot{background:var(--dm-border);}
 .officer-card{background:#fff;border-radius:var(--r-lg);padding:36px 28px;text-align:center;border:1.5px solid var(--gray-200);transition:all .25s;position:relative;overflow:hidden;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.04);}
 .officer-card.active{border-color:var(--pink);box-shadow:0 4px 20px rgba(212,19,103,.15);}
 .officer-card:active{transform:scale(.97);}
-.officer-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(212,19,103,.12);border-color:var(--pink-light);}
+.officer-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(212,19,103,.1);border-color:var(--pink-light);}
 .officer-card::after{content:'';position:absolute;inset:0;border-radius:var(--r-lg);border:2px solid var(--pink);opacity:0;transition:opacity .25s;}
-.officer-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(212,19,103,.1);}
 .officer-card:hover::after{opacity:1;}
 .officer-photo{width:96px;height:96px;border-radius:50%;object-fit:cover;object-position:center top;margin:0 auto 16px;border:3px solid #fff;box-shadow:0 0 0 3px var(--pink);display:block;background:var(--pink-light);}
 .officer-avatar{width:96px;height:96px;border-radius:50%;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;font-family:var(--font-display);background:var(--pink-light);color:var(--pink);position:relative;}
