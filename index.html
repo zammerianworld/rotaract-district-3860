@@ -1307,10 +1307,9 @@ const CONFIG = {
     title:   "Create Lasting Impact",
     subtitle: "Official District Theme Song · RY 2026–2027",
     desc:    "Watch the official theme song of Rotaract District 3860 for Rotary Year 2026–2027 - with vocals or instrumental.",
-    driveFolder: "https://drive.google.com/drive/folders/185Ocjpx5ZzqQhitaaF4yfcObxAll66yz",
     videos: {
-      vocal:       { id: "1PI1B0FzjleSyTpTwrgl8xKLTnGS4MKfJ", label: "With Vocals" },
-      instrumental:{ id: "14l6TGVjIK-EFgeoM6wXJZYjdDe-Jrk2t", label: "Instrumental" },
+      vocal:       { id: "18PUfTQaFZ4PjEwg0X0V4X5uD6yUfWDjt", label: "With Lyrics", desc: "The CLI Theme Song with Lyrics, for use during Rotary meetings, programs, and District activities." },
+      instrumental:{ id: "1cUfsUQ-kWEciEBY9eImV9SvK4edoeHkl", label: "Processional/Instrumental", desc: "The CLI Theme Song Processional, for use during opening ceremonies, processionals, and District activities." },
     },
   },
 
@@ -1996,10 +1995,7 @@ const CONFIG = {
     <div class="theme-song-player-wrap">
       <div class="theme-song-tabs" id="ts-tabs"></div>
       <div class="theme-song-player" id="ts-player"></div>
-      <p class="theme-song-note">Video not loading? Google Drive occasionally limits anonymous viewers - try the "Open in Drive" link below or sign in to your Google account.</p>
-    </div>
-    <div class="theme-song-btns">
-      <a class="theme-song-btn theme-song-btn-secondary" href="#" id="ts-btn2" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;vertical-align:-3px;margin-right:4px;"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>All Versions on Drive</a>
+      <p class="theme-song-note">Video not loading? Google Drive occasionally limits anonymous viewers - try signing in to your Google account, or reopen this page after a moment.</p>
     </div>
   </div>
 </section>
@@ -3482,7 +3478,7 @@ function fbIconHtml(fbUrl, label, cssClass, fallbackSvg){
   setText('footer-copy', '© '+new Date().getFullYear()+' Rotaract Clubs of Rotary International District 3860. All rights reserved.');
   const lu = document.createElement('div');
   lu.className = 'last-updated';
-  lu.textContent = 'Data last updated: September 4, 2026';
+  lu.textContent = 'Data last updated: September 16, 2026';
   const fcopy = $('footer-copy');
   if(fcopy) fcopy.parentNode.insertBefore(lu, fcopy.nextSibling);
 
@@ -3494,14 +3490,13 @@ function fbIconHtml(fbUrl, label, cssClass, fallbackSvg){
     setText('ts-title', ts.title);
     setText('ts-sub',   ts.subtitle);
     setText('ts-desc',  ts.desc);
-    const btn2 = $('ts-btn2');
-    if(btn2) btn2.href = ts.driveFolder;
 
-    var tabsEl = $('ts-tabs'), playerEl = $('ts-player');
+    var tabsEl = $('ts-tabs'), playerEl = $('ts-player'), descEl = $('ts-desc');
     var vids = ts.videos || {};
     var keys = Object.keys(vids).filter(function(k){ return vids[k] && vids[k].id; });
     function showVideo(key){
       var v = vids[key]; if(!v) return;
+      if(descEl) descEl.textContent = v.desc || ts.desc;
       if(isMobileDevice()){
         playerEl.innerHTML = '<a href="https://drive.google.com/file/d/'+v.id+'/view" target="_blank" rel="noopener" class="theme-song-mobile-fallback">'+
           '<span class="theme-song-play-btn">▶</span>'+
